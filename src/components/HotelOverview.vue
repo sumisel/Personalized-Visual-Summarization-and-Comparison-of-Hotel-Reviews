@@ -1,7 +1,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useHotelsStore } from '../stores/hotels.js'
-const { hotels } = storeToRefs(useHotelsStore())
+import { useHotelStore } from '../stores/hotel.js'
+const { hotels } = storeToRefs(useHotelStore())
 </script>
 
 <template>
