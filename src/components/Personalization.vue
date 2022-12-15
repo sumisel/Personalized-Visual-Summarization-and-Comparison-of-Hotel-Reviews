@@ -1,9 +1,9 @@
 <script setup>
 import Glyph from "./Glyph.vue";
 
-import { storeToRefs } from 'pinia'
-import { useCategoryStore } from '../stores/category.js'
-const { categories } = storeToRefs(useCategoryStore())
+import { storeToRefs } from "pinia";
+import { useCategoryStore } from "../stores/category.js";
+const { categories } = storeToRefs(useCategoryStore());
 </script>
 
 <template>
@@ -21,7 +21,14 @@ const { categories } = storeToRefs(useCategoryStore())
         <tbody>
           <tr v-for="category in categories" :key="category.name">
             <td><v-icon :icon="category.icon"></v-icon></td>
-            <td><v-slider></v-slider></td>
+            <td>
+              <v-slider
+                :model-value="category.value"
+                hide-details="true"
+                thumb-size="12"
+                track-size="2"
+              ></v-slider>
+            </td>
           </tr>
         </tbody>
       </v-table>
