@@ -23,7 +23,7 @@ const { categories } = storeToRefs(useCategoryStore())
     <v-navigation-drawer permanent location="right" width="344"
       ><Personalization
     /></v-navigation-drawer>
-    <v-main>
+    <v-main class="ma-6">
       <HotelOverview />
 
     </v-main>
