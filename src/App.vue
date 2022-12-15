@@ -8,7 +8,7 @@ import Personalization from "./components/Personalization.vue";
     <v-app-bar title="Hotel Review Comparison"></v-app-bar>
     <v-navigation-drawer color="grey-darken-2" permanent location="right" width="344"><Personalization /></v-navigation-drawer>
     <v-main>
-      <v-content><HotelOverview /></v-content>
+      <HotelOverview />
     </v-main>
   </v-app>
 </template>

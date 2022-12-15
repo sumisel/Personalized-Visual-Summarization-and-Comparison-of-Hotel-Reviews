@@ -1,5 +1,9 @@
 <script setup>
 import Glyph from "./Glyph.vue";
+
+import { storeToRefs } from 'pinia'
+import { useCategoryStore } from '../stores/category.js'
+const { categories } = storeToRefs(useCategoryStore())
 </script>
 
 <template>
@@ -15,12 +19,8 @@ import Glyph from "./Glyph.vue";
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><v-icon icon="mdi-bed"></v-icon></td>
-            <td><v-slider></v-slider></td>
-          </tr>
-          <tr>
-            <td><v-icon icon="mdi-map-marker"></v-icon></td>
+          <tr v-for="category in categories" :key="category.name">
+            <td><v-icon :icon="category.icon"></v-icon></td>
             <td><v-slider></v-slider></td>
           </tr>
         </tbody>
