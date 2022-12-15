@@ -3,33 +3,37 @@ import { defineStore } from 'pinia'
 export const useCategoryStore = defineStore({
   id: 'category',
   state: () => ({
-    categories: [{
-      name: "Sleep quality",
-      icon: "mdi-sleep",
-    },
-    {
-      name: "Rooms",
-      icon: "mdi-bed-king",
-    },
-    {
-      name: "Service",
-      icon: "mdi-room-service",
-    },
-    {
-      name: "Cleanliness",
-      icon: "mdi-broom",
-    },
-    {
-      name: "Location",
-      icon: "mdi-crosshairs-gps",
-    },
+    categories: [
+      {
+        id: "location",
+        title: "Location",
+        icon: "mdi-crosshairs-gps",
+      },
+      {
+        id: "value",
+        title: "Value",
+        icon: "mdi-diamond",
+      },
+      {
+        id: "room",
+        title: "Rooms",
+        icon: "mdi-bed-king",
+      },
+      {
+        id: "service",
+        title: "Service",
+        icon: "mdi-room-service",
+      },
+      {
+        id: "clean",
+        title: "Cleanliness",
+        icon: "mdi-broom",
+      },
+      {
+        id: "sleep",
+        title: "Sleep quality",
+        icon: "mdi-sleep",
+      },
     ]
   }),
 })
-
-// "sleep quality":4.0,
-// #      "value":4.0,
-// #      "rooms":3.0,
-// #      "service":5.0,
-// #      "cleanliness":3.0,
-// #      "location":3.0
