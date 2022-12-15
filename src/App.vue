@@ -1,20 +1,15 @@
 <script setup>
-import HotelOverview from './components/HotelOverview.vue'
+import HotelOverview from "./components/HotelOverview.vue";
 </script>
 
 <template>
-  <div>
-    <header>
-      <h1>Personalized Hotel Review Comparison</h1>
-    </header>
-    <main>
-      <HotelOverview />
-    </main>
-  </div>
+  <v-app>
+    <v-app-bar title="Personalized Hotel Review Comparison"></v-app-bar>
+    <v-main>
+      <v-content><HotelOverview /></v-content>
+    </v-main>
+  </v-app>
 </template>
 
 <style scoped>
-header {
-  background: #aaa;
-}
 </style>
