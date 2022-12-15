@@ -1,5 +1,5 @@
 <script setup>
-import TheWelcome from './components/TheWelcome.vue'
+import HotelOverview from './components/HotelOverview.vue'
 </script>
 
 <template>
@@ -8,7 +8,7 @@ import TheWelcome from './components/TheWelcome.vue'
       <h1>Personalized Hotel Review Comparison</h1>
     </header>
     <main>
-      <TheWelcome />
+      <HotelOverview />
     </main>
   </div>
 </template>
