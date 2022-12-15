@@ -1,15 +1,17 @@
 <script setup>
-const hotels = ["Hotel A", "Hotel B"]; // ToDo: to be replaced by hotels store
+import { storeToRefs } from 'pinia'
+import { useHotelsStore } from '../stores/hotels.js'
+const { hotels } = storeToRefs(useHotelsStore())
 </script>
 
 <template>
-  <h2><v-icon icon="mdi-bed" size="large"></v-icon>Selected Hotels</h2>
+  <div class="text-h4">Selected Hotels</div>
   <div class="d-flex flex-row flex-wrap">
     <v-card
       v-for="hotel in hotels"
-      :key="hotel"
-      :title="hotel"
-      subtitle="..."
+      :key="hotel.id"
+      :title="`${hotel.id}: ${hotel.name}`"
+      :subtitle="hotel.statement"
       text="..."
       class="ma-2 flex-grow-1"
     ></v-card>
