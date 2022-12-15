@@ -1,0 +1,61 @@
+<script setup>
+import Glyph from "./Glyph.vue";
+</script>
+
+<template>
+  <v-sheet class="ma-2 pa-2 rounded">
+    <div class="my-2">
+      <div class="text-h6">My Priorities</div>
+      <Glyph></Glyph>
+      <v-table density="compact">
+        <thead>
+          <tr>
+            <th class="text-left">Category</th>
+            <th class="text-left w-75">Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><v-icon icon="mdi-bed"></v-icon></td>
+            <td><v-slider></v-slider></td>
+          </tr>
+          <tr>
+            <td><v-icon icon="mdi-map-marker"></v-icon></td>
+            <td><v-slider></v-slider></td>
+          </tr>
+        </tbody>
+      </v-table>
+    </div>
+    <v-divider></v-divider>
+    <div class="my-2">
+      <div class="text-h6">My Keywords</div>
+      <v-autocomplete
+        label="Add keyword"
+        prepend-icon="mdi-tag-plus"
+        :items="[
+          'wifi',
+          'shower',
+          'breakfast',
+          'public transport',
+          'parking',
+          'walking',
+        ]"
+      ></v-autocomplete>
+      <v-chip closable>pool</v-chip>
+      <v-chip closable>drinks</v-chip>
+    </div>
+    <v-divider></v-divider>
+    <div class="my-2">
+      <div class="text-h6">My Locations</div>
+      <v-autocomplete
+        label="Add location"
+        prepend-icon="mdi-map-marker-plus"
+        :items="['downtwon', 'cathedral', 'woods', 'Eiffel Tower', 'Louvre']"
+      ></v-autocomplete>
+      <v-chip closable>beach</v-chip>
+    </div>
+  </v-sheet>
+</template>
+
+<style scoped>
+</style>
