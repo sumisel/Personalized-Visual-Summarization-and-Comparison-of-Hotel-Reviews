@@ -31,7 +31,7 @@ const { categories } = storeToRefs(useCategoryStore());
             <td>
               <v-slider
                 :color="category.color"
-                :model-value="category.value"
+                v-model="category.value"
                 hide-details="true"
                 thumb-size="12"
                 track-size="2"
