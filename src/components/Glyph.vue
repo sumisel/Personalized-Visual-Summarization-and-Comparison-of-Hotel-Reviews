@@ -10,6 +10,9 @@ categoriesStore.$subscribe(() => {
   plot();
 });
 
+const ratings = [4.0, 3.5, 2.9, 4.1, 4.3, 4.7];
+const minRatings = [3.5, 3.5, 2.9, 3.1, 3.7, 4.2];
+
 onMounted(() => {
   const width = 100;
   const height = 100;
@@ -24,16 +27,42 @@ onMounted(() => {
 });
 
 const plot = function () {
-  const arcs = d3.pie().sort(null).value((d) => d.value)(categoriesStore.categories);
-  const arc = d3.arc().innerRadius(0).outerRadius(50);
+  const data = categoriesStore.categories.map((category, i) => {
+    category.rating = ratings[i];
+    category.minRating = minRatings[i];
+    return category;
+  });
+  const arcs = d3
+    .pie()
+    .sort(null)
+    .value((d) => d.value)(data);
+  const arc = d3
+    .arc()
+    .innerRadius(0)
+    .outerRadius((d) => d.data.rating * 10);
+  const arcMin = d3
+    .arc()
+    .innerRadius(0)
+    .outerRadius((d) => d.data.minRating * 10);
 
-  const svg = d3
-    .select("svg")
-    .selectAll("path")
+  const svg = d3.select("svg");
+
+  svg
+    .selectAll("path.ratings")
     .data(arcs)
     .join("path")
+    .attr("class", "ratings")
     .attr("fill", (d) => d.data.color)
     .attr("d", arc);
+
+  svg
+    .selectAll("path.min-ratings")
+    .data(arcs)
+    .join("path")
+    .attr("class", "min-ratings")
+    .attr("fill", "#FFF")
+    .attr("fill-opacity", "0.7")
+    .attr("d", arcMin);
 };
 </script>
 
