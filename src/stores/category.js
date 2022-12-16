@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 export const useCategoryStore = defineStore({
   id: 'category',
   state: () => ({
+    // colors: selection of Bokeh Category 10 https://colorcet.holoviz.org/user_guide/Categorical.html
     categories: [
       {
         id: "location",
