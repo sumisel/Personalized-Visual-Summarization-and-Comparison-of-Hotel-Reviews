@@ -5,7 +5,6 @@ const { hotels } = storeToRefs(useHotelStore())
 </script>
 
 <template>
-  <div class="text-h4">Selected Hotels</div>
   <div class="d-flex flex-row flex-wrap">
     <v-card
       v-for="hotel in hotels"
