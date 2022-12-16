@@ -15,12 +15,12 @@ const { categories } = storeToRefs(useCategoryStore());
         <thead>
           <tr>
             <th class="text-left">Category</th>
-            <th class="text-left w-75">Priority</th>
+            <th class="text-left w-50">Priority</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="category in categories" :key="category.name">
-            <td><v-icon :icon="category.icon"></v-icon></td>
+          <tr v-for="category in categories" :key="category.id">
+            <td><v-icon :icon="category.icon" class="mr-2"></v-icon>{{ category.title }}</td>
             <td>
               <v-slider
                 :model-value="category.value"
@@ -53,7 +53,7 @@ const { categories } = storeToRefs(useCategoryStore());
     </div>
     <v-divider></v-divider>
     <div class="my-2">
-      <div class="text-h6">My Locations</div>
+      <div class="text-h6">My Points of Interest</div>
       <v-autocomplete
         label="Add location"
         prepend-icon="mdi-map-marker-plus"
