@@ -1,9 +1,11 @@
 <script setup>
 import * as d3 from "d3";
 
-import { onMounted } from "vue";
+import { ref, onMounted } from "vue";
 
 import { useCategoryStore } from "../stores/category.js";
+
+const svg = ref();
 
 const categoriesStore = useCategoryStore();
 categoriesStore.$subscribe(() => {
@@ -16,8 +18,7 @@ const minRatings = [3.5, 3.5, 2.9, 3.1, 3.7, 4.2];
 onMounted(() => {
   const width = 100;
   const height = 100;
-  const svg = d3
-    .select("svg")
+  d3.select(svg.value)
     .attr("width", width)
     .attr("height", height)
     .attr("viewBox", [-width / 2, -height / 2, width, height])
@@ -45,9 +46,7 @@ const plot = function () {
     .innerRadius(0)
     .outerRadius((d) => d.data.minRating * 10);
 
-  const svg = d3.select("svg");
-
-  svg
+  d3.select(svg.value)
     .selectAll("path.ratings")
     .data(arcs)
     .join("path")
@@ -55,7 +54,7 @@ const plot = function () {
     .attr("fill", (d) => d.data.color)
     .attr("d", arc);
 
-  svg
+  d3.select(svg.value)
     .selectAll("path.min-ratings")
     .data(arcs)
     .join("path")
@@ -67,5 +66,5 @@ const plot = function () {
 </script>
 
 <template>
-  <svg></svg>
+  <svg ref="svg"></svg>
 </template>

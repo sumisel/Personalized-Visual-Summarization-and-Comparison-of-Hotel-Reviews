@@ -1,7 +1,9 @@
 <script setup>
-import { storeToRefs } from 'pinia'
-import { useHotelStore } from '../stores/hotel.js'
-const { hotels } = storeToRefs(useHotelStore())
+import Glyph from "./Glyph.vue";
+
+import { storeToRefs } from "pinia";
+import { useHotelStore } from "../stores/hotel.js";
+const { hotels } = storeToRefs(useHotelStore());
 </script>
 
 <template>
@@ -9,11 +11,20 @@ const { hotels } = storeToRefs(useHotelStore())
     <v-card
       v-for="hotel in hotels"
       :key="hotel.id"
-      :title="`${hotel.id}: ${hotel.name}`"
-      :subtitle="hotel.statement"
-      text="..."
       class="ma-2 flex-grow-1"
-    ></v-card>
+      ><div class="d-flex flex-no-wrap justify-space-between">
+        <v-avatar class="ma-3 flex-grow-0" size="125" rounded="0">
+          <Glyph></Glyph>
+        </v-avatar>
+        <div class="flex-grow-1">
+          <v-card-title class="text-h5">{{hotel.id}}: {{hotel.name}}</v-card-title>
+          <v-card-subtitle>{{hotel.statement}}</v-card-subtitle>
+        </div>
+
+
+      </div>
+    </v-card>
+    <v-card> </v-card>
   </div>
 </template>
 
