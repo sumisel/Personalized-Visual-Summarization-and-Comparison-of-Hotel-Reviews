@@ -20,9 +20,17 @@ const { categories } = storeToRefs(useCategoryStore());
         </thead>
         <tbody>
           <tr v-for="category in categories" :key="category.id">
-            <td><v-icon :icon="category.icon" class="mr-2"></v-icon>{{ category.title }}</td>
+            <td>
+              <v-icon
+                :icon="category.icon"
+                class="mr-2"
+                :color="category.color"
+              ></v-icon
+              >{{ category.title }}
+            </td>
             <td>
               <v-slider
+                :color="category.color"
                 :model-value="category.value"
                 hide-details="true"
                 thumb-size="12"
