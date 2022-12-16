@@ -49,27 +49,29 @@ const sections = [
       ><Personalization
     /></v-navigation-drawer>
     <v-main class="ma-6">
-      <div>
-        <div class="text-h4">Hotel Selection</div>
-        <HotelOverview />
-      </div>
-      <div v-for="section in sections" :key="section.title" class="my-6">
-        <div class="text-h5">
-          <v-icon :icon="section.icon" class="mr-2"></v-icon>{{ section.title }}
+      <div class="content mx-auto">
+        <div>
+          <div class="text-h4">Hotel Selection</div>
+          <HotelOverview />
         </div>
-        <div class="ml-12">
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae
-            at, ratione odit iure deleniti quae corrupti libero ex adipisci
-            nobis nihil eveniet hic autem aliquid reprehenderit mollitia.
-            Temporibus, repudiandae quae.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
-            harum accusantium earum saepe neque. Earum quo, tempora cupiditate
-            quod repellat praesentium ad dicta odit dolores alias. Eligendi quos
-            veritatis animi?
-          </p>
+        <div v-for="section in sections" :key="section.title" class="my-6">
+          <div class="text-h5">
+            <v-icon :icon="section.icon" class="mr-2"></v-icon>{{ section.title }}
+          </div>
+          <div class="ml-12">
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae
+              at, ratione odit iure deleniti quae corrupti libero ex adipisci
+              nobis nihil eveniet hic autem aliquid reprehenderit mollitia.
+              Temporibus, repudiandae quae.
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
+              harum accusantium earum saepe neque. Earum quo, tempora cupiditate
+              quod repellat praesentium ad dicta odit dolores alias. Eligendi quos
+              veritatis animi?
+            </p>
+          </div>
         </div>
       </div>
     </v-main>
@@ -77,4 +79,7 @@ const sections = [
 </template>
 
 <style scoped>
+.content {
+  max-width: 1000px;
+}
 </style>
