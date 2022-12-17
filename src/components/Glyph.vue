@@ -1,69 +1,101 @@
-<script setup>
+<script>
 import * as d3 from "d3";
 
 import { ref, onMounted } from "vue";
 
 import { useCategoryStore } from "../stores/category.js";
+export default {
+  props: {
+    ratings: {
+      type: Object,
+      default: {
+        location: 5.0,
+        value: 5.0,
+        rooms: 5.0,
+        service: 5.0,
+        clean: 5.0,
+        sleep: 5.0,
+      },
+    },
+    minRatings: {
+      type: Object,
+      default: {
+        location: 3.0,
+        value: 3.0,
+        rooms: 3.0,
+        service: 3.0,
+        clean: 3.0,
+        sleep: 3.0,
+      },
+    },
+  },
+  setup() {
+    const svg = ref();
+    const categoriesStore = useCategoryStore();
 
-const svg = ref();
+    return {
+      svg,
+      categoriesStore,
+    };
+  },
+  mounted() {
+    const width = 100;
+    const height = 100;
+    d3.select(this.svg)
+      .attr("width", width)
+      .attr("height", height)
+      .attr("viewBox", [-width / 2, -height / 2, width, height])
+      .attr("style", "max-width: 100%; height: auto; height: intrinsic;");
 
-const categoriesStore = useCategoryStore();
-categoriesStore.$subscribe(() => {
-  plot();
-});
+    this.categoriesStore.$subscribe(() => {
+      this.plot();
+    });
 
-const ratings = [4.0, 3.5, 2.9, 4.1, 4.3, 4.7];
-const minRatings = [3.5, 3.5, 2.9, 3.1, 3.7, 4.2];
+    this.plot();
+  },
+  methods: {
+    plot() {
+      const data = this.categoriesStore.categories.map((category, i) => {
+        const d = {};
+        d.category = category;
+        d.rating = this.ratings[category.id];
+        d.minRating = this.minRatings[category.id];
+        return d;
+      });
+      const arcs = d3
+        .pie()
+        .sort(null)
+        .value((d) => d.category.value)(data);
+      const arc = d3
+        .arc()
+        .innerRadius(0)
+        .outerRadius((d) => d.data.rating * 10);
+      const arcMin = d3
+        .arc()
+        .innerRadius(0)
+        .outerRadius((d) => d.data.minRating * 10);
 
-onMounted(() => {
-  const width = 100;
-  const height = 100;
-  d3.select(svg.value)
-    .attr("width", width)
-    .attr("height", height)
-    .attr("viewBox", [-width / 2, -height / 2, width, height])
-    .attr("style", "max-width: 100%; height: auto; height: intrinsic;");
+      d3.select(this.svg)
+        .selectAll("path.ratings")
+        .data(arcs)
+        .join("path")
+        .attr("class", "ratings")
+        .attr("fill", (d) => d.data.category.color)
+        .attr("d", arc);
 
-  plot();
-});
-
-const plot = function () {
-  const data = categoriesStore.categories.map((category, i) => {
-    category.rating = ratings[i];
-    category.minRating = minRatings[i];
-    return category;
-  });
-  const arcs = d3
-    .pie()
-    .sort(null)
-    .value((d) => d.value)(data);
-  const arc = d3
-    .arc()
-    .innerRadius(0)
-    .outerRadius((d) => d.data.rating * 10);
-  const arcMin = d3
-    .arc()
-    .innerRadius(0)
-    .outerRadius((d) => d.data.minRating * 10);
-
-  d3.select(svg.value)
-    .selectAll("path.ratings")
-    .data(arcs)
-    .join("path")
-    .attr("class", "ratings")
-    .attr("fill", (d) => d.data.color)
-    .attr("d", arc);
-
-  d3.select(svg.value)
-    .selectAll("path.min-ratings")
-    .data(arcs)
-    .join("path")
-    .attr("class", "min-ratings")
-    .attr("fill", "#FFF")
-    .attr("fill-opacity", "0.7")
-    .attr("d", arcMin);
+      d3.select(this.svg)
+        .selectAll("path.min-ratings")
+        .data(arcs)
+        .join("path")
+        .attr("class", "min-ratings")
+        .attr("fill", "#FFF")
+        .attr("fill-opacity", "0.85")
+        .attr("d", arcMin);
+    },
+  },
 };
 </script>
+
 
 <template>
   <svg ref="svg"></svg>
