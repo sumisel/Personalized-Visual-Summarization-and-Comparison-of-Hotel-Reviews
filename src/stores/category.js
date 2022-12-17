@@ -20,7 +20,7 @@ export const useCategoryStore = defineStore({
         value: 50,
       },
       {
-        id: "room",
+        id: "rooms",
         title: "Rooms",
         icon: "mdi-bed-king",
         color: "#9467BD",

@@ -11,7 +11,7 @@ export default {
       default: {
         location: 5.0,
         value: 5.0,
-        room: 5.0,
+        rooms: 5.0,
         service: 5.0,
         clean: 5.0,
         sleep: 5.0,
@@ -22,7 +22,7 @@ export default {
       default: {
         location: 3.0,
         value: 3.0,
-        room: 3.0,
+        rooms: 3.0,
         service: 3.0,
         clean: 3.0,
         sleep: 3.0,

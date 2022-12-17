@@ -30,7 +30,10 @@ export default {
           <v-card-title class="text-h5"
             >{{ hotel.id }}: {{ hotel.name }}</v-card-title
           >
-          <v-card-subtitle>{{ hotel.statement }}</v-card-subtitle>
+          <v-card-subtitle v-if="hotelStore.isClearlyBest(hotel).length"
+            >Clearly the best
+            {{ hotelStore.isClearlyBest(hotel)[0] }}</v-card-subtitle
+          >
         </div>
       </div>
     </v-card>
