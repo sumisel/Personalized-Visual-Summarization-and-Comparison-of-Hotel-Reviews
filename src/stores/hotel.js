@@ -41,4 +41,22 @@ export const useHotelStore = defineStore({
       },
     }]
   }),
+  getters: {
+    minRatings: (state) => {
+      let minRatings = {
+        location: 5.0,
+        value: 5.0,
+        room: 5.0,
+        service: 5.0,
+        clean: 5.0,
+        sleep: 5.0,
+      }
+      state.hotels.forEach(hotel => {
+        for (let categoryId in hotel.ratings) {
+          minRatings[categoryId] = Math.min(minRatings[categoryId], hotel.ratings[categoryId]);
+        }
+      })
+      return minRatings
+    }
+  },
 })

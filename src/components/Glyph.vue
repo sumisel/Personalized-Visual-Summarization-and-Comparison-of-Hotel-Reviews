@@ -6,25 +6,36 @@ import { ref, onMounted } from "vue";
 import { useCategoryStore } from "../stores/category.js";
 export default {
   props: {
-    ratings: Object,
+    ratings: {
+      type: Object,
+      default: {
+        location: 5.0,
+        value: 5.0,
+        room: 5.0,
+        service: 5.0,
+        clean: 5.0,
+        sleep: 5.0,
+      },
+    },
+    minRatings: {
+      type: Object,
+      default: {
+        location: 3.0,
+        value: 3.0,
+        room: 3.0,
+        service: 3.0,
+        clean: 3.0,
+        sleep: 3.0,
+      },
+    },
   },
   setup() {
     const svg = ref();
     const categoriesStore = useCategoryStore();
 
-    const minRatings = {
-      location: 3.5,
-      value: 4.1,
-      room: 3.2,
-      service: 3.8,
-      clean: 4.0,
-      sleep: 4.8,
-    };
-
     return {
       svg,
       categoriesStore,
-      minRatings,
     };
   },
   mounted() {
@@ -44,19 +55,8 @@ export default {
   },
   methods: {
     plot() {
-      const ratings = this.ratings
-        ? this.ratings
-        : {
-            location: 5.0,
-            value: 5.0,
-            room: 5.0,
-            service: 5.0,
-            clean: 5.0,
-            sleep: 5.0,
-          };
-      console.log(ratings.location);
       const data = this.categoriesStore.categories.map((category, i) => {
-        category.rating = ratings[category.id];
+        category.rating = this.ratings[category.id];
         category.minRating = this.minRatings[category.id];
         return category;
       });
@@ -81,14 +81,14 @@ export default {
         .attr("fill", (d) => d.data.color)
         .attr("d", arc);
 
-        d3.select(this.svg)
-          .selectAll("path.min-ratings")
-          .data(arcs)
-          .join("path")
-          .attr("class", "min-ratings")
-          .attr("fill", "#FFF")
-          .attr("fill-opacity", "0.85")
-          .attr("d", arcMin);
+      d3.select(this.svg)
+        .selectAll("path.min-ratings")
+        .data(arcs)
+        .join("path")
+        .attr("class", "min-ratings")
+        .attr("fill", "#FFF")
+        .attr("fill-opacity", "0.85")
+        .attr("d", arcMin);
     },
   },
 };
