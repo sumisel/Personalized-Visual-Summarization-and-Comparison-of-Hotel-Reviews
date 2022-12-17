@@ -47,23 +47,25 @@ export default {
       .attr("viewBox", [-width / 2, -height / 2, width, height])
       .attr("style", "max-width: 100%; height: auto; height: intrinsic;");
 
-    // this.categoriesStore.$subscribe(() => {
-    //   //this.plot();
-    // });
+    this.categoriesStore.$subscribe(() => {
+      this.plot();
+    });
 
     this.plot();
   },
   methods: {
     plot() {
       const data = this.categoriesStore.categories.map((category, i) => {
-        category.rating = this.ratings[category.id];
-        category.minRating = this.minRatings[category.id];
-        return category;
+        const d = {};
+        d.category = category;
+        d.rating = this.ratings[category.id];
+        d.minRating = this.minRatings[category.id];
+        return d;
       });
       const arcs = d3
         .pie()
         .sort(null)
-        .value((d) => d.value)(data);
+        .value((d) => d.category.value)(data);
       const arc = d3
         .arc()
         .innerRadius(0)
@@ -78,7 +80,7 @@ export default {
         .data(arcs)
         .join("path")
         .attr("class", "ratings")
-        .attr("fill", (d) => d.data.color)
+        .attr("fill", (d) => d.data.category.color)
         .attr("d", arc);
 
       d3.select(this.svg)
