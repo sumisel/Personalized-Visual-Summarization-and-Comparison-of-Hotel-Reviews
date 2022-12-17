@@ -58,8 +58,8 @@ export default {
       const data = this.categoriesStore.categories.map((category, i) => {
         const d = {};
         d.category = category;
-        d.rating = this.ratings[category.id];
-        d.minRating = this.minRatings[category.id];
+        d.ratings = this.ratings[category.id];
+        d.minRatings = this.minRatings[category.id];
         return d;
       });
       const arcs = d3
@@ -69,11 +69,17 @@ export default {
       const arc = d3
         .arc()
         .innerRadius(0)
-        .outerRadius((d) => d.data.rating * 10);
+        .outerRadius((d) => d.data.ratings * 10);
       const arcMin = d3
         .arc()
         .innerRadius(0)
-        .outerRadius((d) => d.data.minRating * 10);
+        .outerRadius((d) => d.data.minRatings * 10);
+      const overallRating = [
+        Object.keys(this.ratings).reduce(
+          (sum, categoryId) => (sum += this.ratings[categoryId] / 6),
+          0
+        ),
+      ];
 
       d3.select(this.svg)
         .selectAll("path.ratings")
@@ -91,6 +97,15 @@ export default {
         .attr("fill", "#FFF")
         .attr("fill-opacity", "0.85")
         .attr("d", arcMin);
+
+      d3.select(this.svg)
+        .selectAll("text")
+        .data(overallRating)
+        .join("text")
+        .attr("text-anchor", "middle")
+        .attr("dy", 8)
+        .attr("font-size", "1.5rem")
+        .text((d) => d.toFixed(1));
     },
   },
 };
