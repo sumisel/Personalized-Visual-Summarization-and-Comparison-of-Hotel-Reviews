@@ -14,11 +14,11 @@ export default {
 </script>
 
 <template>
-  <div class="d-flex flex-row flex-wrap">
+  <div class="d-flex flex-column">
     <v-card
       v-for="hotel in hotelStore.hotels"
       :key="hotel.id"
-      class="ma-2 flex-grow-1"
+      class="ma-2 flex-grow-1 w-50"
       ><div class="d-flex flex-no-wrap justify-space-between">
         <v-avatar class="ma-3 flex-grow-0" size="125" rounded="0">
           <Glyph
@@ -30,12 +30,18 @@ export default {
           <v-card-title class="text-h5"
             >{{ hotel.id }}: {{ hotel.name }}</v-card-title
           >
-          <v-card-subtitle v-if="hotelStore.isClearlyBest(hotel).length"
-            >Clearly the best
-            {{ hotelStore.isClearlyBest(hotel)[0] }}</v-card-subtitle
-          >
+          <v-card-text v-if="hotelStore.isClearlyBest(hotel).length">
+            Clearly the best {{ hotelStore.isClearlyBest(hotel)[0] }}
+          </v-card-text>
         </div>
       </div>
     </v-card>
   </div>
 </template>
+
+<style scoped>
+.v-avatar {
+  width: 100px !important;
+  height: 100px !important;
+}
+</style>

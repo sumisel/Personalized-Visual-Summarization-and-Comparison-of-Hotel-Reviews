@@ -75,7 +75,6 @@ export const useHotelStore = defineStore({
             }
           }
         })
-        console.log(ratingsDiff)
         const clearlyBestCategories = [];
         for (let categoryId in ratingsDiff) {
           if (ratingsDiff[categoryId] > 0.29) {
