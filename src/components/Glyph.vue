@@ -76,7 +76,10 @@ export default {
         .outerRadius((d) => d.data.minRatings * 10);
       const overallRating = [
         Object.keys(this.ratings).reduce(
-          (sum, categoryId) => (sum += this.ratings[categoryId] / 6),
+          (sum, categoryId) =>
+            (sum +=
+              this.ratings[categoryId] *
+              this.categoriesStore.normalizedCategoryValues[categoryId]),
           0
         ),
       ];

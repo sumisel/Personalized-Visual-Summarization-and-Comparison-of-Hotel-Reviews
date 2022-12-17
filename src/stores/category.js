@@ -49,4 +49,14 @@ export const useCategoryStore = defineStore({
       },
     ]
   }),
+  getters: {
+    normalizedCategoryValues: (state) => {
+      const valueSum = state.categories.reduce((sum, category) => sum += category.value, 0);
+      const normalizedValues = {};
+      state.categories.forEach(category => {
+        normalizedValues[category.id] = category.value / valueSum;
+      })
+      return normalizedValues
+    },
+  },
 })
