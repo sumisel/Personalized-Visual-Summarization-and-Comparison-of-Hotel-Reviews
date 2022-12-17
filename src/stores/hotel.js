@@ -1,8 +1,11 @@
 import { defineStore, storeToRefs } from 'pinia'
 
+import { useCategoryStore } from "./category.js";
+
 export const useHotelStore = defineStore({
   id: 'hotel',
   state: () => ({
+    categoryStore: useCategoryStore(),
     hotels: [{
       id: "A",
       name: "Hilton",
@@ -83,6 +86,17 @@ export const useHotelStore = defineStore({
         }
         return clearlyBestCategories
       }
+    },
+    overallRating: (state) => {
+      return (hotel) =>
+        Object.keys(hotel.ratings).reduce(
+          (sum, categoryId) =>
+          (sum +=
+            hotel.ratings[categoryId] * state.categoryStore.normalizedCategoryValues[categoryId]
+          ),
+          0
+        )
+
     },
   },
 })

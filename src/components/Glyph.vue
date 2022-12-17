@@ -31,11 +31,11 @@ export default {
   },
   setup() {
     const svg = ref();
-    const categoriesStore = useCategoryStore();
+    const categoryStore = useCategoryStore();
 
     return {
       svg,
-      categoriesStore,
+      categoryStore,
     };
   },
   mounted() {
@@ -47,7 +47,7 @@ export default {
       .attr("viewBox", [-width / 2, -height / 2, width, height])
       .attr("style", "max-width: 100%; height: auto; height: intrinsic;");
 
-    this.categoriesStore.$subscribe(() => {
+    this.categoryStore.$subscribe(() => {
       this.plot();
     });
 
@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     plot() {
-      const data = this.categoriesStore.categories.map((category, i) => {
+      const data = this.categoryStore.categories.map((category, i) => {
         const d = {};
         d.category = category;
         d.ratings = this.ratings[category.id];
@@ -79,7 +79,7 @@ export default {
           (sum, categoryId) =>
             (sum +=
               this.ratings[categoryId] *
-              this.categoriesStore.normalizedCategoryValues[categoryId]),
+              this.categoryStore.normalizedCategoryValues[categoryId]),
           0
         ),
       ];
