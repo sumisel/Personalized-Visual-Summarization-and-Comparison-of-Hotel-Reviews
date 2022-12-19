@@ -1,11 +1,13 @@
 <script>
 import Glyph from "./Glyph.vue";
+import CategoryName from "./CategoryName.vue";
 import { useHotelStore } from "../stores/hotel.js";
 
 export default {
   components: {
     Glyph,
-  },
+    CategoryName,
+},
   setup() {
     const hotelStore = useHotelStore();
     return { hotelStore };
@@ -32,7 +34,7 @@ export default {
             >{{ hotel.id }}: {{ hotel.name }}</v-card-title
           >
           <v-card-text v-if="hotelStore.isClearlyBest(hotel).length">
-            Clearly the best {{ hotelStore.isClearlyBest(hotel)[0] }}
+            Clearly the best <CategoryName :categoryId="hotelStore.isClearlyBest(hotel)[0]"></CategoryName>
           </v-card-text>
         </div>
       </div>

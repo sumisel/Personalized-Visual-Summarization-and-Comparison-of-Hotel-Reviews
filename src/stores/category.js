@@ -50,6 +50,7 @@ export const useCategoryStore = defineStore({
     ]
   }),
   getters: {
+    categoriesById: (state) => Object.fromEntries(state.categories.map(category => [category.id, category])),
     normalizedCategoryValues: (state) => {
       const valueSum = state.categories.reduce((sum, category) => sum += category.value, 0);
       const normalizedValues = {};

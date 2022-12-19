@@ -114,7 +114,6 @@ export default {
 };
 </script>
 
-
 <template>
   <svg ref="svg"></svg>
 </template>
