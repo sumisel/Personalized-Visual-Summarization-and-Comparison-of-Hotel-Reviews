@@ -39,7 +39,7 @@ const sections = [
       <v-list>
         <v-list-item
           title="Hotel Selection"
-          prepend-icon="mdi-bookmark-box-multiple"
+          prepend-icon="mdi-office-building"
         ></v-list-item>
         <v-divider></v-divider>
         <v-list-item
@@ -56,7 +56,7 @@ const sections = [
     <v-main class="ma-6">
       <div class="content mx-auto">
         <div>
-          <div class="text-h4">Hotel Selection</div>
+          <div class="text-h4"><v-icon icon="mdi-office-building" class="mr-2"></v-icon>Hotel Selection</div>
           <HotelOverview />
         </div>
         <div v-for="section in sections" :key="section.title" class="my-6">

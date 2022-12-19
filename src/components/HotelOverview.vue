@@ -43,7 +43,7 @@ export default {
               <v-icon icon="mdi-thumb-up"></v-icon>
             </div>
             <div class="flex-grow-1">
-              Clearly the best
+              Clearly best
               <span
                 v-for="(categoryId, index) in hotelStore.isClearlyBest(hotel)"
                 :key="categoryId"
