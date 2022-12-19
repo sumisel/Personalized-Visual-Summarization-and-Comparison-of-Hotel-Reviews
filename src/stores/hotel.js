@@ -16,19 +16,19 @@ export const useHotelStore = defineStore({
         rooms: 3.7,
         service: 4.5,
         cleanliness: 4.4,
-        sleep: 4.9,
+        sleep: 4.1,
       },
     }, {
       id: "B",
       name: "Grand Central",
       statement: "The old lady",
       ratings: {
-        location: 4.5,
+        location: 4.0,
         value: 4.1,
         rooms: 3.3,
         service: 3.7,
         cleanliness: 3.9,
-        sleep: 4.8,
+        sleep: 4.9,
       },
     }, {
       id: "C",
@@ -36,11 +36,11 @@ export const useHotelStore = defineStore({
       statement: "Where the high society meets",
       ratings: {
         location: 4.0,
-        value: 4.1,
+        value: 4.9,
         rooms: 4.8,
         service: 4.2,
         cleanliness: 3.0,
-        sleep: 4.5,
+        sleep: 4.4,
       },
     }]
   }),

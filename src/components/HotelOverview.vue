@@ -35,21 +35,34 @@ export default {
           <v-card-title class="text-h5"
             >{{ hotel.id }}: {{ hotel.name }}</v-card-title
           >
-          <v-card-text v-if="hotelStore.isClearlyBest(hotel).length">
-            <v-icon icon="mdi-thumb-up" class="mr-4"></v-icon> Clearly the best
-            <span
-              v-for="(categoryId, index) in hotelStore.isClearlyBest(hotel)"
-              :key="categoryId"
-            >
+          <v-card-text
+            v-if="hotelStore.isClearlyBest(hotel).length"
+            class="d-flex flex-row"
+          >
+            <div class="flex-grow-0 mr-4">
+              <v-icon icon="mdi-thumb-up"></v-icon>
+            </div>
+            <div class="flex-grow-1">
+              Clearly the best
               <span
-                v-if="
-                  hotelStore.isClearlyBest(hotel).length === index + 1 &&
-                  hotelStore.isClearlyBest(hotel).length > 1
-                "
+                v-for="(categoryId, index) in hotelStore.isClearlyBest(hotel)"
+                :key="categoryId"
               >
-                and </span
-              ><CategoryName :categoryId="categoryId"></CategoryName>
-            </span>
+                <span v-if="hotelStore.isClearlyBest(hotel).length > 1">
+                  <span
+                    v-if="hotelStore.isClearlyBest(hotel).length === index + 1"
+                  >
+                    and </span
+                  ><span
+                    v-if="
+                      index > 0 &&
+                      index + 1 < hotelStore.isClearlyBest(hotel).length
+                    "
+                    >,
+                  </span></span
+                ><CategoryName :categoryId="categoryId"></CategoryName>
+              </span>
+            </div>
           </v-card-text>
         </div>
       </div>

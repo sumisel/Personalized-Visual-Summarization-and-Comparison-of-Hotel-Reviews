@@ -29,7 +29,10 @@ export default {
 </template>
 
 <style scoped>
+span {
+  white-space: nowrap;
+}
 u {
-    text-decoration-thickness: 0.15rem; 
+  text-decoration-thickness: 0.15rem;
 }
 </style>
