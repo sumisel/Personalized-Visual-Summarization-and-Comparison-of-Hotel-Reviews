@@ -15,7 +15,7 @@ export const useHotelStore = defineStore({
         value: 4.2,
         rooms: 3.7,
         service: 4.5,
-        clean: 4.0,
+        cleanliness: 4.4,
         sleep: 4.9,
       },
     }, {
@@ -27,7 +27,7 @@ export const useHotelStore = defineStore({
         value: 4.1,
         rooms: 3.3,
         service: 3.7,
-        clean: 3.9,
+        cleanliness: 3.9,
         sleep: 4.8,
       },
     }, {
@@ -39,7 +39,7 @@ export const useHotelStore = defineStore({
         value: 4.1,
         rooms: 4.8,
         service: 4.2,
-        clean: 3.0,
+        cleanliness: 3.0,
         sleep: 4.5,
       },
     }]
@@ -51,7 +51,7 @@ export const useHotelStore = defineStore({
         value: 5.0,
         rooms: 5.0,
         service: 5.0,
-        clean: 5.0,
+        cleanliness: 5.0,
         sleep: 5.0,
       }
       state.hotels.forEach(hotel => {
@@ -68,7 +68,7 @@ export const useHotelStore = defineStore({
           value: 5.0,
           rooms: 5.0,
           service: 5.0,
-          clean: 5.0,
+          cleanliness: 5.0,
           sleep: 5.0,
         }
         state.hotels.forEach(hotel2 => {

@@ -34,8 +34,8 @@ export const useCategoryStore = defineStore({
         value: 50,
       },
       {
-        id: "clean",
-        title: "Cleanliness",
+        id: "cleanliness",
+        title: "cleanlinessliness",
         icon: "mdi-broom",
         color: "#BCBD22",
         value: 50,

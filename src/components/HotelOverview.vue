@@ -7,7 +7,7 @@ export default {
   components: {
     Glyph,
     CategoryName,
-},
+  },
   setup() {
     const hotelStore = useHotelStore();
     return { hotelStore };
@@ -21,7 +21,9 @@ export default {
       v-for="hotel in hotelStore.hotels"
       :key="hotel.id"
       class="ma-2 flex-grow-1 w-50"
-      :style="`margin-left: ${hotelStore.overallRating(hotel)*100}px !important;`"
+      :style="`margin-left: ${
+        hotelStore.overallRating(hotel) * 100
+      }px !important;`"
       ><div class="d-flex flex-no-wrap justify-space-between">
         <v-avatar class="ma-3 flex-grow-0" size="125" rounded="0">
           <Glyph
@@ -34,7 +36,20 @@ export default {
             >{{ hotel.id }}: {{ hotel.name }}</v-card-title
           >
           <v-card-text v-if="hotelStore.isClearlyBest(hotel).length">
-            Clearly the best <CategoryName :categoryId="hotelStore.isClearlyBest(hotel)[0]"></CategoryName>
+            <v-icon icon="mdi-thumb-up" class="mr-4"></v-icon> Clearly the best
+            <span
+              v-for="(categoryId, index) in hotelStore.isClearlyBest(hotel)"
+              :key="categoryId"
+            >
+              <span
+                v-if="
+                  hotelStore.isClearlyBest(hotel).length === index + 1 &&
+                  hotelStore.isClearlyBest(hotel).length > 1
+                "
+              >
+                and </span
+              ><CategoryName :categoryId="categoryId"></CategoryName>
+            </span>
           </v-card-text>
         </div>
       </div>
