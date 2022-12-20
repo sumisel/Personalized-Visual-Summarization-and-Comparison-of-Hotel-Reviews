@@ -30,12 +30,12 @@ export default {
       };
       this.hotelStore.hotels.forEach((hotel2) => {
         if (this.hotel.id != hotel2.id) {
-            categories.forEach((category) => {
+          categories.forEach((category) => {
             ratingsDiff[category.id] = Math.min(
               ratingsDiff[category.id],
               this.hotel.ratings[category.id] - hotel2.ratings[category.id]
             );
-          })
+          });
         }
       });
       const clearlyBestCategories = [];
@@ -45,6 +45,16 @@ export default {
         }
       });
       return clearlyBestCategories;
+    },
+    topCategories() {
+      const topCategories = this.categoryStore.relevantCategories.filter(
+        (category) =>
+          !this.bestCategories.includes(category.id) &&
+          this.hotel.ratings[category.id] -
+            this.hotelStore.minRatings[category.id] >
+            0.29
+      );
+      return topCategories.map((category) => category.id);
     },
   },
 };
@@ -67,23 +77,44 @@ export default {
         <v-card-title class="text-h5"
           >{{ hotel.id }}: {{ hotel.name }}</v-card-title
         >
-        <v-card-text v-if="bestCategories.length" class="d-flex flex-row">
-          <div class="flex-grow-0 mr-4">
-            <v-icon icon="mdi-thumb-up"></v-icon>
+        <v-card-text v-if="bestCategories.length">
+          <div class="d-flex flex-row">
+            <div class="flex-grow-0 mr-4">
+              <v-icon icon="mdi-star"></v-icon>
+            </div>
+            <div class="flex-grow-1 my-1">
+              Clearly best
+              <span
+                v-for="(categoryId, index) in bestCategories"
+                :key="categoryId"
+              >
+                <span v-if="bestCategories.length > 1">
+                  <span v-if="bestCategories.length === index + 1"> and </span
+                  ><span v-if="index > 0 && index + 1 < bestCategories.length"
+                    >,
+                  </span></span
+                ><CategoryName :categoryId="categoryId"></CategoryName>
+              </span>
+            </div>
           </div>
-          <div class="flex-grow-1">
-            Clearly best
-            <span
-              v-for="(categoryId, index) in bestCategories"
-              :key="categoryId"
-            >
-              <span v-if="bestCategories.length > 1">
-                <span v-if="bestCategories.length === index + 1"> and </span
-                ><span v-if="index > 0 && index + 1 < bestCategories.length"
-                  >,
-                </span></span
-              ><CategoryName :categoryId="categoryId"></CategoryName>
-            </span>
+          <div class="d-flex flex-row">
+            <div class="flex-grow-0 mr-4">
+              <v-icon icon="mdi-star-outline"></v-icon>
+            </div>
+            <div class="flex-grow-1 my-1">
+              Among top in
+              <span
+                v-for="(categoryId, index) in topCategories"
+                :key="categoryId"
+              >
+                <span v-if="topCategories.length > 1">
+                  <span v-if="topCategories.length === index + 1"> and </span
+                  ><span v-if="index > 0 && index + 1 < topCategories.length"
+                    >,
+                  </span></span
+                ><CategoryName :categoryId="categoryId"></CategoryName>
+              </span>
+            </div>
           </div>
         </v-card-text>
       </div>
