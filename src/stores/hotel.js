@@ -11,11 +11,11 @@ export const useHotelStore = defineStore({
       name: "Hilton",
       statement: "Modern and convenient",
       ratings: {
-        location: 4.5,
+        location: 4.9,
         value: 4.2,
-        rooms: 3.7,
+        rooms: 3.5,
         service: 4.5,
-        cleanliness: 4.4,
+        cleanliness: 4.1,
         sleep: 4.1,
       },
     }, {
@@ -23,9 +23,9 @@ export const useHotelStore = defineStore({
       name: "Grand Central",
       statement: "The old lady",
       ratings: {
-        location: 4.0,
+        location: 3.0,
         value: 4.1,
-        rooms: 3.3,
+        rooms: 3.9,
         service: 3.7,
         cleanliness: 3.9,
         sleep: 4.9,
@@ -37,7 +37,7 @@ export const useHotelStore = defineStore({
       ratings: {
         location: 4.0,
         value: 4.9,
-        rooms: 4.8,
+        rooms: 4.1,
         service: 4.2,
         cleanliness: 3.0,
         sleep: 4.4,
@@ -60,6 +60,22 @@ export const useHotelStore = defineStore({
         }
       })
       return minRatings
+    },
+    maxRatings: (state) => {
+      let maxRatings = {
+        location: 0.0,
+        value: 0.0,
+        rooms: 0.0,
+        service: .0,
+        cleanliness: 0.0,
+        sleep: 0.0,
+      }
+      state.hotels.forEach(hotel => {
+        for (let categoryId in hotel.ratings) {
+          maxRatings[categoryId] = Math.max(maxRatings[categoryId], hotel.ratings[categoryId]);
+        }
+      })
+      return maxRatings
     },
     overallRating: (state) => {
       return (hotel) =>

@@ -52,7 +52,8 @@ export default {
           !this.bestCategories.includes(category.id) &&
           this.hotel.ratings[category.id] -
             this.hotelStore.minRatings[category.id] >
-            0.29
+            0.29 && this.hotel.ratings[category.id] -
+            this.hotelStore.maxRatings[category.id] > - 0.29
       );
       return topCategories.map((category) => category.id);
     },
@@ -77,8 +78,8 @@ export default {
         <v-card-title class="text-h5"
           >{{ hotel.id }}: {{ hotel.name }}</v-card-title
         >
-        <v-card-text v-if="bestCategories.length">
-          <div class="d-flex flex-row">
+        <v-card-text>
+          <div class="d-flex flex-row" v-if="bestCategories.length">
             <div class="flex-grow-0 mr-4">
               <v-icon icon="mdi-star"></v-icon>
             </div>
@@ -97,7 +98,7 @@ export default {
               </span>
             </div>
           </div>
-          <div class="d-flex flex-row">
+          <div class="d-flex flex-row" v-if="topCategories.length">
             <div class="flex-grow-0 mr-4">
               <v-icon icon="mdi-star-outline"></v-icon>
             </div>
