@@ -1,12 +1,20 @@
 <script setup>
-import HotelOverview from "./components/HotelOverview.vue";
 import Personalization from "./components/Personalization.vue";
+import HotelOverview from "./components/HotelOverview.vue";
+import Map from "./components/Map.vue";
 
 const sections = [
+  {
+    id: "selection",
+    title: "Hotel Selection",
+    icon: "mdi-office-building",
+    component: HotelOverview,
+  },
   {
     id: "map",
     title: "Map",
     icon: "mdi-map",
+    component: Map,
   },
   {
     id: "good-and-bad",
@@ -39,11 +47,6 @@ const sections = [
     <v-navigation-drawer expand-on-hover rail elevation="2">
       <v-list>
         <v-list-item
-          title="Hotel Selection"
-          prepend-icon="mdi-office-building"
-        ></v-list-item>
-        <v-divider></v-divider>
-        <v-list-item
           v-for="section in sections"
           :key="section.title"
           :title="section.title"
@@ -57,20 +60,17 @@ const sections = [
     <v-main class="ma-6">
       <div class="content mx-auto">
         <div class="text-h1 my-16">Daisy Town</div>
-        <div>
-          <div class="text-h4">
-            <v-icon icon="mdi-office-building" class="mr-2"></v-icon>Hotel
-            Selection
-          </div>
-          <HotelOverview />
-        </div>
         <div v-for="section in sections" :key="section.title" class="my-6">
-          <div class="text-h5">
+          <div class="text-h4 mb-4 mt-12">
             <a :id="section.id"></a>
             <v-icon :icon="section.icon" class="mr-2"></v-icon
             >{{ section.title }}
           </div>
-          <div class="ml-12">
+          <component
+            v-if="section.component"
+            :is="section.component"
+          ></component>
+          <div class="ml-12" v-else>
             <p>
               Lorem ipsum dolor sit, amet consectetur adipisicing elit.
               Molestiae at, ratione odit iure deleniti quae corrupti libero ex

@@ -25,7 +25,6 @@ export default {
             normalizedCategoryValues[categoryId]),
         0
       );
-      console.log(variety);
       return variety > 0.99 ? "somewhat differently" : "quite similarly";
     },
   },
