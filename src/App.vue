@@ -9,11 +9,6 @@ const sections = [
     icon: "mdi-map",
   },
   {
-    id: "ratings",
-    title: "Ratings",
-    icon: "mdi-star",
-  },
-  {
     id: "good-and-bad",
     title: "Good and Bad",
     icon: "mdi-plus-minus-variant",
@@ -33,8 +28,15 @@ const sections = [
 
 <template>
   <v-app>
-    <v-app-bar title="Hotel Review Comparison"></v-app-bar>
-    <v-navigation-drawer expand-on-hover rail>
+    <v-app-bar
+      ><v-app-bar-title
+        ><v-icon icon="mdi-office-building"></v-icon
+        ><v-icon icon="mdi-arrow-left-right"></v-icon
+        ><v-icon icon="mdi-office-building" class="mr-4"></v-icon>Hotel Review
+        Comparison</v-app-bar-title
+      ></v-app-bar
+    >
+    <v-navigation-drawer expand-on-hover rail elevation="2">
       <v-list>
         <v-list-item
           title="Hotel Selection"
@@ -49,7 +51,7 @@ const sections = [
         ></v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-navigation-drawer permanent location="right" width="344"
+    <v-navigation-drawer permanent location="right" width="344" elevation="2"
       ><Personalization
     /></v-navigation-drawer>
     <v-main class="ma-6">
