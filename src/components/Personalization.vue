@@ -35,6 +35,7 @@ const { categories } = storeToRefs(useCategoryStore());
                 hide-details="true"
                 thumb-size="12"
                 track-size="2"
+                min="0.01"
               ></v-slider>
             </td>
           </tr>
