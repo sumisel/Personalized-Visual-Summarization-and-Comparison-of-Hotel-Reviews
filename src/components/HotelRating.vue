@@ -2,6 +2,7 @@
 import Glyph from "./Glyph.vue";
 import CategoryName from "./CategoryName.vue";
 import { useHotelStore } from "../stores/hotel.js";
+import { useCategoryStore } from "../stores/category.js";
 
 export default {
   props: {
@@ -13,10 +14,12 @@ export default {
   },
   setup() {
     const hotelStore = useHotelStore();
-    return { hotelStore };
+    const categoryStore = useCategoryStore();
+    return { hotelStore, categoryStore };
   },
   computed: {
     bestCategories() {
+      const categories = this.categoryStore.relevantCategories;
       const ratingsDiff = {
         location: 5.0,
         value: 5.0,
@@ -27,20 +30,20 @@ export default {
       };
       this.hotelStore.hotels.forEach((hotel2) => {
         if (this.hotel.id != hotel2.id) {
-          for (let categoryId in ratingsDiff) {
-            ratingsDiff[categoryId] = Math.min(
-              ratingsDiff[categoryId],
-              this.hotel.ratings[categoryId] - hotel2.ratings[categoryId]
+            categories.forEach((category) => {
+            ratingsDiff[category.id] = Math.min(
+              ratingsDiff[category.id],
+              this.hotel.ratings[category.id] - hotel2.ratings[category.id]
             );
-          }
+          })
         }
       });
       const clearlyBestCategories = [];
-      for (let categoryId in ratingsDiff) {
-        if (ratingsDiff[categoryId] > 0.29) {
-          clearlyBestCategories.push(categoryId);
+      categories.forEach((category) => {
+        if (ratingsDiff[category.id] > 0.29) {
+          clearlyBestCategories.push(category.id);
         }
-      }
+      });
       return clearlyBestCategories;
     },
   },

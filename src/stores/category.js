@@ -59,5 +59,6 @@ export const useCategoryStore = defineStore({
       })
       return normalizedValues
     },
+    relevantCategories: (state) => state.categories.filter(category => category.value > 10),
   },
 })
