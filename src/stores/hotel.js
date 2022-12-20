@@ -86,7 +86,6 @@ export const useHotelStore = defineStore({
           ),
           0
         )
-
     },
   },
 })
