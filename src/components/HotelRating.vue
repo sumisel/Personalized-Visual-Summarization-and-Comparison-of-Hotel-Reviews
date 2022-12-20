@@ -18,6 +18,9 @@ export default {
     return { hotelStore, categoryStore };
   },
   computed: {
+    offset() {
+      return `${this.hotelStore.overallRating(this.hotel) * 80}px`;
+    },
     bestCategories() {
       const categories = this.categoryStore.relevantCategories;
       const ratingsDiff = {
@@ -52,8 +55,10 @@ export default {
           !this.bestCategories.includes(category.id) &&
           this.hotel.ratings[category.id] -
             this.hotelStore.minRatings[category.id] >
-            0.29 && this.hotel.ratings[category.id] -
-            this.hotelStore.maxRatings[category.id] > - 0.29
+            0.29 &&
+          this.hotel.ratings[category.id] -
+            this.hotelStore.maxRatings[category.id] >
+            -0.29
       );
       return topCategories.map((category) => category.id);
     },
@@ -64,10 +69,12 @@ export default {
 <template>
   <v-card
     class="ma-2 flex-grow-1 w-50"
-    :style="`margin-left: ${
-      hotelStore.overallRating(hotel) * 100
-    }px !important;`"
+    :style="`margin-left: ${offset} !important;`"
     ><div class="d-flex flex-no-wrap justify-space-between">
+      <div
+        class="bar"
+        :style="`width: ${offset} !important; left: -${offset} !important;`"
+      ></div>
       <v-avatar class="ma-3 flex-grow-0" size="125" rounded="0">
         <Glyph
           :ratings="hotel.ratings"
@@ -127,5 +134,17 @@ export default {
 .v-avatar {
   width: 100px !important;
   height: 100px !important;
+}
+
+.v-card {
+  overflow: visible;
+}
+
+.bar {
+  background: linear-gradient(90deg, rgba(207,207,207,1) 0%, rgba(133,133,133,1) 100%);
+  position: absolute;
+  height: 50px;
+  top: 35px;
+  content: "test";
 }
 </style>
