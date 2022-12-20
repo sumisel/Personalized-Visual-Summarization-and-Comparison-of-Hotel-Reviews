@@ -61,32 +61,6 @@ export const useHotelStore = defineStore({
       })
       return minRatings
     },
-    isClearlyBest: (state) => {
-      return (hotel) => {
-        const ratingsDiff = {
-          location: 5.0,
-          value: 5.0,
-          rooms: 5.0,
-          service: 5.0,
-          cleanliness: 5.0,
-          sleep: 5.0,
-        }
-        state.hotels.forEach(hotel2 => {
-          if (hotel.id != hotel2.id) {
-            for (let categoryId in ratingsDiff) {
-              ratingsDiff[categoryId] = Math.min(ratingsDiff[categoryId], hotel.ratings[categoryId] - hotel2.ratings[categoryId])
-            }
-          }
-        })
-        const clearlyBestCategories = [];
-        for (let categoryId in ratingsDiff) {
-          if (ratingsDiff[categoryId] > 0.29) {
-            clearlyBestCategories.push(categoryId);
-          }
-        }
-        return clearlyBestCategories
-      }
-    },
     overallRating: (state) => {
       return (hotel) =>
         Object.keys(hotel.ratings).reduce(
