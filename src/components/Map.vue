@@ -1,30 +1,48 @@
-<script>
-import "leaflet/dist/leaflet.css";
-import { LMap, LTileLayer } from "@vue-leaflet/vue-leaflet";
+<script setup>
+import { ref } from "vue";
 
-export default {
-  components: {
-    LMap,
-    LTileLayer,
-  },
-  data() {
-    return {
-      zoom: 10,
-    };
-  },
-};
+import "leaflet/dist/leaflet.css";
+import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
 </script>
 
 <template>
-  <div style="height: 600px; width: 1000px">
-    <l-map ref="map" v-model:zoom="zoom" :center="[51.505, -0.09]" :useGlobalLeaflet="false">
+  <div class="map">
+    <l-map
+      ref="map"
+      :center="[35.512986, -98.975897]"
+      :zoom="14"
+      :minZoom="14"
+      :maxZoom="14"
+      :useGlobalLeaflet="false"
+      :options="{
+        zoomControl: false,
+        scrollWheelZoom: false,
+        doubleClickZoom: false,
+        dragging: false,
+        attributionControl: false,
+      }"
+    >
       <l-tile-layer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         layer-type="base"
         name="OpenStreetMap"
       ></l-tile-layer>
+      <l-marker :lat-lng="[35.512986, -98.975897]"></l-marker>
+      <l-marker :lat-lng="[35.521976, -98.978897]"></l-marker>
+      <l-marker :lat-lng="[35.510986, -98.979897]"></l-marker>
     </l-map>
   </div>
+  <div class="dummy"></div>
 </template>
 
-<style></style>
+<style scoped>
+.map {
+  height: 600px;
+  width: calc(100vw - 344px);
+  left: 0;
+  position: absolute;
+}
+.dummy {
+  height: 600px;
+}
+</style>
