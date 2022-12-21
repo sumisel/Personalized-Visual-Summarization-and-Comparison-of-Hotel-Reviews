@@ -5,11 +5,15 @@ const props = defineProps({
   categoryId: String,
 });
 
-const category = useCategoryStore().categoriesById[props.categoryId];
+const categoryStore = useCategoryStore();
+const category = categoryStore.categoriesById[props.categoryId];
 </script>
 
 <template>
   <span
+    @mouseenter="categoryStore.hover(props.categoryId)"
+    @mouseleave="categoryStore.unhover()"
+    :class="{ hover: category.hover }"
     ><v-icon :icon="category.icon" :color="category.color" class="mr-1"></v-icon
     ><b
       ><u :style="`text-decoration-color: ${category.color};`">{{
@@ -19,11 +23,12 @@ const category = useCategoryStore().categoriesById[props.categoryId];
   >
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 span {
   white-space: nowrap;
-}
-u {
-  text-decoration-thickness: 0.15rem;
+
+  & u {
+    text-decoration-thickness: 0.15rem;
+  }
 }
 </style>

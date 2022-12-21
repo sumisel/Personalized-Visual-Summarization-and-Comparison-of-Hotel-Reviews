@@ -73,9 +73,9 @@ const scrollTo = (hash) => {
           <component
             v-if="section.component"
             :is="section.component"
-            class="ml-12"
+            class="ml-16"
           ></component>
-          <div class="ml-12" v-else>
+          <div class="ml-16" v-else>
             <p>
               Lorem ipsum dolor sit, amet consectetur adipisicing elit.
               Molestiae at, ratione odit iure deleniti quae corrupti libero ex
@@ -95,7 +95,7 @@ const scrollTo = (hash) => {
   </v-app>
 </template>
 
-<style scoped>
+<style>
 .v-main {
   width: 100%;
   height: 800px;
@@ -113,5 +113,9 @@ const scrollTo = (hash) => {
 .content {
   max-width: 1000px;
   margin-top: 300px;
+}
+
+.hover {
+  background: var(--lt-color-background-dark);
 }
 </style>

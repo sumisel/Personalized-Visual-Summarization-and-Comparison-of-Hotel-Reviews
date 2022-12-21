@@ -19,7 +19,7 @@ const { categories } = storeToRefs(useCategoryStore());
           </tr>
         </thead>
         <tbody>
-          <tr v-for="category in categories" :key="category.id">
+          <tr v-for="category in categories" :key="category.id" :class="{ hover: category.hover }">
             <td>
               <v-icon
                 :icon="category.icon"
@@ -73,5 +73,5 @@ const { categories } = storeToRefs(useCategoryStore());
   </v-sheet>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 </style>

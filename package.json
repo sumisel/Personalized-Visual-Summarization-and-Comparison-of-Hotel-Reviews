@@ -17,6 +17,7 @@
     "@vitejs/plugin-vue": "^3.0.3",
     "@vue-leaflet/vue-leaflet": "^0.7.0",
     "leaflet": "^1.9.3",
+    "sass": "^1.57.1",
     "vite": "^3.0.9"
   }
 }

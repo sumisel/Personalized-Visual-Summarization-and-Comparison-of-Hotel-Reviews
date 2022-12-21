@@ -61,4 +61,13 @@ export const useCategoryStore = defineStore({
     },
     relevantCategories: (state) => state.categories.filter(category => category.value > 10),
   },
+  actions: {
+    hover(categoryId) {
+      this.unhover();
+      this.categoriesById[categoryId].hover = true;
+    },
+    unhover() {
+      this.categories.forEach(category => { category.hover = false });
+    }
+  },
 })
