@@ -32,6 +32,10 @@ const sections = [
     icon: "mdi-party-popper",
   },
 ];
+
+const scrollTo = (hash) => {
+  location.hash = `#${hash}`;
+};
 </script>
 
 <template>
@@ -51,6 +55,7 @@ const sections = [
           :key="section.title"
           :title="section.title"
           :prepend-icon="section.icon"
+          @click="scrollTo(section.id)"
         ></v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -60,15 +65,15 @@ const sections = [
     <v-main class="ma-6">
       <div class="content mx-auto">
         <div class="text-h1 my-16">Daisy Town</div>
-        <div v-for="section in sections" :key="section.title" class="my-6">
-          <div class="text-h4 mb-4 mt-12">
-            <a :id="section.id"></a>
+        <div v-for="section in sections" :key="section.title" class="py-6" :id="section.id">
+          <div class="text-h4 mb-4 pt-16">
             <v-icon :icon="section.icon" class="mr-2"></v-icon
             >{{ section.title }}
           </div>
           <component
             v-if="section.component"
             :is="section.component"
+            class="ml-12"
           ></component>
           <div class="ml-12" v-else>
             <p>
