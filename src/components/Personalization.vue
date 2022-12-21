@@ -3,7 +3,8 @@ import Glyph from "./Glyph.vue";
 
 import { storeToRefs } from "pinia";
 import { useCategoryStore } from "../stores/category.js";
-const { categories } = storeToRefs(useCategoryStore());
+const categoryStore = useCategoryStore();
+const { categories } = storeToRefs(categoryStore);
 </script>
 
 <template>
@@ -19,7 +20,13 @@ const { categories } = storeToRefs(useCategoryStore());
           </tr>
         </thead>
         <tbody>
-          <tr v-for="category in categories" :key="category.id" :class="{ hover: category.hover }">
+          <tr
+            v-for="category in categories"
+            :key="category.id"
+            :class="{ hover: category.hover }"
+            @mouseenter="categoryStore.hover(category.id)"
+            @mouseleave="categoryStore.unhover()"
+          >
             <td>
               <v-icon
                 :icon="category.icon"

@@ -60,6 +60,7 @@ export const useCategoryStore = defineStore({
       return normalizedValues
     },
     relevantCategories: (state) => state.categories.filter(category => category.value > 10),
+    noCategoryHovered: (state) => state.categories.reduce((notHovered, category) => notHovered = notHovered && !category.hover, true),
   },
   actions: {
     hover(categoryId) {

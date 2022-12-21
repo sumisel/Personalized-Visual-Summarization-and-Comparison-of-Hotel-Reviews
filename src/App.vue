@@ -95,7 +95,7 @@ const scrollTo = (hash) => {
   </v-app>
 </template>
 
-<style>
+<style lang="scss">
 .v-main {
   width: 100%;
   height: 800px;
@@ -117,5 +117,9 @@ const scrollTo = (hash) => {
 
 .hover {
   background: var(--lt-color-background-dark);
+}
+
+div, p {
+  cursor: default;
 }
 </style>

@@ -83,23 +83,39 @@ export default {
           0
         ),
       ];
+      const noCategoryHovered = this.categoryStore.noCategoryHovered;
 
       d3.select(this.svg)
         .selectAll("path.ratings")
         .data(arcs)
         .join("path")
-        .attr("class", "ratings")
+        .classed("ratings", true)
         .attr("fill", (d) => d.data.category.color)
-        .attr("d", arc);
+        .attr("fill-opacity", (d) =>
+          d.data.category.hover || noCategoryHovered ? "1" : "0.2"
+        )
+        .attr("d", arc)
+        .on("mouseover", (event, d) => {
+          this.categoryStore.hover(d.data.category.id);
+        })
+        .on("mouseout", () => {
+          this.categoryStore.unhover();
+        });
 
       d3.select(this.svg)
         .selectAll("path.min-ratings")
         .data(arcs)
         .join("path")
-        .attr("class", "min-ratings")
+        .classed("min-ratings", true)
         .attr("fill", "#FFF")
         .attr("fill-opacity", "0.85")
-        .attr("d", arcMin);
+        .attr("d", arcMin)
+        .on("mouseover", (event, d) => {
+          this.categoryStore.hover(d.data.category.id);
+        })
+        .on("mouseout", () => {
+          this.categoryStore.unhover();
+        });
 
       d3.select(this.svg)
         .selectAll("text")
