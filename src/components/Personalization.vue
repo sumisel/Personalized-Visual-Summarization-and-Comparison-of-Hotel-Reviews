@@ -11,7 +11,19 @@ const { categories } = storeToRefs(categoryStore);
   <v-sheet class="ma-2 pa-2 rounded">
     <div class="my-2">
       <div class="text-h6">My Priorities</div>
-      <Glyph></Glyph>
+      <div class="d-flex justify-center">
+        <Glyph></Glyph>
+        <div>
+          <v-icon icon="mdi-information-outline" size="small"></v-icon
+          ><v-tooltip activator="parent" location="bottom" max-width="300px"
+            >For every hotel, such a pie chart shows the ratings across all
+            categories. For comparison, the bright area in the middle indicates
+            the mininum rating of a category among the selected hotels. Pie
+            slices are scaled according to priorities, as well as the overall
+            rating in the center is weighted by these priorities.</v-tooltip
+          >
+        </div>
+      </div>
       <v-table density="compact">
         <thead>
           <tr>
