@@ -1,69 +1,24 @@
-<script>
+<script setup>
+import { computed } from "vue";
+
 import Glyph from "./Glyph.vue";
 import CategoryName from "./CategoryName.vue";
+
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
 
-export default {
-  props: {
-    hotel: Object,
-  },
-  components: {
-    Glyph,
-    CategoryName,
-  },
-  setup() {
-    const hotelStore = useHotelStore();
-    const categoryStore = useCategoryStore();
-    return { hotelStore, categoryStore };
-  },
-  computed: {
-    offset() {
-      return `${this.hotelStore.overallRating(this.hotel) * 80}px`;
-    },
-    bestCategories() {
-      const categories = this.categoryStore.relevantCategories;
-      const ratingsDiff = {
-        location: 5.0,
-        value: 5.0,
-        rooms: 5.0,
-        service: 5.0,
-        cleanliness: 5.0,
-        sleep: 5.0,
-      };
-      this.hotelStore.hotels.forEach((hotel2) => {
-        if (this.hotel.id != hotel2.id) {
-          categories.forEach((category) => {
-            ratingsDiff[category.id] = Math.min(
-              ratingsDiff[category.id],
-              this.hotel.ratings[category.id] - hotel2.ratings[category.id]
-            );
-          });
-        }
-      });
-      const clearlyBestCategories = [];
-      categories.forEach((category) => {
-        if (ratingsDiff[category.id] > 0.29) {
-          clearlyBestCategories.push(category.id);
-        }
-      });
-      return clearlyBestCategories;
-    },
-    topCategories() {
-      const topCategories = this.categoryStore.relevantCategories.filter(
-        (category) =>
-          !this.bestCategories.includes(category.id) &&
-          this.hotel.ratings[category.id] -
-            this.hotelStore.minRatings[category.id] >
-            0.29 &&
-          this.hotel.ratings[category.id] -
-            this.hotelStore.maxRatings[category.id] >
-            -0.29
-      );
-      return topCategories.map((category) => category.id);
-    },
-  },
-};
+const hotelStore = useHotelStore();
+const categoryStore = useCategoryStore();
+
+const props = defineProps({
+  hotel: Object,
+});
+
+const offset = computed(
+  () => `${hotelStore.overallRating(props.hotel) * 80}px`
+);
+const bestCategories = computed(() => hotelStore.bestCategories(props.hotel));
+const topCategories = computed(() => hotelStore.topCategories(props.hotel));
 </script>
 
 <template>
@@ -141,7 +96,11 @@ export default {
 }
 
 .bar {
-  background: linear-gradient(90deg, rgba(207,207,207,1) 0%, rgba(133,133,133,1) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(207, 207, 207, 1) 0%,
+    rgba(133, 133, 133, 1) 100%
+  );
   position: absolute;
   height: 50px;
   top: 35px;
