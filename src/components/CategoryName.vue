@@ -1,20 +1,11 @@
-<script>
+<script setup>
 import { useCategoryStore } from "../stores/category.js";
 
-export default {
-  props: {
-    categoryId: String,
-  },
-  computed: {
-    category() {
-      return this.categoryStore.categoriesById[this.categoryId];
-    },
-  },
-  setup() {
-    const categoryStore = useCategoryStore();
-    return { categoryStore };
-  },
-};
+const props = defineProps({
+  categoryId: String,
+});
+
+const category = useCategoryStore().categoriesById[props.categoryId];
 </script>
 
 <template>
