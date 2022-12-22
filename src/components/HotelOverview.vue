@@ -13,7 +13,10 @@ export default {
     return { hotelStore, categoryStore };
   },
   computed: {
-    ratingVarietyDescription() {
+    overallRatingVarietyDescription() {
+      return "fairly similarly";
+    },
+    categoryRatingVarietyDescription() {
       const minRatings = this.hotelStore.minRatings;
       const maxRatings = this.hotelStore.maxRatings;
       const normalizedCategoryValues =
@@ -35,11 +38,11 @@ export default {
   <div class="ml-12">
     <p>
       Customers have rated the
-      <b
-        ><span>{{ hotelStore.hotels.length }}</span></b
-      >
-      selected hotels <b>{{ ratingVarietyDescription }}</b> with respect to the
-      prioritized categories.
+      {{ hotelStore.hotels.length }}
+      selected hotels
+      <b>overall {{ overallRatingVarietyDescription }}</b> regarding your
+      priorities, but <b>{{ categoryRatingVarietyDescription }}</b> with respect to some
+      categories.
     </p>
     <div class="d-flex flex-column hotel-list my-4">
       <HotelRating
