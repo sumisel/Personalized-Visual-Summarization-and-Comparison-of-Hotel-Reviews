@@ -5,16 +5,16 @@ import Map from "./components/Map.vue";
 
 const sections = [
   {
-    id: "selection",
-    title: "Hotel Selection",
-    icon: "mdi-office-building",
-    component: HotelOverview,
-  },
-  {
     id: "map",
-    title: "Map",
+    title: "Hotel Selection",
     icon: "mdi-map",
     component: Map,
+  },
+  {
+    id: "selection",
+    title: "Hotel Ratings",
+    icon: "mdi-office-building",
+    component: HotelOverview,
   },
   {
     id: "good-and-bad",
@@ -65,7 +65,12 @@ const scrollTo = (hash) => {
     <v-main class="ma-6">
       <div class="content mx-auto">
         <div class="text-h1 my-16">Daisy Town</div>
-        <div v-for="section in sections" :key="section.title" class="py-6" :id="section.id">
+        <div
+          v-for="section in sections"
+          :key="section.title"
+          class="py-6"
+          :id="section.id"
+        >
           <div class="text-h4 mb-4 pt-16">
             <v-icon :icon="section.icon" class="mr-2"></v-icon
             >{{ section.title }}
@@ -112,14 +117,15 @@ const scrollTo = (hash) => {
 
 .content {
   max-width: 1000px;
-  margin-top: 300px;
+  margin-top: 500px;
 }
 
 .hover {
   background: var(--lt-color-background-dark);
 }
 
-div, p {
+div,
+p {
   cursor: default;
 }
 </style>
