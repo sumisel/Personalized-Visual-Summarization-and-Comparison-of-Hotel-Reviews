@@ -2,6 +2,8 @@
 import Personalization from "./components/Personalization.vue";
 import HotelOverview from "./components/HotelOverview.vue";
 import Map from "./components/Map.vue";
+import { onMounted } from "vue";
+import { useHotelStore } from "./stores/hotel.js";
 
 const sections = [
   {
@@ -36,6 +38,10 @@ const sections = [
 const scrollTo = (hash) => {
   location.hash = `#${hash}`;
 };
+
+onMounted(async() => {
+  await useHotelStore().getHotels();
+});
 </script>
 
 <template>

@@ -44,6 +44,15 @@ export const useHotelStore = defineStore({
       },
     }]
   }),
+  actions: {
+    async getHotels() {
+      console.log("read hotels file");
+      const result = await fetch("/HotelRec_subset_Berlin_10_average_ratings.txt");
+      const data = await result.json();
+      console.log(data);
+      this.hotels = data;
+    },
+  },
   getters: {
     minRatings: (state) => {
       let minRatings = {
@@ -53,6 +62,8 @@ export const useHotelStore = defineStore({
         service: 5.0,
         cleanliness: 5.0,
         sleep: 5.0,
+        business: 5.0,
+        checkin: 5.0,
       }
       state.hotels.forEach(hotel => {
         for (let categoryId in hotel.ratings) {
@@ -69,6 +80,8 @@ export const useHotelStore = defineStore({
         service: .0,
         cleanliness: 0.0,
         sleep: 0.0,
+        business: 0.0,
+        checkin: 0.0,
       }
       state.hotels.forEach(hotel => {
         for (let categoryId in hotel.ratings) {
@@ -97,6 +110,8 @@ export const useHotelStore = defineStore({
           service: 5.0,
           cleanliness: 5.0,
           sleep: 5.0,
+          business: 5.0,
+          checkin: 5.0,
         };
         state.hotels.forEach((hotel2) => {
           if (hotel.id != hotel2.id) {

@@ -15,6 +15,8 @@ export default {
         service: 5.0,
         cleanliness: 5.0,
         sleep: 5.0,
+        business: 5.0,
+        checkin: 5.0,
       },
     },
     minRatings: {
@@ -26,6 +28,8 @@ export default {
         service: 3.0,
         cleanliness: 3.0,
         sleep: 3.0,
+        business: 3.0,
+        checkin: 3.0,
       },
     },
   },

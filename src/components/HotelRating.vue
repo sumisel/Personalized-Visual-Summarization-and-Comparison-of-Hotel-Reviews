@@ -38,7 +38,7 @@ const topCategories = computed(() => hotelStore.topCategories(props.hotel));
       </v-avatar>
       <div class="flex-grow-1">
         <v-card-title class="text-h5"
-          >{{ hotel.id }}: {{ hotel.name }}</v-card-title
+          >{{ hotel.name }}</v-card-title
         >
         <v-card-text>
           <div class="d-flex flex-row" v-if="bestCategories.length">
