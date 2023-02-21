@@ -41,6 +41,8 @@ export const useHotelStore = defineStore({
         service: 4.2,
         cleanliness: 3.0,
         sleep: 4.4,
+        business: 3.1,
+        checkin: 4.2,
       },
     }]
   }),
