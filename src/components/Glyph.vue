@@ -4,7 +4,9 @@ import * as d3 from "d3";
 import { ref, onMounted } from "vue";
 
 import { useCategoryStore } from "../stores/category.js";
+import CategoryMatchReview from "@/components/CategoryMatchReview.vue";
 export default {
+  components: {CategoryMatchReview},
   props: {
     ratings: {
       type: Object,
@@ -31,6 +33,14 @@ export default {
         business: 3.0,
         checkin: 3.0,
       },
+    },
+    hotelId: {
+      type: String,
+      default: "hotelId",
+    },
+    hotelName: {
+      type: String,
+      default: "hotelName",
     },
   },
   setup() {
@@ -119,6 +129,14 @@ export default {
         })
         .on("mouseout", () => {
           this.categoryStore.unhover();
+        })
+        .on("click", (event, d) => {
+          console.log(this.hotelName);
+          const result = this.categoryStore.getCategoryRepresentative(this.hotelId, d.data.category.id);
+          result.then((value) => {
+            console.log(value);
+            //this.categoryMatchReview.show();
+          });
         });
 
       d3.select(this.svg)

@@ -83,6 +83,14 @@ export const useCategoryStore = defineStore({
     },
     unhover() {
       this.categories.forEach(category => { category.hover = false });
-    }
+    },
+    async getCategoryRepresentative(hotelId, categoryId){
+      console.log("read category representatives file");
+      console.log(hotelId);
+      console.log(categoryId);
+      const result = await fetch("/HotelRec_subset_Berlin_10_category_matching_reviews.txt");
+      const data = await result.json();
+      return data[hotelId][categoryId];
+    },
   },
 })

@@ -34,6 +34,8 @@ const topCategories = computed(() => hotelStore.topCategories(props.hotel));
         <Glyph
           :ratings="hotel.ratings"
           :minRatings="hotelStore.minRatings"
+          :hotelId="hotel.id"
+          :hotelName="hotel.name"
         ></Glyph>
       </v-avatar>
       <div class="flex-grow-1">
