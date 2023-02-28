@@ -1,0 +1,422 @@
+{
+  "Hotel_Review-g187323-d276043-Reviews-Berlin_Marriott_Hotel-Berlin.html": {
+    "location": {
+      "title": "Perfect but for non-Smokers",
+      "text": "Perfect Place and nice rooms , Place is near Sony Center very nice place to walk and have a drink there . just the hotel is not good place for heavy smokers, there is no smoker rooms for them and the hotel is committed for non smoker area",
+      "match_score": 0.10204081632653061
+    },
+    "value": {
+      "title": "Amazing hotel, in the heart of Berlin..",
+      "text": "Great hotel, professional staff. Nice rooms, bed and luxurious bathrooms. Absolutely comfortable stay. Great value for money and close to everything. Lounge and the restaurants are fantastic too. Would love to come back..",
+      "match_score": 0.04878048780487805
+    },
+    "rooms": {
+      "title": "Very good",
+      "text": "Excellent rooms, service, the food was amazing. Very well located. Confortable. Good service. Big rooms. Excellent rooms, service, the food was amazing. Very well located. Confortable. Good service. Big rooms.",
+      "match_score": 0.09090909090909091
+    },
+    "service": {
+      "title": "Very good",
+      "text": "Excellent rooms, service, the food was amazing. Very well located. Confortable. Good service. Big rooms. Excellent rooms, service, the food was amazing. Very well located. Confortable. Good service. Big rooms.",
+      "match_score": 0.09090909090909091
+    },
+    "cleanliness": {
+      "title": "Still the best choice for family",
+      "text": "Back again after a year All conditions are same Even food in changed Room clean and comfortable but still not equipped with water jet in wc for Asian customers This time the front statue is well repaired and clean Cafe still nice Right at the train station and taxi also as nice as before Come back for sure",
+      "match_score": 0.034482758620689655
+    },
+    "sleep": {
+      "title": "Wonderful place to be!",
+      "text": "Everything was superb...The bed was very comfortable and cozy.Im still in those sweet pillows :) Everything was clean.The breakfast was delicious.And everything was near.I highly recommand this place if you stay in Berlin",
+      "match_score": 0.05555555555555555
+    },
+    "business": {
+      "title": "Absurd",
+      "text": "GREED is the only word that I can think to describe charging 20 Euros a day for wifi in your room. If Marriot does not know yet, we are in XXI Century, and wifi is free everywhere around the civilized world, except here. I cannot imagine a business traveler without Internet, and I cannot imagine a business traveler without a free wifi in room. The INTERNATIONAL roaming data service from my phone company in Brazil was less than half of this price! Shame on you, Marriott Berlin. And you call yourself a hotel for business travelers!",
+      "match_score": 0.06422018348623854
+    },
+    "checkin": {
+      "title": "Nice place to relax",
+      "text": "We went back to Berlin for a couple of days to relax before a long haul home, everything was lovely especially an unexpected upgrade, many thanks Marriott hotel. Front desk staff extremely helpful and friendly. Efficient checkin and out.",
+      "match_score": 0.06818181818181818
+    }
+  },
+  "Hotel_Review-g187323-d3175719-Reviews-Hotel_Indigo_Berlin_Centre_Alexanderplatz-Berlin.html": {
+    "location": {
+      "title": "Trendy hotel in East Berlin",
+      "text": "Had a wonderful 3 night stay at Indigo Berlin, the hotel stuffs are very friendly and helpful during our stay and help us in our museum tickets booking etc. Location, good location and never too far from all major attraction in the city area, I got upgraded to top floor corner room with a small balcony with offer 180 degree view of the city, will return again!",
+      "match_score": 0.0684931506849315
+    },
+    "value": {
+      "title": "Very nice hotel centre of Berlin",
+      "text": "Very nice hotel, clean, modern, friendly personel, great bar and excellent breakfast. Great place! Very good atmosphere. Very good price, definitely value for money. Situated very centrale easy to get around",
+      "match_score": 0.075
+    },
+    "rooms": {
+      "title": "Centrally located stylish hotel with rooms too small for your luggage",
+      "text": "Nice location with rooms that were stylishly fitted out but ... whoever designed the rooms did not have opening luggage in mind. We had to leave the luggage under the bed in the room w/king size bed which my wife and I shared. My daughter's room with a double fared no better.",
+      "match_score": 0.08928571428571429
+    },
+    "service": {
+      "title": "Very good hotel",
+      "text": "+Good service by nice staff +Excellent breakfast +Very fresh hotel and rooms. Exciting styling +Good location just ablock from Alexanderplatz -Double rooms are somewhat noisy due to trams. Isolation windows (?) removed some of the noise and the staff offered earplugs. -The ventilation system was not working",
+      "match_score": 0.057692307692307696
+    },
+    "cleanliness": {
+      "title": "Good property.Good location.",
+      "text": "Very neat and clean hotel. D\u00e9cor and Interiors are young and happy. Rooms are clean so is the service. They have a good bar which is fairly well occupied. Good breakfast to choose from. Overall a happy customer.",
+      "match_score": 0.045454545454545456
+    },
+    "sleep": {
+      "title": "Great stay!",
+      "text": "We got a room that is roo for people who need accessebility, and since its a subject very close to me I have to say it's very accessible, the bed is high and the bathroom is huge, they thought about what will be comfortable for wheelchair. The bed was comfotable but the pillows were horrific, so flat I had to sleep with 2 folded pillows on top of eachother and one of the decoration pillow underneath. Other than that, very good service and good breakfast.",
+      "match_score": 0.06382978723404255
+    },
+    "business": {
+      "title": "Great location",
+      "text": "Helpful, pleasantl staff. Very Nice, but smallish room. Gym availability. Free wifi, with computers and printing in \"business center.\" Lots of public transportation, including a bus from TXL (Tegel airport). Rooms overlooking the street may be noisy.",
+      "match_score": 0.0392156862745098
+    },
+    "checkin": {
+      "title": "Good hotel",
+      "text": "Indigo was a good experience. Very friendly personnel at the front desk in the reception. The room was clean and nice. Though I\u2019m wondering if there are problems with housekeeping, they were visiting several times a day and checking if everything is okay. That was inconvenient.",
+      "match_score": 0.05555555555555555
+    }
+  },
+  "Hotel_Review-g187323-d1858856-Reviews-Hampton_by_Hilton_Berlin_City_West-Berlin.html": {
+    "location": {
+      "title": "Berlin Hampton",
+      "text": "This hotel is in a perfect location in the city. There is both a u-barn and s-barn in easy walking distance. Plenty of shopping and good restaurants in the area as well. This is a great place to stay when visiting Berlin!",
+      "match_score": 0.08695652173913043
+    },
+    "value": {
+      "title": "great value",
+      "text": "excellent hotel great value for money .well positioned for tourist trade.hotel appeared full to capacity most nights.would highly recommend.",
+      "match_score": 0.1
+    },
+    "rooms": {
+      "title": "great location, value for money.",
+      "text": "The room is clean. My garden view room is medium sized with comfortable king size bed. No odor. They provided nice toiletry. nice room. Do not choose a room very next to the train railway. It could be very noisy. The hotel provides nice breakfast. The staff are also very friendly.",
+      "match_score": 0.08333333333333333
+    },
+    "service": {
+      "title": "Overall good stay. Work on breakfast staff",
+      "text": "Clean rooms, nice staff, good breakfast. Front desk staff was very helpful. Close to train station. My only issue was the staff members handling the food did not wear hair nets and I found a few strands of hair around the food stations and drink glasses.",
+      "match_score": 0.057692307692307696
+    },
+    "cleanliness": {
+      "title": "The worst stay ever",
+      "text": "Very bad attitude from employee's front desk. Not clean at all. They only change towels.. don't clean toilets... juice glasses very dirty and smell bad. On the Top they still reserve my money from my credit card till now and I already paid cash... very bad...",
+      "match_score": 0.05454545454545454
+    },
+    "sleep": {
+      "title": "Queen to double",
+      "text": "My room was reserved in May and it is now September. Reservation was made as queen size bed. On arrival was told that have two beds due to overbooking. Issue was not resolved to my liking and now instead of queen size bed have standard size bed.",
+      "match_score": 0.0784313725490196
+    },
+    "business": {
+      "title": "Good value for American travelers",
+      "text": "Hotel was well located near restaurants and bars and the metro. Room was clean yet a bit small but nicely decorated. The complimentary internet worked fine and the breakfast was very convenient. Great for business and family travelers.",
+      "match_score": 0.047619047619047616
+    },
+    "checkin": {
+      "title": "Bright, modern and crisp.",
+      "text": "Lovely room, spacious and comfortable and well equipped though a little way from the centre, but close to good transport links. Zoogarten train stop very close by. Helpful front desk and nice bar with small menu.",
+      "match_score": 0.04878048780487805
+    }
+  },
+  "Hotel_Review-g187323-d233880-Reviews-Mercure_Hotel_Residenz_Berlin_Checkpoint_Charlie-Berlin.html": {
+    "location": {
+      "title": "Very good location, comfortable hotel with extremely nice staff",
+      "text": "Very good location, comfortable hotel with extremely nice staff",
+      "match_score": 0.1
+    },
+    "value": {
+      "title": "PERFECT HOTEL",
+      "text": "Good location, great breakfast, atentive staff for a worthy price",
+      "match_score": 0.08333333333333333
+    },
+    "rooms": {
+      "title": "name for satisfaction",
+      "text": "Very satisfyied with room size,calmness. Smal remark - size of the breakfast room might be slightly bigger.",
+      "match_score": 0.19047619047619047
+    },
+    "service": {
+      "title": "A unique experience in a legendary place",
+      "text": "Willingness to service and to make visitor feel welcomed by the hotel's staff",
+      "match_score": 0.14285714285714285
+    },
+    "cleanliness": {
+      "title": "good hotel",
+      "text": "clean room, and good breakfast . No wifi free available",
+      "match_score": 0.09090909090909091
+    },
+    "sleep": {
+      "title": "Business trip in Berlin",
+      "text": "Good location, good bed and excellent breakfast. No noise day and night Big room",
+      "match_score": 0.0625
+    },
+    "business": {
+      "title": "good hotel",
+      "text": "clean room, and good breakfast . No wifi free available",
+      "match_score": 0.09090909090909091
+    },
+    "checkin": {
+      "title": "Top hotel for exploring the city",
+      "text": "Well-situated. Big bedrooms. Comfortable beds. Speedy, efficient check-in by helpful desk staff. Loved my stay",
+      "match_score": 0.1
+    }
+  },
+  "Hotel_Review-g187323-d3505235-Reviews-SO_Berlin_Das_Stue-Berlin.html": {
+    "location": {
+      "title": "Fantastic",
+      "text": "The perfect place to relax, the staff were attentive, rooms were comfortable and luxurious, a very quiet location for a city hotel with rooms overlooking the zoo . We would definitely stay again the next time we visit Berlin.",
+      "match_score": 0.06976744186046512
+    },
+    "value": {
+      "title": "Amazing!",
+      "text": "Since you come in you are received with a smile and the attencion you desserved, thats whats make the difference between hotels and first class hotels. Room and bathroom good size and very modern, good breakfast and excellent value for money. Well worth a visit.",
+      "match_score": 0.04
+    },
+    "rooms": {
+      "title": "Beautiful, comfortable and uber stylish",
+      "text": "We upgraded to a superior room and managed to get on the 5th floor overlooking the Berlin zoo. You can actually see animals from our room. Very comfortable rooms and a well designed room. Staff we're very friendly and helpful.",
+      "match_score": 0.08888888888888889
+    },
+    "service": {
+      "title": "Nice hotel, service not on par with other similar hotels",
+      "text": "The hotel itself is quite striking. Reception staff and concierge very helpful and welcoming. Bar service and breakfast service not up to standards for a hotel in this price range. Food qulity for breakfast, lunch and dinner very good. My only disapointment was the service.",
+      "match_score": 0.0784313725490196
+    },
+    "cleanliness": {
+      "title": "Notes from a hotelier..",
+      "text": "Great design. Friendly staff except for the bar. Music in spa needs modifying. Need more colors in room and add utensils. Extremely clean room and that was the best part except for the dirty wall and missing light, but i believe housekeeping was my most appreciated department",
+      "match_score": 0.038461538461538464
+    },
+    "sleep": {
+      "title": "Lovely hotel",
+      "text": "The bed was the most comfortable hotel bed ever. The staff were extremely pleasant and helpful and all spoke excellent English. Set in a beautiful part of Berlin, I very much hope to visit again one day soon.",
+      "match_score": 0.047619047619047616
+    },
+    "business": {
+      "title": "Perfect hotel",
+      "text": "I stayed there just one night for a business meeting. However, the impression was great. It is a cozy, friendly and luxury hotel. I missed nothing. Regarding SPA I can not review this area. I can recommend the hotel for business and for holiday.",
+      "match_score": 0.038461538461538464
+    },
+    "checkin": {
+      "title": "Great view of the zoo and the Teagarden",
+      "text": "The rooms are small compact and very stylish. Food was great in all restaurants and the front desk was very helpful. The location was nice with beautiful walking paths nearby. We would definitely stay here again.",
+      "match_score": 0.05
+    }
+  },
+  "Hotel_Review-g187323-d202450-Reviews-Pullman_Berlin_Schweizerhof-Berlin.html": {
+    "location": {
+      "title": "Nice Clean Hotel",
+      "text": "Good location. Nice workout facilities...........................................................................",
+      "match_score": 0.14285714285714285
+    },
+    "value": {
+      "title": "Very nice",
+      "text": "My priority is value for money and I was not disappointed. The hotel is modern and clean with good facilities, nice breakfast and helpful smiling staff. For the price I paid I was totally satisfied and would not wish to complain about anything.",
+      "match_score": 0.06382978723404255
+    },
+    "rooms": {
+      "title": "reveiw",
+      "text": "Great hotel but rooms very hot and air conditioning did not assist .",
+      "match_score": 0.07692307692307693
+    },
+    "service": {
+      "title": "PULLMAN BERLIN",
+      "text": "Highly recommended! Location, service and comfort unbeatable",
+      "match_score": 0.1111111111111111
+    },
+    "cleanliness": {
+      "title": "Great breakfast and service",
+      "text": "Very clean and excellent breakfast, including made to order omelets.",
+      "match_score": 0.08333333333333333
+    },
+    "sleep": {
+      "title": "PULLMAN BERLIN",
+      "text": "Highly recommended! Location, service and comfort unbeatable",
+      "match_score": 0.1111111111111111
+    },
+    "business": {
+      "title": "Not a five star experience",
+      "text": "Service at breakfast is good, but concierge and reception was kind of rude. Wireless internet signal did not work in our room and reception just referred to their problems with the internet provider. Generally at Accor hotels the internet works really poorly! Nice foyer",
+      "match_score": 0.0625
+    },
+    "checkin": {
+      "title": "very good",
+      "text": "the rooms are very nice, clean, good view on the zoo le only negative point is the bathroom though clean, should be renovated personnel on the front desk is efficient and nice the breakfast was excellent though a bit too expensive",
+      "match_score": 0.045454545454545456
+    }
+  },
+  "Hotel_Review-g187323-d200437-Reviews-Steigenberger_Hotel_Berlin-Berlin.html": {
+    "location": {
+      "title": "Very good hotel, strongly recomend",
+      "text": "Very comfortable and modern rooms. Excellent location with some great restaurants in the area. Free internet.",
+      "match_score": 0.10526315789473684
+    },
+    "value": {
+      "title": "Great hotel in center of the city",
+      "text": "It was our first stay at a 5 star hotel, and i can absolutely recommend that you spend the ekstra money, you get full value for the money. The included ticket for public transport was great, the breakfast is delicious so be sure to include that already when you make your reservation and get it for under half the price",
+      "match_score": 0.0625
+    },
+    "rooms": {
+      "title": "Good hotel. Excellent location.",
+      "text": "Good hotel and excellent location. The breakfast buffet eas very good and the room size is very good. The room could use a update and the tv wasn\u2019t very good, too small for the size of the room. Good staff, friendly.",
+      "match_score": 0.10204081632653061
+    },
+    "service": {
+      "title": "Perfect hotel",
+      "text": "Great location for sight seeing. Lovely breakfast with plenty of choice and excellent service by staff Rooms were spacious and comfortable and spotlessly clean. Reception staff were knowledgeable and very helpful. What more could you ask for?",
+      "match_score": 0.07317073170731707
+    },
+    "cleanliness": {
+      "title": "VERY GOOD HOTEL",
+      "text": "The stuff was very helpfull, great location, exelent and rich breakfast. very clean.",
+      "match_score": 0.058823529411764705
+    },
+    "sleep": {
+      "title": "Dhjjnkgf",
+      "text": "There were twin bed and no double bed. We have asked for double bed in our r\u00e9servation. So it was disapointing for an hotel of this standard. Quality of sleepness was middle in these conditions. We get Stung.",
+      "match_score": 0.06976744186046512
+    },
+    "business": {
+      "title": "Not such a. Good h\u00f4tel",
+      "text": "Poor internet connections. Wifi horrible. Tiny pool... Two type of machines in the fitness room... People screaming outside late at night .... Doesn't. Have the service it should have.Rather \u00e0 business h\u00f4tel.",
+      "match_score": 0.07692307692307693
+    },
+    "checkin": {
+      "title": "Recommended to stay",
+      "text": "Nice room , clean and comfort for stay . Helpful front desk but the reception is small",
+      "match_score": 0.17647058823529413
+    }
+  },
+  "Hotel_Review-g187323-d4571000-Reviews-Steigenberger_Hotel_Am_Kanzleramt-Berlin.html": {
+    "location": {
+      "title": "Good place",
+      "text": "Good and central place, very clean and modern. Rooms are very modern with a very good bed. Breakfast is extensive and high quality. Location is excellent in the middle of the city with very good transport links into every direction of the city.",
+      "match_score": 0.08333333333333333
+    },
+    "value": {
+      "title": "Great hotel!!!",
+      "text": "Beautiful rooms, great service, really close to the central station, clean, comfortable and everything an hotel should be! The prices are really nice as well, very value for money!!! The shower is nice, clean and pretty! And basically very recommended!",
+      "match_score": 0.057692307692307696
+    },
+    "rooms": {
+      "title": "Comfort, Good air conditioning",
+      "text": "I was on a Viking tour and stayed one night. The room is clean and has good room air conditioning. The breakfast has good selections. You need to pay for wifi in the room, however, lobby wifi is free.",
+      "match_score": 0.06666666666666667
+    },
+    "service": {
+      "title": "Perfect hotel",
+      "text": "The rooms perfect and the staff great Apart from perfect building and rooms the staff especially the tall dark hair guy with beard was extremely helpful and gave good advise about every question asked",
+      "match_score": 0.058823529411764705
+    },
+    "cleanliness": {
+      "title": "Good hotel but very businesslike",
+      "text": "Good hotel, nice, clean convenient by the Central Station, but more for businesspeople, not for leisure. The immense lobby has no atmosphere and nothing happening. Rooms are good and clean. Internet is terrible.",
+      "match_score": 0.04878048780487805
+    },
+    "sleep": {
+      "title": "A very good stay",
+      "text": "Great stay, 3 euros on the train - hotel Food in the bar was good, the room was lovely but the double bed ( 2 singles beds together) needed a double mattress topper to stop yourself from falling in the middle",
+      "match_score": 0.06818181818181818
+    },
+    "business": {
+      "title": "Like this place so much",
+      "text": "Good design,good location,but food and WIFI just ok. \u65e9\u996d\u7684\u8d28\u91cf\u76f8\u5bf9\u4e8e\u5fb7\u56fd\u996e\u98df\u7684\u5e73\u5747\u6c34\u51c6\u6765\u8bf4\u5df2\u7ecf\u662f\u975e\u5e38\u597d\u7684\u4e86\uff0c\u6211\u4eec\u6bcf\u5929\u5c31\u6307\u671b\u8fd9\u4e00\u987f\u996d\u6d3b\u4e86\u3002\u5fb7\u56fd\u7684\u996e\u98df\u5b9e\u5728\u662f\u4e0d\u6562\u606d\u7ef4\uff0c\u6765\u4e86\u4fbf\u77e5\u3002\u4e0d\u8db3\u4e4b\u5904\u662f\u6ca1\u6709\u4eba\u4e5f\u6ca1\u7528\u4efb\u4f55\u63d0\u793a\u8bf4\u660e\u5982\u4f55\u4e0a\u7f51\uff0c\u6211\u4eec\u5b8c\u5168\u4e0d\u77e5\u9053\u9152\u5e97\u662f\u5426\u6709WIFI\u4ee5\u53caWIFI\u7684\u901f\u5ea6\u662f\u5426OK\u3002\u5176\u4ed6\u90e8\u5206\u90fd\u975e\u5e38\u597d\uff0c\u7279\u522b\u662f\u9152\u5e97\u7684\u4f4d\u7f6e\uff0c\u51fa\u95e8\u5c31\u662fHbf\uff0c\u4ec5\u4ec5\u5c31\u4f4d\u7f6e\u800c\u8a00\u5c31\u5df2\u7ecf\u662f\u503c\u5f97\u6ee1\u5206\u7684\u9152\u5e97\u3002",
+      "match_score": 0.07692307692307693
+    },
+    "checkin": {
+      "title": "great hotel",
+      "text": "all you need is this excellent hotel. everything is there for you, dont think twice the location the food the front desk the atmosfere its all there the houptbhanoff is in the corner so you con go everywhere",
+      "match_score": 0.05
+    }
+  },
+  "Hotel_Review-g187323-d1823410-Reviews-Adina_Apartment_Hotel_Berlin_Hackescher_Markt-Berlin.html": {
+    "location": {
+      "title": "Berlin",
+      "text": "Good location and comfortable shower, bed and well equipped kitchen. Many restaurants and activities in the nearby and close to Alexanderplatz where the tourist buses leaves for diferent city tours along the city and close areas in the city surroundings",
+      "match_score": 0.11904761904761904
+    },
+    "value": {
+      "title": "Great stay",
+      "text": "Good service, great location, large and modern rooms and extra value with kitchen, excelent value for money, very nice buffet, freindly staff, quiet, only minus was unstable wifi conection. book early:)",
+      "match_score": 0.07317073170731707
+    },
+    "rooms": {
+      "title": "large comfortable rooms",
+      "text": "Comfortable rooms with loads of space in a great location right next to Hackescher Markt S Bahn station.",
+      "match_score": 0.10526315789473684
+    },
+    "service": {
+      "title": "Awesome, so central!",
+      "text": "Everything you need around the corner. Helpful, knowledgeable staff. Good English speaking staff. Very friendly. Hotel restaurant is fantastic too. Room service was very reasonable on price too. Super",
+      "match_score": 0.08333333333333333
+    },
+    "cleanliness": {
+      "title": "Nice but could be cleaner",
+      "text": "Good location, nice place overall. My one complaint is that the kitchenette was a bit dirty when I arrived. The rest of the room was very clean.",
+      "match_score": 0.06451612903225806
+    },
+    "sleep": {
+      "title": "Very pleasant",
+      "text": "Everything was ready early, which was great because we wanted to leave luggage behind to explore city. Room was pleasant, we had an extremely quiet good night sleep. Beds were clean and crisp linnens and mattress was compfy. I will stay here again on my way back home.",
+      "match_score": 0.05555555555555555
+    },
+    "business": {
+      "title": "INTERNET CONNECTION VERY BAD",
+      "text": "Extremely nice hotel , but very bad with the Internet WiFi. Also be careful with all the extras they offer you, it can be very expensive. Staff is ok nice friendly very pleasant. I would go back if they fix the Internet speed.",
+      "match_score": 0.0625
+    },
+    "checkin": {
+      "title": "Good hotel at a central location",
+      "text": "Good hotel at a central location. A bit slow check-in due to only one employee at front desk. Good size studio of 25qm with kitchenette. Room a bit warm since we couldn't adjust the temperature below 27 degrees Celsius.",
+      "match_score": 0.06818181818181818
+    }
+  },
+  "Hotel_Review-g187323-d190694-Reviews-Hotel_Adlon_Kempinski-Berlin.html": {
+    "location": {
+      "title": "Forget any other place",
+      "text": "If you can afford it, forget any other place. From the best location in the city, nested between the U.S. Embassy the UK and the Brandenburg gate, you can find a better place in Berlin. On top of it the best breakfast in town.",
+      "match_score": 0.1
+    },
+    "value": {
+      "title": "Beautiful hotel Highyl recommended",
+      "text": "Absolutely loved it here. The location, right in the heart of the city, is unbeatable. The staff were attentive and friendly and the room was beautiful. We visited in a heatwave but the room was pleasantly cool. It's expensive, but still value for money.",
+      "match_score": 0.03773584905660377
+    },
+    "rooms": {
+      "title": "A Berlin icon",
+      "text": "Friendly and helpful staff; excellent cleaning team; smoking space downstairs, a classic green room; silent and comfortable rooms which provide you lots of privacy. Take a journey back into the Crazy 1920s.",
+      "match_score": 0.07894736842105263
+    },
+    "service": {
+      "title": "Hotel Heaven!",
+      "text": "Perfect service. Elegant hotel. Fabulous buffet breakfast.",
+      "match_score": 0.1
+    },
+    "cleanliness": {
+      "title": "Perfection",
+      "text": "Berlin is a very interesting city, and we enjoyed staying at this lovely hotel. The room was perfectly clean, spacious and comfortable, the breakfast was delicious, and the location wonderful.",
+      "match_score": 0.027777777777777776
+    },
+    "sleep": {
+      "title": "The Best",
+      "text": "Impeccable service, cleanness, comfort. Best location in Berlin city, next to Brandenburger Gate and Holocaust monument. Reasonable prices, top notch breakfast buffet. Excellent beds, and meeting facilities.",
+      "match_score": 0.05555555555555555
+    },
+    "business": {
+      "title": "Excellent",
+      "text": "I was in Hotel Adlon Kempinski for business. Company organized a conference there. The summary is \"Just perfect\". Very rich Breakfast. Very helpful staff. Everyone was willing to help. WiFi internet available everywhere. WiFi for free with acceptable speed. Higher speed available if you pay. I did not expect the price for parking. I believe the room is expensive enough to include the parking fee.",
+      "match_score": 0.05128205128205128
+    },
+    "checkin": {
+      "title": "Fantastic Hotel",
+      "text": "Very well placed, walking distance to the main turist points and in front of Brandengurg Tor. Special attetion from the concierge desk. Wonderful breakfast and magnific view. Nice Spa and lounge to relax.",
+      "match_score": 0.05263157894736842
+    }
+  }
+}
