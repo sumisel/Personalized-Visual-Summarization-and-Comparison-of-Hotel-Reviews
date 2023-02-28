@@ -1,5 +1,5 @@
 <script>
-import {onMounted, ref} from "vue";
+import { ref} from "vue";
 
 import "leaflet/dist/leaflet.css";
 import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
@@ -11,6 +11,15 @@ export default {
     LMap,
     LTileLayer,
     LMarker},
+  setup() {
+    const map = ref();
+    const hotelStore = useHotelStore();
+
+    return {
+      map,
+      hotelStore,
+    };
+  },
   data() {
     return {
       zoom: 13,
@@ -28,12 +37,40 @@ export default {
         console.log(L);
         await useHotelStore().getLocations().then(locations => {
           console.log(locations);
+
+          const greyIcon = new L.Icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-grey.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+          });
+          const blueIcon = new L.Icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+          });
+
           // set markers on map
           locations.forEach(hotel => {
             const marker = L.marker([hotel["lat"], hotel["long"]])
             //const marker = [hotel["lat"], hotel["long"]];
+
+            marker.icon = greyIcon;
+
             marker.bindPopup(hotel["name"]).openPopup();
             this.markers.push(marker);
+          });
+
+          // set the color of the marker to blue if the hotel is selected
+          this.markers.forEach(marker => {
+            if (this.hotelStore.hotelByName(marker._popup._content).isSelected) {
+              marker.icon = blueIcon;
+            }
           });
 
           // set center to first marker
@@ -46,9 +83,9 @@ export default {
           // set zoom level to include all markers
           this.bounds = L.latLngBounds(this.markers.map(x => x._latlng));
           this.$nextTick(() => {
-            const map = this.$refs.map.mapObject; //TODO doesn't select map, mapObject is undefined
-            console.log(map);
-            this.zoom = map.getBoundsZoom(this.bounds);
+            //const map = this.$refs.map.mapObject; //TODO doesn't select map, mapObject is undefined
+            console.log(this.map);
+            this.zoom = this.map.getBoundsZoom(this.bounds); //TODO doesn't work, not a function
           });
         });
       });
@@ -90,7 +127,7 @@ export default {
       <l-marker :lat-lng="[35.512986, -98.975897]"></l-marker>
       <l-marker :lat-lng="[35.521976, -98.978897]"></l-marker>
       <l-marker :lat-lng="[35.510986, -98.979897]"></l-marker>
-      <l-marker v-for="marker,index in markers" :lat-lng="marker._latlng" @click="openPopup(index)"></l-marker>
+      <l-marker v-for="marker,index in markers" :lat-lng="marker._latlng" :icon="marker.icon" @click="openPopup(index)"></l-marker>
     </l-map>
   </div>
   <div class="dummy"></div>

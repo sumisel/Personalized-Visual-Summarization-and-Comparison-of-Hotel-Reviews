@@ -55,6 +55,16 @@ export const useHotelStore = defineStore({
       const data = await result.json();
       console.log(data);
       this.hotels = data;
+
+      // set isSelected to true for the first 3 hotels
+      this.hotels[0].isSelected = true;
+      this.hotels[1].isSelected = true;
+      this.hotels[2].isSelected = true;
+      // set isSelected to false for all other hotels
+      for (let i = 3; i < this.hotels.length; i++) {
+          this.hotels[i].isSelected = false;
+      }
+
       // set city name on page
       document.getElementById("city-name").innerHTML = city.replaceAll("_", " ");
     },
@@ -161,6 +171,9 @@ export const useHotelStore = defineStore({
         );
         return topCategories.map((category) => category.id);
       }
+    },
+    hotelByName: (state) => {
+      return (name) => state.hotels.find(hotel => hotel.name == name);
     },
   },
 })
