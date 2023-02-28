@@ -175,5 +175,8 @@ export const useHotelStore = defineStore({
     hotelByName: (state) => {
       return (name) => state.hotels.find(hotel => hotel.name == name);
     },
+    toggleSelectHotel: (state) => {
+      return (name) => {state.hotels.find(hotel => hotel.name == name).isSelected = !state.hotels.find(hotel => hotel.name == name).isSelected};
+    },
   },
 })
