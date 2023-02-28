@@ -70,7 +70,7 @@ onMounted(async() => {
     /></v-navigation-drawer>
     <v-main class="ma-6">
       <div class="content mx-auto">
-        <div class="text-h1 my-16">Daisy Town</div>
+        <div class="text-h1 my-16" id="city-name">Daisy Town</div>
         <div
           v-for="section in sections"
           :key="section.title"

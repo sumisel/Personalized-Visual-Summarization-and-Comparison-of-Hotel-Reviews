@@ -48,11 +48,15 @@ export const useHotelStore = defineStore({
   }),
   actions: {
     async getHotels() {
-      console.log("read hotels file");
-      const result = await fetch("/HotelRec_subset_Berlin_10_average_ratings.txt");
+      const params = (new URL(document.location)).searchParams;
+      const city = params.get("city");
+      console.log("read hotels file "+city);
+      const result = await fetch("/HotelRec_subset_"+city+"_10_average_ratings.txt");
       const data = await result.json();
       console.log(data);
       this.hotels = data;
+      // set city name on page
+      document.getElementById("city-name").innerHTML = city.replaceAll("_", " ");
     },
   },
   getters: {
