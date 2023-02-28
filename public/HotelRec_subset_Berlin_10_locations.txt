@@ -1,0 +1,10 @@
+[{"id":"Hotel_Review-g187323-d1823410-Reviews-Adina_Apartment_Hotel_Berlin_Hackescher_Markt-Berlin.html","name":"Adina Apartment Berlin Hackescher Markt","lat":52.52238712372252,"long":13.404312987742363},
+{"id":"Hotel_Review-g187323-d190694-Reviews-Hotel_Adlon_Kempinski-Berlin.html","name":"Adlon Kempinski","lat":52.516193223183464,"long":13.38003003822563},
+{"id":"Hotel_Review-g187323-d233880-Reviews-Mercure_Hotel_Residenz_Berlin_Checkpoint_Charlie-Berlin.html","name":"Mercure Residenz Berlin Checkpoint Charlie","lat":52.50876342111009,"long":13.39307286239428},
+{"id":"Hotel_Review-g187323-d200437-Reviews-Steigenberger_Hotel_Berlin-Berlin.html","name":"Steigenberger Berlin","lat":null,"long":null},
+{"id":"Hotel_Review-g187323-d202450-Reviews-Pullman_Berlin_Schweizerhof-Berlin.html","name":"Pullman Berlin Schweizerhof","lat":52.506153368476284,"long":13.343966770942998},
+{"id":"Hotel_Review-g187323-d1858856-Reviews-Hampton_by_Hilton_Berlin_City_West-Berlin.html","name":"Hampton by Hilton Berlin City West","lat":52.505123462219196,"long":13.325839464910128},
+{"id":"Hotel_Review-g187323-d276043-Reviews-Berlin_Marriott_Hotel-Berlin.html","name":"Berlin Marriott Hotel","lat":52.511005554737174,"long":13.376174303992018},
+{"id":"Hotel_Review-g187323-d3505235-Reviews-SO_Berlin_Das_Stue-Berlin.html","name":"SO Berlin Das Stue","lat":52.50999160631034,"long":13.345857821124557},
+{"id":"Hotel_Review-g187323-d4571000-Reviews-Steigenberger_Hotel_Am_Kanzleramt-Berlin.html","name":"Steigenberger Am Kanzleramt","lat":52.52374787154065,"long":13.368008249038889},
+{"id":"Hotel_Review-g187323-d3175719-Reviews-Hotel_Indigo_Berlin_Centre_Alexanderplatz-Berlin.html","name":"Indigo Berlin Centre Alexanderplatz","lat":52.52322199269495,"long":13.41282353995266}]

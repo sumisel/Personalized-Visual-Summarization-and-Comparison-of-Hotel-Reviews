@@ -49,7 +49,7 @@ export const useHotelStore = defineStore({
   actions: {
     async getHotels() {
       const params = (new URL(document.location)).searchParams;
-      const city = params.get("city");
+      const city = params.get("city")?params.get("city"):"Berlin";
       console.log("read hotels file "+city);
       const result = await fetch("/HotelRec_subset_"+city+"_10_average_ratings.txt");
       const data = await result.json();
@@ -57,6 +57,16 @@ export const useHotelStore = defineStore({
       this.hotels = data;
       // set city name on page
       document.getElementById("city-name").innerHTML = city.replaceAll("_", " ");
+    },
+    async getLocations() {
+      const params = (new URL(document.location)).searchParams;
+      const city = params.get("city")?params.get("city"):"Berlin";
+      console.log("read locations file "+city);
+      const result = await fetch("/HotelRec_subset_"+city+"_10_locations.txt");
+      const data = await result.json();
+      console.log(data);
+
+      return data;
     },
   },
   getters: {

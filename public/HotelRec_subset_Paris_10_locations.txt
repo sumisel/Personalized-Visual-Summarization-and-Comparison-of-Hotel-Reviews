@@ -1,0 +1,10 @@
+[{"id":"Hotel_Review-g187147-d197424-Reviews-Novotel_Paris_Les_Halles-Paris_Ile_de_France.html","name":"Novotel Paris Les Halles","lat":48.8609793,"long":2.3463248},
+{"id":"Hotel_Review-g187147-d197674-Reviews-Ibis_Paris_Tour_Eiffel_Cambronne_15eme-Paris_Ile_de_France.html","name":"Ibis Paris Tour Eiffel Cambronne 15eme","lat":48.8471379,"long":2.3013512},
+{"id":"Hotel_Review-g187147-d197447-Reviews-Grand_Hotel_Francais-Paris_Ile_de_France.html","name":"Grand Francais","lat":48.8516265,"long":2.3908211},
+{"id":"Hotel_Review-g187147-d208096-Reviews-Citadines_Saint_Germain_des_Pres_Paris-Paris_Ile_de_France.html","name":"Citadines Saint Germain des Pres Paris","lat":48.85552354480746,"long":2.3408808485104786},
+{"id":"Hotel_Review-g187147-d198174-Reviews-Hotel_Britannique-Paris_Ile_de_France.html","name":"Britannique","lat":48.858377822233905,"long":2.3465051325462363},
+{"id":"Hotel_Review-g187147-d228809-Reviews-Hotel_Magda_Champs_Elysees-Paris_Ile_de_France.html","name":"Magda Champs Elysees","lat":48.87609736371729,"long":2.2953378384999885},
+{"id":"Hotel_Review-g1934807-d197384-Reviews-Hilton_Paris_La_Defense-La_Defense_Hauts_de_Seine_Ile_de_France.html","name":"Hilton Paris La Defense","lat":48.89708141308196,"long":2.23730942196087},
+{"id":"Hotel_Review-g187147-d228728-Reviews-Renaissance_Paris_Vendome_Hotel-Paris_Ile_de_France.html","name":"Renaissance Paris Vendome Hotel","lat":48.86564018710689,"long":2.3295763490015986},
+{"id":"Hotel_Review-g187147-d2041918-Reviews-Mandarin_Oriental_Paris-Paris_Ile_de_France.html","name":"Mandarin Oriental Paris","lat":48.86707623155245,"long":2.3272016428764166},
+{"id":"Hotel_Review-g187147-d197946-Reviews-Hotel_Bradford_Elysees_Astotel-Paris_Ile_de_France.html","name":"Bradford Elysees Astotel","lat":48.87311625500745,"long":2.3082149608979967}]

@@ -1,0 +1,10 @@
+[{"id":"Hotel_Review-g60763-d93437-Reviews-Hotel_Edison_Times_Square-New_York_City_New_York.html","name":"Edison Times Square","lat":40.760258940619366,"long":-73.98624575113413},
+{"id":"Hotel_Review-g60763-d93457-Reviews-Hampton_Inn_Manhattan_Times_Square_North-New_York_City_New_York.html","name":"Hampton Inn Manhattan Times Square North","lat":40.76338496887761,"long":-73.98571803832918},
+{"id":"Hotel_Review-g60763-d1503474-Reviews-Distrikt_Hotel_New_York_City_Tapestry_Collection_by_Hilton-New_York_City_New_York.html","name":"Distrikt New York City Tapestry Collection by Hilton","lat":40.75686435153702,"long":-73.99281140776397},
+{"id":"Hotel_Review-g60763-d99332-Reviews-Ameritania_Hotel-New_York_City_New_York.html","name":"Ameritania Hotel","lat":40.76410937641512,"long":-73.98279485376452},
+{"id":"Hotel_Review-g60763-d93543-Reviews-Shelburne_Hotel_Suites_by_Affinia-New_York_City_New_York.html","name":"Shelburne Suites by Affinia","lat":40.748631857881136,"long":-73.97806616150726},
+{"id":"Hotel_Review-g60763-d99762-Reviews-Hotel_Giraffe_by_Library_Hotel_Collection-New_York_City_New_York.html","name":"Giraffe by Library Collection","lat":40.74234843628629,"long":-73.98475786638679},
+{"id":"Hotel_Review-g60763-d93520-Reviews-Park_Central_Hotel_New_York-New_York_City_New_York.html","name":"Park Central New York","lat":40.76474385286544,"long":-73.98091189520768},
+{"id":"Hotel_Review-g60763-d93593-Reviews-The_Westin_New_York_Grand_Central-New_York_City_New_York.html","name":"The Westin New York Grand Central","lat":40.75057020712314,"long":-73.97384677750829},
+{"id":"Hotel_Review-g60763-d235238-Reviews-W_New_York_Times_Square-New_York_City_New_York.html","name":"W New York Times Square","lat":40.759447839871534,"long":-73.98566239761504},
+{"id":"Hotel_Review-g60763-d93589-Reviews-The_Michelangelo_Hotel-New_York_City_New_York.html","name":"The Michelangelo Hotel","lat":40.76164770223479,"long":-73.98263108343615}]
