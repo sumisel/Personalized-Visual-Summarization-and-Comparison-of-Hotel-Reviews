@@ -1,7 +1,8 @@
 <script setup>
 import Personalization from "./components/Personalization.vue";
-import HotelOverview from "./components/HotelOverview.vue";
 import Map from "./components/Map.vue";
+import HotelOverview from "./components/HotelOverview.vue";
+import CloseBy from "./components/CloseBy.vue"
 import { onMounted } from "vue";
 import { useHotelStore } from "./stores/hotel.js";
 
@@ -13,7 +14,7 @@ const sections = [
     component: Map,
   },
   {
-    id: "selection",
+    id: "ratings",
     title: "Hotel Ratings",
     icon: "mdi-office-building",
     component: HotelOverview,
@@ -22,6 +23,17 @@ const sections = [
     id: "good-and-bad",
     title: "Good and Bad",
     icon: "mdi-plus-minus-variant",
+  },
+  {
+    id: "close-by",
+    title: "Am I Close?",
+    icon: "mdi-map-marker-radius",
+    component: CloseBy,
+  },
+  {
+    id: "trend",
+    title: "Trending",
+    icon: "mdi-trending-up",
   },
   {
     id: "stories",
