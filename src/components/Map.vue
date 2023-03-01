@@ -110,6 +110,7 @@ export default {
 </script>
 
 <template>
+  <div class="ml-12 ml-16 instruction">Please click a marker to select/deselect a hotel.</div>
   <div class="map">
     <l-map
       ref="map"
@@ -141,7 +142,7 @@ export default {
   <div class="dummy"></div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .map {
   height: 600px;
   width: calc(100vw - 344px);
@@ -150,5 +151,11 @@ export default {
 }
 .dummy {
   height: 600px;
+}
+
+.instruction {
+  font-style: italic;
+  color: gray;
+  font-size: 0.9rem;
 }
 </style>
