@@ -2,9 +2,12 @@
 import Personalization from "./components/Personalization.vue";
 import Map from "./components/Map.vue";
 import HotelOverview from "./components/HotelOverview.vue";
-import CloseBy from "./components/CloseBy.vue"
+import CloseBy from "./components/CloseBy.vue";
 import { onMounted } from "vue";
 import { useHotelStore } from "./stores/hotel.js";
+import { useCityStore } from "./stores/city.js";
+
+const cityStore = useCityStore();
 
 const sections = [
   {
@@ -51,7 +54,9 @@ const scrollTo = (hash) => {
   location.hash = `#${hash}`;
 };
 
-onMounted(async() => {
+onMounted(async () => {
+  const params = new URL(document.location).searchParams;
+  cityStore.name = params.get("city") ? params.get("city") : "Berlin";
   await useHotelStore().getHotels();
 });
 </script>
@@ -80,9 +85,21 @@ onMounted(async() => {
     <v-navigation-drawer permanent location="right" width="344" elevation="2"
       ><Personalization
     /></v-navigation-drawer>
-    <v-main class="ma-6">
+    <v-main
+      class="ma-6"
+      :style="`background-image: linear-gradient(
+            rgba(255, 255, 255, 0),
+            rgba(255, 255, 255, 1)
+          ),
+          url('${cityStore.img?.url}');`"
+    >
       <div class="content mx-auto">
-        <div class="text-h1 my-16" id="city-name">Daisy Town</div>
+        <div class="text-h1 my-16" id="city-name">{{ cityStore.name }}</div>
+        <div class="text-right text-caption">
+          Image by 
+          <a :href="cityStore.img?.href">{{ cityStore.img?.attribution }}</a
+          > ({{ cityStore.img?.license }})
+        </div>
         <div
           v-for="section in sections"
           :key="section.title"
@@ -123,14 +140,9 @@ onMounted(async() => {
   width: 100%;
   height: 800px;
   position: absolute;
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 1)
-    ),
-    url("https://upload.wikimedia.org/wikipedia/commons/7/71/AntelopeHills.jpg");
   background-size: 100%;
   background-position-x: center;
-  background-position-y: bottom;
+  background-position-y: center;
 }
 
 .content {

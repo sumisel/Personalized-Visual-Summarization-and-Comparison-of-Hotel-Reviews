@@ -64,9 +64,6 @@ export const useHotelStore = defineStore({
       for (let i = 3; i < this.hotels.length; i++) {
           this.hotels[i].isSelected = false;
       }
-
-      // set city name on page
-      document.getElementById("city-name").innerHTML = city.replaceAll("_", " ");
     },
     async getLocations() {
       const params = (new URL(document.location)).searchParams;
