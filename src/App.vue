@@ -56,7 +56,7 @@ const scrollTo = (hash) => {
 
 onMounted(async () => {
   const params = new URL(document.location).searchParams;
-  cityStore.name = params.get("city") ? params.get("city") : "Berlin";
+  cityStore.name = params.get("city") ? params.get("city").replace("_", " ") : "Berlin";
   await useHotelStore().getHotels();
 });
 </script>
