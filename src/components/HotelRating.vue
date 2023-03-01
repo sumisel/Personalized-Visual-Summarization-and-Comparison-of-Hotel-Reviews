@@ -39,9 +39,7 @@ const topCategories = computed(() => hotelStore.topCategories(props.hotel));
         ></Glyph>
       </v-avatar>
       <div class="flex-grow-1">
-        <v-card-title class="text-h5"
-          >{{ hotel.name }}</v-card-title
-        >
+        <v-card-title class="text-h5">{{ hotel.name }}</v-card-title>
         <v-card-text>
           <div class="d-flex flex-row" v-if="bestCategories.length">
             <div class="flex-grow-0 mr-4">
@@ -95,6 +93,10 @@ const topCategories = computed(() => hotelStore.topCategories(props.hotel));
 
 .v-card {
   overflow: visible;
+}
+
+.v-card-title {
+  white-space: normal;
 }
 
 .bar {
