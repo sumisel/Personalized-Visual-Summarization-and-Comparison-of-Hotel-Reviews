@@ -8,37 +8,8 @@ export const useHotelStore = defineStore({
     categoryStore: useCategoryStore(),
     hotels: [],
   }),
-  actions: {
-    async getHotels() {
-      const params = (new URL(document.location)).searchParams;
-      const city = params.get("city")?params.get("city"):"Berlin";
-      console.log("read hotels file "+city);
-      const result = await fetch("/HotelRec_subset_"+city+"_10_average_ratings.txt");
-      const data = await result.json();
-      console.log(data);
-      this.hotels = data;
-
-      // set isSelected to true for the first 3 hotels
-      this.hotels[0].isSelected = true;
-      this.hotels[1].isSelected = true;
-      this.hotels[2].isSelected = true;
-      // set isSelected to false for all other hotels
-      for (let i = 3; i < this.hotels.length; i++) {
-          this.hotels[i].isSelected = false;
-      }
-    },
-    async getLocations() {
-      const params = (new URL(document.location)).searchParams;
-      const city = params.get("city")?params.get("city"):"Berlin";
-      console.log("read locations file "+city);
-      const result = await fetch("/HotelRec_subset_"+city+"_10_locations.txt");
-      const data = await result.json();
-      console.log(data);
-
-      return data;
-    },
-  },
   getters: {
+    selectedHotels: (state) => state.hotels.filter(hotel => hotel.isSelected),
     minRatings: (state) => {
       let minRatings = {
         location: 5.0,
@@ -50,7 +21,7 @@ export const useHotelStore = defineStore({
         business: 5.0,
         checkin: 5.0,
       }
-      state.hotels.forEach(hotel => {
+      state.selectedHotels.forEach(hotel => {
         for (let categoryId in hotel.ratings) {
           minRatings[categoryId] = Math.min(minRatings[categoryId], hotel.ratings[categoryId]);
         }
@@ -68,7 +39,7 @@ export const useHotelStore = defineStore({
         business: 0.0,
         checkin: 0.0,
       }
-      state.hotels.forEach(hotel => {
+      state.selectedHotels.forEach(hotel => {
         for (let categoryId in hotel.ratings) {
           maxRatings[categoryId] = Math.max(maxRatings[categoryId], hotel.ratings[categoryId]);
         }
@@ -98,7 +69,7 @@ export const useHotelStore = defineStore({
           business: 5.0,
           checkin: 5.0,
         };
-        state.hotels.forEach((hotel2) => {
+        state.selectedHotels.forEach((hotel2) => {
           if (hotel.id != hotel2.id) {
             categories.forEach((category) => {
               ratingsDiff[category.id] = Math.min(
@@ -135,7 +106,37 @@ export const useHotelStore = defineStore({
       return (name) => state.hotels.find(hotel => hotel.name == name);
     },
     toggleSelectHotel: (state) => {
-      return (name) => {state.hotels.find(hotel => hotel.name == name).isSelected = !state.hotels.find(hotel => hotel.name == name).isSelected};
+      return (name) => { state.hotels.find(hotel => hotel.name == name).isSelected = !state.hotels.find(hotel => hotel.name == name).isSelected };
+    },
+  },
+  actions: {
+    async getHotels() {
+      const params = (new URL(document.location)).searchParams;
+      const city = params.get("city") ? params.get("city") : "Berlin";
+      console.log("read hotels file " + city);
+      const result = await fetch("/HotelRec_subset_" + city + "_10_average_ratings.txt");
+      const data = await result.json();
+      console.log(data);
+      this.hotels = data;
+
+      // set isSelected to true for the first 3 hotels
+      this.hotels[0].isSelected = true;
+      this.hotels[1].isSelected = true;
+      this.hotels[2].isSelected = true;
+      // set isSelected to false for all other hotels
+      for (let i = 3; i < this.hotels.length; i++) {
+        this.hotels[i].isSelected = false;
+      }
+    },
+    async getLocations() {
+      const params = (new URL(document.location)).searchParams;
+      const city = params.get("city") ? params.get("city") : "Berlin";
+      console.log("read locations file " + city);
+      const result = await fetch("/HotelRec_subset_" + city + "_10_locations.txt");
+      const data = await result.json();
+      console.log(data);
+
+      return data;
     },
   },
 })

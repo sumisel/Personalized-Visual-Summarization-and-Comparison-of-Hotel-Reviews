@@ -36,14 +36,14 @@ export default {
     <p>
       Customers have rated the
       <b
-        ><span>{{ hotelStore.hotels.length }}</span></b
+        ><span>{{ hotelStore.selectedHotels.length }}</span></b
       >
       selected hotels <b>{{ ratingVarietyDescription }}</b> with respect to the
       prioritized categories.
     </p>
     <div class="d-flex flex-column hotel-list my-4">
       <HotelRating
-        v-for="hotel in hotelStore.hotels"
+        v-for="hotel in hotelStore.selectedHotels"
         :key="hotel.id"
         :hotel="hotel"
       ></HotelRating>
