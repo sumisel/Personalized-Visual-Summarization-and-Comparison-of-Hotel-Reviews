@@ -133,9 +133,6 @@ export default {
         layer-type="base"
         name="OpenStreetMap"
       ></l-tile-layer>
-      <l-marker :lat-lng="[35.512986, -98.975897]"></l-marker>
-      <l-marker :lat-lng="[35.521976, -98.978897]"></l-marker>
-      <l-marker :lat-lng="[35.510986, -98.979897]"></l-marker>
       <l-marker v-for="marker,index in markers" :lat-lng="marker._latlng" :icon="marker.icon" @mouseover="openPopup(index)" @click="toggleSelectHotel(index)"></l-marker>
     </l-map>
   </div>
