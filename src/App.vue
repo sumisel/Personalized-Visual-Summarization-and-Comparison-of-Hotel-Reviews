@@ -56,7 +56,9 @@ const scrollTo = (hash) => {
 
 onMounted(async () => {
   const params = new URL(document.location).searchParams;
-  cityStore.name = params.get("city") ? params.get("city").replace("_", " ") : "Berlin";
+  cityStore.name = params.get("city")
+    ? params.get("city").replace("_", " ")
+    : "Berlin";
   await useHotelStore().getHotels();
 });
 </script>
@@ -69,8 +71,11 @@ onMounted(async () => {
         ><v-icon icon="mdi-arrow-left-right"></v-icon
         ><v-icon icon="mdi-office-building" class="mr-4"></v-icon>Hotel Review
         Comparison</v-app-bar-title
-      ></v-app-bar
-    >
+      >
+      <v-btn href="?city=Berlin">Berlin</v-btn>
+      <v-btn href="?city=New_York">New York</v-btn>
+      <v-btn href="?city=Paris">Paris</v-btn>
+    </v-app-bar>
     <v-navigation-drawer expand-on-hover rail elevation="2">
       <v-list>
         <v-list-item
@@ -96,9 +101,9 @@ onMounted(async () => {
       <div class="content mx-auto">
         <div class="text-h1 my-16" id="city-name">{{ cityStore.name }}</div>
         <div class="text-right text-caption">
-          Image by 
-          <a :href="cityStore.img?.href">{{ cityStore.img?.attribution }}</a
-          > ({{ cityStore.img?.license }})
+          Image by
+          <a :href="cityStore.img?.href">{{ cityStore.img?.attribution }}</a>
+          ({{ cityStore.img?.license }})
         </div>
         <div
           v-for="section in sections"
