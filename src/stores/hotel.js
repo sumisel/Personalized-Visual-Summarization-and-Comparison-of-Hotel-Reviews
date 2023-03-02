@@ -105,24 +105,28 @@ export const useHotelStore = defineStore({
     hotelByName: (state) => {
       return (name) => state.hotels.find(hotel => hotel.name === name);
     },
+    hotelById: (state) => {
+      return (id) => state.hotels.find(hotel => hotel.id === id);
+    },
   },
   actions: {
     async loadHotels(city) {
+      // load hotel ratings
+      city = city.replace(" ", "_");
       const result = await fetch("/HotelRec_subset_" + city + "_10_average_ratings.txt");
       const data = await result.json();
       this.hotels = data;
+      // load locations and merge data
+      // TODO: merge data already in preprocessing and only load one json file
+      const result2 = await fetch("/HotelRec_subset_" + city + "_10_locations.txt");
+      const data2 = await result2.json();
+      data2.forEach(hotel2 => {
+        const hotel = this.hotelById(hotel2.id);
+        hotel.lat = hotel2.lat;
+        hotel.long = hotel2.long;
+      });
       // select first three hotels by default
       this.hotels.forEach((hotel, i) => hotel.isSelected = i < 3);
-    },
-    async loadLocations() {
-      const params = (new URL(document.location)).searchParams;
-      const city = params.get("city") ? params.get("city") : "Berlin";
-      console.log("read locations file " + city);
-      const result = await fetch("/HotelRec_subset_" + city + "_10_locations.txt");
-      const data = await result.json();
-      console.log(data);
-
-      return data;
     },
     toggleSelectHotel: (state) => {
       (name) => {

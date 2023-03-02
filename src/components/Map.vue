@@ -32,54 +32,52 @@ export default {
     };
   },
   mounted() {
-    this.setMarkers();
+    this.hotelStore.$onAction(({ name, after }) => {
+      after(() => {
+        if (name === "loadHotels") {
+          this.setMarkers();
+        }
+      });
+    });
   },
   methods: {
     async setMarkers() {
+      console.log("set markers")
       await import("leaflet").then(async (L) => {
-        console.log(L);
-        await useHotelStore()
-          .loadLocations()
-          .then((locations) => {
-            console.log(locations);
+        // set markers on map
+        this.hotelStore.hotels.forEach((hotel) => {
+          const marker = L.marker([hotel["lat"], hotel["long"]]);
+          //const marker = [hotel["lat"], hotel["long"]];
+          marker.bindPopup(hotel["name"]).openPopup();
+          this.markers.push(marker);
+        });
 
-            // set markers on map
-            locations.forEach((hotel) => {
-              const marker = L.marker([hotel["lat"], hotel["long"]]);
-              //const marker = [hotel["lat"], hotel["long"]];
-              marker.bindPopup(hotel["name"]).openPopup();
-              this.markers.push(marker);
-            });
+        // set the color of the marker to blue if the hotel is selected
+        this.markers.forEach((marker, index) => {
+          this.colorMarker(
+            index,
+            this.hotelStore.hotelByName(marker._popup._content).isSelected
+          );
+        });
 
-            // set the color of the marker to blue if the hotel is selected
-            this.markers.forEach((marker, index) => {
-              this.colorMarker(
-                index,
-                this.hotelStore.hotelByName(marker._popup._content).isSelected
-              );
-            });
+        // set center to first marker
+        this.center = this.markers[0]._latlng;
 
-            // set center to first marker
-            this.center = this.markers[0]._latlng;
+        // set center to average of all markers
+        this.center["lat"] =
+          this.markers.map((x) => x._latlng["lat"]).reduce((a, b) => a + b) /
+          this.markers.length;
+        this.center["lng"] =
+          this.markers.map((x) => x._latlng["lng"]).reduce((a, b) => a + b) /
+          this.markers.length;
 
-            // set center to average of all markers
-            this.center["lat"] =
-              this.markers
-                .map((x) => x._latlng["lat"])
-                .reduce((a, b) => a + b) / this.markers.length;
-            this.center["lng"] =
-              this.markers
-                .map((x) => x._latlng["lng"])
-                .reduce((a, b) => a + b) / this.markers.length;
-
-            // set zoom level to include all markers
-            this.bounds = L.latLngBounds(this.markers.map((x) => x._latlng));
-            this.$nextTick(() => {
-              //const map = this.$refs.map.mapObject; //TODO doesn't select map, mapObject is undefined
-              console.log(this.map);
-              this.zoom = this.map.getBoundsZoom(this.bounds); //TODO doesn't work, not a function
-            });
-          });
+        // set zoom level to include all markers
+        this.bounds = L.latLngBounds(this.markers.map((x) => x._latlng));
+        this.$nextTick(() => {
+          //const map = this.$refs.map.mapObject; //TODO doesn't select map, mapObject is undefined
+          console.log(this.map);
+          this.zoom = this.map.getBoundsZoom(this.bounds); //TODO doesn't work, not a function
+        });
       });
     },
     openPopup(index) {
