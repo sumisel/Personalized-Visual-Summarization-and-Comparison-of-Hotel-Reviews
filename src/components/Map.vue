@@ -42,13 +42,12 @@ export default {
   },
   methods: {
     async setMarkers() {
-      console.log("set markers")
       await import("leaflet").then(async (L) => {
         // set markers on map
         this.hotelStore.hotels.forEach((hotel) => {
-          const marker = L.marker([hotel["lat"], hotel["long"]]);
-          //const marker = [hotel["lat"], hotel["long"]];
-          marker.bindPopup(hotel["name"]).openPopup();
+          const marker = L.marker([hotel.lat, hotel.long]);
+          //const marker = [hotel.lat, hotel.long];
+          marker.bindPopup(hotel.name).openPopup();
           this.markers.push(marker);
         });
 
@@ -64,11 +63,11 @@ export default {
         this.center = this.markers[0]._latlng;
 
         // set center to average of all markers
-        this.center["lat"] =
-          this.markers.map((x) => x._latlng["lat"]).reduce((a, b) => a + b) /
+        this.center.lat =
+          this.markers.map((x) => x._latlng.lat).reduce((a, b) => a + b) /
           this.markers.length;
-        this.center["lng"] =
-          this.markers.map((x) => x._latlng["lng"]).reduce((a, b) => a + b) /
+        this.center.lng =
+          this.markers.map((x) => x._latlng.lng).reduce((a, b) => a + b) /
           this.markers.length;
 
         // set zoom level to include all markers
