@@ -2,7 +2,13 @@
 import { ref } from "vue";
 
 import "leaflet/dist/leaflet.css";
-import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
+import {
+  LMap,
+  LTileLayer,
+  LMarker,
+  LTooltip,
+  LIcon,
+} from "@vue-leaflet/vue-leaflet";
 import { useHotelStore } from "@/stores/hotel";
 
 export default {
@@ -10,6 +16,8 @@ export default {
     LMap,
     LTileLayer,
     LMarker,
+    LTooltip,
+    LIcon,
   },
   setup() {
     const map = ref();
@@ -24,6 +32,7 @@ export default {
     return {
       zoom: 13,
       center: [0, 0],
+      // TODO: avoid using separate marker objects, but use hotels instead
       markers: [],
       bounds: [
         [0, 0],
@@ -35,28 +44,18 @@ export default {
     this.hotelStore.$onAction(({ name, after }) => {
       after(() => {
         if (name === "loadHotels") {
-          this.setMarkers();
+          this.setMapCenter();
         }
       });
     });
   },
   methods: {
-    async setMarkers() {
+    async setMapCenter() {
       await import("leaflet").then(async (L) => {
         // set markers on map
         this.hotelStore.hotels.forEach((hotel) => {
           const marker = L.marker([hotel.lat, hotel.long]);
-          //const marker = [hotel.lat, hotel.long];
-          marker.bindPopup(hotel.name).openPopup();
           this.markers.push(marker);
-        });
-
-        // set the color of the marker to blue if the hotel is selected
-        this.markers.forEach((marker, index) => {
-          this.colorMarker(
-            index,
-            this.hotelStore.hotelByName(marker._popup._content).isSelected
-          );
         });
 
         // set center to first marker
@@ -75,50 +74,9 @@ export default {
         this.$nextTick(() => {
           //const map = this.$refs.map.mapObject; //TODO doesn't select map, mapObject is undefined
           console.log(this.map);
-          this.zoom = this.map.getBoundsZoom(this.bounds); //TODO doesn't work, not a function
+          //this.zoom = this.map.getBoundsZoom(this.bounds); //TODO doesn't work, not a function
         });
       });
-    },
-    openPopup(index) {
-      console.log(index);
-      console.log(this.markers[index]._popup._content);
-      this.markers[index].openPopup(); // TODO doesn't work, no popup is shown
-    },
-    colorMarker(index, isSelected) {
-      const greyIcon = new L.Icon({
-        iconUrl:
-          "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-grey.png",
-        shadowUrl:
-          "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41],
-      });
-      const blueIcon = new L.Icon({
-        iconUrl:
-          "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png",
-        shadowUrl:
-          "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41],
-      });
-
-      if (isSelected) this.markers[index].icon = blueIcon;
-      else this.markers[index].icon = greyIcon;
-    },
-    toggleSelectHotel(index) {
-      console.log(index);
-      const isSelected = this.hotelStore.hotelByName(
-        this.markers[index]._popup._content
-      ).isSelected;
-      this.hotelStore.hotelByName(
-        this.markers[index]._popup._content
-      ).isSelected = !isSelected;
-      this.colorMarker(index, !isSelected);
-      // TODO change the list of displayed hotels and everything that it entails, e.g., the average values and the summary
     },
   },
 };
@@ -133,8 +91,8 @@ export default {
       ref="map"
       :center="center"
       :zoom="zoom"
-      :minZoom="zoom - 5"
-      :maxZoom="zoom + 5"
+      :minZoom="zoom"
+      :maxZoom="zoom"
       :bounds="bounds"
       :useGlobalLeaflet="false"
       :options="{
@@ -151,13 +109,22 @@ export default {
         name="OpenStreetMap"
       ></l-tile-layer>
       <l-marker
-        v-for="(marker, index) in markers"
+        v-for="(hotel, index) in hotelStore.hotels.filter(
+          (hotel) => hotel.lat && hotel.long
+        )"
         :key="index"
-        :lat-lng="marker._latlng"
-        :icon="marker.icon"
-        @mouseover="openPopup(index)"
-        @click="toggleSelectHotel(index)"
-      ></l-marker>
+        :lat-lng="[hotel.lat, hotel.long]"
+        @click="hotel.isSelected = !hotel.isSelected"
+      >
+        <l-tooltip>{{ hotel.name }}</l-tooltip>
+        <l-icon
+          :icon-url="
+            hotel.isSelected
+              ? 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png'
+              : 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-grey.png'
+          "
+        ></l-icon>
+      </l-marker>
     </l-map>
   </div>
   <div class="dummy"></div>

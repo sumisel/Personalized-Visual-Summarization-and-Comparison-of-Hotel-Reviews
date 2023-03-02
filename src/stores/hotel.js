@@ -128,11 +128,5 @@ export const useHotelStore = defineStore({
       // select first three hotels by default
       this.hotels.forEach((hotel, i) => hotel.isSelected = i < 3);
     },
-    toggleSelectHotel: (state) => {
-      (name) => {
-        const hotel = state.hotelByName(name);
-        hotel.isSelected = !hotel.isSelected;
-      }
-    },
   },
 })
