@@ -4,7 +4,6 @@ import Map from "./components/Map.vue";
 import HotelOverview from "./components/HotelOverview.vue";
 import CloseBy from "./components/CloseBy.vue";
 import { onMounted } from "vue";
-import { useHotelStore } from "./stores/hotel.js";
 import { useCityStore } from "./stores/city.js";
 
 const cityStore = useCityStore();
@@ -53,14 +52,6 @@ const sections = [
 const scrollTo = (hash) => {
   location.hash = `#${hash}`;
 };
-
-onMounted(async () => {
-  const params = new URL(document.location).searchParams;
-  cityStore.name = params.get("city")
-    ? params.get("city").replace("_", " ")
-    : "Berlin";
-  await useHotelStore().loadHotels(cityStore.name);
-});
 </script>
 
 <template>
@@ -96,14 +87,18 @@ onMounted(async () => {
             rgba(255, 255, 255, 0),
             rgba(255, 255, 255, 1)
           ),
-          url('${cityStore.img?.url}');`"
+          url('${cityStore.city.img?.url}');`"
     >
       <div class="content mx-auto">
-        <div class="text-h1 my-16" id="city-name">{{ cityStore.name }}</div>
+        <div class="text-h1 my-16" id="city-name">
+          {{ cityStore.city.name }}
+        </div>
         <div class="text-right text-caption">
           Image by
-          <a :href="cityStore.img?.href">{{ cityStore.img?.attribution }}</a>
-          ({{ cityStore.img?.license }})
+          <a :href="cityStore.city.img?.href">{{
+            cityStore.city.img?.attribution
+          }}</a>
+          ({{ cityStore.city.img?.license }})
         </div>
         <div
           v-for="section in sections"

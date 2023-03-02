@@ -10,6 +10,7 @@ import {
   LIcon,
 } from "@vue-leaflet/vue-leaflet";
 import { useHotelStore } from "@/stores/hotel";
+import { useCityStore } from "@/stores/city.js";
 
 export default {
   components: {
@@ -22,62 +23,13 @@ export default {
   setup() {
     const map = ref();
     const hotelStore = useHotelStore();
+    const cityStore = useCityStore();
 
     return {
       map,
       hotelStore,
+      cityStore
     };
-  },
-  data() {
-    return {
-      zoom: 13,
-      center: [0, 0],
-      // TODO: avoid using separate marker objects, but use hotels instead
-      markers: [],
-      bounds: [
-        [0, 0],
-        [0, 0],
-      ],
-    };
-  },
-  mounted() {
-    this.hotelStore.$onAction(({ name, after }) => {
-      after(() => {
-        if (name === "loadHotels") {
-          this.setMapCenter();
-        }
-      });
-    });
-  },
-  methods: {
-    async setMapCenter() {
-      await import("leaflet").then(async (L) => {
-        // set markers on map
-        this.hotelStore.hotels.forEach((hotel) => {
-          const marker = L.marker([hotel.lat, hotel.long]);
-          this.markers.push(marker);
-        });
-
-        // set center to first marker
-        this.center = this.markers[0]._latlng;
-
-        // set center to average of all markers
-        this.center.lat =
-          this.markers.map((x) => x._latlng.lat).reduce((a, b) => a + b) /
-          this.markers.length;
-        this.center.lng =
-          this.markers.map((x) => x._latlng.lng).reduce((a, b) => a + b) /
-          this.markers.length;
-
-        // set zoom level to include all markers
-        this.bounds = L.latLngBounds(this.markers.map((x) => x._latlng));
-        this.$nextTick(() => {
-          //const map = this.$refs.map.mapObject; //TODO doesn't select map, mapObject is undefined
-          console.log(this.map);
-          //this.zoom = this.map.getBoundsZoom(this.bounds); //TODO doesn't work, not a function
-        });
-      });
-    },
   },
 };
 </script>
@@ -89,11 +41,10 @@ export default {
   <div class="map">
     <l-map
       ref="map"
-      :center="center"
-      :zoom="zoom"
-      :minZoom="zoom"
-      :maxZoom="zoom"
-      :bounds="bounds"
+      :center="cityStore.city.center"
+      :zoom="cityStore.city.zoom"
+      :minZoom="cityStore.city.zoom"
+      :maxZoom="cityStore.city.zoom"
       :useGlobalLeaflet="false"
       :options="{
         zoomControl: false,
