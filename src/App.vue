@@ -59,7 +59,7 @@ onMounted(async () => {
   cityStore.name = params.get("city")
     ? params.get("city").replace("_", " ")
     : "Berlin";
-  await useHotelStore().getHotels();
+  await useHotelStore().loadHotels(cityStore.name);
 });
 </script>
 

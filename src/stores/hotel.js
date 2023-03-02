@@ -107,25 +107,14 @@ export const useHotelStore = defineStore({
     },
   },
   actions: {
-    async getHotels() {
-      const params = (new URL(document.location)).searchParams;
-      const city = params.get("city") ? params.get("city") : "Berlin";
-      console.log("read hotels file " + city);
+    async loadHotels(city) {
       const result = await fetch("/HotelRec_subset_" + city + "_10_average_ratings.txt");
       const data = await result.json();
-      console.log(data);
       this.hotels = data;
-
-      // set isSelected to true for the first 3 hotels
-      this.hotels[0].isSelected = true;
-      this.hotels[1].isSelected = true;
-      this.hotels[2].isSelected = true;
-      // set isSelected to false for all other hotels
-      for (let i = 3; i < this.hotels.length; i++) {
-        this.hotels[i].isSelected = false;
-      }
+      // select first three hotels by default
+      this.hotels.forEach((hotel, i) => hotel.isSelected = i < 3);
     },
-    async getLocations() {
+    async loadLocations() {
       const params = (new URL(document.location)).searchParams;
       const city = params.get("city") ? params.get("city") : "Berlin";
       console.log("read locations file " + city);

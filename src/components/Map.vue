@@ -39,7 +39,7 @@ export default {
       await import("leaflet").then(async (L) => {
         console.log(L);
         await useHotelStore()
-          .getLocations()
+          .loadLocations()
           .then((locations) => {
             console.log(locations);
 
