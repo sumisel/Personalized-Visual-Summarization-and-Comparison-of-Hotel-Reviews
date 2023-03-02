@@ -103,10 +103,7 @@ export const useHotelStore = defineStore({
       }
     },
     hotelByName: (state) => {
-      return (name) => state.hotels.find(hotel => hotel.name == name);
-    },
-    toggleSelectHotel: (state) => {
-      return (name) => { state.hotels.find(hotel => hotel.name == name).isSelected = !state.hotels.find(hotel => hotel.name == name).isSelected };
+      return (name) => state.hotels.find(hotel => hotel.name === name);
     },
   },
   actions: {
@@ -137,6 +134,12 @@ export const useHotelStore = defineStore({
       console.log(data);
 
       return data;
+    },
+    toggleSelectHotel: (state) => {
+      (name) => {
+        const hotel = state.hotelByName(name);
+        hotel.isSelected = !hotel.isSelected;
+      }
     },
   },
 })
