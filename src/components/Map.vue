@@ -61,10 +61,10 @@ export default {
       ></l-tile-layer>
       <l-marker
         v-for="(hotel, index) in hotelStore.hotels.filter(
-          (hotel) => hotel.lat && hotel.long
+          (hotel) => hotel.location.lat && hotel.location.long
         )"
         :key="index"
-        :lat-lng="[hotel.lat, hotel.long]"
+        :lat-lng="[hotel.location.lat, hotel.location.long]"
         @click="hotel.isSelected = !hotel.isSelected"
       >
         <l-tooltip>{{ hotel.name }}</l-tooltip>

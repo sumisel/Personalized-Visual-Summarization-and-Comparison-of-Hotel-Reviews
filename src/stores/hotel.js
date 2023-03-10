@@ -113,18 +113,9 @@ export const useHotelStore = defineStore({
     async loadHotels(city) {
       // load hotel ratings
       city = city.replace(" ", "_");
-      const result = await fetch("/HotelRec_subset_" + city + "_10_average_ratings.txt");
+      const result = await fetch("/HotelRec_subset_" + city + "_10_enriched.txt");
       const data = await result.json();
       this.hotels = data;
-      // load locations and merge data
-      // TODO: merge data already in preprocessing and only load one json file
-      const result2 = await fetch("/HotelRec_subset_" + city + "_10_locations.txt");
-      const data2 = await result2.json();
-      data2.forEach(hotel2 => {
-        const hotel = this.hotelById(hotel2.id);
-        hotel.lat = hotel2.lat;
-        hotel.long = hotel2.long;
-      });
       // select first three hotels by default
       this.hotels.forEach((hotel, i) => hotel.isSelected = i < 3);
     },

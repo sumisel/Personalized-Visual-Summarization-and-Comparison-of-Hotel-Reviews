@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 const cities = {
     "Berlin": {
         name: "Berlin",
-        center: [52.51627, 13.37767],
+        center: [52.51827, 13.37767],
         zoom: 13,
         img: {
             url: "https://upload.wikimedia.org/wikipedia/commons/3/3b/Siegessaeule_Aussicht_10-13_img4_Tiergarten.jpg",
@@ -14,7 +14,7 @@ const cities = {
     },
     "Paris": {
         name: "Paris",
-        center: [48.8685, 2.3109],
+        center: [48.8615, 2.3209],
         zoom: 13,
         img: {
             url: "https://upload.wikimedia.org/wikipedia/commons/1/15/Paris_from_the_Arc_de_Triomphe%2C_17_October_2019.jpg",
