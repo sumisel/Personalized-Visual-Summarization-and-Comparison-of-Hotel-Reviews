@@ -75,6 +75,7 @@ export const useCategoryStore = defineStore({
     },
     relevantCategories: (state) => state.categories.filter(category => category.value > 10),
     noCategoryHovered: (state) => state.categories.reduce((notHovered, category) => notHovered = notHovered && !category.hover, true),
+    hoveredCategory: (state) => state.categories.reduce((hoveredCategory, category) => category.hover ? category : hoveredCategory, {"icon": "mdi-clipboard-check", "title": "", "color": ""}), // TODO return empty icon if no category is hovered
   },
   actions: {
     hover(categoryId) {

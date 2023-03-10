@@ -154,4 +154,14 @@ export default {
 
 <template>
   <svg ref="svg"></svg>
+
+  <v-tooltip activator="parent" location="here" max-width="300px">
+    <v-icon
+        :icon="this.categoryStore.hoveredCategory.icon"
+        class="mr-2"
+        :color="this.categoryStore.hoveredCategory.color"
+    ></v-icon>{{ this.categoryStore.hoveredCategory.title }}
+  </v-tooltip>
+
+
 </template>
