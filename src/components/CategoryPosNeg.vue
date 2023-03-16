@@ -41,12 +41,20 @@ const categoryPosNeg = computed(() => hotelStore.categoryPosNeg(props.category.i
               v-for="hotel in hotelStore.selectedHotels">
             <td width="100px"
                 class="pa-2">{{ hotel.name }}</td>
-            <td width="40%"
+            <td width="35%"
               class="pa-2">
               {{ hotel.neg_summary_category[category.id] }}
             </td>
-            <td v-if="hotel == hotelStore.selectedHotels[0]" rowspan="100%" width="100px">high chart over all rows, or individual charts per hotel that are horizontally zero aligned</td>
-            <td width="40%"
+            <td v-if="hotel == hotelStore.selectedHotels[0]" rowspan="100%" width="100px">
+              <ChartPosNeg
+                  :categoryId="category.id"
+                  :categoryPosNeg="hotelStore.categoryPosNeg(category.id)"
+                  :color="category.color"
+                  :width="100"
+                  :height="300"
+              ></ChartPosNeg>
+            </td>
+            <td width="35%"
                 class="pa-2">
               {{ hotel.pos_summary_category[category.id] }}
             </td>
