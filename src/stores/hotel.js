@@ -112,7 +112,6 @@ export const useHotelStore = defineStore({
             "neg_counts_category": hotel["neg_counts_category"][category]
           }
         })
-        console.log(sentiments)
         return sentiments;
       }
     },
