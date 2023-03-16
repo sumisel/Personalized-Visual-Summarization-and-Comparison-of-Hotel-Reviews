@@ -41,7 +41,6 @@ export default {
     d3.select(this.svg)
       .attr("width", this.width)
       .attr("height", this.height)
-      .attr("viewBox", [-this.width / 2, -this.height / 2, this.width, this.height])
       .attr("style", "max-width: 100%; height: auto; height: intrinsic;");
 
     this.hotelStore.$subscribe(() => {
@@ -62,10 +61,9 @@ export default {
         return d;
       });
 
-      const svg = d3.select(this.svg);
-
-      console.log(this.width)
-      console.log(this.height)
+      // remove all previous elements
+      d3.select(this.svg).selectAll("*").remove();
+      const svg = d3.select(this.svg).append("g");
 
       // x axis
       const x = d3.scaleLinear()
@@ -80,8 +78,8 @@ export default {
 
       // y axis
       var y = d3.scaleBand()
-          .range([ 0, this.height ])
           .domain(data.map(function(d) { return d.name; }))
+          .range([ 0, this.height ])
           .padding(.1);
 
       // bars
@@ -91,12 +89,13 @@ export default {
           .append("rect")
           .attr("x", function(d) { return x(-d.negCount); })
           .attr("y", function(d) { return y(d.name); })
-          .attr("width", function(d) { return x(d.posCount); })
+          .attr("width", function(d) { return x(d.negCount)+x(d.posCount); })
           .attr("height", y.bandwidth() )
           .attr("fill", this.color)
 
       // add the y Axis on top of the bars
       svg.append("g")
+          .attr("transform", "translate(" + x(0) + ",0)")
           .call(d3.axisLeft(y))
           .selectAll("text").remove()
 
