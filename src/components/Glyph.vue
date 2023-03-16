@@ -152,15 +152,26 @@ export default {
 };
 </script>
 
+
+<style lang="scss">
+  .v-tooltip__content {
+    opacity: 0 !important;
+    --tooltip-background-color: #000 !important;
+    --tooltip-color: #fff !important;
+    --tooltip-opacity: 0 !important;
+    --tooltip-padding: 5px 5px !important;
+  }
+</style>
+
 <template>
   <svg ref="svg"></svg>
 
-  <v-tooltip activator="parent" location="here" max-width="300px">
+  <v-tooltip activator="parent" location="here" max-width="50px">
     <v-icon
         :icon="this.categoryStore.hoveredCategory.icon"
         class="mr-2"
         :color="this.categoryStore.hoveredCategory.color"
-    ></v-icon>{{ this.categoryStore.hoveredCategory.title }}
+    ></v-icon>
   </v-tooltip>
 
 

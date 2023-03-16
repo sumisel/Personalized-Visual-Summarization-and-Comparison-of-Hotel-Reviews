@@ -1,0 +1,74 @@
+<script setup xmlns="http://www.w3.org/1999/html">
+import { computed } from "vue";
+
+import Glyph from "./Glyph.vue";
+import CategoryName from "./CategoryName.vue";
+
+import { useHotelStore } from "../stores/hotel.js";
+import { useCategoryStore } from "../stores/category.js";
+import ChartPosNeg from "@/components/ChartPosNeg.vue";
+
+const hotelStore = useHotelStore();
+const categoryStore = useCategoryStore();
+
+const props = defineProps({
+  category: Object,
+});
+
+const categoryPosNeg = computed(() => hotelStore.categoryPosNeg(props.category.id));
+</script>
+
+<template>
+  <div class="d-block flex-no-wrap justify-space-between">
+    <!--<div
+      class="ma-2 flex-grow-1 w-100">
+      <v-icon
+          :icon="category.icon"
+          class="mr-2"
+          :color="category.color"
+      ></v-icon>
+      {{ category.title }}
+    </div>
+    -->
+    <div
+        class="ma-2 flex-grow-1 w-90">
+      <v-card
+          :prepend-icon="category.icon"
+          :color="category.color"
+          :title="category.title">
+        <v-table class="ma-2 flex-grow-1 w-90">
+          <tr
+              v-for="hotel in hotelStore.selectedHotels">
+            <td width="100px"
+                class="pa-2">{{ hotel.name }}</td>
+            <td width="40%"
+              class="pa-2">
+              {{ hotel.neg_summary_category[category.id] }}
+            </td>
+            <td v-if="hotel == hotelStore.selectedHotels[0]" rowspan="100%" width="100px">high chart over all rows, or individual charts per hotel that are horizontally zero aligned</td>
+            <td width="40%"
+                class="pa-2">
+              {{ hotel.pos_summary_category[category.id] }}
+            </td>
+          </tr>
+        </v-table>
+      </v-card>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.v-avatar {
+  width: 100px !important;
+  height: 100px !important;
+}
+
+.v-card {
+  overflow: visible;
+}
+
+.v-card-title {
+  white-space: normal;
+}
+
+</style>

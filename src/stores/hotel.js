@@ -102,6 +102,20 @@ export const useHotelStore = defineStore({
         return topCategories.map((category) => category.id);
       }
     },
+    categoryPosNeg: (state) => {
+      return (category) => {
+        let sentiments = {};
+        state.selectedHotels.forEach(hotel => {
+          sentiments[hotel.name] = {"pos_summary_category": hotel["pos_summary_category"][category],
+            "neg_summary_category": hotel["neg_summary_category"][category],
+            "pos_counts_category": hotel["pos_counts_category"][category],
+            "neg_counts_category": hotel["neg_counts_category"][category]
+          }
+        })
+        console.log(sentiments)
+        return sentiments;
+      }
+    },
     hotelByName: (state) => {
       return (name) => state.hotels.find(hotel => hotel.name === name);
     },

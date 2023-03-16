@@ -2,6 +2,7 @@
 import Personalization from "./components/Personalization.vue";
 import Map from "./components/Map.vue";
 import HotelOverview from "./components/HotelOverview.vue";
+import PosNeg from "./components/PosNeg.vue";
 import CloseBy from "./components/CloseBy.vue";
 import { onMounted } from "vue";
 import { useCityStore } from "./stores/city.js";
@@ -25,6 +26,7 @@ const sections = [
     id: "good-and-bad",
     title: "Good and Bad",
     icon: "mdi-plus-minus-variant",
+    component: PosNeg,
   },
   {
     id: "close-by",
