@@ -37,6 +37,16 @@ const categoryPosNeg = computed(() => hotelStore.categoryPosNeg(props.category.i
           :color="category.color"
           :title="category.title">
         <v-table class="ma-2 flex-grow-1 w-90">
+          <tr>
+            <th width="100px"
+                class="pa-2">Hotel</th>
+            <th width="35%"
+                class="pa-2">Negative</th>
+            <th width="100px"
+                class="pa-2"></th>
+            <th width="35%"
+                class="pa-2">Positive</th>
+          </tr>
           <tr
               v-for="hotel in hotelStore.selectedHotels">
             <td width="100px"
@@ -52,6 +62,8 @@ const categoryPosNeg = computed(() => hotelStore.categoryPosNeg(props.category.i
                   :color="category.color"
                   :width="100"
                   :height="300"
+                  :x-min = "-30"
+                  :x-max = "30"
               ></ChartPosNeg>
             </td>
             <td width="35%"
