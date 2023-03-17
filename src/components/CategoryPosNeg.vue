@@ -62,8 +62,8 @@ const categoryPosNeg = computed(() => hotelStore.categoryPosNeg(props.category.i
                   :color="category.color"
                   :width="100"
                   :height="300"
-                  :x-min = "-30"
-                  :x-max = "30"
+                  :x-min = "-30/100.0"
+                  :x-max = "30/100.0"
               ></ChartPosNeg>
             </td>
             <td width="35%"
