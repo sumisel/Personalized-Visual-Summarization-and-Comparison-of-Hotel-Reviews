@@ -27,6 +27,14 @@ export default {
       type: Number,
       default: 100,
     },
+    xMin: {
+      type: Number,
+      default: -30,
+    },
+    xMax: {
+      type: Number,
+      default: 30,
+    },
   },
   setup() {
     const svg = ref();
@@ -43,16 +51,16 @@ export default {
       .attr("height", this.height)
       .attr("style", "max-width: 100%; height: auto; height: intrinsic;");
 
-    this.hotelStore.$subscribe(() => {
-      this.plot();
-    });
+    //this.hotelStore.$subscribe(() => {
+      //this.plot();
+    //});
 
     this.plot();
   },
   methods: {
     plot() {
       // get values for each hotel
-      const sentiments = this.hotelStore.categoryPosNeg(this.categoryId)
+      const sentiments = this.categoryPosNeg;
       const data = Object.keys(sentiments).map((hotel) => {
         const d = {};
         d.name = hotel;
@@ -67,7 +75,7 @@ export default {
 
       // x axis
       const x = d3.scaleLinear()
-          .domain([-5, 30])
+          .domain([this.xMin, this.xMax])
           .range([ 0, this.width]);
       svg.append("g")
           .attr("transform", "translate(0," + this.height + ")")
@@ -77,7 +85,7 @@ export default {
           .style("text-anchor", "end");
 
       // y axis
-      var y = d3.scaleBand()
+      const y = d3.scaleBand()
           .domain(data.map(function(d) { return d.name; }))
           .range([ 0, this.height ])
           .padding(.1);
