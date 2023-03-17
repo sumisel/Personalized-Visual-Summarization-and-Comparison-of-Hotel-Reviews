@@ -49,8 +49,8 @@ export default {
                   :color="'#999999'"
                   :width="100"
                   :height="300"
-                  :x-min = "-600"
-                  :x-max = "600"
+                  :x-min = "-6"
+                  :x-max = "6"
                   class="d-flex justify-center"
               ></ChartPosNeg>
             </td>
