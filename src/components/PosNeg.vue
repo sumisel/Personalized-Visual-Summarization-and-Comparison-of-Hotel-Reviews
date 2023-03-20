@@ -40,6 +40,8 @@ export default {
             </td>
             <td class="sentiment-chart">
               <ChartPosNeg
+                  :categoryId="'overall'"
+                  :hotelId = "hotel.id"
                   :posNeg="[{'posCount': hotel['pos_counts_overall'],
                               'negCount': hotel['neg_counts_overall']
                               }]"

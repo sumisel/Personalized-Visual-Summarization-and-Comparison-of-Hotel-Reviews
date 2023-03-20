@@ -15,6 +15,10 @@ export default {
       type: String,
       default: "categoryId",
     },
+    hotelId: {
+      type: String,
+      default: "hotelId",
+    },
     color: {
       type: String,
       default: "#000000",
@@ -50,6 +54,11 @@ export default {
       .attr("width", this.width)
       .attr("height", this.height)
       .attr("style", "max-width: 100%; height: auto; height: intrinsic;");
+
+    //TODO this makes the site very slow
+    //this.hotelStore.$subscribe(() => {
+    //  this.plot();
+    //});
 
     this.plot();
   },
@@ -93,7 +102,8 @@ export default {
       // add the y Axis on top of the bars
       svg.append("g")
           .attr("transform", "translate(" + x(0) + ",0)")
-          .call(d3.axisLeft(y))
+          .call(d3.axisLeft(y)
+              .tickSizeOuter(0))
           .selectAll("text").remove()
 
     },
@@ -111,5 +121,5 @@ export default {
 </style>
 
 <template>
-  <svg ref="svg"></svg>
+  <svg ref="svg" :id="this.categoryId+'_'+this.hotelId"></svg>
 </template>

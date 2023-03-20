@@ -51,6 +51,7 @@ const categoryPosNeg = computed(() => hotelStore.categoryPosNeg(props.category.i
             <td class="sentiment-chart">
               <ChartPosNeg
                   :categoryId="category.id"
+                  :hotelId = "hotel.id"
                   :posNeg="[{'posCount': hotel['pos_counts_category'][category.id],
                               'negCount': hotel['neg_counts_category'][category.id]
                               }]"

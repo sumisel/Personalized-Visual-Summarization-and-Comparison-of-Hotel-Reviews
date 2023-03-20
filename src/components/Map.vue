@@ -65,7 +65,9 @@ export default {
         )"
         :key="index"
         :lat-lng="[hotel.location.lat, hotel.location.long]"
-        @click="hotel.isSelected = !hotel.isSelected"
+        @click="hotel.isSelected = hotel.isSelected? 0 :
+                                                      hotelStore.selectedHotels.reduce( // set to highest index plus 1
+                                                       (max, hotel) => (max = Math.max(max, hotel.isSelected)),0) + 1"
       >
         <l-tooltip>{{ hotel.name }}</l-tooltip>
         <l-icon

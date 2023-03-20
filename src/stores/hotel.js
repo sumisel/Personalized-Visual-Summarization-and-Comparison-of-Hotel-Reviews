@@ -9,7 +9,8 @@ export const useHotelStore = defineStore({
     hotels: [],
   }),
   getters: {
-    selectedHotels: (state) => state.hotels.filter(hotel => hotel.isSelected),
+    selectedHotels: (state) => state.hotels.filter(hotel => hotel.isSelected)
+                                            .sort((a, b) => a.isSelected - b.isSelected), // sort by index
     minRatings: (state) => {
       let minRatings = {
         location: 5.0,
@@ -141,7 +142,7 @@ export const useHotelStore = defineStore({
       const data = await result.json();
       this.hotels = data;
       // select first three hotels by default
-      this.hotels.forEach((hotel, i) => hotel.isSelected = i < 3);
+      this.hotels.forEach((hotel, i) => hotel.isSelected = i < 3 ? i+1 : 0);
     },
   },
 })
