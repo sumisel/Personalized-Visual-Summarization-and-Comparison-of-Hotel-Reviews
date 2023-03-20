@@ -43,7 +43,7 @@ const categoryPosNeg = computed(() => hotelStore.categoryPosNeg(props.category.i
             <th class="sentiment-chart"></th>
             <th class="pa-2 sentiment-text">Positive</th>
           </tr>
-          <tr v-for="hotel in hotelStore.selectedHotels">
+          <tr v-for="hotel in hotelStore.selectedHotels" :key="category.id+'_'+hotel.id">
             <td class="pa-2 hotel-name">{{ hotel.name }}</td>
             <td class="pa-2 sentiment-text">
               {{ hotel.neg_summary_category[category.id] }}

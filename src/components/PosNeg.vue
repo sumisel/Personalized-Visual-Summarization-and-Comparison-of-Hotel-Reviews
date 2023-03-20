@@ -33,7 +33,7 @@ export default {
             <th class="pa-2 sentiment-text">Positive</th>
           </tr>
           <tr
-              v-for="hotel in hotelStore.selectedHotels">
+              v-for="hotel in hotelStore.selectedHotels" :key="'overall_'+hotel.id">
             <td class="pa-2 hotel-name">{{ hotel.name }}</td>
             <td class="pa-2 sentiment-text">
               {{ hotel.neg_summary }}
