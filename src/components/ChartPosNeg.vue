@@ -7,7 +7,7 @@ import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
 export default {
   props: {
-    categoryPosNeg: {
+    posNeg: {
       type: Object,
       default: {},
     },
@@ -51,23 +51,12 @@ export default {
       .attr("height", this.height)
       .attr("style", "max-width: 100%; height: auto; height: intrinsic;");
 
-    //this.hotelStore.$subscribe(() => {
-      //this.plot();
-    //});
-
     this.plot();
   },
   methods: {
     plot() {
       // get values for each hotel
-      const sentiments = this.categoryPosNeg;
-      const data = Object.keys(sentiments).map((hotel) => {
-        const d = {};
-        d.name = hotel;
-        d.posCount = sentiments[hotel].pos_counts_category;
-        d.negCount = sentiments[hotel].neg_counts_category;
-        return d;
-      });
+      const data = this.posNeg;
 
       // remove all previous elements
       d3.select(this.svg).selectAll("*").remove();
@@ -97,7 +86,7 @@ export default {
           .append("rect")
           .attr("x", function(d) { return x(-d.negCount); })
           .attr("y", function(d) { return y(d.name); })
-          .attr("width", function(d) { return x(d.negCount)+x(d.posCount); })
+          .attr("width", function(d) { return x(d.posCount)-x(-d.negCount); })
           .attr("height", y.bandwidth() )
           .attr("fill", this.color)
 

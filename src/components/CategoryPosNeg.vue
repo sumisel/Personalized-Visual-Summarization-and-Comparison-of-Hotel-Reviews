@@ -36,29 +36,24 @@ const categoryPosNeg = computed(() => hotelStore.categoryPosNeg(props.category.i
           :prepend-icon="category.icon"
           :color="category.color"
           :title="category.title">
-        <v-table class="ma-2 flex-grow-1 w-90">
+        <v-table class="ma-2 flex-grow-1 w-90" table-layout="fixed">
           <tr>
-            <th width="100px"
-                class="pa-2">Hotel</th>
-            <th width="35%"
-                class="pa-2">Negative</th>
-            <th width="100px"
-                class="pa-2"></th>
-            <th width="35%"
-                class="pa-2">Positive</th>
+            <th class="pa-2 hotel-name">Hotel</th>
+            <th class="pa-2 sentiment-text">Negative</th>
+            <th class="sentiment-chart"></th>
+            <th class="pa-2 sentiment-text">Positive</th>
           </tr>
-          <tr
-              v-for="hotel in hotelStore.selectedHotels">
-            <td width="100px"
-                class="pa-2">{{ hotel.name }}</td>
-            <td width="35%"
-              class="pa-2">
+          <tr v-for="hotel in hotelStore.selectedHotels">
+            <td class="pa-2 hotel-name">{{ hotel.name }}</td>
+            <td class="pa-2 sentiment-text">
               {{ hotel.neg_summary_category[category.id] }}
             </td>
-            <td v-if="hotel == hotelStore.selectedHotels[0]" rowspan="100%" width="100px">
+            <td class="sentiment-chart">
               <ChartPosNeg
                   :categoryId="category.id"
-                  :categoryPosNeg="hotelStore.categoryPosNeg(category.id)"
+                  :posNeg="[{'posCount': hotel['pos_counts_category'][category.id],
+                              'negCount': hotel['neg_counts_category'][category.id]
+                              }]"
                   :color="category.color"
                   :width="100"
                   :height="300"
@@ -66,8 +61,7 @@ const categoryPosNeg = computed(() => hotelStore.categoryPosNeg(props.category.i
                   :x-max = "30"
               ></ChartPosNeg>
             </td>
-            <td width="35%"
-                class="pa-2">
+            <td class="pa-2 sentiment-text">
               {{ hotel.pos_summary_category[category.id] }}
             </td>
           </tr>
@@ -78,6 +72,19 @@ const categoryPosNeg = computed(() => hotelStore.categoryPosNeg(props.category.i
 </template>
 
 <style scoped>
+.hotel-name {
+  width: 15% !important;
+}
+
+.sentiment-text {
+  width: 35% !important;
+}
+
+.sentiment-chart {
+  width: 15% !important;
+  text-align: center;
+}
+
 .v-avatar {
   width: 100px !important;
   height: 100px !important;

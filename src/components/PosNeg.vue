@@ -26,36 +26,31 @@ export default {
           :title="'Overall Sentiments'">
         <v-table class="ma-2 flex-grow-1 w-90">
           <tr>
-            <th width="100px"
-                class="pa-2">Hotel</th>
-            <th width="35%"
-                class="pa-2">Negative</th>
-            <th width="100px"
-                class="pa-2"></th>
-            <th width="35%"
-                class="pa-2">Positive</th>
+            <th style="width:100px;"
+                class="pa-2 hotel-name">Hotel</th>
+            <th class="pa-2 sentiment-text">Negative</th>
+            <th class="sentiment-chart"></th>
+            <th class="pa-2 sentiment-text">Positive</th>
           </tr>
           <tr
               v-for="hotel in hotelStore.selectedHotels">
-            <td width="100px"
-                class="pa-2">{{ hotel.name }}</td>
-            <td width="35%"
-                class="pa-2">
+            <td class="pa-2 hotel-name">{{ hotel.name }}</td>
+            <td class="pa-2 sentiment-text">
               {{ hotel.neg_summary }}
             </td>
-            <td v-if="hotel == hotelStore.selectedHotels[0]" rowspan="100%" width="100px">
+            <td class="sentiment-chart">
               <ChartPosNeg
-                  :categoryPosNeg="hotelStore.overallPosNeg"
+                  :posNeg="[{'posCount': hotel['pos_counts_overall'],
+                              'negCount': hotel['neg_counts_overall']
+                              }]"
                   :color="'#999999'"
                   :width="100"
                   :height="300"
                   :x-min = "-6"
                   :x-max = "6"
-                  class="d-flex justify-center"
               ></ChartPosNeg>
             </td>
-            <td width="35%"
-                class="pa-2">
+            <td class="pa-2 sentiment-text">
               {{ hotel.pos_summary }}
             </td>
           </tr>
@@ -75,7 +70,16 @@ export default {
 </template>
 
 <style>
-.hotel-list {
-  border-left: 1px solid black;
+.hotel-name {
+  width: 15% !important;
+}
+
+.sentiment-text {
+  width: 35% !important;
+}
+
+.sentiment-chart {
+  width: 15% !important;
+  text-align: center;
 }
 </style>
