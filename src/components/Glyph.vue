@@ -65,6 +65,11 @@ export default {
       this.plot();
     });
 
+    //TODO this would fix the issue that minimum ratings are not updated on hotel selection, but it makes the site very slow
+    //this.hotelStore.$subscribe(() => {
+    //  this.plot();
+    //});
+
     this.plot();
   },
   methods: {
