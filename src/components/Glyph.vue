@@ -4,6 +4,7 @@ import * as d3 from "d3";
 import { ref, onMounted } from "vue";
 
 import { useCategoryStore } from "../stores/category.js";
+import { useHotelStore } from "../stores/hotel.js";
 import CategoryMatchReview from "@/components/CategoryMatchReview.vue";
 export default {
   components: {CategoryMatchReview},
@@ -46,10 +47,12 @@ export default {
   setup() {
     const svg = ref();
     const categoryStore = useCategoryStore();
+    const hotelStore = useHotelStore();
 
     return {
       svg,
       categoryStore,
+      hotelStore,
     };
   },
   mounted() {
@@ -65,10 +68,10 @@ export default {
       this.plot();
     });
 
-    //TODO this would fix the issue that minimum ratings are not updated on hotel selection, but it makes the site very slow
-    //this.hotelStore.$subscribe(() => {
-    //  this.plot();
-    //});
+    //WARNING if all individual reviews are loaded into the hotel data, this makes the site very slow
+    this.hotelStore.$subscribe(() => {
+      this.plot();
+    });
 
     this.plot();
   },

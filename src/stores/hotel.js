@@ -104,25 +104,27 @@ export const useHotelStore = defineStore({
       }
     },
     overallPosNeg: (state) => {
-      let sentiments = {};
+      let sentiments = [];
       state.selectedHotels.forEach(hotel => {
-        sentiments[hotel.name] = {"pos_summary_category": hotel["pos_summary"],
+        sentiments.push({"name": hotel.name,
+          "pos_summary_category": hotel["pos_summary"],
           "neg_summary_category": hotel["neg_summary"],
-          "pos_counts_category": hotel["pos_counts_overall"],
-          "neg_counts_category": hotel["neg_counts_overall"]
-        }
+          "posCount": hotel["pos_counts_overall"],
+          "negCount": hotel["neg_counts_overall"]
+        })
       })
       return sentiments;
     },
     categoryPosNeg: (state) => {
       return (category) => {
-        let sentiments = {};
+        let sentiments = [];
         state.selectedHotels.forEach(hotel => {
-          sentiments[hotel.name] = {"pos_summary_category": hotel["pos_summary_category"][category],
+          sentiments.push({"name": hotel.name,
+            "pos_summary_category": hotel["pos_summary_category"][category],
             "neg_summary_category": hotel["neg_summary_category"][category],
-            "pos_counts_category": hotel["pos_counts_category"][category],
-            "neg_counts_category": hotel["neg_counts_category"][category]
-          }
+            "posCount": hotel["pos_counts_category"][category],
+            "negCount": hotel["neg_counts_category"][category]
+          })
         })
         return sentiments;
       }
@@ -140,6 +142,7 @@ export const useHotelStore = defineStore({
       city = city.replace(" ", "_");
       const result = await fetch("/HotelRec_subset_" + city + "_10_enriched.txt");
       const data = await result.json();
+      data.forEach(hotel => {hotel.reviews=[];});
       this.hotels = data;
       // select first three hotels by default
       this.hotels.forEach((hotel, i) => hotel.isSelected = i < 3 ? i+1 : 0);

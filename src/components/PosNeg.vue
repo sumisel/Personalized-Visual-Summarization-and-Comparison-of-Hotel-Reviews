@@ -14,18 +14,41 @@ export default {
     const categoryStore = useCategoryStore();
     return { hotelStore, categoryStore };
   },
-  computed: {}
+  computed: {},
+  data: () => ({
+    panel: [0, 1],
+  })
 };
+
 </script>
 
 <template>
   <div class="ml-12">
     <div
         class="ma-2 flex-grow-1 w-90">
-      <v-expansion-panels>
+      <v-expansion-panels
+          v-model="panel">
         <v-expansion-panel>
-          <v-expansion-panel-title>
-            <b><u>Overall Sentiments</u></b>
+          <v-expansion-panel-title :key="'title_overall'">
+            <v-row>
+              <div class="pa-2 hotel-name">
+                <b><u>Overall Sentiments</u></b>
+              </div>
+              <div class="pa-2 sentiment-text"></div>
+              <div class="pa-2 sentiment-chart">
+                <ChartPosNeg
+                    :categoryId="'overall'"
+                    :hotelId = "'selected'"
+                    :posNeg=hotelStore.overallPosNeg
+                    :color="'#999999'"
+                    :width="100"
+                    :height="20"
+                    :x-min = "-30"
+                    :x-max = "30"
+                ></ChartPosNeg>
+              </div>
+              <div class="pa-2 sentiment-text"></div>
+            </v-row>
           </v-expansion-panel-title>
           <v-expansion-panel-text>
             <v-table class="ma-2 flex-grow-1 w-90">
@@ -51,7 +74,7 @@ export default {
                                   }]"
                       :color="'#999999'"
                       :width="100"
-                      :height="300"
+                      :height="50"
                       :x-min = "-6"
                       :x-max = "6"
                   ></ChartPosNeg>
@@ -89,5 +112,6 @@ export default {
 .sentiment-chart {
   width: 15% !important;
   text-align: center;
+  vertical-align: middle;
 }
 </style>

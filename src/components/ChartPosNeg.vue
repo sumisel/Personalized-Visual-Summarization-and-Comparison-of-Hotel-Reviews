@@ -55,10 +55,10 @@ export default {
       .attr("height", this.height)
       .attr("style", "max-width: 100%; height: auto; height: intrinsic;");
 
-    //TODO this makes the site very slow
-    //this.hotelStore.$subscribe(() => {
-    //  this.plot();
-    //});
+    //WARNING if all individual reviews are loaded into the hotel data, this makes the site very slow
+    this.hotelStore.$subscribe(() => {
+      this.plot();
+    });
 
     this.plot();
   },
@@ -75,12 +75,13 @@ export default {
       const x = d3.scaleLinear()
           .domain([this.xMin, this.xMax])
           .range([ 0, this.width]);
-      svg.append("g")
+      /*svg.append("g")
           .attr("transform", "translate(0," + this.height + ")")
           .call(d3.axisBottom(x))
           .selectAll("text")
           .attr("transform", "translate(-10,0)rotate(-45)")
           .style("text-anchor", "end");
+       */
 
       // y axis
       const y = d3.scaleBand()

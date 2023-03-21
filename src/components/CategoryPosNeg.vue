@@ -34,8 +34,26 @@ const categoryPosNeg = computed(() => hotelStore.categoryPosNeg(props.category.i
         class="ma-2 flex-grow-1 w-90">
       <v-expansion-panels>
         <v-expansion-panel>
-          <v-expansion-panel-title>
-            <CategoryName :categoryId="category.id"></CategoryName>
+          <v-expansion-panel-title :key="'title_'+category.id">
+            <v-row>
+              <div class="pa-2 hotel-name">
+                <CategoryName :categoryId="category.id"></CategoryName>
+              </div>
+              <div class="pa-2 sentiment-text"></div>
+              <div class="pa-2 sentiment-chart">
+                <ChartPosNeg
+                    :categoryId="category.id"
+                    :hotelId = "'selected'"
+                    :posNeg=hotelStore.categoryPosNeg(category.id)
+                    :color="category.color"
+                    :width="100"
+                    :height="20"
+                    :x-min = "-30"
+                    :x-max = "30"
+                ></ChartPosNeg>
+              </div>
+              <div class="pa-2 sentiment-text"></div>
+            </v-row>
           </v-expansion-panel-title>
           <v-expansion-panel-text>
           <v-table class="ma-2 flex-grow-1 w-90" table-layout="fixed">
@@ -59,7 +77,7 @@ const categoryPosNeg = computed(() => hotelStore.categoryPosNeg(props.category.i
                                 }]"
                     :color="category.color"
                     :width="100"
-                    :height="300"
+                    :height="50"
                     :x-min = "-30"
                     :x-max = "30"
                 ></ChartPosNeg>
@@ -88,6 +106,7 @@ const categoryPosNeg = computed(() => hotelStore.categoryPosNeg(props.category.i
 .sentiment-chart {
   width: 15% !important;
   text-align: center;
+  vertical-align: middle;
 }
 
 .v-avatar {
