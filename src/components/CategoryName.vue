@@ -17,7 +17,7 @@ const category = categoryStore.categoriesById[props.categoryId];
     ><v-icon :icon="category.icon" :color="category.color" class="mr-1"></v-icon
     ><b
       ><u :style="`text-decoration-color: ${category.color};`">{{
-        categoryId
+        categoryStore.categoriesById[props.categoryId].title
       }}</u></b
     ></span
   >

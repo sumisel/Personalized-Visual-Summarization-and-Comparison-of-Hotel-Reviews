@@ -32,42 +32,46 @@ const categoryPosNeg = computed(() => hotelStore.categoryPosNeg(props.category.i
     -->
     <div
         class="ma-2 flex-grow-1 w-90">
-      <v-card
-          :prepend-icon="category.icon"
-          :color="category.color"
-          :title="category.title">
-        <v-table class="ma-2 flex-grow-1 w-90" table-layout="fixed">
-          <tr>
-            <th class="pa-2 hotel-name">Hotel</th>
-            <th class="pa-2 sentiment-text">Negative</th>
-            <th class="sentiment-chart"></th>
-            <th class="pa-2 sentiment-text">Positive</th>
-          </tr>
-          <tr v-for="hotel in hotelStore.selectedHotels" :key="category.id+'_'+hotel.id">
-            <td class="pa-2 hotel-name">{{ hotel.name }}</td>
-            <td class="pa-2 sentiment-text">
-              {{ hotel.neg_summary_category[category.id] }}
-            </td>
-            <td class="sentiment-chart">
-              <ChartPosNeg
-                  :categoryId="category.id"
-                  :hotelId = "hotel.id"
-                  :posNeg="[{'posCount': hotel['pos_counts_category'][category.id],
-                              'negCount': hotel['neg_counts_category'][category.id]
-                              }]"
-                  :color="category.color"
-                  :width="100"
-                  :height="300"
-                  :x-min = "-30"
-                  :x-max = "30"
-              ></ChartPosNeg>
-            </td>
-            <td class="pa-2 sentiment-text">
-              {{ hotel.pos_summary_category[category.id] }}
-            </td>
-          </tr>
-        </v-table>
-      </v-card>
+      <v-expansion-panels>
+        <v-expansion-panel>
+          <v-expansion-panel-title>
+            <CategoryName :categoryId="category.id"></CategoryName>
+          </v-expansion-panel-title>
+          <v-expansion-panel-text>
+          <v-table class="ma-2 flex-grow-1 w-90" table-layout="fixed">
+            <tr>
+              <th class="pa-2 hotel-name">Hotel</th>
+              <th class="pa-2 sentiment-text">Negative</th>
+              <th class="sentiment-chart"></th>
+              <th class="pa-2 sentiment-text">Positive</th>
+            </tr>
+            <tr v-for="hotel in hotelStore.selectedHotels" :key="category.id+'_'+hotel.id">
+              <td class="pa-2 hotel-name">{{ hotel.name }}</td>
+              <td class="pa-2 sentiment-text">
+                {{ hotel.neg_summary_category[category.id] }}
+              </td>
+              <td class="sentiment-chart">
+                <ChartPosNeg
+                    :categoryId="category.id"
+                    :hotelId = "hotel.id"
+                    :posNeg="[{'posCount': hotel['pos_counts_category'][category.id],
+                                'negCount': hotel['neg_counts_category'][category.id]
+                                }]"
+                    :color="category.color"
+                    :width="100"
+                    :height="300"
+                    :x-min = "-30"
+                    :x-max = "30"
+                ></ChartPosNeg>
+              </td>
+              <td class="pa-2 sentiment-text">
+                {{ hotel.pos_summary_category[category.id] }}
+              </td>
+            </tr>
+          </v-table>
+          </v-expansion-panel-text>
+        </v-expansion-panel>
+      </v-expansion-panels>
     </div>
   </div>
 </template>
