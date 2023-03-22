@@ -63,7 +63,10 @@ export default {
                   v-for="hotel in hotelStore.selectedHotels" :key="'overall_'+hotel.id">
                 <td class="pa-2 hotel-name">{{ hotel.name }}</td>
                 <td class="pa-2 sentiment-text">
-                  {{ hotel.neg_summary }}
+                  <p
+                      v-for="sentence in hotel.neg_summary" :key="'overall_neg_'+hotel.id+'_'+sentence.idx">
+                    {{ sentence.text }}.
+                  </p>
                 </td>
                 <td class="sentiment-chart">
                   <ChartPosNeg
@@ -80,7 +83,10 @@ export default {
                   ></ChartPosNeg>
                 </td>
                 <td class="pa-2 sentiment-text">
-                  {{ hotel.pos_summary }}
+                  <p
+                      v-for="sentence in hotel.pos_summary" :key="'overall_pos_'+hotel.id+'_'+sentence.idx">
+                    {{ sentence.text }}.
+                  </p>
                 </td>
               </tr>
             </v-table>

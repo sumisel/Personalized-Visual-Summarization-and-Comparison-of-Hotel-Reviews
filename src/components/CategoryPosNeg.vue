@@ -66,7 +66,10 @@ const categoryPosNeg = computed(() => hotelStore.categoryPosNeg(props.category.i
             <tr v-for="hotel in hotelStore.selectedHotels" :key="category.id+'_'+hotel.id">
               <td class="pa-2 hotel-name">{{ hotel.name }}</td>
               <td class="pa-2 sentiment-text">
-                {{ hotel.neg_summary_category[category.id] }}
+                <p
+                    v-for="sentence in hotel.neg_summary_category[category.id]" :key="category.id+'_'+hotel.id+'_'+sentence.idx">
+                  {{ sentence.text }}.
+                </p>
               </td>
               <td class="sentiment-chart">
                 <ChartPosNeg
@@ -83,7 +86,10 @@ const categoryPosNeg = computed(() => hotelStore.categoryPosNeg(props.category.i
                 ></ChartPosNeg>
               </td>
               <td class="pa-2 sentiment-text">
-                {{ hotel.pos_summary_category[category.id] }}
+                <p
+                    v-for="sentence in hotel.pos_summary_category[category.id]" :key="category.id+'_'+hotel.id+'_'+sentence.idx">
+                  {{ sentence.text }}.
+                </p>
               </td>
             </tr>
           </v-table>
