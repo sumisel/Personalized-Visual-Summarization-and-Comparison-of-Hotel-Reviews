@@ -3,6 +3,7 @@ import CategoryPosNeg from "./CategoryPosNeg.vue";
 import ChartPosNeg from "./ChartPosNeg.vue";
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
+import {useClusterStore} from "../stores/cluster.js";
 
 export default {
   components: {
@@ -12,7 +13,8 @@ export default {
   setup() {
     const hotelStore = useHotelStore();
     const categoryStore = useCategoryStore();
-    return { hotelStore, categoryStore };
+    const clusterStore = useClusterStore();
+    return { hotelStore, categoryStore, clusterStore };
   },
   computed: {},
   data: () => ({
@@ -64,7 +66,11 @@ export default {
                 <td class="pa-2 hotel-name">{{ hotel.name }}</td>
                 <td class="pa-2 sentiment-text">
                   <p
-                      v-for="sentence in hotel.neg_summary" :key="'overall_neg_'+hotel.id+'_'+sentence.idx">
+                      v-for="sentence in hotel.neg_summary"
+                      :key="'overall_neg_'+hotel.id+'_'+sentence.idx"
+                      @mouseenter="clusterStore.hover(sentence.cluster)"
+                      @mouseleave="clusterStore.unhover()"
+                      :style="[(clusterStore.clustersById[sentence.cluster].hover || clusterStore.noClusterHovered)?{'opacity': 1}:{'opacity': .2}]">
                     {{ sentence.text }}.
                   </p>
                 </td>
@@ -84,7 +90,11 @@ export default {
                 </td>
                 <td class="pa-2 sentiment-text">
                   <p
-                      v-for="sentence in hotel.pos_summary" :key="'overall_pos_'+hotel.id+'_'+sentence.idx">
+                      v-for="sentence in hotel.pos_summary"
+                      :key="'overall_pos_'+hotel.id+'_'+sentence.idx"
+                      @mouseenter="clusterStore.hover(sentence.cluster)"
+                      @mouseleave="clusterStore.unhover()"
+                      :style="[(clusterStore.clustersById[sentence.cluster].hover || clusterStore.noClusterHovered)?{'opacity': 1}:{'opacity': .2}]">
                     {{ sentence.text }}.
                   </p>
                 </td>

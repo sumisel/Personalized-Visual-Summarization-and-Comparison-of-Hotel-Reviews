@@ -1,11 +1,13 @@
 import { defineStore, storeToRefs } from 'pinia'
 
 import { useCategoryStore } from "./category.js";
+import { useClusterStore } from "./cluster.js";
 
 export const useHotelStore = defineStore({
   id: 'hotel',
   state: () => ({
     categoryStore: useCategoryStore(),
+    clusterStore: useClusterStore(),
     hotels: [],
   }),
   getters: {
@@ -142,10 +144,12 @@ export const useHotelStore = defineStore({
       city = city.replace(" ", "_");
       const result = await fetch("/HotelRec_subset_" + city + "_10_enriched.txt");
       const data = await result.json();
-      data.forEach(hotel => {hotel.reviews=[];});
+      data.forEach(hotel => {hotel.reviews=[];});//TODO temporary, so that the page performance is acceptable
       this.hotels = data;
       // select first three hotels by default
       this.hotels.forEach((hotel, i) => hotel.isSelected = i < 3 ? i+1 : 0);
+      // initiate sentence clusters
+      this.clusterStore.initClusters(this.hotels);
     },
   },
 })

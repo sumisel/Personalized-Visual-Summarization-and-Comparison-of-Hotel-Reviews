@@ -6,10 +6,12 @@ import CategoryName from "./CategoryName.vue";
 
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
+import { useClusterStore } from "../stores/cluster.js";
 import ChartPosNeg from "@/components/ChartPosNeg.vue";
 
 const hotelStore = useHotelStore();
 const categoryStore = useCategoryStore();
+const clusterStore = useClusterStore();
 
 const props = defineProps({
   category: Object,
@@ -34,7 +36,8 @@ const categoryPosNeg = computed(() => hotelStore.categoryPosNeg(props.category.i
         class="ma-2 flex-grow-1 w-90">
       <v-expansion-panels>
         <v-expansion-panel>
-          <v-expansion-panel-title :key="'title_'+category.id">
+          <v-expansion-panel-title :key="'title_'+category.id"
+            :style="[(category.hover || categoryStore.noCategoryHovered)?{'opacity': 1}:{'opacity': .2}]">
             <v-row>
               <div class="pa-2 hotel-name">
                 <CategoryName :categoryId="category.id"></CategoryName>
@@ -44,7 +47,7 @@ const categoryPosNeg = computed(() => hotelStore.categoryPosNeg(props.category.i
                 <ChartPosNeg
                     :categoryId="category.id"
                     :hotelId = "'selected'"
-                    :posNeg=hotelStore.categoryPosNeg(category.id)
+                    :posNeg="categoryPosNeg"
                     :color="category.color"
                     :width="100"
                     :height="20"
@@ -67,7 +70,12 @@ const categoryPosNeg = computed(() => hotelStore.categoryPosNeg(props.category.i
               <td class="pa-2 hotel-name">{{ hotel.name }}</td>
               <td class="pa-2 sentiment-text">
                 <p
-                    v-for="sentence in hotel.neg_summary_category[category.id]" :key="category.id+'_'+hotel.id+'_'+sentence.idx">
+                    v-for="sentence in hotel.neg_summary_category[category.id]"
+                    :key="category.id+'_'+hotel.id+'_'+sentence.idx"
+                    @mouseenter="clusterStore.hover(sentence.cluster)"
+                    @mouseleave="clusterStore.unhover()"
+                    :style="[(clusterStore.clustersById[sentence.cluster].hover || clusterStore.noClusterHovered)?{'opacity': 1}:{'opacity': .2}]"
+                  >
                   {{ sentence.text }}.
                 </p>
               </td>
@@ -87,7 +95,12 @@ const categoryPosNeg = computed(() => hotelStore.categoryPosNeg(props.category.i
               </td>
               <td class="pa-2 sentiment-text">
                 <p
-                    v-for="sentence in hotel.pos_summary_category[category.id]" :key="category.id+'_'+hotel.id+'_'+sentence.idx">
+                    v-for="sentence in hotel.pos_summary_category[category.id]"
+                    :key="category.id+'_'+hotel.id+'_'+sentence.idx"
+                    @mouseenter="clusterStore.hover(sentence.cluster)"
+                    @mouseleave="clusterStore.unhover()"
+                    :style="[(clusterStore.clustersById[sentence.cluster].hover || clusterStore.noClusterHovered)?{'opacity': 1}:{'opacity': .2}]"
+                >
                   {{ sentence.text }}.
                 </p>
               </td>
