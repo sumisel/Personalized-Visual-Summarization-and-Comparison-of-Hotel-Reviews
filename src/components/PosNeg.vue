@@ -34,7 +34,7 @@ export default {
           <v-expansion-panel-title :key="'title_overall'">
             <v-row>
               <div class="pa-2 hotel-name">
-                <b><u>Overall Sentiments</u></b>
+                <b><u>Sentiment Overview</u></b>
               </div>
               <div class="pa-2 sentiment-text"></div>
               <div class="pa-2 sentiment-chart">
@@ -70,7 +70,7 @@ export default {
                       :key="'overall_neg_'+hotel.id+'_'+sentence.idx"
                       @mouseenter="clusterStore.hover(sentence.cluster)"
                       @mouseleave="clusterStore.unhover()"
-                      :style="[(clusterStore.clustersById[sentence.cluster].hover || clusterStore.noClusterHovered)?{'opacity': 1}:{'opacity': .2}]">
+                      :style="[(clusterStore.clustersById[sentence.cluster].hover || clusterStore.noClusterHovered('overall'))?{'opacity': 1}:{'opacity': .2}]">
                     {{ sentence.text }}.
                   </p>
                 </td>
@@ -94,7 +94,7 @@ export default {
                       :key="'overall_pos_'+hotel.id+'_'+sentence.idx"
                       @mouseenter="clusterStore.hover(sentence.cluster)"
                       @mouseleave="clusterStore.unhover()"
-                      :style="[(clusterStore.clustersById[sentence.cluster].hover || clusterStore.noClusterHovered)?{'opacity': 1}:{'opacity': .2}]">
+                      :style="[(clusterStore.clustersById[sentence.cluster].hover || clusterStore.noClusterHovered('overall'))?{'opacity': 1}:{'opacity': .2}]">
                     {{ sentence.text }}.
                   </p>
                 </td>

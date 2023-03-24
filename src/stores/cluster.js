@@ -7,10 +7,10 @@ export const useClusterStore = defineStore({
   }),
   getters: {
     clustersById: (state) => Object.fromEntries(state.clusters.map(cluster => [cluster.id, cluster])),
-    noClusterHovered: (state) => state.clusters.reduce((notHovered, cluster) => notHovered = notHovered && !cluster.hover, true),
     hoveredCluster: (state) => state.clusters.reduce((hoveredCluster, cluster) => cluster.hover ? cluster : hoveredCluster, {}),
   },
   actions: {
+    noClusterHovered(categoryId) { return this.clusters.reduce((notHovered, cluster) => notHovered = notHovered && (!cluster.id.startsWith(categoryId) || !cluster.hover), true)},
     hover(clusterId) {
       this.unhover();
       this.clustersById[clusterId].hover = true;

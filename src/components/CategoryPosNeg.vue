@@ -58,7 +58,8 @@ const categoryPosNeg = computed(() => hotelStore.categoryPosNeg(props.category.i
               <div class="pa-2 sentiment-text"></div>
             </v-row>
           </v-expansion-panel-title>
-          <v-expansion-panel-text>
+          <v-expansion-panel-text
+              :style="[(category.hover || categoryStore.noCategoryHovered)?{'opacity': 1}:{'opacity': .2}]">
           <v-table class="ma-2 flex-grow-1 w-90" table-layout="fixed">
             <tr>
               <th class="pa-2 hotel-name">Hotel</th>
@@ -74,7 +75,7 @@ const categoryPosNeg = computed(() => hotelStore.categoryPosNeg(props.category.i
                     :key="category.id+'_'+hotel.id+'_'+sentence.idx"
                     @mouseenter="clusterStore.hover(sentence.cluster)"
                     @mouseleave="clusterStore.unhover()"
-                    :style="[(clusterStore.clustersById[sentence.cluster].hover || clusterStore.noClusterHovered)?{'opacity': 1}:{'opacity': .2}]"
+                    :style="[(clusterStore.clustersById[sentence.cluster].hover || clusterStore.noClusterHovered(category.id))?{'opacity': 1}:{'opacity': .2}]"
                   >
                   {{ sentence.text }}.
                 </p>
@@ -99,7 +100,7 @@ const categoryPosNeg = computed(() => hotelStore.categoryPosNeg(props.category.i
                     :key="category.id+'_'+hotel.id+'_'+sentence.idx"
                     @mouseenter="clusterStore.hover(sentence.cluster)"
                     @mouseleave="clusterStore.unhover()"
-                    :style="[(clusterStore.clustersById[sentence.cluster].hover || clusterStore.noClusterHovered)?{'opacity': 1}:{'opacity': .2}]"
+                    :style="[(clusterStore.clustersById[sentence.cluster].hover || clusterStore.noClusterHovered(category.id))?{'opacity': 1}:{'opacity': .2}]"
                 >
                   {{ sentence.text }}.
                 </p>
