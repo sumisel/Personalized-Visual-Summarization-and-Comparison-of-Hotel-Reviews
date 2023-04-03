@@ -52,14 +52,14 @@ export const useCategoryStore = defineStore({
         title: "Business service",// (e.g., internet access)",
         icon: "mdi-wifi",
         color: "#018267",
-        value: 50,
+        value: 0,
       },
       {
         id: "checkin",
         title: "Check in / front desk",
         icon: "mdi-clipboard-check",
         color: "#B80080",
-        value: 50,
+        value: 0,
       },
     ]
   }),

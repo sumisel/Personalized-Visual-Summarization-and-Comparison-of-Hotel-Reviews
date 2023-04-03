@@ -54,13 +54,6 @@ export default {
           </v-expansion-panel-title>
           <v-expansion-panel-text>
             <v-table class="ma-2 flex-grow-1 w-90">
-              <tr>
-                <th style="width:100px;"
-                    class="pa-2 hotel-name">Hotel</th>
-                <th class="pa-2 sentiment-text">Negative</th>
-                <th class="sentiment-chart"></th>
-                <th class="pa-2 sentiment-text">Positive</th>
-              </tr>
               <tr
                   v-for="hotel in hotelStore.selectedHotels" :key="'overall_'+hotel.id">
                 <td class="pa-2 hotel-name">{{ hotel.name }}</td>
@@ -71,7 +64,7 @@ export default {
                       @mouseenter="clusterStore.hover(sentence.cluster)"
                       @mouseleave="clusterStore.unhover()"
                       :style="[(clusterStore.clustersById[sentence.cluster].hover || clusterStore.noClusterHovered('overall'))?{'opacity': 1}:{'opacity': .2}]">
-                    {{ sentence.text }}.
+                    <v-icon icon="mdi-minus-circle-outline" /> {{ sentence.text }}.
                   </p>
                 </td>
                 <td class="sentiment-chart">
@@ -95,7 +88,7 @@ export default {
                       @mouseenter="clusterStore.hover(sentence.cluster)"
                       @mouseleave="clusterStore.unhover()"
                       :style="[(clusterStore.clustersById[sentence.cluster].hover || clusterStore.noClusterHovered('overall'))?{'opacity': 1}:{'opacity': .2}]">
-                    {{ sentence.text }}.
+                    <v-icon icon="mdi-plus-circle-outline" /> {{ sentence.text }}.
                   </p>
                 </td>
               </tr>

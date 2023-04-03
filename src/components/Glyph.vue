@@ -174,13 +174,13 @@ export default {
 <template>
   <svg ref="svg"></svg>
 
-  <v-tooltip activator="parent" location="here" max-width="50px">
+  <!--<v-tooltip activator="parent" location="here" max-width="50px">
     <v-icon
         :icon="this.categoryStore.hoveredCategory.icon"
         class="mr-2"
         :color="this.categoryStore.hoveredCategory.color"
     ></v-icon>
-  </v-tooltip>
+  </v-tooltip>-->
 
 
 </template>

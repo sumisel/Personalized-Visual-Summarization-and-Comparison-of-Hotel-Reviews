@@ -61,12 +61,6 @@ const categoryPosNeg = computed(() => hotelStore.categoryPosNeg(props.category.i
           <v-expansion-panel-text
               :style="[(category.hover || categoryStore.noCategoryHovered)?{'opacity': 1}:{'opacity': .2}]">
           <v-table class="ma-2 flex-grow-1 w-90" table-layout="fixed">
-            <tr>
-              <th class="pa-2 hotel-name">Hotel</th>
-              <th class="pa-2 sentiment-text">Negative</th>
-              <th class="sentiment-chart"></th>
-              <th class="pa-2 sentiment-text">Positive</th>
-            </tr>
             <tr v-for="hotel in hotelStore.selectedHotels" :key="category.id+'_'+hotel.id">
               <td class="pa-2 hotel-name">{{ hotel.name }}</td>
               <td class="pa-2 sentiment-text">
@@ -77,7 +71,7 @@ const categoryPosNeg = computed(() => hotelStore.categoryPosNeg(props.category.i
                     @mouseleave="clusterStore.unhover()"
                     :style="[(clusterStore.clustersById[sentence.cluster].hover || clusterStore.noClusterHovered(category.id))?{'opacity': 1}:{'opacity': .2}]"
                   >
-                  {{ sentence.text }}.
+                  <v-icon icon="mdi-minus-circle-outline" /> {{ sentence.text }}.
                 </p>
               </td>
               <td class="sentiment-chart">
@@ -102,7 +96,7 @@ const categoryPosNeg = computed(() => hotelStore.categoryPosNeg(props.category.i
                     @mouseleave="clusterStore.unhover()"
                     :style="[(clusterStore.clustersById[sentence.cluster].hover || clusterStore.noClusterHovered(category.id))?{'opacity': 1}:{'opacity': .2}]"
                 >
-                  {{ sentence.text }}.
+                  <v-icon icon="mdi-plus-circle-outline" /> {{ sentence.text }}.
                 </p>
               </td>
             </tr>
