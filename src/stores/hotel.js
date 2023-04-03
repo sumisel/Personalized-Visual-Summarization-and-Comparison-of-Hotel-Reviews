@@ -2,12 +2,14 @@ import { defineStore, storeToRefs } from 'pinia'
 
 import { useCategoryStore } from "./category.js";
 import { useClusterStore } from "./cluster.js";
+import { useTimeStore} from "./ratings_over_time.js";
 
 export const useHotelStore = defineStore({
   id: 'hotel',
   state: () => ({
     categoryStore: useCategoryStore(),
     clusterStore: useClusterStore(),
+    timeStore: useTimeStore(),
     hotels: [],
   }),
   getters: {
@@ -150,6 +152,13 @@ export const useHotelStore = defineStore({
       this.hotels.forEach((hotel, i) => hotel.isSelected = i < 3 ? i+1 : 0);
       // initiate sentence clusters
       this.clusterStore.initClusters(this.hotels);
+
+      // load ratings over time
+      // TODO: this is a temporary solution, will be replaced when the data is in the enriched data file
+      const ratings_time = await fetch("/HotelRec_subset_" + city + "_10_average_ratings_over_time.txt");
+      const ratings_time_data = await ratings_time.json();
+      this.timeStore.initTimeData(this.hotels, ratings_time_data);
+
     },
   },
 })

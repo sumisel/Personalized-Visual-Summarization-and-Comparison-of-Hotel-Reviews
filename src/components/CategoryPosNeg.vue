@@ -1,7 +1,6 @@
 <script setup xmlns="http://www.w3.org/1999/html">
 import { computed } from "vue";
 
-import Glyph from "./Glyph.vue";
 import CategoryName from "./CategoryName.vue";
 
 import { useHotelStore } from "../stores/hotel.js";
@@ -51,8 +50,8 @@ const categoryPosNeg = computed(() => hotelStore.categoryPosNeg(props.category.i
                     :color="category.color"
                     :width="100"
                     :height="20"
-                    :x-min = "-30"
-                    :x-max = "30"
+                    :xMin = "-30"
+                    :xMax = "30"
                 ></ChartPosNeg>
               </div>
               <div class="pa-2 sentiment-text"></div>
@@ -84,8 +83,8 @@ const categoryPosNeg = computed(() => hotelStore.categoryPosNeg(props.category.i
                     :color="category.color"
                     :width="100"
                     :height="50"
-                    :x-min = "-30"
-                    :x-max = "30"
+                    :xMin = "-30"
+                    :xMax = "30"
                 ></ChartPosNeg>
               </td>
               <td class="pa-2 sentiment-text">

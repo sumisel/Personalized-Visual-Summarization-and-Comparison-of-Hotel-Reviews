@@ -45,8 +45,8 @@ export default {
                     :color="'#999999'"
                     :width="100"
                     :height="20"
-                    :x-min = "-30"
-                    :x-max = "30"
+                    :xMin = "-30"
+                    :xMax = "30"
                 ></ChartPosNeg>
               </div>
               <div class="pa-2 sentiment-text"></div>
@@ -77,8 +77,8 @@ export default {
                       :color="'#999999'"
                       :width="100"
                       :height="50"
-                      :x-min = "-6"
-                      :x-max = "6"
+                      :xMin = "-6"
+                      :xMax = "6"
                   ></ChartPosNeg>
                 </td>
                 <td class="pa-2 sentiment-text">
