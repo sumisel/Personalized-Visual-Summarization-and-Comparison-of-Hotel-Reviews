@@ -5,7 +5,6 @@ import HotelOverview from "./components/HotelOverview.vue";
 import PosNeg from "./components/PosNeg.vue";
 import Trending from "./components/Trending.vue";
 import CloseBy from "./components/CloseBy.vue";
-import { onMounted } from "vue";
 import { useCityStore } from "./stores/city.js";
 
 const cityStore = useCityStore();

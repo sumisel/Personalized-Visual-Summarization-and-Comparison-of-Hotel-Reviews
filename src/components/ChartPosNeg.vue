@@ -1,10 +1,9 @@
 <script>
 import * as d3 from "d3";
 
-import { ref, onMounted } from "vue";
+import {ref, onMounted, watch, computed} from "vue";
 
 import { useHotelStore } from "../stores/hotel.js";
-import { useCategoryStore } from "../stores/category.js";
 export default {
   props: {
     posNeg: {
@@ -55,8 +54,8 @@ export default {
       .attr("height", this.height)
       .attr("style", "max-width: 100%; height: auto; height: intrinsic;");
 
-    //WARNING if all individual reviews are loaded into the hotel data, this makes the site very slow
-    this.hotelStore.$subscribe(() => {
+    watch(() => this.hotelStore.selectedHotels, () => {
+      console.log('ChartPosNeg hotels changed');
       this.plot();
     });
 
@@ -64,8 +63,14 @@ export default {
   },
   methods: {
     plot() {
+      var data;
       // get values for each hotel
-      const data = this.posNeg;
+      if(this.categoryId != "overall") {
+        data = this.hotelStore.categoryPosNeg(this.categoryId);
+      }
+      else {
+        data = this.posNeg;
+      }
 
       // remove all previous elements
       d3.select(this.svg).selectAll("*").remove();

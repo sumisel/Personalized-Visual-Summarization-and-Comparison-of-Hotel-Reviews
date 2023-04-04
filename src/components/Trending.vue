@@ -50,13 +50,10 @@ export default {
             <v-expansion-panel-text>
               <v-row class="d-flex"
                   v-for="category in categoryStore.relevantCategories.sort((a, b) => b.value - a.value)" :key="'time_'+hotel.id+'_'+category.id">
-                <div class="pa-2 hotel-name">
-                  <CategoryName :categoryId="category.id"></CategoryName>
-                </div>
                 <div class="pa-2 time-chart">
                   <ChartTrending
-                      :hotel="hotel.id"
-                      :category="category.id"
+                      :hotelId="hotel.id"
+                      :categoryId="category.id"
                       :data="timeStore.dataById[hotel.id][category.id]"
                       :color="category.color"
                       :width="1000"

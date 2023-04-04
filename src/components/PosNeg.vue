@@ -100,7 +100,7 @@ export default {
 
     <div class="d-flex flex-column my-4">
       <CategoryPosNeg
-        v-for="category in categoryStore.relevantCategories.sort((a, b) => b.value - a.value)"
+        v-for="category in categoryStore.relevantCategories"
         :category="category"
         @mouseenter="categoryStore.hover(category.id)"
         @mouseleave="categoryStore.unhover()"

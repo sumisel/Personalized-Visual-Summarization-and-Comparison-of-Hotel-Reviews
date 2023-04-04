@@ -1,7 +1,7 @@
 <script>
 import * as d3 from "d3";
 
-import { ref, onMounted } from "vue";
+import {ref, onMounted, watch} from "vue";
 
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
@@ -61,13 +61,12 @@ export default {
       .attr("height", this.height)
       .attr("style", "max-width: 100%; height: intrinsic;");
 
-    //WARNING if all individual reviews are loaded into the hotel data, this makes the site very slow
-    this.hotelStore.$subscribe(() => {
-      this.plot();
-    });
-    //this.categoryStore.$subscribe(() => {
-    //  this.plot();
-    //});
+    if(this.categoryId == "line"){
+      watch(() => this.categoryStore.relevantCategories, () => {
+        console.log('ChartTrending categories changed');
+        this.plot();
+      });
+    }
 
     this.plot();
   },
@@ -100,8 +99,8 @@ export default {
           .enter()
           .append("path")
           .attr("fill", "none")
-          .attr("stroke", function(d,i){ return color(i) })
-          .attr("stroke-width", 1.5)
+          .attr("stroke", function(d,i){ return color(d.name) })
+          .attr("stroke-width", 1.0)
           .attr("d", function(d){
             return d3.line()
                 .x(function(e) { return x(e.timestamp); })
@@ -144,7 +143,7 @@ export default {
           .data(data["outliers"])
           .enter()
           .append("circle")
-            .attr("cx", function(d) { return x(+d.timestamp); })
+            .attr("cx", function(d) { return x(+d.timestamp)+.5*x.bandwidth(); })
             .attr("cy", function(d) { return y(+d.value); })
             .attr("r", "1")
             .style("fill", this.color)
@@ -167,9 +166,9 @@ export default {
         for (const [category, values] of Object.entries(this.data)) {
           const vs = []
           for (const [timestamp, v] of Object.entries(values)) {
-            x_min = Math.min(x_min, +timestamp);
-            x_max = Math.max(x_max, +timestamp);
             if(v["average"]!=0) {
+              x_min = Math.min(x_min, +timestamp);
+              x_max = Math.max(x_max, +timestamp);
               vs.push({
                 "timestamp": timestamp,
                 "value": v["average"],
@@ -181,6 +180,7 @@ export default {
             "values": vs,
           });
         }
+        x_min = x_min+(x_max-x_min)/4.0;
         this.plot_line(data, svg, x_min, x_max)
       } else { // draw bar chart with outliers
         const values = [];

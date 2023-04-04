@@ -1,6 +1,7 @@
 import { defineStore, storeToRefs } from 'pinia'
 
 import { useCategoryStore } from "./category.js";
+import { useReviewStore} from "./review.js";
 import { useClusterStore } from "./cluster.js";
 import { useTimeStore} from "./ratings_over_time.js";
 
@@ -8,6 +9,7 @@ export const useHotelStore = defineStore({
   id: 'hotel',
   state: () => ({
     categoryStore: useCategoryStore(),
+    reviewStore: useReviewStore(),
     clusterStore: useClusterStore(),
     timeStore: useTimeStore(),
     hotels: [],
@@ -146,7 +148,8 @@ export const useHotelStore = defineStore({
       city = city.replace(" ", "_");
       const result = await fetch("/HotelRec_subset_" + city + "_10_enriched.txt");
       const data = await result.json();
-      data.forEach(hotel => {hotel.reviews=[];});//TODO temporary, so that the page performance is acceptable
+      this.reviewStore.initReviews(Object.keys(data), data);
+      data.forEach(hotel => {hotel.reviews=[];}); // for acceptable page performance
       this.hotels = data;
       // select first three hotels by default
       this.hotels.forEach((hotel, i) => hotel.isSelected = i < 3 ? i+1 : 0);
@@ -158,7 +161,6 @@ export const useHotelStore = defineStore({
       const ratings_time = await fetch("/HotelRec_subset_" + city + "_10_average_ratings_over_time.txt");
       const ratings_time_data = await ratings_time.json();
       this.timeStore.initTimeData(this.hotels, ratings_time_data);
-
     },
   },
 })

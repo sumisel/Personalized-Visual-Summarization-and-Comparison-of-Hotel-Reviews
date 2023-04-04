@@ -16,7 +16,6 @@ const props = defineProps({
   category: Object,
 });
 
-const categoryPosNeg = computed(() => hotelStore.categoryPosNeg(props.category.id));
 </script>
 
 <template>
@@ -46,7 +45,6 @@ const categoryPosNeg = computed(() => hotelStore.categoryPosNeg(props.category.i
                 <ChartPosNeg
                     :categoryId="category.id"
                     :hotelId = "'selected'"
-                    :posNeg="categoryPosNeg"
                     :color="category.color"
                     :width="100"
                     :height="20"

@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
 
 export const useCategoryStore = defineStore({
   id: 'category',
@@ -73,7 +73,7 @@ export const useCategoryStore = defineStore({
       })
       return normalizedValues
     },
-    relevantCategories: (state) => state.categories.filter(category => category.value > 10),
+    relevantCategories: (state) => state.categories.filter(category => category.value > 10).sort((a, b) => b.value - a.value),
     noCategoryHovered: (state) => state.categories.reduce((notHovered, category) => notHovered = notHovered && !category.hover, true),
     hoveredCategory: (state) => state.categories.reduce((hoveredCategory, category) => category.hover ? category : hoveredCategory, {"icon": "mdi-clipboard-check", "title": "", "color": ""}), // TODO return empty icon if no category is hovered
   },
