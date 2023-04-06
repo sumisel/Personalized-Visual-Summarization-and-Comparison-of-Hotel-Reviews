@@ -9,10 +9,6 @@ import { useTimeStore } from "../stores/ratings_over_time";
 
 export default {
   props: {
-    data: {
-      type: Object,
-      default: {},
-    },
     categoryId: {
       type: String,
       default: "categoryId",
@@ -158,12 +154,20 @@ export default {
 
       // draw multi line chart
       if(this.categoryId == "line"){
+        const d = this.timeStore.dataById[this.hotelId];
+        if(d == undefined) {
+          return;
+        }
+
         // x min is today as epoch timestamp
         var x_min = Math.floor(Date.now());
         var x_max = 0;
         // compute values for each category
         const data = [];
-        for (const [category, values] of Object.entries(this.data)) {
+        for (const [category, values] of Object.entries(d)) {
+          if(!this.categoryStore.relevantCategories.map((c) => c.id).includes(category)) {
+            continue;
+          }
           const vs = []
           for (const [timestamp, v] of Object.entries(values)) {
             if(v["average"]!=0) {
@@ -183,9 +187,11 @@ export default {
         x_min = x_min+(x_max-x_min)/4.0;
         this.plot_line(data, svg, x_min, x_max)
       } else { // draw bar chart with outliers
+        const d = this.timeStore.dataById[this.hotelId][this.categoryId];
+
         const values = [];
         const outliers = [];
-        for (const [timestamp, v] of Object.entries(this.data)) {
+        for (const [timestamp, v] of Object.entries(d)) {
           if(v["average"]!=0) {
             values.push({
               "timestamp": timestamp,

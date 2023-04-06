@@ -37,7 +37,6 @@ export default {
                   <ChartTrending
                       :hotelId = "hotel.id"
                       :categoryId="'line'"
-                      :data="timeStore.dataById[hotel.id]"
                       :color="'#999999'"
                       :width="200"
                       :height="50"
@@ -54,7 +53,6 @@ export default {
                   <ChartTrending
                       :hotelId="hotel.id"
                       :categoryId="category.id"
-                      :data="timeStore.dataById[hotel.id][category.id]"
                       :color="category.color"
                       :width="1000"
                       :height="50"
