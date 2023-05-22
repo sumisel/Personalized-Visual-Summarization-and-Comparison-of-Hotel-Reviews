@@ -109,30 +109,37 @@ export const useHotelStore = defineStore({
         return topCategories.map((category) => category.id);
       }
     },
-    overallPosNeg: (state) => {
-      let sentiments = [];
-      state.selectedHotels.forEach(hotel => {
-        sentiments.push({"name": hotel.name,
-          "pos_summary_category": hotel["pos_summary"],
-          "neg_summary_category": hotel["neg_summary"],
-          "posCount": hotel["pos_counts_overall"],
-          "negCount": hotel["neg_counts_overall"]
-        })
-      })
-      return sentiments;
-    },
-    categoryPosNeg: (state) => {
-      return (category) => {
-        let sentiments = [];
-        state.selectedHotels.forEach(hotel => {
-          sentiments.push({"name": hotel.name,
-            "pos_summary_category": hotel["pos_summary_category"][category],
-            "neg_summary_category": hotel["neg_summary_category"][category],
-            "posCount": hotel["pos_counts_category"][category],
-            "negCount": hotel["neg_counts_category"][category]
+    countsCategoryPosNeg: (state) => {
+      return (category, hotels) => {
+        //console.log("countsCategoryPosNeg ", category);
+        let counts = [];
+        hotels.forEach(hotel => {
+          counts.push({"name": hotel.name,
+            "posCount": hotel['counts']['pos'][category],
+            "negCount": hotel['counts']['neg'][category],
           })
+          //console.log(hotel['counts']['pos']);
+          //console.log(hotel['counts']['pos'][category]);
         })
-        return sentiments;
+        //console.log("countsCategoryPosNeg counts", counts);
+        return counts;
+      }
+    },
+    sentimentSummary: (state) => {
+      return (hotel, category, prefix) => {
+        console.log("sentimentSummary ", hotel['id'], " ", category, " ", prefix);
+        const reviews = state.reviewStore.reviewsById[hotel['id']];
+        const summary = hotel[prefix+'_summary'][category].sort((a, b) => a['idx_summary'] - b['idx_summary']).slice(0, 3);
+
+        summary.forEach((sentence, i) => {
+          sentence['text'] = reviews[sentence['idx_review']][prefix+'_aspects'][sentence['idx_sentence']];
+          sentence['idx_similar_reviews'].forEach((rev, j) => {
+            rev['text'] = reviews[rev['idx_review']][prefix+'_aspects'][rev['idx_sentence']];
+          });
+        });
+
+        //console.log("sentimentSummary ", summary);
+        return summary;
       }
     },
     hotelByName: (state) => {
@@ -148,12 +155,17 @@ export const useHotelStore = defineStore({
       city = city.replace(" ", "_");
       const result = await fetch("/HotelRec_subset_" + city + "_10_enriched.txt");
       const data = await result.json();
-      this.reviewStore.initReviews(Object.keys(data), data);
-      data.forEach(hotel => {hotel.reviews=[];}); // for acceptable page performance
+
+      // init reviews
+      this.reviewStore.initReviews(data);
+
+      data.forEach(hotel => {hotel.reviews=[];}); // for acceptable page performance, separate reviews from hotels
       this.hotels = data;
+
       // select first three hotels by default
       this.hotels.forEach((hotel, i) => hotel.isSelected = i < 3 ? i+1 : 0);
-      // initiate sentence clusters
+
+      // initiate sentiment sentence clusters, for acceptable page performance, separate clusters from hotels
       this.clusterStore.initClusters(this.hotels);
 
       // load ratings over time
@@ -162,5 +174,6 @@ export const useHotelStore = defineStore({
       const ratings_time_data = await ratings_time.json();
       this.timeStore.initTimeData(this.hotels, ratings_time_data);
     },
+
   },
 })

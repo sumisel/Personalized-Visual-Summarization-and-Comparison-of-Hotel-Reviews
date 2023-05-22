@@ -19,9 +19,15 @@ const pinia = createPinia();
 import { useHotelStore } from "./stores/hotel.js";
 import { useCityStore } from "./stores/city.js";
 import { useCategoryStore } from "./stores/category.js";
+import { useReviewStore} from "./stores/review.js";
+import { useClusterStore } from "./stores/cluster.js";
+import { useTimeStore} from "./stores/ratings_over_time.js";
 const cityStore = useCityStore(pinia);
 const hotelStore = useHotelStore(pinia);
 const categoryStore = useCategoryStore(pinia);
+const reviewStore = useReviewStore(pinia);
+const clusterStore = useClusterStore(pinia);
+const timeStore = useTimeStore(pinia);
 
 // set city and load data
 const params = new URL(document.location).searchParams;

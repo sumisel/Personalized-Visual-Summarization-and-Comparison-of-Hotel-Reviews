@@ -4,16 +4,21 @@ import { computed } from "vue";
 import CategoryName from "./CategoryName.vue";
 
 import { useHotelStore } from "../stores/hotel.js";
+import { useReviewStore }  from "../stores/review.js";
 import { useCategoryStore } from "../stores/category.js";
 import { useClusterStore } from "../stores/cluster.js";
 import ChartPosNeg from "@/components/ChartPosNeg.vue";
 
 const hotelStore = useHotelStore();
+const reviewStore = useReviewStore();
 const categoryStore = useCategoryStore();
 const clusterStore = useClusterStore();
 
 const props = defineProps({
   category: Object,
+  data: () => ({
+    subPanel: [0, 1],
+  })
 });
 
 </script>
@@ -35,17 +40,18 @@ const props = defineProps({
       <v-expansion-panels>
         <v-expansion-panel>
           <v-expansion-panel-title :key="'title_'+category.id"
-            :style="[(category.hover || categoryStore.noCategoryHovered)?{'opacity': 1}:{'opacity': .2}]">
+            :style="[(category['hover'] || categoryStore.noCategoryHovered)?{'opacity': 1}:{'opacity': .2}]">
             <v-row>
               <div class="pa-2 hotel-name">
-                <CategoryName :categoryId="category.id"></CategoryName>
+                <CategoryName :categoryId="category['id']"></CategoryName>
               </div>
               <div class="pa-2 sentiment-text"></div>
               <div class="pa-2 sentiment-chart">
                 <ChartPosNeg
-                    :categoryId="category.id"
+                    :categoryId="category['id']"
                     :hotelId = "'selected'"
-                    :color="category.color"
+                    :posNeg= "hotelStore.countsCategoryPosNeg(category['id'], hotelStore.selectedHotels)"
+                    :color="category['color']"
                     :width="100"
                     :height="20"
                     :xMin = "-30"
@@ -56,29 +62,72 @@ const props = defineProps({
             </v-row>
           </v-expansion-panel-title>
           <v-expansion-panel-text
-              :style="[(category.hover || categoryStore.noCategoryHovered)?{'opacity': 1}:{'opacity': .2}]">
+              :style="[(category['hover'] || categoryStore.noCategoryHovered)?{'opacity': 1}:{'opacity': .2}]">
           <v-table class="ma-2 flex-grow-1 w-90" table-layout="fixed">
-            <tr v-for="hotel in hotelStore.selectedHotels" :key="category.id+'_'+hotel.id">
+            <tr v-for="hotel in hotelStore.selectedHotels" :key="category['id']+'_'+hotel['id']">
               <td class="pa-2 hotel-name">{{ hotel.name }}</td>
               <td class="pa-2 sentiment-text">
-                <p
-                    v-for="sentence in hotel.neg_summary_category[category.id]"
-                    :key="category.id+'_'+hotel.id+'_'+sentence.idx"
-                    @mouseenter="clusterStore.hover(sentence.cluster)"
-                    @mouseleave="clusterStore.unhover()"
-                    :style="[(clusterStore.clustersById[sentence.cluster].hover || clusterStore.noClusterHovered(category.id))?{'opacity': 1}:{'opacity': .2}]"
-                  >
-                  <v-icon icon="mdi-minus-circle-outline" /> {{ sentence.text }}.
-                </p>
+                <v-dialog class="d-flex justify-content-center"
+                          scrollable
+                          width="auto"
+
+                          v-for="sentence in hotelStore.sentimentSummary(hotel, category['id'], 'neg')"
+                          :key="category['id']+'_neg_'+hotel['id']+'_'+sentence['idx']">
+                  <template v-slot:activator="{ props }">
+                    <p v-bind="props"
+                       @mouseenter="clusterStore.hover(category['id'], sentence['cluster'])"
+                       @mouseleave="clusterStore.unhover(category['id'])"
+                       :style="[(clusterStore.clustersById(category['id'])[sentence['cluster']]['hover'] || clusterStore.noClusterHovered(category['id']))?{'opacity': 1}:{'opacity': .2}]">
+                      <v-icon icon="mdi-minus-circle-outline"/> {{ sentence['text'] }}.
+                    </p>
+                  </template>
+                  <template v-slot:default="{ isActive }">
+                    <v-card style="width:30%;">
+                      <v-toolbar>
+                        <v-toolbar-title>{{ hotel['name'] }}</v-toolbar-title>
+                      </v-toolbar>
+                      <v-card-text>
+                        <div class="text-h6">{{reviewStore.reviewsById[hotel['id']][sentence['idx_review']]['title']}}</div>
+                        <div>{{reviewStore.reviewsById[hotel['id']][sentence['idx_review']]['text']}}</div>
+
+                        <br/>
+                        <v-divider></v-divider>
+                        <br/>
+
+                        <div class="text-h5">Similar Reviews for this Hotel</div>
+                        <br/>
+
+                        <v-expansion-panels
+                            v-model="subPanel">
+                          <v-expansion-panel v-for="review in sentence['idx_similar_reviews']">
+                            <v-expansion-panel-title>
+                              {{reviewStore.reviewsById[hotel['id']][review['idx_review']]['title']}}
+                            </v-expansion-panel-title>
+                            <v-expansion-panel-text>
+                              <div>
+                                {{reviewStore.reviewsById[hotel['id']][review['idx_review']]['text']}}
+                              </div>
+                            </v-expansion-panel-text>
+                          </v-expansion-panel>
+                        </v-expansion-panels>
+                      </v-card-text>
+                      <v-card-actions class="justify-end">
+                        <v-btn
+                            variant="text"
+                            @click="isActive.value = false"
+                        >Close</v-btn>
+                      </v-card-actions>
+                    </v-card>
+                  </template>
+                </v-dialog>
+
               </td>
               <td class="sentiment-chart">
                 <ChartPosNeg
-                    :categoryId="category.id"
-                    :hotelId = "hotel.id"
-                    :posNeg="[{'posCount': hotel['pos_counts_category'][category.id],
-                                'negCount': hotel['neg_counts_category'][category.id]
-                                }]"
-                    :color="category.color"
+                    :categoryId="category['id']"
+                    :hotelId = "hotel['id']"
+                    :posNeg= "hotelStore.countsCategoryPosNeg(category['id'], [hotel])"
+                    :color="category['color']"
                     :width="100"
                     :height="50"
                     :xMin = "-30"
@@ -86,15 +135,59 @@ const props = defineProps({
                 ></ChartPosNeg>
               </td>
               <td class="pa-2 sentiment-text">
-                <p
-                    v-for="sentence in hotel.pos_summary_category[category.id]"
-                    :key="category.id+'_'+hotel.id+'_'+sentence.idx"
-                    @mouseenter="clusterStore.hover(sentence.cluster)"
-                    @mouseleave="clusterStore.unhover()"
-                    :style="[(clusterStore.clustersById[sentence.cluster].hover || clusterStore.noClusterHovered(category.id))?{'opacity': 1}:{'opacity': .2}]"
-                >
-                  <v-icon icon="mdi-plus-circle-outline" /> {{ sentence.text }}.
-                </p>
+                <v-dialog class="d-flex justify-content-center"
+                          scrollable
+                          width="auto"
+
+                          v-for="sentence in hotelStore.sentimentSummary(hotel, category['id'], 'pos')"
+                          :key="category['id']+'_pos_'+hotel['id']+'_'+sentence['idx']">
+                  <template v-slot:activator="{ props }">
+                    <p v-bind="props"
+                       @mouseenter="clusterStore.hover(category['id'], sentence['cluster'])"
+                       @mouseleave="clusterStore.unhover(category['id'])"
+                       :style="[(clusterStore.clustersById(category['id'])[sentence['cluster']]['hover'] || clusterStore.noClusterHovered(category['id']))?{'opacity': 1}:{'opacity': .2}]">
+                      <v-icon icon="mdi-minus-circle-outline"/> {{ sentence['text'] }}.
+                    </p>
+                  </template>
+                  <template v-slot:default="{ isActive }">
+                    <v-card style="width:30%;">
+                      <v-toolbar>
+                        <v-toolbar-title>{{ hotel['name'] }}</v-toolbar-title>
+                      </v-toolbar>
+                      <v-card-text>
+                        <div class="text-h6">{{reviewStore.reviewsById[hotel['id']][sentence['idx_review']]['title']}}</div>
+                        <div>{{reviewStore.reviewsById[hotel['id']][sentence['idx_review']]['text']}}</div>
+
+                        <br/>
+                        <v-divider></v-divider>
+                        <br/>
+
+                        <div class="text-h5">Similar Reviews for this Hotel</div>
+                        <br/>
+
+                        <v-expansion-panels
+                            v-model="subPanel">
+                          <v-expansion-panel v-for="review in sentence['idx_similar_reviews']">
+                            <v-expansion-panel-title>
+                              {{reviewStore.reviewsById[hotel['id']][review['idx_review']]['title']}}
+                            </v-expansion-panel-title>
+                            <v-expansion-panel-text>
+                              <div>
+                                {{reviewStore.reviewsById[hotel['id']][review['idx_review']]['text']}}
+                              </div>
+                            </v-expansion-panel-text>
+                          </v-expansion-panel>
+                        </v-expansion-panels>
+                      </v-card-text>
+                      <v-card-actions class="justify-end">
+                        <v-btn
+                            variant="text"
+                            @click="isActive.value = false"
+                        >Close</v-btn>
+                      </v-card-actions>
+                    </v-card>
+                  </template>
+                </v-dialog>
               </td>
             </tr>
           </v-table>

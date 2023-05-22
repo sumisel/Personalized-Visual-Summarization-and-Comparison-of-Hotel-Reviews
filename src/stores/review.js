@@ -9,10 +9,10 @@ export const useReviewStore = defineStore({
     reviewsById: (state) => state.reviews,
   },
   actions: {
-    initReviews(hotels, reviews_data) {
+    initReviews(data) {
       this.reviews = {};
-      hotels.forEach(name => {
-        this.reviews[name] = reviews_data[name];
+      data.forEach(item => {
+        this.reviews[item['id']] = item['reviews'];
       })
     }
   },

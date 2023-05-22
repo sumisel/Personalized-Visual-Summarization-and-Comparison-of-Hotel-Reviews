@@ -63,14 +63,10 @@ export default {
   },
   methods: {
     plot() {
-      var data;
       // get values for each hotel
-      if(this.categoryId != "overall") {
-        data = this.hotelStore.categoryPosNeg(this.categoryId);
-      }
-      else {
-        data = this.posNeg;
-      }
+      const data = this.posNeg;
+      //console.log("chart ", this.categoryId);
+      //console.log("chart ", data);
 
       // remove all previous elements
       d3.select(this.svg).selectAll("*").remove();
