@@ -43,13 +43,14 @@ export default {
               <div class="pa-2 sentiment-text"></div>
               <div class="pa-2 sentiment-chart">
                 <ChartPosNeg
-                    :categoryId="'overall'"
+                    :categoryId= "'overall'"
+                    :hotelId= "'selected'"
                     :posNeg= "hotelStore.countsCategoryPosNeg('overall', hotelStore.selectedHotels)"
                     :color="'#999999'"
                     :width="100"
                     :height="20"
-                    :xMin = "-30"
-                    :xMax = "30"
+                    :xMin = "-6"
+                    :xMax = "6"
                 ></ChartPosNeg>
               </div>
               <div class="pa-2 sentiment-text"></div>
@@ -95,8 +96,8 @@ export default {
       <CategoryPosNeg
         v-for="category in categoryStore.relevantCategories"
         :category="category"
-        :key="'posneg_card_'+category.id"
-        @mouseenter="categoryStore.hover(category.id)"
+        :key="'posneg_card_'+category['id']"
+        @mouseenter="categoryStore.hover(category['id'])"
         @mouseleave="categoryStore.unhover()"
       ></CategoryPosNeg>
     </div>

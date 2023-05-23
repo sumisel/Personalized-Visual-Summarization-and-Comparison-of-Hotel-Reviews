@@ -35,7 +35,7 @@ const props = defineProps({
         class="ma-2 flex-grow-1 w-90">
       <v-expansion-panels>
         <v-expansion-panel>
-          <v-expansion-panel-title :key="'title_'+category.id"
+          <v-expansion-panel-title :key="'title_'+category['id']"
             :style="[(category['hover'] || categoryStore.noCategoryHovered)?{'opacity': 1}:{'opacity': .2}]">
             <v-row>
               <div class="pa-2 hotel-name">
@@ -50,8 +50,8 @@ const props = defineProps({
                     :color="category['color']"
                     :width="100"
                     :height="20"
-                    :xMin = "-30"
-                    :xMax = "30"
+                    :xMin = "-1"
+                    :xMax = "1"
                     :key="'posneg_chart_'+category['id']"
                 ></ChartPosNeg>
               </div>
@@ -77,8 +77,8 @@ const props = defineProps({
                     :color="category['color']"
                     :width="100"
                     :height="50"
-                    :xMin = "-30"
-                    :xMax = "30"
+                    :xMin = "-1"
+                    :xMax = "1"
                     :key="'posneg_chart_'+hotel['id']+'_'+category['id']"
                 ></ChartPosNeg>
               </td>

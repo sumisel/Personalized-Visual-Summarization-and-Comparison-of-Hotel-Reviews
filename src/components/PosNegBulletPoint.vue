@@ -28,9 +28,34 @@ export default {
   },
   computed: {},
   methods:{
-    roundToInt: function (number) {
-      return number.toFixed(0);
-    }
+    roundToInt: function (number, decimals) {
+      return number.toFixed(decimals);
+    },
+    calcFontSize: function (number) {
+      if (number < .4) {
+        return '5pt';
+      } else if (number < .8) {
+        return '8pt';
+      } else {
+        return '12pt';
+      }
+    },
+    calcFontWeight: function (number) {
+      if (number < .4) {
+        return '100';
+      } else if (number < .8) {
+        return '300';
+      } else {
+        return '500';
+      }
+    },
+    calcHover: function (hover) {
+      if (hover || this.clusterStore.noClusterHovered(this.categoryId)) {
+        return 1;
+      } else {
+        return .2;
+      }
+    },
   },
 };
 
@@ -44,13 +69,12 @@ export default {
             :key="categoryId+'_'+polarity+'_'+hotel['id']+'_'+sentence['idx_summary']">
     <template v-slot:activator="{ props }">
       <p v-bind="props"
-        :style="[{'font-weight': roundToInt(500*sentence['centrality_score']),
-        'font-size': 12*sentence['centrality_score']+'pt'}]">
-         <!--
-         @mouseenter="clusterStore.hover(categoryId, sentence['cluster'])"
-         @mouseleave="clusterStore.unhover(categoryId)"
-         :style="[(clusterStore.clustersById(categoryId)[sentence['cluster']]['hover'] || clusterStore.noClusterHovered(categoryId))?{'opacity': 1}:{'opacity': .2}]"
-         -->
+        @mouseenter="clusterStore.hover(categoryId, sentence['cluster'])"
+        @mouseleave="clusterStore.unhover(categoryId)"
+        :style="[{'font-weight': calcFontWeight(sentence['centrality_score']),
+                  'font-size': calcFontSize(sentence['centrality_score']),
+                  'opacity': calcHover(clusterStore.clustersById(categoryId)[sentence['cluster']]['hover']),
+                }]">
         <v-icon v-if="polarity=='pos'" icon="mdi-plus-circle-outline"/><v-icon v-else icon="mdi-minus-circle-outline"/>
         {{ sentence['text'] }}.
       </p>

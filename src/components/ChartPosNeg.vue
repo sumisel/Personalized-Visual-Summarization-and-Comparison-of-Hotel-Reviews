@@ -4,6 +4,7 @@ import * as d3 from "d3";
 import {ref, onMounted, watch, computed} from "vue";
 
 import { useHotelStore } from "../stores/hotel.js";
+import { useCategoryStore } from "../stores/category.js";
 export default {
   props: {
     posNeg: {
@@ -42,10 +43,12 @@ export default {
   setup() {
     const svg = ref();
     const hotelStore = useHotelStore();
+    const categoryStore = useCategoryStore();
 
     return {
       svg,
       hotelStore,
+      categoryStore,
     };
   },
   mounted() {
@@ -55,7 +58,11 @@ export default {
       .attr("style", "max-width: 100%; height: auto; height: intrinsic;");
 
     watch(() => this.hotelStore.selectedHotels, () => {
-      console.log('ChartPosNeg hotels changed');
+      console.log('ChartPosNeg selected hotels changed');
+      this.plot();
+    });
+    watch(() => this.categoryStore.relevantCategories, () => {
+      console.log('ChartPosNeg relevant categories changed');
       this.plot();
     });
 
@@ -95,9 +102,9 @@ export default {
           .data(data)
           .enter()
           .append("rect")
-          .attr("x", function(d) { return x(-d.negCount); })
-          .attr("y", function(d) { return y(d.name); })
-          .attr("width", function(d) { return x(d.posCount)-x(-d.negCount); })
+          .attr("y", function(d) { return y(d['name']); })
+          .attr("x", function(d) { return x(-d['negCount']); })
+          .attr("width", function(d) { return x(d['posCount'])-x(-d['negCount']); })
           .attr("height", y.bandwidth() )
           .attr("fill", this.color)
 
