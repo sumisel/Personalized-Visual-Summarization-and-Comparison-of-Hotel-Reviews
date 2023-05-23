@@ -129,7 +129,7 @@ export const useHotelStore = defineStore({
       return (hotel, category, prefix) => {
         console.log("sentimentSummary ", hotel['id'], " ", category, " ", prefix);
         const reviews = state.reviewStore.reviewsById[hotel['id']];
-        const summary = hotel[prefix+'_summary'][category].sort((a, b) => a['idx_summary'] - b['idx_summary']).slice(0, 3);
+        const summary = hotel[prefix+'_summary'][category].sort((a, b) => a['idx_summary'] - b['idx_summary'])
 
         summary.forEach((sentence, i) => {
           sentence['text'] = reviews[sentence['idx_review']][prefix+'_aspects'][sentence['idx_sentence']];

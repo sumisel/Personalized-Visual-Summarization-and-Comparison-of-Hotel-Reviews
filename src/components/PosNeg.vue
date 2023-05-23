@@ -1,13 +1,15 @@
 <script>
 import CategoryPosNeg from "./CategoryPosNeg.vue";
 import ChartPosNeg from "./ChartPosNeg.vue";
+import PosNegBulletPoint from "./PosNegBulletPoint.vue";
 import { useHotelStore } from "../stores/hotel.js";
-import {useReviewStore} from "../stores/review.js";
+import { useReviewStore } from "../stores/review.js";
 import { useCategoryStore } from "../stores/category.js";
 import { useClusterStore } from "../stores/cluster.js";
 
 export default {
   components: {
+    PosNegBulletPoint,
     CategoryPosNeg,
     ChartPosNeg,
   },
@@ -21,7 +23,6 @@ export default {
   computed: {},
   data: () => ({
     panel: [0, 1],
-    subPanel: [0, 1],
   })
 };
 
@@ -60,59 +61,10 @@ export default {
                   v-for="hotel in hotelStore.selectedHotels" :key="'overall_'+hotel.id">
                 <td class="pa-2 hotel-name">{{ hotel['name'] }}</td>
                 <td class="pa-2 sentiment-text">
-                  <v-dialog class="d-flex justify-content-center"
-                      scrollable
-                      width="auto"
-
-                      v-for="sentence in hotelStore.sentimentSummary(hotel, 'overall', 'neg')"
-                      :key="'overall_neg_'+hotel.id+'_'+sentence['idx_summary']">
-                    <template v-slot:activator="{ props }">
-                      <p v-bind="props"
-                         @mouseenter="clusterStore.hover('overall', sentence['cluster'])"
-                         @mouseleave="clusterStore.unhover('overall')"
-                         :style="[(clusterStore.clustersById('overall')[sentence['cluster']]['hover'] || clusterStore.noClusterHovered('overall'))?{'opacity': 1}:{'opacity': .2}]">
-                        <v-icon icon="mdi-minus-circle-outline"/> {{ sentence['text'] }}.
-                      </p>
-                    </template>
-                    <template v-slot:default="{ isActive }">
-                      <v-card style="width:30%;">
-                        <v-toolbar>
-                          <v-toolbar-title>{{ hotel['name'] }}</v-toolbar-title>
-                        </v-toolbar>
-                        <v-card-text>
-                          <div class="text-h6">{{reviewStore.reviewsById[hotel['id']][sentence['idx_review']]['title']}}</div>
-                          <div>{{reviewStore.reviewsById[hotel['id']][sentence['idx_review']]['text']}}</div>
-
-                          <br/>
-                          <v-divider></v-divider>
-                          <br/>
-
-                          <div class="text-h5">Similar Reviews for this Hotel</div>
-                          <br/>
-
-                          <v-expansion-panels
-                              v-model="subPanel">
-                            <v-expansion-panel v-for="review in sentence['idx_similar_reviews']">
-                              <v-expansion-panel-title>
-                                {{reviewStore.reviewsById[hotel['id']][review['idx_review']]['title']}}
-                              </v-expansion-panel-title>
-                              <v-expansion-panel-text>
-                                <div>
-                                  {{reviewStore.reviewsById[hotel['id']][review['idx_review']]['text']}}
-                                </div>
-                              </v-expansion-panel-text>
-                            </v-expansion-panel>
-                          </v-expansion-panels>
-                        </v-card-text>
-                        <v-card-actions class="justify-end">
-                          <v-btn
-                              variant="text"
-                              @click="isActive.value = false"
-                          >Close</v-btn>
-                        </v-card-actions>
-                      </v-card>
-                    </template>
-                  </v-dialog>
+                  <PosNegBulletPoint
+                      :hotel = "hotel"
+                      :categoryId = "'overall'"
+                      :polarity = "'neg'" ></PosNegBulletPoint>
                 </td>
                 <td class="sentiment-chart">
                   <ChartPosNeg
@@ -127,59 +79,10 @@ export default {
                   ></ChartPosNeg>
                 </td>
                 <td class="pa-2 sentiment-text">
-                  <v-dialog class="d-flex justify-content-center"
-                            scrollable
-                            width="auto"
-
-                            v-for="sentence in hotelStore.sentimentSummary(hotel, 'overall', 'pos')"
-                            :key="'overall_neg_'+hotel.id+'_'+sentence['idx_summary']">
-                    <template v-slot:activator="{ props }">
-                      <p v-bind="props"
-                         @mouseenter="clusterStore.hover('overall', sentence['cluster'])"
-                         @mouseleave="clusterStore.unhover('overall')"
-                         :style="[(clusterStore.clustersById('overall')[sentence['cluster']]['hover'] || clusterStore.noClusterHovered('overall'))?{'opacity': 1}:{'opacity': .2}]">
-                        <v-icon icon="mdi-minus-circle-outline"/> {{ sentence['text'] }}.
-                      </p>
-                    </template>
-                    <template v-slot:default="{ isActive }">
-                      <v-card style="width:30%;">
-                        <v-toolbar>
-                          <v-toolbar-title>{{ hotel['name'] }}</v-toolbar-title>
-                        </v-toolbar>
-                        <v-card-text>
-                          <div class="text-h6">{{reviewStore.reviewsById[hotel['id']][sentence['idx_review']]['title']}}</div>
-                          <div>{{reviewStore.reviewsById[hotel['id']][sentence['idx_review']]['text']}}</div>
-
-                          <br/>
-                          <v-divider></v-divider>
-                          <br/>
-
-                          <div class="text-h5">Similar Reviews for this Hotel</div>
-                          <br/>
-
-                          <v-expansion-panels
-                              v-model="subPanel">
-                            <v-expansion-panel v-for="review in sentence['idx_similar_reviews']">
-                              <v-expansion-panel-title>
-                                {{reviewStore.reviewsById[hotel['id']][review['idx_review']]['title']}}
-                              </v-expansion-panel-title>
-                              <v-expansion-panel-text>
-                                <div>
-                                  {{reviewStore.reviewsById[hotel['id']][review['idx_review']]['text']}}
-                                </div>
-                              </v-expansion-panel-text>
-                            </v-expansion-panel>
-                          </v-expansion-panels>
-                        </v-card-text>
-                        <v-card-actions class="justify-end">
-                          <v-btn
-                              variant="text"
-                              @click="isActive.value = false"
-                          >Close</v-btn>
-                        </v-card-actions>
-                      </v-card>
-                    </template>
-                  </v-dialog>
+                  <PosNegBulletPoint
+                      :hotel = "hotel"
+                      :categoryId = "'overall'"
+                      :polarity = "'pos'" ></PosNegBulletPoint>
                 </td>
               </tr>
             </v-table>

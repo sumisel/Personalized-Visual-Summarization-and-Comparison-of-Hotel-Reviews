@@ -65,8 +65,8 @@ export default {
     plot() {
       // get values for each hotel
       const data = this.posNeg;
-      //console.log("chart ", this.categoryId);
-      //console.log("chart ", data);
+      console.log("chart ", this.categoryId);
+      console.log("chart ", data);
 
       // remove all previous elements
       d3.select(this.svg).selectAll("*").remove();
