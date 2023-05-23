@@ -5,6 +5,7 @@ import {ref, onMounted, watch, computed} from "vue";
 
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
+
 export default {
   props: {
     posNeg: {
@@ -116,6 +117,46 @@ export default {
           .selectAll("text").remove()
 
     },
+  },
+  higlight(svgId, num_items, polarity) {
+    const svg = d3.select("#svgId");
+
+    // x axis
+    const x = d3.scaleLinear()
+        .domain([this.xMin, this.xMax])
+        .range([ 0, this.width]);
+    // y axis
+    const y = d3.scaleBand()
+        .domain([this.hotelId])
+        .range([ 0, this.height ])
+        .padding(.1);
+
+
+    const l = num_items * this.hotelStore.hotelById[this.hotelId]['review_count']
+
+    // bars
+    if (polarity=="neg") {
+      svg.append("rect")
+          .class("highlight")
+          .attr("y", y(this.hotelId))
+          .attr("x", x(-l))
+          .attr("width", x(0)-x(-l))
+          .attr("height", y.bandwidth())
+          .attr("fill", "black");
+
+    } else {
+      svg.append("rect")
+          .class("highlight")
+          .attr("y", y(this.hotelId))
+          .attr("x", x(0))
+          .attr("width", x(l)-x(0))
+          .attr("height", y.bandwidth())
+          .attr("fill", "black");
+    }
+  },
+  unhighlight(svgId) {
+    console.log("unhighlight");
+    d3.select("#svgId").selectAll(".highlight").remove();
   },
 };
 </script>

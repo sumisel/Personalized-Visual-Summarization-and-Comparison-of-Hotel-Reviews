@@ -28,9 +28,6 @@ export default {
   },
   computed: {},
   methods:{
-    roundToInt: function (number, decimals) {
-      return number.toFixed(decimals);
-    },
     calcFontSize: function (number) {
       if (number < .4) {
         return '5pt';
@@ -68,8 +65,12 @@ export default {
             v-for="sentence in hotelStore.sentimentSummary(hotel, categoryId, polarity)"
             :key="categoryId+'_'+polarity+'_'+hotel['id']+'_'+sentence['idx_summary']">
     <template v-slot:activator="{ props }">
+      <!--
+      @mouseenter
+       ChartPosNeg.methods.hover(categoryId+'_'+hotel['id'], 1+sentence['idx_similar_reviews'].length, polarity)
+       -->
       <p v-bind="props"
-        @mouseenter="clusterStore.hover(categoryId, sentence['cluster'])"
+        @mouseenter="clusterStore.hover(categoryId, sentence['cluster']);"
         @mouseleave="clusterStore.unhover(categoryId)"
         :style="[{'font-weight': calcFontWeight(sentence['centrality_score']),
                   'font-size': calcFontSize(sentence['centrality_score']),
