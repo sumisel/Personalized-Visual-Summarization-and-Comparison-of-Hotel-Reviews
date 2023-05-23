@@ -65,7 +65,7 @@ export default {
   <v-dialog class="d-flex justify-content-center"
             scrollable
             width="auto"
-            v-for="sentence in hotelStore.sentimentSummary(hotel, categoryId, polarity).slice(0, 5)"
+            v-for="sentence in hotelStore.sentimentSummary(hotel, categoryId, polarity)"
             :key="categoryId+'_'+polarity+'_'+hotel['id']+'_'+sentence['idx_summary']">
     <template v-slot:activator="{ props }">
       <p v-bind="props"
@@ -75,7 +75,7 @@ export default {
                   'font-size': calcFontSize(sentence['centrality_score']),
                   'opacity': calcHover(clusterStore.clustersById(categoryId)[sentence['cluster']]['hover']),
                 }]">
-        <v-icon v-if="polarity=='pos'" icon="mdi-plus-circle-outline"/><v-icon v-else icon="mdi-minus-circle-outline"/>
+        <v-icon v-if="polarity=='pos'" icon="mdi-plus-circle-outline" :style="[{'color': sentence['color']}]"/><v-icon v-else icon="mdi-minus-circle-outline" :style="[{'color': sentence['color']}]"/>
         {{ sentence['text'] }}.
       </p>
     </template>

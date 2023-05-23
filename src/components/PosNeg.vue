@@ -21,6 +21,7 @@ export default {
     return { hotelStore, reviewStore, categoryStore, clusterStore };
   },
   computed: {},
+  methods:{},
   data: () => ({
     panel: [0, 1],
   })
@@ -65,7 +66,9 @@ export default {
                   <PosNegBulletPoint
                       :hotel = "hotel"
                       :categoryId = "'overall'"
-                      :polarity = "'neg'" ></PosNegBulletPoint>
+                      :polarity = "'neg'"
+                      :key = "'neg_overall_bullet_points'">
+                  </PosNegBulletPoint>
                 </td>
                 <td class="sentiment-chart">
                   <ChartPosNeg
@@ -83,7 +86,9 @@ export default {
                   <PosNegBulletPoint
                       :hotel = "hotel"
                       :categoryId = "'overall'"
-                      :polarity = "'pos'" ></PosNegBulletPoint>
+                      :polarity = "'pos'"
+                      :key = "'pos_overall_bullet_points'">
+                  </PosNegBulletPoint>
                 </td>
               </tr>
             </v-table>
