@@ -46,18 +46,19 @@ export default {
         return '500';
       }
     },
-    calcHover: function (hover) {
-      if (hover || this.clusterStore.noClusterHovered(this.categoryId)) {
+    calcHover: function (hover, categoryId) {
+      if (hover || this.clusterStore.noClusterHovered(categoryId)) {
         return 1;
       } else {
         return .2;
       }
     },
     highlight(categoryId, hotelId, num_items, polarity) {
-      this.emitter.emit("highlight", {categoryId, hotelId, num_items, polarity});
+      console.log('mouseenter highlight');
+      this.emitter.emit("highlight_"+categoryId+'_'+hotelId.replaceAll('.', '_'), {categoryId, hotelId, num_items, polarity});
     },
     unhighlight(categoryId, hotelId) {
-      this.emitter.emit("unhighlight", {categoryId, hotelId});
+      this.emitter.emit("unhighlight_"+categoryId+'_'+hotelId.replaceAll('.', '_'), {categoryId, hotelId});
     },
   },
 };
@@ -72,11 +73,11 @@ export default {
             :key="categoryId+'_'+polarity+'_'+hotel['id']+'_'+sentence['idx_summary']">
     <template v-slot:activator="{ props }">
       <p v-bind="props"
-        @mouseenter="clusterStore.hover(categoryId, sentence['cluster']); highlight(categoryId, hotel['id'], 1+sentence['idx_similar_reviews'].length, polarity);"
-        @mouseleave="clusterStore.unhover(categoryId); unhighlight(categoryId, hotel['id']);"
+        @mouseenter="clusterStore.hover(sentence['category'], sentence['cluster']); highlight(categoryId, hotel['id'], 1+sentence['idx_similar_reviews'].length, polarity);"
+        @mouseleave="clusterStore.unhover(sentence['category']); unhighlight(categoryId, hotel['id']);"
         :style="[{'font-weight': calcFontWeight(sentence['centrality_score']),
                   'font-size': calcFontSize(sentence['centrality_score']),
-                  'opacity': calcHover(clusterStore.clustersById(categoryId)[sentence['cluster']]['hover']),
+                  'opacity': calcHover(clusterStore.clustersById(sentence['category'])[sentence['cluster']]['hover'], sentence['category']),
                 }]">
         <v-icon v-if="polarity=='pos'" icon="mdi-plus-circle-outline" :style="[{'color': sentence['color']}]"/><v-icon v-else icon="mdi-minus-circle-outline" :style="[{'color': sentence['color']}]"/>
         {{ sentence['text'] }}.

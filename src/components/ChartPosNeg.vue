@@ -70,10 +70,11 @@ export default {
     this.plot();
 
 
-    this.emitter.on("highlight", (params) => {
+    this.emitter.on("highlight_"+this.categoryId+'_'+this.hotelId.replaceAll('.', '_'), (params) => {
+      console.log('chart receive highlight');
       this.highlight(params['svgId'], params['categoryId'], params['hotelId'], params['num_items'], params['polarity']);
     });
-    this.emitter.on("unhighlight", (params) => {
+    this.emitter.on("unhighlight_"+this.categoryId+'_'+this.hotelId.replaceAll('.', '_'), (params) => {
       this.unhighlight(params['categoryId'], params['hotelId']);
     });
   },

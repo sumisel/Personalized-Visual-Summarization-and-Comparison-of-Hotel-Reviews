@@ -144,6 +144,7 @@ export const useHotelStore = defineStore({
               let sentences = hotel[prefix+'_summary'][cat['id']].sort((a, b) => a['idx_summary'] - b['idx_summary']).slice(0, num_sentences);
               sentences.forEach((sentence, i) => {
                 sentence['color'] = cat['color'];
+                sentence['category'] = cat['id'];
               });
               summary.push(...sentences);
             }
@@ -152,6 +153,7 @@ export const useHotelStore = defineStore({
 
           summary.forEach((sentence, i) => {
             sentence['color'] = state.categoryStore.categoriesById[category]['color'];
+            sentence['category'] = category;
           });
         }
         console.log("sentimentSummary ", summary);
