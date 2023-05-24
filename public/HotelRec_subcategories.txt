@@ -1,1 +1,0 @@
-{'location', 'service', 'ur_question.prompt.11', 'check in / front desk', 'sleep quality', 'userrating.prompt.190', 'rooms', 'business service (e.g., internet access)', 'cleanliness', 'userrating.prompt.46', 'userrating.prompt.48', 'value'}
