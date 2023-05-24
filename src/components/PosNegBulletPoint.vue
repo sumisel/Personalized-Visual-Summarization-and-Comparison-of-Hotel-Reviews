@@ -32,7 +32,7 @@ export default {
       if (number < .7) {
         return '8pt';
       } else if (number < 1) {
-        return '12pt';
+        return '11pt';
       } else {
         return '14pt';
       }
@@ -62,7 +62,14 @@ export default {
     },
 
     matchText(text, word) {
-      return text.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,'').toLowerCase().split(' ').includes(word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,'').toLowerCase());
+      return text.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,'').toLowerCase().split(' ')
+          .includes(word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,'').toLowerCase().replace(/and|the|is|was|for/gi,''));
+    },
+    roundToInt: function (number) {
+      return number.toFixed(0);
+    },
+    roundToDecimal: function (number, decimals) {
+      return number.toFixed(decimals);
     },
   },
 };
@@ -85,6 +92,12 @@ export default {
                 }]">
         <v-icon v-if="polarity=='pos'" icon="mdi-plus-circle-outline" :style="[{'color': sentence['color']}]"/><v-icon v-else icon="mdi-minus-circle-outline" :style="[{'color': sentence['color']}]"/>
         {{ sentence['text'] }}.
+        <br/>
+        {{ roundToInt((1+sentence['idx_similar_reviews'].length)/hotelStore.countsCategoryPosNeg(categoryId, [hotel])[0][polarity+'Count']) + '% of '+categoryId+ ' '+polarity+' mentions'}}
+        <br/>
+        {{ roundToDecimal(sentence['centrality_score'], 2) + ' centrality score'}}
+        <br/>
+        {{ roundToDecimal((1+sentence['idx_similar_reviews'].length)/hotelStore.hotelById(hotel['id'])['review_count'], 2) + '% of reviews'}}
       </p>
     </template>
     <template v-slot:default="{ isActive }">
@@ -117,9 +130,9 @@ export default {
                 <v-expansion-panel-text>
                   <div class="d-inline"
                        v-for="word in reviewStore.reviewsById[hotel['id']][review['idx_review']]['text'].split(' ')"
-                       :style="[{'font-weight': calcFontWeight(matchText(sentence['text'], word)?1:0),
-                        'font-size': calcFontSize(matchText(sentence['text'], word)?1:.9),
-                        'color': matchText(sentence['text'], word)?sentence['color']:'black',
+                       :style="[{'font-weight': calcFontWeight(matchText(reviewStore.reviewsById[hotel['id']][review['idx_review']][polarity+'_aspects'][review['idx_sentence']], word)?1:0),
+                        'font-size': calcFontSize(matchText(reviewStore.reviewsById[hotel['id']][review['idx_review']][polarity+'_aspects'][review['idx_sentence']], word)?1:.9),
+                        'color': matchText(reviewStore.reviewsById[hotel['id']][review['idx_review']][polarity+'_aspects'][review['idx_sentence']], word)?sentence['color']:'black',
                         }]">
                     {{word+' '}} </div>
                 </v-expansion-panel-text>
