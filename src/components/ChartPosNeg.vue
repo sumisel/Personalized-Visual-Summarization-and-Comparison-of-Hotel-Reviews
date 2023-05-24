@@ -68,6 +68,14 @@ export default {
     });
 
     this.plot();
+
+
+    this.emitter.on("highlight", (params) => {
+      this.highlight(params['svgId'], params['categoryId'], params['hotelId'], params['num_items'], params['polarity']);
+    });
+    this.emitter.on("unhighlight", (params) => {
+      this.unhighlight(params['categoryId'], params['hotelId']);
+    });
   },
   methods: {
     plot() {
@@ -117,46 +125,50 @@ export default {
           .selectAll("text").remove()
 
     },
-  },
-  higlight(svgId, num_items, polarity) {
-    const svg = d3.select("#svgId");
 
-    // x axis
-    const x = d3.scaleLinear()
-        .domain([this.xMin, this.xMax])
-        .range([ 0, this.width]);
-    // y axis
-    const y = d3.scaleBand()
-        .domain([this.hotelId])
-        .range([ 0, this.height ])
-        .padding(.1);
+    highlight(svgId, categoryId, hotelId, num_items, polarity) {
+      const svg = d3.select("#"+categoryId+'_'+hotelId.replaceAll('.', '_'));
+
+      // x axis
+      let xScale = 1;
+      if(categoryId=='overall') xScale = 6;
+      const x = d3.scaleLinear()
+          .domain([-xScale,xScale])
+          .range([ 0, svg.attr("width")]);
+      // y axis
+      const y = d3.scaleBand()
+          .domain([hotelId])
+          .range([ 0, svg.attr("height") ])
+          .padding(.1);
 
 
-    const l = num_items * this.hotelStore.hotelById[this.hotelId]['review_count']
+      const xValue = num_items / this.hotelStore.hotelById(hotelId)['review_count']
 
-    // bars
-    if (polarity=="neg") {
-      svg.append("rect")
-          .class("highlight")
-          .attr("y", y(this.hotelId))
-          .attr("x", x(-l))
-          .attr("width", x(0)-x(-l))
-          .attr("height", y.bandwidth())
-          .attr("fill", "black");
+      // bars
+      if (polarity=="neg") {
+        svg.select("g").append("rect")
+            .attr("class", "highlight")
+            .attr("y", y(hotelId))
+            .attr("x", x(-xValue))
+            .attr("width", x(0)-x(-xValue))
+            .attr("height", y.bandwidth())
+            .attr("fill", "black");
 
-    } else {
-      svg.append("rect")
-          .class("highlight")
-          .attr("y", y(this.hotelId))
-          .attr("x", x(0))
-          .attr("width", x(l)-x(0))
-          .attr("height", y.bandwidth())
-          .attr("fill", "black");
-    }
-  },
-  unhighlight(svgId) {
-    console.log("unhighlight");
-    d3.select("#svgId").selectAll(".highlight").remove();
+      } else {
+        svg.select("g").append("rect")
+            .attr("class", "highlight")
+            .attr("y", y(hotelId))
+            .attr("x", x(0))
+            .attr("width", x(xValue)-x(0))
+            .attr("height", y.bandwidth())
+            .attr("fill", "black");
+      }
+    },
+
+    unhighlight(categoryId, hotelId) {
+      d3.select("#"+categoryId+'_'+hotelId.replaceAll('.', '_')).selectAll(".highlight").remove();
+    },
+
   },
 };
 </script>
@@ -171,5 +183,5 @@ export default {
 </style>
 
 <template>
-  <svg ref="svg" :id="this.categoryId+'_'+this.hotelId"></svg>
+  <svg ref="svg" :id="this.categoryId+'_'+this.hotelId.replaceAll('.', '_')"></svg>
 </template>

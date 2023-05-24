@@ -53,6 +53,12 @@ export default {
         return .2;
       }
     },
+    highlight(categoryId, hotelId, num_items, polarity) {
+      this.emitter.emit("highlight", {categoryId, hotelId, num_items, polarity});
+    },
+    unhighlight(categoryId, hotelId) {
+      this.emitter.emit("unhighlight", {categoryId, hotelId});
+    },
   },
 };
 
@@ -65,13 +71,9 @@ export default {
             v-for="sentence in hotelStore.sentimentSummary(hotel, categoryId, polarity)"
             :key="categoryId+'_'+polarity+'_'+hotel['id']+'_'+sentence['idx_summary']">
     <template v-slot:activator="{ props }">
-      <!--
-      @mouseenter
-       ChartPosNeg.methods.hover(categoryId+'_'+hotel['id'], 1+sentence['idx_similar_reviews'].length, polarity)
-       -->
       <p v-bind="props"
-        @mouseenter="clusterStore.hover(categoryId, sentence['cluster']);"
-        @mouseleave="clusterStore.unhover(categoryId)"
+        @mouseenter="clusterStore.hover(categoryId, sentence['cluster']); highlight(categoryId, hotel['id'], 1+sentence['idx_similar_reviews'].length, polarity);"
+        @mouseleave="clusterStore.unhover(categoryId); unhighlight(categoryId, hotel['id']);"
         :style="[{'font-weight': calcFontWeight(sentence['centrality_score']),
                   'font-size': calcFontSize(sentence['centrality_score']),
                   'opacity': calcHover(clusterStore.clustersById(categoryId)[sentence['cluster']]['hover']),

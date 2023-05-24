@@ -1,6 +1,8 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import '@mdi/font/css/materialdesignicons.css' 
+import '@mdi/font/css/materialdesignicons.css'
+import mitt from 'mitt';
+const emitter = mitt();
 import App from './App.vue'
 
 // Vuetify
@@ -46,4 +48,5 @@ hotelStore.loadHotels(cityId).then(r => {
 const app = createApp(App)
 app.use(vuetify)
 app.use(pinia)
+app.config.globalProperties.emitter = emitter;
 app.mount('#app')

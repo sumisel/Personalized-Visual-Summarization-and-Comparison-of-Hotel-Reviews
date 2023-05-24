@@ -184,7 +184,7 @@ export const useHotelStore = defineStore({
       // init reviews
       this.reviewStore.initReviews(data);
 
-      data.forEach(hotel => {hotel['review_count']=hotel['reviews'].length ;hotel['reviews']=[];hotel['reviews_unannotated']=[];}); // for acceptable page performance, separate reviews from hotels
+      data.forEach(hotel => {hotel['review_count']=Object.keys(hotel['reviews']).length; hotel['reviews']=[];hotel['reviews_unannotated']=[];}); // for acceptable page performance, separate reviews from hotels
       this.hotels = data;
 
       // select first three hotels by default
