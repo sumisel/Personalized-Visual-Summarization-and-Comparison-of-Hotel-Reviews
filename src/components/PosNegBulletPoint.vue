@@ -29,18 +29,18 @@ export default {
   computed: {},
   methods:{
     calcFontSize: function (number) {
-      if (number < .4) {
-        return '5pt';
-      } else if (number < .8) {
+      if (number < .7) {
         return '8pt';
-      } else {
+      } else if (number < 1) {
         return '12pt';
+      } else {
+        return '14pt';
       }
     },
     calcFontWeight: function (number) {
-      if (number < .4) {
+      if (number < .7) {
         return '100';
-      } else if (number < .8) {
+      } else if (number < 1) {
         return '300';
       } else {
         return '500';
@@ -59,6 +59,10 @@ export default {
     },
     unhighlight(categoryId, hotelId) {
       this.emitter.emit("unhighlight_"+categoryId+'_'+hotelId.replaceAll('.', '_'), {categoryId, hotelId});
+    },
+
+    matchText(text, word) {
+      return text.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,'').toLowerCase().split(' ').includes(word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,'').toLowerCase());
     },
   },
 };
@@ -90,7 +94,13 @@ export default {
         </v-toolbar>
         <v-card-text>
           <div class="text-h6">{{reviewStore.reviewsById[hotel['id']][sentence['idx_review']]['title']}}</div>
-          <div>{{reviewStore.reviewsById[hotel['id']][sentence['idx_review']]['text']}}</div>
+          <div class="d-inline"
+               v-for="word in reviewStore.reviewsById[hotel['id']][sentence['idx_review']]['text'].split(' ')"
+               :style="[{'font-weight': calcFontWeight(matchText(sentence['text'], word)?1:0),
+                        'font-size': calcFontSize(matchText(sentence['text'], word)?1:.9),
+                        'color': matchText(sentence['text'], word)?sentence['color']:'black',
+                        }]">
+            {{word+' '}} </div>
 
           <br/>
           <v-divider></v-divider>
@@ -105,9 +115,13 @@ export default {
                   {{reviewStore.reviewsById[hotel['id']][review['idx_review']][polarity+'_aspects'][review['idx_sentence']]}}
                 </v-expansion-panel-title>
                 <v-expansion-panel-text>
-                  <div>
-                    {{reviewStore.reviewsById[hotel['id']][review['idx_review']]['text']}}
-                  </div>
+                  <div class="d-inline"
+                       v-for="word in reviewStore.reviewsById[hotel['id']][review['idx_review']]['text'].split(' ')"
+                       :style="[{'font-weight': calcFontWeight(matchText(sentence['text'], word)?1:0),
+                        'font-size': calcFontSize(matchText(sentence['text'], word)?1:.9),
+                        'color': matchText(sentence['text'], word)?sentence['color']:'black',
+                        }]">
+                    {{word+' '}} </div>
                 </v-expansion-panel-text>
               </v-expansion-panel>
             </v-expansion-panels>
