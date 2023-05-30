@@ -29,18 +29,18 @@ export default {
   computed: {},
   methods:{
     calcFontSize: function (number) {
-      if (number < .7) {
+      if (number < .25) {
         return '8pt';
-      } else if (number < 1) {
+      } else if (number < .5) {
         return '11pt';
       } else {
         return '14pt';
       }
     },
     calcFontWeight: function (number) {
-      if (number < .7) {
+      if (number < .25) {
         return '100';
-      } else if (number < 1) {
+      } else if (number < .5) {
         return '300';
       } else {
         return '500';
@@ -86,18 +86,18 @@ export default {
       <p v-bind="props"
         @mouseenter="clusterStore.hover(sentence['category'], sentence['cluster']); highlight(categoryId, hotel['id'], 1+sentence['idx_similar_reviews'].length, polarity);"
         @mouseleave="clusterStore.unhover(sentence['category']); unhighlight(categoryId, hotel['id']);"
-        :style="[{'font-weight': calcFontWeight(sentence['centrality_score']),
-                  'font-size': calcFontSize(sentence['centrality_score']),
+        :style="[{'font-weight': calcFontWeight(sentence['ratio_category']),
+                  'font-size': calcFontSize(sentence['ratio_category']),
                   'opacity': calcHover(clusterStore.clustersById(sentence['category'])[sentence['cluster']]['hover'], sentence['category']),
                 }]">
         <v-icon v-if="polarity=='pos'" icon="mdi-plus-circle-outline" :style="[{'color': sentence['color']}]"/><v-icon v-else icon="mdi-minus-circle-outline" :style="[{'color': sentence['color']}]"/>
         {{ sentence['text'] }}.
         <br/>
-        {{ roundToInt((1+sentence['idx_similar_reviews'].length)/hotelStore.countsCategoryPosNeg(categoryId, [hotel])[0][polarity+'Count']) + '% of '+categoryId+ ' '+polarity+' mentions'}}
+        {{ roundToInt(sentence['ratio_category']*100) + '% of '+sentence['category']+' '+polarity+' mentions'}}
         <br/>
-        {{ roundToDecimal(sentence['centrality_score'], 2) + ' centrality score'}}
+        {{ roundToDecimal((sentence['cluster_size'])/hotelStore.hotelById(hotel['id'])['review_count'], 2) + '% of reviews'}}
         <br/>
-        {{ roundToDecimal((1+sentence['idx_similar_reviews'].length)/hotelStore.hotelById(hotel['id'])['review_count'], 2) + '% of reviews'}}
+        {{ roundToDecimal(sentence['centrality_score'], 2) + ' centrality score within cluster of similar reviews'}}
       </p>
     </template>
     <template v-slot:default="{ isActive }">
