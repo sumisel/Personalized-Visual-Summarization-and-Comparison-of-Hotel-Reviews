@@ -41,55 +41,63 @@ export default {
               <div class="pa-2 hotel-name">
                 <b><u>Sentiment Overview</u></b>
               </div>
-              <div class="pa-2 sentiment-text"></div>
-              <div class="pa-2 sentiment-chart">
+              <div class="pa-2 sentiment-text-title"></div>
+              <div class="pa-2 ">
                 <ChartPosNeg
                     :categoryId= "'overall'"
                     :hotelId= "'selected'"
                     :posNeg= "hotelStore.countsCategoryPosNeg('overall', hotelStore.selectedHotels)"
                     :color="'#999999'"
-                    :width="100"
+                    :width="200"
                     :height="20"
                     :xMin = "-6"
                     :xMax = "6"
                 ></ChartPosNeg>
               </div>
-              <div class="pa-2 sentiment-text"></div>
+              <div class="pa-2 sentiment-text-title"></div>
             </v-row>
           </v-expansion-panel-title>
           <v-expansion-panel-text>
             <v-table class="ma-2 flex-grow-1 w-90">
               <tr
                   v-for="hotel in hotelStore.selectedHotels" :key="'overall_'+hotel.id">
-                <td class="pa-2 hotel-name">{{ hotel['name'] }}</td>
-                <td class="pa-2 sentiment-text">
-                  <PosNegBulletPoint
-                      :hotel = "hotel"
-                      :categoryId = "'overall'"
-                      :polarity = "'neg'"
-                      :key = "'neg_overall_bullet_points'">
-                  </PosNegBulletPoint>
-                </td>
-                <td class="sentiment-chart">
-                  <ChartPosNeg
-                      :categoryId="'overall'"
-                      :hotelId="hotel['id']"
-                      :posNeg= "hotelStore.countsCategoryPosNeg('overall',[hotel])"
-                      :color="'#999999'"
-                      :width="100"
-                      :height="50"
-                      :xMin = "-6"
-                      :xMax = "6"
-                  ></ChartPosNeg>
-                </td>
-                <td class="pa-2 sentiment-text">
-                  <PosNegBulletPoint
-                      :hotel = "hotel"
-                      :categoryId = "'overall'"
-                      :polarity = "'pos'"
-                      :key = "'pos_overall_bullet_points'">
-                  </PosNegBulletPoint>
-                </td>
+                <table>
+                  <tr>
+                    <td class="pa-2 hotel-name"></td>
+                    <td colspan="3" class="sentiment-chart">
+                      <ChartPosNeg
+                          :categoryId="'overall'"
+                          :hotelId="hotel['id']"
+                          :posNeg= "hotelStore.countsCategoryPosNeg('overall',[hotel])"
+                          :color="'#999999'"
+                          :width="200"
+                          :height="50"
+                          :xMin = "-6"
+                          :xMax = "6"
+                      ></ChartPosNeg>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="pa-2 hotel-name">{{ hotel['name'] }}</td>
+                    <td class="pa-2 sentiment-text">
+                      <PosNegBulletPoint
+                          :hotel = "hotel"
+                          :categoryId = "'overall'"
+                          :polarity = "'neg'"
+                          :key = "'neg_overall_bullet_points'">
+                      </PosNegBulletPoint>
+                    </td>
+                    <td class="placeholder"></td>
+                    <td class="pa-2 sentiment-text">
+                      <PosNegBulletPoint
+                          :hotel = "hotel"
+                          :categoryId = "'overall'"
+                          :polarity = "'pos'"
+                          :key = "'pos_overall_bullet_points'">
+                      </PosNegBulletPoint>
+                    </td>
+                  </tr>
+                </table>
               </tr>
             </v-table>
           </v-expansion-panel-text>
@@ -114,12 +122,20 @@ export default {
   width: 15% !important;
 }
 
+.sentiment-text-title {
+  width: 30% !important;
+}
+
 .sentiment-text {
-  width: 35% !important;
+  width: 40% !important;
+}
+
+.placeholder {
+  width: 5% !important;
 }
 
 .sentiment-chart {
-  width: 15% !important;
+  width: 100% !important;
   text-align: center;
   vertical-align: middle;
 }

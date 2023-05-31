@@ -41,55 +41,63 @@ const props = defineProps({
               <div class="pa-2 hotel-name">
                 <CategoryName :categoryId="category['id']"></CategoryName>
               </div>
-              <div class="pa-2 sentiment-text"></div>
-              <div class="pa-2 sentiment-chart">
+              <div class="pa-2 sentiment-text-title"></div>
+              <div class="pa-2 ">
                 <ChartPosNeg
                     :categoryId="category['id']"
                     :hotelId = "'selected'"
                     :posNeg= "hotelStore.countsCategoryPosNeg(category['id'], hotelStore.selectedHotels)"
                     :color="category['color']"
-                    :width="100"
+                    :width="200"
                     :height="20"
                     :xMin = "-1"
                     :xMax = "1"
                     :key="'posneg_chart_'+category['id']"
                 ></ChartPosNeg>
               </div>
-              <div class="pa-2 sentiment-text"></div>
+              <div class="pa-2 sentiment-text-title"></div>
             </v-row>
           </v-expansion-panel-title>
           <v-expansion-panel-text
               :style="[(category['hover'] || categoryStore.noCategoryHovered)?{'opacity': 1}:{'opacity': .2}]">
-          <v-table class="ma-2 flex-grow-1 w-90" table-layout="fixed">
-            <tr v-for="hotel in hotelStore.selectedHotels" :key="category['id']+'_'+hotel['id']">
-              <td class="pa-2 hotel-name">{{ hotel.name }}</td>
-              <td class="pa-2 sentiment-text">
-                <PosNegBulletPoint
-                    :hotel = "hotel"
-                    :categoryId = "category['id']"
-                    :polarity = "'neg'" ></PosNegBulletPoint>
-              </td>
-              <td class="sentiment-chart">
-                <ChartPosNeg
-                    :categoryId="category['id']"
-                    :hotelId = "hotel['id']"
-                    :posNeg= "hotelStore.countsCategoryPosNeg(category['id'], [hotel])"
-                    :color="category['color']"
-                    :width="100"
-                    :height="50"
-                    :xMin = "-1"
-                    :xMax = "1"
-                    :key="'posneg_chart_'+hotel['id']+'_'+category['id']"
-                ></ChartPosNeg>
-              </td>
-              <td class="pa-2 sentiment-text">
-                <PosNegBulletPoint
-                    :hotel = "hotel"
-                    :categoryId = "category['id']"
-                    :polarity = "'pos'" ></PosNegBulletPoint>
-              </td>
-            </tr>
-          </v-table>
+            <v-table class="ma-2 flex-grow-1 w-90" table-layout="fixed">
+              <tr v-for="hotel in hotelStore.selectedHotels" :key="category['id']+'_'+hotel['id']">
+                <table>
+                  <tr>
+                    <td class="pa-2 hotel-name"></td>
+                    <td colspan="3" class="sentiment-chart">
+                      <ChartPosNeg
+                          :categoryId="category['id']"
+                          :hotelId = "hotel['id']"
+                          :posNeg= "hotelStore.countsCategoryPosNeg(category['id'], [hotel])"
+                          :color="category['color']"
+                          :width="200"
+                          :height="50"
+                          :xMin = "-1"
+                          :xMax = "1"
+                          :key="'posneg_chart_'+hotel['id']+'_'+category['id']"
+                      ></ChartPosNeg>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="pa-2 hotel-name">{{ hotel.name }}</td>
+                    <td class="pa-2 sentiment-text">
+                      <PosNegBulletPoint
+                          :hotel = "hotel"
+                          :categoryId = "category['id']"
+                          :polarity = "'neg'" ></PosNegBulletPoint>
+                    </td>
+                    <td class="placeholder"></td>
+                    <td class="pa-2 sentiment-text">
+                      <PosNegBulletPoint
+                          :hotel = "hotel"
+                          :categoryId = "category['id']"
+                          :polarity = "'pos'" ></PosNegBulletPoint>
+                    </td>
+                  </tr>
+                </table>
+              </tr>
+            </v-table>
           </v-expansion-panel-text>
         </v-expansion-panel>
       </v-expansion-panels>
@@ -97,32 +105,3 @@ const props = defineProps({
   </div>
 </template>
 
-<style scoped>
-.hotel-name {
-  width: 15% !important;
-}
-
-.sentiment-text {
-  width: 35% !important;
-}
-
-.sentiment-chart {
-  width: 15% !important;
-  text-align: center;
-  vertical-align: middle;
-}
-
-.v-avatar {
-  width: 100px !important;
-  height: 100px !important;
-}
-
-.v-card {
-  overflow: visible;
-}
-
-.v-card-title {
-  white-space: normal;
-}
-
-</style>

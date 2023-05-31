@@ -83,9 +83,11 @@ export default {
             v-for="sentence in hotelStore.sentimentSummary(hotel, categoryId, polarity)"
             :key="categoryId+'_'+polarity+'_'+hotel['id']+'_'+sentence['idx_summary']">
     <template v-slot:activator="{ props }">
+      <!--@mouseenter="clusterStore.hover(sentence['category'], sentence['cluster']); highlight(categoryId, hotel['id'], sentence['cluster_size'], polarity);"
+        @mouseleave="clusterStore.unhover(sentence['category']); unhighlight(categoryId, hotel['id']);"-->
       <p v-bind="props"
-        @mouseenter="clusterStore.hover(sentence['category'], sentence['cluster']); highlight(categoryId, hotel['id'], sentence['cluster_size'], polarity);"
-        @mouseleave="clusterStore.unhover(sentence['category']); unhighlight(categoryId, hotel['id']);"
+        @mouseenter=" highlight(sentence['category'], hotel['id'], sentence['cluster_size'], polarity);"
+        @mouseleave=" unhighlight(sentence['category'], hotel['id']);"
         :style="[{'font-weight': calcFontWeight(sentence['ratio_category']),
                   'font-size': calcFontSize(sentence['ratio_category']),
                   'opacity': calcHover(clusterStore.clustersById(sentence['category'])[sentence['cluster']]['hover'], sentence['category']),

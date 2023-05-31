@@ -26,7 +26,7 @@ export default {
     },
     width: {
       type: Number,
-      default: 100,
+      default: 200,
     },
     height: {
       type: Number,
@@ -120,7 +120,7 @@ export default {
 
       // add the y Axis on top of the bars
       svg.append("g")
-          .attr("transform", "translate(" + x(0) + ",0)")
+          .attr("transform", "translate(" + (x(0)-.5) + ",0)")
           .call(d3.axisLeft(y)
               .tickSizeOuter(0))
           .selectAll("path").attr("stroke-width", "2px");
@@ -133,7 +133,7 @@ export default {
 
       // x axis
       let xScale = 1;
-      if(categoryId=='overall') xScale = 6;
+      if(categoryId=='overall') xScale = 1;
       const x = d3.scaleLinear()
           .domain([-xScale,xScale])
           .range([ 0, svg.attr("width")]);
@@ -163,7 +163,8 @@ export default {
             .attr("x", x(0))
             .attr("width", x(xValue)-x(0))
             .attr("height", y.bandwidth())
-            .attr("fill", "black");
+            .attr("fill", "black")
+            .attr("stroke-width", "0px");
       }
     },
 
