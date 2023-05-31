@@ -123,7 +123,8 @@ export default {
           .attr("transform", "translate(" + x(0) + ",0)")
           .call(d3.axisLeft(y)
               .tickSizeOuter(0))
-          .selectAll("text").remove()
+          .selectAll("path").attr("stroke-width", "2px");
+      svg.selectAll("text").remove();
 
     },
 
