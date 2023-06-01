@@ -154,7 +154,9 @@ export default {
             .attr("x", x(-xValue))
             .attr("width", x(0)-x(-xValue))
             .attr("height", y.bandwidth())
-            .attr("fill", "black");
+            .attr("fill", "black")
+            .attr("stroke-width", "1px")
+            .attr("stroke", "white");
 
       } else {
         svg.select("g").append("rect")
@@ -164,7 +166,8 @@ export default {
             .attr("width", x(xValue)-x(0))
             .attr("height", y.bandwidth())
             .attr("fill", "black")
-            .attr("stroke-width", "0px");
+            .attr("stroke-width", "1px")
+            .attr("stroke", "white");
       }
     },
 

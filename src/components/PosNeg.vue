@@ -71,7 +71,7 @@ export default {
                           :posNeg= "hotelStore.countsCategoryPosNeg('overall',[hotel])"
                           :color="'#999999'"
                           :width="200"
-                          :height="50"
+                          :height="10"
                           :xMin = "-6"
                           :xMax = "6"
                       ></ChartPosNeg>
@@ -123,7 +123,7 @@ export default {
 }
 
 .sentiment-text-title {
-  width: 30% !important;
+  width: 31.3% !important;
 }
 
 .sentiment-text {
