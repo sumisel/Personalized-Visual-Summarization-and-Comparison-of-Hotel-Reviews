@@ -98,6 +98,7 @@ export default {
                     </td>
                   </tr>
                 </table>
+                <hr/>
               </tr>
             </v-table>
           </v-expansion-panel-text>

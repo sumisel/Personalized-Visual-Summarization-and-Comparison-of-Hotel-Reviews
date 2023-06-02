@@ -96,6 +96,7 @@ const props = defineProps({
                     </td>
                   </tr>
                 </table>
+                <hr/>
               </tr>
             </v-table>
           </v-expansion-panel-text>
