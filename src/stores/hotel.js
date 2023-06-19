@@ -187,7 +187,7 @@ export const useHotelStore = defineStore({
       this.hotels.forEach((hotel, i) => hotel.isSelected = i < 3 ? i+1 : 0);
 
       // initiate sentiment sentence clusters, for acceptable page performance, separate clusters from hotels
-      // this.clusterStore.initClusters(this.hotels);
+      this.clusterStore.initClusters(this.hotels);
 
       // load ratings over time
       // TODO: this is a temporary solution, will be replaced when the data is in the enriched data file

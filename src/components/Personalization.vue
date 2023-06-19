@@ -8,9 +8,9 @@ const { categories } = storeToRefs(categoryStore);
 </script>
 
 <template>
-  <v-sheet class="ma-2 pa-2">
+  <v-sheet class="ma-2 pa-2 rounded">
     <div class="my-2">
-      <div class="text-h6 mb-4">My Priorities</div>
+      <div class="text-h6">My Priorities</div>
       <div class="d-flex justify-center">
         <Glyph></Glyph>
         <div>
@@ -62,8 +62,8 @@ const { categories } = storeToRefs(categoryStore);
       </v-table>
     </div>
     <v-divider></v-divider>
-    <div class="my-8">
-      <div class="text-h6 mb-4">My Points of Interest</div>
+    <div class="my-2">
+      <div class="text-h6">My Points of Interest</div>
       <v-autocomplete
         label="Choose your favorites"
         prepend-icon="mdi-map-marker-plus"
