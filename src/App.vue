@@ -40,16 +40,6 @@ const sections = [
     icon: "mdi-trending-up",
     component: Trending,
   },
-  {
-    id: "stories",
-    title: "Stories",
-    icon: "mdi-comment-quote",
-  },
-  {
-    id: "fun",
-    title: "Fun Facts",
-    icon: "mdi-party-popper",
-  },
 ];
 
 const scrollTo = (hash) => {
