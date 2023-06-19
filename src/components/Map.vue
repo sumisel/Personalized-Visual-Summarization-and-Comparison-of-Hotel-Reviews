@@ -35,7 +35,8 @@ export default {
 </script>
 
 <template>
-  <div class="ml-12 instruction">
+  <div>Among the available <strong>{{ hotelStore.hotels.length }}</strong> hotels, <strong>{{ hotelStore.selectedHotels.length }}</strong>  are selected.</div>
+  <div class="ml-12 mt-4 instruction">
     Please click a marker to select/deselect a hotel.
   </div>
   <div class="map">
