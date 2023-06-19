@@ -63,24 +63,6 @@ const { categories } = storeToRefs(categoryStore);
     </div>
     <v-divider></v-divider>
     <div class="my-2">
-      <div class="text-h6">My Keywords</div>
-      <v-autocomplete
-        label="Add keyword"
-        prepend-icon="mdi-tag-plus"
-        :items="[
-          'wifi',
-          'shower',
-          'breakfast',
-          'public transport',
-          'parking',
-          'walking',
-        ]"
-      ></v-autocomplete>
-      <v-chip closable>pool</v-chip>
-      <v-chip closable>drinks</v-chip>
-    </div>
-    <v-divider></v-divider>
-    <div class="my-2">
       <div class="text-h6">My Points of Interest</div>
       <v-autocomplete
         label="Add location"
