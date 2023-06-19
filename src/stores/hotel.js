@@ -25,8 +25,6 @@ export const useHotelStore = defineStore({
         service: 5.0,
         cleanliness: 5.0,
         sleep: 5.0,
-        business: 5.0,
-        checkin: 5.0,
       }
       state.selectedHotels.forEach(hotel => {
         for (let categoryId in hotel.ratings) {
@@ -43,8 +41,6 @@ export const useHotelStore = defineStore({
         service: .0,
         cleanliness: 0.0,
         sleep: 0.0,
-        business: 0.0,
-        checkin: 0.0,
       }
       state.selectedHotels.forEach(hotel => {
         for (let categoryId in hotel.ratings) {
@@ -55,10 +51,10 @@ export const useHotelStore = defineStore({
     },
     overallRating: (state) => {
       return (hotel) =>
-        Object.keys(hotel.ratings).reduce(
-          (sum, categoryId) =>
+      state.categoryStore.categories.reduce(
+          (sum, category) =>
           (sum +=
-            hotel.ratings[categoryId] * state.categoryStore.normalizedCategoryValues[categoryId]
+            hotel.ratings[category.id] * state.categoryStore.normalizedCategoryValues[category.id]
           ),
           0
         )
@@ -73,8 +69,6 @@ export const useHotelStore = defineStore({
           service: 5.0,
           cleanliness: 5.0,
           sleep: 5.0,
-          business: 5.0,
-          checkin: 5.0,
         };
         state.selectedHotels.forEach((hotel2) => {
           if (hotel.id != hotel2.id) {

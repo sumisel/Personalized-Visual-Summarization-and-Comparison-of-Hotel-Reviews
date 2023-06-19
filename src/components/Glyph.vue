@@ -18,8 +18,6 @@ export default {
         service: 5.0,
         cleanliness: 5.0,
         sleep: 5.0,
-        business: 5.0,
-        checkin: 5.0,
       },
     },
     minRatings: {
@@ -31,8 +29,6 @@ export default {
         service: 3.0,
         cleanliness: 3.0,
         sleep: 3.0,
-        business: 3.0,
-        checkin: 3.0,
       },
     },
     hotelId: {
@@ -97,11 +93,11 @@ export default {
         .innerRadius(0)
         .outerRadius((d) => d.data.minRatings * 10);
       const overallRating = [
-        Object.keys(this.ratings).reduce(
-          (sum, categoryId) =>
+        this.categoryStore.categories.reduce(
+          (sum, category) =>
             (sum +=
-              this.ratings[categoryId] *
-              this.categoryStore.normalizedCategoryValues[categoryId]),
+              this.ratings[category.id] *
+              this.categoryStore.normalizedCategoryValues[category.id]),
           0
         ),
       ];
