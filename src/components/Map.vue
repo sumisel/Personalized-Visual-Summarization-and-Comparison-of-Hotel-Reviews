@@ -35,9 +35,14 @@ export default {
 </script>
 
 <template>
-  <div>Among the available <strong>{{ hotelStore.hotels.length }}</strong> hotels, <strong>{{ hotelStore.selectedHotels.length }}</strong>  are selected.</div>
+  <div>Among the available <strong>{{ hotelStore.hotels.length }}</strong> hotels, 
+    <span v-if="hotelStore.selectedHotels.length > 1"  ><strong>{{ hotelStore.selectedHotels.length }}</strong>  are</span>
+    <span v-if="hotelStore.selectedHotels.length === 1" >only <strong>1</strong> is</span>
+    <span v-if="hotelStore.selectedHotels.length === 0" ><strong>none</strong> is</span>
+     selected.</div>
   <div class="ml-12 mt-4 instruction">
     Please click a marker to select/deselect a hotel.
+    <strong v-if="hotelStore.selectedHotels.length < 2">Select more than one hotel to compare.</strong>
   </div>
   <div class="map">
     <l-map
