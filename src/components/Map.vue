@@ -10,7 +10,6 @@ import {
   LIcon,
 } from "@vue-leaflet/vue-leaflet";
 import { useHotelStore } from "@/stores/hotel";
-import { useCityStore } from "@/stores/city.js";
 
 export default {
   components: {
@@ -23,12 +22,10 @@ export default {
   setup() {
     const map = ref();
     const hotelStore = useHotelStore();
-    const cityStore = useCityStore();
 
     return {
       map,
-      hotelStore,
-      cityStore
+      hotelStore
     };
   },
 };
@@ -47,10 +44,10 @@ export default {
   <div class="map">
     <l-map
       ref="map"
-      :center="cityStore.city.center"
-      :zoom="cityStore.city.zoom"
-      :minZoom="cityStore.city.zoom"
-      :maxZoom="cityStore.city.zoom"
+      :center="$city.center"
+      :zoom="$city.zoom"
+      :minZoom="$city.zoom"
+      :maxZoom="$city.zoom"
       :useGlobalLeaflet="false"
       :options="{
         zoomControl: false,

@@ -5,9 +5,6 @@ import HotelOverview from "./components/HotelOverview.vue";
 import PosNeg from "./components/PosNeg.vue";
 import Trending from "./components/Trending.vue";
 import CloseBy from "./components/CloseBy.vue";
-import { useCityStore } from "./stores/city.js";
-
-const cityStore = useCityStore();
 
 const sections = [
   {
@@ -76,18 +73,18 @@ const scrollTo = (hash) => {
             rgba(255, 255, 255, 0),
             rgba(255, 255, 255, 1)
           ),
-          url('${cityStore.city.img?.url}');`"
+          url('${$city.img?.url}');`"
     >
       <div class="content mx-auto">
         <div class="text-h1 my-16" id="city-name">
-          {{ cityStore.city.name }}
+          {{ $city.name }}
         </div>
         <div class="text-right text-caption">
           Image by
-          <a :href="cityStore.city.img?.href">{{
-            cityStore.city.img?.attribution
+          <a :href="$city.img?.href">{{
+            $city.img?.attribution
           }}</a>
-          ({{ cityStore.city.img?.license }})
+          ({{ $city.img?.license }})
         </div>
         <div
           v-for="section in sections"

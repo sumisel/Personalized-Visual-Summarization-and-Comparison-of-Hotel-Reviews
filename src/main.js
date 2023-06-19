@@ -19,11 +19,9 @@ const vuetify = createVuetify({
 // set up Pinia 
 const pinia = createPinia();
 import { useHotelStore } from "./stores/hotel.js";
-import { useCityStore } from "./stores/city.js";
 import { useCategoryStore } from "./stores/category.js";
 import { useClusterStore } from "./stores/cluster.js";
 import { useTimeStore} from "./stores/ratings_over_time.js";
-const cityStore = useCityStore(pinia);
 const hotelStore = useHotelStore(pinia);
 const categoryStore = useCategoryStore(pinia);
 const clusterStore = useClusterStore(pinia);
@@ -41,7 +39,8 @@ export { globals }
 // set city and load data
 const params = new URL(document.location).searchParams;
 const cityId = params.get("city") ? params.get("city") : "Berlin";
-cityStore.setCity(cityId);
+import cities from "./assets/cities.json"
+app.config.globalProperties.$city = cities[cityId];
 
 const result = await fetch("/HotelRec_subset_" + cityId + "_10_enriched.txt");
 const data = await result.json();
@@ -65,6 +64,5 @@ hotelStore.initHotels(data, cityId)
     //hotelStore.hotels[0].isSelected = 1;
 });
 
-
 // mount App
-app.mount('#app')
+app.mount('#app');
