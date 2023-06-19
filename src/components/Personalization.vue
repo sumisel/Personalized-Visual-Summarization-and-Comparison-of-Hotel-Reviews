@@ -65,11 +65,11 @@ const { categories } = storeToRefs(categoryStore);
     <div class="my-2">
       <div class="text-h6">My Points of Interest</div>
       <v-autocomplete
-        label="Add location"
+        label="Choose your favorites"
         prepend-icon="mdi-map-marker-plus"
-        :items="['downtwon', 'cathedral', 'woods', 'Eiffel Tower', 'Louvre']"
+        :items="['parks and recreation', 'public transport', 'nightlive', 'restaurants', 'shopping', 'sightseeing']"
       ></v-autocomplete>
-      <v-chip closable>beach</v-chip>
+      <v-chip closable>restaurants</v-chip>
     </div>
   </v-sheet>
 </template>
