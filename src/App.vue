@@ -49,13 +49,9 @@ const scrollTo = (hash) => {
 
 <template>
   <v-app>
-    <v-app-bar
-      ><v-app-bar-title
-        ><v-icon icon="mdi-office-building"></v-icon
-        ><v-icon icon="mdi-arrow-left-right"></v-icon
-        ><v-icon icon="mdi-office-building" class="mr-4"></v-icon>Hotel Review
-        Comparison</v-app-bar-title
-      >
+    <v-app-bar>
+      <img src="/logo.png" alt="logo" class="mr-2 ml-4" height="48" />
+      <v-app-bar-title> Hotel Review Comparison </v-app-bar-title>
       <v-btn href="?city=Berlin">Berlin</v-btn>
       <v-btn href="?city=New_York">New York</v-btn>
       <v-btn href="?city=Paris">Paris</v-btn>
