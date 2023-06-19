@@ -1,15 +1,14 @@
 import { defineStore, storeToRefs } from 'pinia'
 
 import { useCategoryStore } from "./category.js";
-import { useReviewStore} from "./review.js";
 import { useClusterStore } from "./cluster.js";
 import { useTimeStore} from "./ratings_over_time.js";
+import { globals } from './../main.js'
 
 export const useHotelStore = defineStore({
   id: 'hotel',
   state: () => ({
     categoryStore: useCategoryStore(),
-    reviewStore: useReviewStore(),
     clusterStore: useClusterStore(),
     timeStore: useTimeStore(),
     hotels: [],
@@ -119,50 +118,6 @@ export const useHotelStore = defineStore({
         return counts;
       }
     },
-    sentimentSummary: (state) => {
-      return (hotel, category, prefix) => {
-        console.log("sentimentSummary ", hotel['id'], " ", category, " ", prefix);
-        const reviews = state.reviewStore.reviewsById[hotel['id']];
-        let summary = [];
-
-        // compile sentences from all categories if it's the overall summary
-        if(category == 'overall') {
-            for(let cat of state.categoryStore.relevantCategories) {
-              let num_sentences = 0;
-              if ( cat['value'] > 33 ) {
-                num_sentences = 1;
-              }
-              if ( cat['value'] > 66 ) {
-                num_sentences = 2;
-              }
-              let sentences = hotel[prefix+'_summary'][cat['id']].sort((a, b) => a['idx_summary'] - b['idx_summary']).slice(0, num_sentences);
-              sentences.forEach((sentence, i) => {
-                sentence['color'] = cat['color'];
-                sentence['category'] = cat['id'];
-              });
-              summary.push(...sentences);
-            }
-        } else {
-          summary = hotel[prefix+'_summary'][category].sort((a, b) => a['idx_summary'] - b['idx_summary']).slice(0, 5);
-
-          summary.forEach((sentence, i) => {
-            sentence['color'] = state.categoryStore.categoriesById[category]['color'];
-            sentence['category'] = category;
-          });
-        }
-        console.log("sentimentSummary ", summary);
-
-        summary.forEach((sentence, i) => {
-          sentence['text'] = reviews[sentence['idx_review']][prefix+'_aspects'][sentence['idx_sentence']];
-          sentence['idx_similar_reviews'].forEach((rev, j) => {
-            rev['text'] = reviews[rev['idx_review']][prefix+'_aspects'][rev['idx_sentence']];
-          });
-        });
-
-        //console.log("sentimentSummary ", summary);
-        return summary;
-      }
-    },
     hotelByName: (state) => {
       return (name) => state.hotels.find(hotel => hotel.name === name);
     },
@@ -171,23 +126,19 @@ export const useHotelStore = defineStore({
     },
   },
   actions: {
-    async loadHotels(city) {
-      // load hotel ratings
+    async initHotels(data, city) {
+      /*// load hotel ratings
       city = city.replace(" ", "_");
       const result = await fetch("/HotelRec_subset_" + city + "_10_enriched.txt");
       const data = await result.json();
-
-      // init reviews
-      this.reviewStore.initReviews(data);
-
-      data.forEach(hotel => {hotel['review_count']=Object.keys(hotel['reviews']).length; hotel['reviews']=[];hotel['reviews_unannotated']=[];}); // for acceptable page performance, separate reviews from hotels
+      */
       this.hotels = data;
 
       // select first three hotels by default
       this.hotels.forEach((hotel, i) => hotel.isSelected = i < 3 ? i+1 : 0);
 
       // initiate sentiment sentence clusters, for acceptable page performance, separate clusters from hotels
-      this.clusterStore.initClusters(this.hotels);
+      //this.clusterStore.initClusters(this.hotels);
 
       // load ratings over time
       // TODO: this is a temporary solution, will be replaced when the data is in the enriched data file
@@ -195,6 +146,46 @@ export const useHotelStore = defineStore({
       const ratings_time_data = await ratings_time.json();
       this.timeStore.initTimeData(this.hotels, ratings_time_data);
     },
+    sentimentSummary(hotel, category, prefix) {
+      console.log("sentimentSummary ", hotel['id'], " ", category, " ", prefix);
+      let summary = [];
 
+      // compile sentences from all categories if it's the overall summary
+      if(category == 'overall') {
+        for(let cat of this.categoryStore.relevantCategories) {
+          let num_sentences = 0;
+          if ( cat['value'] > 33 ) {
+            num_sentences = 1;
+          }
+          if ( cat['value'] > 66 ) {
+            num_sentences = 2;
+          }
+          let sentences = hotel[prefix+'_summary'][cat['id']].sort((a, b) => a['idx_summary'] - b['idx_summary']).slice(0, num_sentences);
+          sentences.forEach((sentence, i) => {
+            sentence['color'] = cat['color'];
+            sentence['category'] = cat['id'];
+          });
+          summary.push(...sentences);
+        }
+      } else {
+        summary = hotel[prefix+'_summary'][category].sort((a, b) => a['idx_summary'] - b['idx_summary']).slice(0, 5);
+
+        summary.forEach((sentence, i) => {
+          sentence['color'] = this.categoryStore.categoriesById[category]['color'];
+          sentence['category'] = category;
+        });
+      }
+      console.log("sentimentSummary ", summary);
+
+      summary.forEach((sentence, i) => {
+        sentence['text'] = globals.$reviews[hotel['id']][sentence['idx_review']][prefix+'_aspects'][sentence['idx_sentence']];
+        sentence['idx_similar_reviews'].forEach((rev, j) => {
+          rev['text'] = globals.$reviews[hotel['id']][rev['idx_review']][prefix+'_aspects'][rev['idx_sentence']];
+        });
+      });
+
+      //console.log("sentimentSummary ", summary);
+      return summary;
+    },
   },
 })

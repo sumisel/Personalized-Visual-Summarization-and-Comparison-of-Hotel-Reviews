@@ -3,7 +3,6 @@ import CategoryPosNeg from "./CategoryPosNeg.vue";
 import ChartPosNeg from "./ChartPosNeg.vue";
 import PosNegBulletPoint from "./PosNegBulletPoint.vue";
 import { useHotelStore } from "../stores/hotel.js";
-import { useReviewStore } from "../stores/review.js";
 import { useCategoryStore } from "../stores/category.js";
 import { useClusterStore } from "../stores/cluster.js";
 
@@ -15,10 +14,9 @@ export default {
   },
   setup() {
     const hotelStore = useHotelStore();
-    const reviewStore = useReviewStore();
     const categoryStore = useCategoryStore();
     const clusterStore = useClusterStore();
-    return { hotelStore, reviewStore, categoryStore, clusterStore };
+    return { hotelStore, categoryStore, clusterStore };
   },
   computed: {},
   methods:{},

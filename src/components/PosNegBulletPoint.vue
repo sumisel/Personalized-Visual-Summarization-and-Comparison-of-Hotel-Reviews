@@ -1,8 +1,8 @@
 <script>
 import { useHotelStore } from "../stores/hotel.js";
-import { useReviewStore }  from "../stores/review.js";
 import { useClusterStore} from "../stores/cluster.js";
-import { useCategoryStore} from "@/stores/category";
+import { useCategoryStore} from "../stores/category";
+import {globals} from "./../main";
 
 export default {
   props: {
@@ -21,10 +21,9 @@ export default {
   },
   setup() {
     const hotelStore = useHotelStore();
-    const reviewStore = useReviewStore();
     const categoryStore = useCategoryStore();
     const clusterStore = useClusterStore();
-    return { hotelStore, reviewStore, categoryStore, clusterStore };
+    return { hotelStore, categoryStore, clusterStore, globals };
   },
   computed: {},
   methods:{
@@ -84,13 +83,13 @@ export default {
             :key="categoryId+'_'+polarity+'_'+hotel['id']+'_'+sentence['idx_summary']">
     <template v-slot:activator="{ props }">
       <!--@mouseenter="clusterStore.hover(sentence['category'], sentence['cluster']); highlight(categoryId, hotel['id'], sentence['cluster_size'], polarity);"
-        @mouseleave="clusterStore.unhover(sentence['category']); unhighlight(categoryId, hotel['id']);"-->
+        @mouseleave="clusterStore.unhover(sentence['category']); unhighlight(categoryId, hotel['id']);"
+                  'opacity': calcHover(clusterStore.clustersById(sentence['category'])[sentence['cluster']]['hover'], sentence['category']),-->
       <p v-bind="props"
         @mouseenter=" highlight(categoryId, hotel['id'], sentence['cluster_size'], polarity);"
         @mouseleave=" unhighlight(categoryId, hotel['id']);"
         :style="[{'font-weight': calcFontWeight(sentence['ratio_category']),
                   'font-size': calcFontSize(sentence['ratio_category']),
-                  'opacity': calcHover(clusterStore.clustersById(sentence['category'])[sentence['cluster']]['hover'], sentence['category']),
                 }]">
         <v-icon v-if="polarity=='pos'" icon="mdi-plus-circle-outline" :style="[{'color': sentence['color']}]"/><v-icon v-else icon="mdi-minus-circle-outline" :style="[{'color': sentence['color']}]"/>
         {{ sentence['text'] }}.
@@ -108,9 +107,9 @@ export default {
           <v-toolbar-title>{{ hotel['name'] +" - " + sentence['text'] }}</v-toolbar-title>
         </v-toolbar>
         <v-card-text>
-          <div class="text-h6">{{reviewStore.reviewsById[hotel['id']][sentence['idx_review']]['title']}}</div>
+          <div class="text-h6">{{globals.$reviews[hotel['id']][sentence['idx_review']]['title']}}</div>
           <div class="d-inline"
-               v-for="word in reviewStore.reviewsById[hotel['id']][sentence['idx_review']]['text'].split(' ')"
+               v-for="word in globals.$reviews[hotel['id']][sentence['idx_review']]['text'].split(' ')"
                :style="[{'font-weight': calcFontWeight(matchText(sentence['text'], word)?1:0),
                         'font-size': calcFontSize(matchText(sentence['text'], word)?1:.9),
                         'color': matchText(sentence['text'], word)?sentence['color']:'black',
@@ -127,14 +126,14 @@ export default {
             <v-expansion-panels>
               <v-expansion-panel>
                 <v-expansion-panel-title>
-                  {{reviewStore.reviewsById[hotel['id']][review['idx_review']][polarity+'_aspects'][review['idx_sentence']]}}
+                  {{globals.$reviews[hotel['id']][review['idx_review']][polarity+'_aspects'][review['idx_sentence']]}}
                 </v-expansion-panel-title>
                 <v-expansion-panel-text>
                   <div class="d-inline"
-                       v-for="word in reviewStore.reviewsById[hotel['id']][review['idx_review']]['text'].split(' ')"
-                       :style="[{'font-weight': calcFontWeight(matchText(reviewStore.reviewsById[hotel['id']][review['idx_review']][polarity+'_aspects'][review['idx_sentence']], word)?1:0),
-                        'font-size': calcFontSize(matchText(reviewStore.reviewsById[hotel['id']][review['idx_review']][polarity+'_aspects'][review['idx_sentence']], word)?1:.9),
-                        'color': matchText(reviewStore.reviewsById[hotel['id']][review['idx_review']][polarity+'_aspects'][review['idx_sentence']], word)?sentence['color']:'black',
+                       v-for="word in globals.$reviews[hotel['id']][review['idx_review']]['text'].split(' ')"
+                       :style="[{'font-weight': calcFontWeight(matchText(globals.$reviews[hotel['id']][review['idx_review']][polarity+'_aspects'][review['idx_sentence']], word)?1:0),
+                        'font-size': calcFontSize(matchText(globals.$reviews[hotel['id']][review['idx_review']][polarity+'_aspects'][review['idx_sentence']], word)?1:.9),
+                        'color': matchText(globals.$reviews[hotel['id']][review['idx_review']][polarity+'_aspects'][review['idx_sentence']], word)?sentence['color']:'black',
                         }]">
                     {{word+' '}} </div>
                 </v-expansion-panel-text>
