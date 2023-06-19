@@ -19,12 +19,10 @@ const vuetify = createVuetify({
 // set up Pinia 
 const pinia = createPinia();
 import { useHotelStore } from "./stores/hotel.js";
-import { useCityStore } from "./stores/city.js";
 import { useCategoryStore } from "./stores/category.js";
 import { useReviewStore} from "./stores/review.js";
 import { useClusterStore } from "./stores/cluster.js";
 import { useTimeStore} from "./stores/ratings_over_time.js";
-const cityStore = useCityStore(pinia);
 const hotelStore = useHotelStore(pinia);
 const categoryStore = useCategoryStore(pinia);
 const reviewStore = useReviewStore(pinia);
@@ -34,7 +32,6 @@ const timeStore = useTimeStore(pinia);
 // set city and load data
 const params = new URL(document.location).searchParams;
 const cityId = params.get("city") ? params.get("city") : "Berlin";
-cityStore.setCity(cityId);
 hotelStore.loadHotels(cityId).then(r => {
     // trigger loading of data that depends on category values
     categoryStore.categoriesById["location"].value = 40;
@@ -44,9 +41,15 @@ hotelStore.loadHotels(cityId).then(r => {
     //hotelStore.hotels[0].isSelected = 1;
 });
 
-// create and mount App
+// create app
 const app = createApp(App)
 app.use(vuetify)
 app.use(pinia)
+
+// set global properties and data
 app.config.globalProperties.emitter = emitter;
+import cities from "./assets/cities.json"
+app.config.globalProperties.$city = cities[cityId];
+
 app.mount('#app')
+
