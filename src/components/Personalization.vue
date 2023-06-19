@@ -3,8 +3,10 @@ import Glyph from "./Glyph.vue";
 
 import { storeToRefs } from "pinia";
 import { useCategoryStore } from "../stores/category.js";
+import { usePoiStore } from "../stores/poi";
 const categoryStore = useCategoryStore();
 const { categories } = storeToRefs(categoryStore);
+const poiStore = usePoiStore();
 </script>
 
 <template>
@@ -67,9 +69,12 @@ const { categories } = storeToRefs(categoryStore);
       <v-autocomplete
         label="Choose your favorites"
         prepend-icon="mdi-map-marker-plus"
-        :items="['parks and recreation', 'public transport', 'nightlive', 'restaurants', 'shopping', 'sightseeing']"
+        :items="poiStore.pois"
+        v-model="poiStore.selectedPois"
+        chips
+        closable-chips
+        multiple
       ></v-autocomplete>
-      <v-chip closable>restaurants</v-chip>
     </div>
   </v-sheet>
 </template>
