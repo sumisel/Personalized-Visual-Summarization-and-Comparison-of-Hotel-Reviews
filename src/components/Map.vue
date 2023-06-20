@@ -32,7 +32,7 @@ export default {
 </script>
 
 <template>
-  <div>Among the available <strong>{{ hotelStore.hotels.length }}</strong> hotels, 
+  <div>Among the available <strong>{{ Object.keys($hotelMeta).length }}</strong> hotels, 
     <span v-if="hotelStore.selectedHotels.length > 1"  ><strong>{{ hotelStore.selectedHotels.length }}</strong>  are</span>
     <span v-if="hotelStore.selectedHotels.length === 1" >only <strong>1</strong> is</span>
     <span v-if="hotelStore.selectedHotels.length === 0" ><strong>none</strong> is</span>
@@ -64,15 +64,15 @@ export default {
       ></l-tile-layer>
       <l-marker
         v-for="(hotel, index) in hotelStore.hotels.filter(
-          (hotel) => hotel.location.lat && hotel.location.long
+          (hotel) => $hotelMeta[hotel.id].location.lat && $hotelMeta[hotel.id].location.long
         )"
         :key="index"
-        :lat-lng="[hotel.location.lat, hotel.location.long]"
+        :lat-lng="[$hotelMeta[hotel.id].location.lat, $hotelMeta[hotel.id].location.long]"
         @click="hotel.isSelected = hotel.isSelected? 0 :
                                                       hotelStore.selectedHotels.reduce( // set to highest index plus 1
                                                        (max, hotel) => (max = Math.max(max, hotel.isSelected)),0) + 1"
       >
-        <l-tooltip>{{ hotel.name }}</l-tooltip>
+        <l-tooltip>{{ $hotelMeta[hotel.id].name }}</l-tooltip>
         <l-icon
           :icon-url="
             hotel.isSelected

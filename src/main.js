@@ -41,6 +41,8 @@ const params = new URL(document.location).searchParams;
 const cityId = params.get("city") ? params.get("city") : "Berlin";
 import cities from "./assets/cities.json"
 app.config.globalProperties.$city = cities[cityId];
+import hotelMeta from "./assets/hotel_meta.json"
+app.config.globalProperties.$hotelMeta = hotelMeta[cityId]; 
 
 const result = await fetch("/HotelRec_subset_" + cityId + "_10_enriched.txt");
 const data = await result.json();

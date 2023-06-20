@@ -1,0 +1,218 @@
+{
+    "Berlin": {
+        "Hotel_Review-g187323-d230550-Reviews-Park_Inn_by_Radisson_Berlin_Alexanderplatz-Berlin.html": {
+            "name": "Park Inn by Radisson Berlin Alexanderplatz",
+            "location": {
+                "lat": 52.52323593377977,
+                "long": 13.412744147428139
+            }
+        },
+        "Hotel_Review-g187323-d589462-Reviews-Melia_Berlin-Berlin.html": {
+            "name": "Melia Berlin",
+            "location": {
+                "lat": 52.52158560943486,
+                "long": 13.388433404853155
+            }
+        },
+        "Hotel_Review-g187323-d781064-Reviews-Adina_Apartment_Hotel_Berlin_Checkpoint_Charlie-Berlin.html": {
+            "name": "Adina Apartment Berlin Checkpoint Charlie",
+            "location": {
+                "lat": 52.50991001736232,
+                "long": 13.397445562389724
+            }
+        },
+        "Hotel_Review-g187323-d190694-Reviews-Hotel_Adlon_Kempinski-Berlin.html": {
+            "name": "Adlon Kempinski",
+            "location": {
+                "lat": 52.516193223183464,
+                "long": 13.38003003822563
+            }
+        },
+        "Hotel_Review-g187323-d191437-Reviews-The_Westin_Grand_Berlin-Berlin.html": {
+            "name": "The Westin Grand Berlin",
+            "location": {
+                "lat": 52.516086409333994,
+                "long": 13.388512012423096
+            }
+        },
+        "Hotel_Review-g187323-d1307675-Reviews-The_Circus_Hotel-Berlin.html": {
+            "name": "The Circus",
+            "location": {
+                "lat": 52.529669672707435,
+                "long": 13.40116314409216
+            }
+        },
+        "Hotel_Review-g187323-d233880-Reviews-Mercure_Hotel_Residenz_Berlin_Checkpoint_Charlie-Berlin.html": {
+            "name": "Mercure Residenz Berlin Checkpoint Charlie",
+            "location": {
+                "lat": 52.50876342111009,
+                "long": 13.39307286239428
+            }
+        },
+        "Hotel_Review-g187323-d289019-Reviews-The_Ritz_Carlton_Berlin-Berlin.html": {
+            "name": "The Ritz Carlton Berlin",
+            "location": {
+                "lat": 52.51051091075139,
+                "long": 13.375242220636112
+            }
+        },
+        "Hotel_Review-g187323-d202450-Reviews-Pullman_Berlin_Schweizerhof-Berlin.html": {
+            "name": "Pullman Berlin Schweizerhof",
+            "location": {
+                "lat": 52.506153368476284,
+                "long": 13.343966770942998
+            }
+        },
+        "Hotel_Review-g187323-d638834-Reviews-Hotel_Berlin_Berlin-Berlin.html": {
+            "name": "Berlin Berlin",
+            "location": {
+                "lat": 52.50405489713002,
+                "long": 13.352185151350383
+            }
+        }
+    },
+    "New_York": {
+        "Hotel_Review-g60763-d93450-Reviews-Grand_Hyatt_New_York-New_York_City_New_York.html": {
+            "name": "Grand Hyatt New York",
+            "location": {
+                "lat": 40.752183571593946,
+                "long": -73.97628876741095
+            }
+        },
+        "Hotel_Review-g60763-d93437-Reviews-Hotel_Edison_Times_Square-New_York_City_New_York.html": {
+            "name": "Edison Times Square",
+            "location": {
+                "lat": 40.760258940619366,
+                "long": -73.98624575113413
+            }
+        },
+        "Hotel_Review-g60763-d99352-Reviews-Hilton_Garden_Inn_Times_Square-New_York_City_New_York.html": {
+            "name": "Hilton Garden Inn Times Square",
+            "location": {
+                "lat": 40.76142463940273,
+                "long": -73.98648532814431
+            }
+        },
+        "Hotel_Review-g60763-d99307-Reviews-Wellington_Hotel-New_York_City_New_York.html": {
+            "name": "Wellington",
+            "location": {
+                "lat": 40.764646977251175,
+                "long": -73.98044983503925
+            }
+        },
+        "Hotel_Review-g60763-d93457-Reviews-Hampton_Inn_Manhattan_Times_Square_North-New_York_City_New_York.html": {
+            "name": "Hampton Inn Manhattan Times Square North",
+            "location": {
+                "lat": 40.76338496887761,
+                "long": -73.98571803832918
+            }
+        },
+        "Hotel_Review-g60763-d208454-Reviews-Sofitel_New_York-New_York_City_New_York.html": {
+            "name": "Sofitel New York",
+            "location": {
+                "lat": 40.75587945295093,
+                "long": -73.98174563446005
+            }
+        },
+        "Hotel_Review-g60763-d1218792-Reviews-Hilton_Garden_Inn_New_York_West_35th_Street-New_York_City_New_York.html": {
+            "name": "Hilton Garden Inn New York West 35th Street",
+            "location": {
+                "lat": 40.750554796892665,
+                "long": -73.98650539413059
+            }
+        },
+        "Hotel_Review-g60763-d93569-Reviews-Belvedere_Hotel-New_York_City_New_York.html": {
+            "name": "Belvedere",
+            "location": {
+                "lat": 40.76229482485695,
+                "long": -73.98811640929429
+            }
+        },
+        "Hotel_Review-g60763-d99762-Reviews-Hotel_Giraffe_by_Library_Hotel_Collection-New_York_City_New_York.html": {
+            "name": "Giraffe by Library Collection",
+            "location": {
+                "lat": 40.74234843628629,
+                "long": -73.98475786638679
+            }
+        },
+        "Hotel_Review-g60763-d112064-Reviews-Warwick_New_York-New_York_City_New_York.html": {
+            "name": "Warwick New York",
+            "location": {
+                "lat": 40.76267520772386,
+                "long": -73.97804724186648
+            }
+        }
+    },
+    "Paris": {
+        "Hotel_Review-g187147-d587294-Reviews-The_Westin_Paris_Vendome-Paris_Ile_de_France.html": {
+            "name": "The Westin Paris Vendome",
+            "location": {
+                "lat": 48.86581261187898,
+                "long": 2.3274766502451802
+            }
+        },
+        "Hotel_Review-g187147-d197656-Reviews-Mercure_Paris_Centre_Eiffel_Tower_Hotel-Paris_Ile_de_France.html": {
+            "name": "Mercure Paris Centre Eiffel Tower",
+            "location": {
+                "lat": 48.85536706454114,
+                "long": 2.291923533788586
+            }
+        },
+        "Hotel_Review-g187147-d233528-Reviews-Novotel_Paris_Centre_Tour_Eiffel-Paris_Ile_de_France.html": {
+            "name": "Novotel Paris Centre Tour Eiffel",
+            "location": {
+                "lat": 48.85000143695886,
+                "long": 2.283295991853996
+            }
+        },
+        "Hotel_Review-g187147-d207663-Reviews-K_K_Hotel_Cayre-Paris_Ile_de_France.html": {
+            "name": "K+K Cayre",
+            "location": {
+                "lat": 48.85546053202657,
+                "long": 2.325496295855604
+            }
+        },
+        "Hotel_Review-g187147-d207742-Reviews-InterContinental_Paris_Le_Grand-Paris_Ile_de_France.html": {
+            "name": "InterContinental Paris Le Grand",
+            "location": {
+                "lat": 48.87038918049388,
+                "long": 2.3298938394851896
+            }
+        },
+        "Hotel_Review-g187147-d250928-Reviews-Park_Hyatt_Paris_Vendome-Paris_Ile_de_France.html": {
+            "name": "Park Hyatt Paris Vendome",
+            "location": {
+                "lat": 48.86891952594483,
+                "long": 2.3306032525475184
+            }
+        },
+        "Hotel_Review-g187147-d506900-Reviews-Hotel_des_Arts_Montmartre-Paris_Ile_de_France.html": {
+            "name": "des Arts Montmartre",
+            "location": {
+                "lat": 48.88638649903344,
+                "long": 2.3352350499309833
+            }
+        },
+        "Hotel_Review-g187147-d197424-Reviews-Novotel_Paris_Les_Halles-Paris_Ile_de_France.html": {
+            "name": "Novotel Paris Les Halles",
+            "location": {
+                "lat": 48.86094927643057,
+                "long": 2.346574723569357
+            }
+        },
+        "Hotel_Review-g187147-d207687-Reviews-Crowne_Plaza_Paris_Republique-Paris_Ile_de_France.html": {
+            "name": "Crowne Plaza Paris Republique",
+            "location": {
+                "lat": 48.86727243601443,
+                "long": 2.3653758337900683
+            }
+        },
+        "Hotel_Review-g187147-d197610-Reviews-Paris_Marriott_Rive_Gauche_Hotel_Conference_Center-Paris_Ile_de_France.html": {
+            "name": "Paris Marriott Rive Gauche",
+            "location": {
+                "lat": 48.831756982852085,
+                "long": 2.3398482496090973
+            }
+        }
+    }
+}
