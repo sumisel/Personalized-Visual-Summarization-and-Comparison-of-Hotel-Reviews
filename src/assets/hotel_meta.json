@@ -5,70 +5,80 @@
             "location": {
                 "lat": 52.52323593377977,
                 "long": 13.412744147428139
-            }
+            },
+            "district": "Mitte"
         },
         "Hotel_Review-g187323-d589462-Reviews-Melia_Berlin-Berlin.html": {
             "name": "Melia Berlin",
             "location": {
                 "lat": 52.52158560943486,
                 "long": 13.388433404853155
-            }
+            },
+            "district": "Mitte"
         },
         "Hotel_Review-g187323-d781064-Reviews-Adina_Apartment_Hotel_Berlin_Checkpoint_Charlie-Berlin.html": {
             "name": "Adina Apartment Berlin Checkpoint Charlie",
             "location": {
                 "lat": 52.50991001736232,
                 "long": 13.397445562389724
-            }
+            },
+            "district": "Mitte"
         },
         "Hotel_Review-g187323-d190694-Reviews-Hotel_Adlon_Kempinski-Berlin.html": {
             "name": "Adlon Kempinski",
             "location": {
                 "lat": 52.516193223183464,
                 "long": 13.38003003822563
-            }
+            },
+            "district": "Mitte"
         },
         "Hotel_Review-g187323-d191437-Reviews-The_Westin_Grand_Berlin-Berlin.html": {
             "name": "The Westin Grand Berlin",
             "location": {
                 "lat": 52.516086409333994,
                 "long": 13.388512012423096
-            }
+            },
+            "district": "Mitte"
         },
         "Hotel_Review-g187323-d1307675-Reviews-The_Circus_Hotel-Berlin.html": {
             "name": "The Circus",
             "location": {
                 "lat": 52.529669672707435,
                 "long": 13.40116314409216
-            }
+            },
+            "district": "Mitte"
         },
         "Hotel_Review-g187323-d233880-Reviews-Mercure_Hotel_Residenz_Berlin_Checkpoint_Charlie-Berlin.html": {
             "name": "Mercure Residenz Berlin Checkpoint Charlie",
             "location": {
                 "lat": 52.50876342111009,
                 "long": 13.39307286239428
-            }
+            },
+            "district": "Mitte"
         },
         "Hotel_Review-g187323-d289019-Reviews-The_Ritz_Carlton_Berlin-Berlin.html": {
             "name": "The Ritz Carlton Berlin",
             "location": {
                 "lat": 52.51051091075139,
                 "long": 13.375242220636112
-            }
+            },
+            "district": "Tiergarten"
         },
         "Hotel_Review-g187323-d202450-Reviews-Pullman_Berlin_Schweizerhof-Berlin.html": {
             "name": "Pullman Berlin Schweizerhof",
             "location": {
                 "lat": 52.506153368476284,
                 "long": 13.343966770942998
-            }
+            },
+            "district": "Tiergarten"
         },
         "Hotel_Review-g187323-d638834-Reviews-Hotel_Berlin_Berlin-Berlin.html": {
             "name": "Berlin Berlin",
             "location": {
                 "lat": 52.50405489713002,
                 "long": 13.352185151350383
-            }
+            },
+            "district": "Tiergarten"
         }
     },
     "New_York": {

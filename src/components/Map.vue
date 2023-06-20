@@ -25,21 +25,57 @@ export default {
 
     return {
       map,
-      hotelStore
+      hotelStore,
     };
+  },
+  computed: {
+    districtsOfSelectedHotels() {
+      const districts = this.hotelStore.selectedHotels.map(
+        (hotel) => this.$hotelMeta[hotel.id].district
+      );
+      return [...new Set(districts.filter((district) => district))];
+    },
   },
 };
 </script>
 
 <template>
-  <div>Among the available <strong>{{ Object.keys($hotelMeta).length }}</strong> hotels, 
-    <span v-if="hotelStore.selectedHotels.length > 1"  ><strong>{{ hotelStore.selectedHotels.length }}</strong>  are</span>
-    <span v-if="hotelStore.selectedHotels.length === 1" >only <strong>1</strong> is</span>
-    <span v-if="hotelStore.selectedHotels.length === 0" ><strong>none</strong> is</span>
-     selected.</div>
+  <div>
+    Among the available
+    <strong>{{ Object.keys($hotelMeta).length }}</strong> hotels,
+    <span v-if="hotelStore.selectedHotels.length > 1"
+      ><strong>{{ hotelStore.selectedHotels.length }}</strong> are</span
+    >
+    <span v-if="hotelStore.selectedHotels.length === 1"
+      >only <strong>1</strong> is</span
+    >
+    <span v-if="hotelStore.selectedHotels.length === 0"
+      ><strong>none</strong> is</span
+    >
+    selected.
+    <span v-if="hotelStore.selectedHotels.length > 1 && districtsOfSelectedHotels.length > 0"
+      >They are
+      <span v-if="districtsOfSelectedHotels.length === 1"
+        >all located in
+        <strong
+          >{{ this.$city.name }} {{ districtsOfSelectedHotels[0] }}</strong
+        ></span
+      ><span v-else
+        >located in <strong>{{ this.$city.name + " " }}</strong>
+        <span v-if="districtsOfSelectedHotels.length === 2">
+          <strong>{{ districtsOfSelectedHotels[0] }}</strong> and
+          <strong>{{ districtsOfSelectedHotels[1] }}</strong></span
+        ><span v-else
+          >{{ districtsOfSelectedHotels.length }} districts</span
+        > </span
+      >.</span
+    >
+  </div>
   <div class="ml-12 mt-4 instruction">
     Please click a marker to select/deselect a hotel.
-    <strong v-if="hotelStore.selectedHotels.length < 2">Select more than one hotel to compare.</strong>
+    <strong v-if="hotelStore.selectedHotels.length < 2"
+      >Select more than one hotel to compare.</strong
+    >
   </div>
   <div class="map">
     <l-map
@@ -64,13 +100,24 @@ export default {
       ></l-tile-layer>
       <l-marker
         v-for="(hotel, index) in hotelStore.hotels.filter(
-          (hotel) => $hotelMeta[hotel.id].location.lat && $hotelMeta[hotel.id].location.long
+          (hotel) =>
+            $hotelMeta[hotel.id].location.lat &&
+            $hotelMeta[hotel.id].location.long
         )"
         :key="index"
-        :lat-lng="[$hotelMeta[hotel.id].location.lat, $hotelMeta[hotel.id].location.long]"
-        @click="hotel.isSelected = hotel.isSelected? 0 :
-                                                      hotelStore.selectedHotels.reduce( // set to highest index plus 1
-                                                       (max, hotel) => (max = Math.max(max, hotel.isSelected)),0) + 1"
+        :lat-lng="[
+          $hotelMeta[hotel.id].location.lat,
+          $hotelMeta[hotel.id].location.long,
+        ]"
+        @click="
+          hotel.isSelected = hotel.isSelected
+            ? 0
+            : hotelStore.selectedHotels.reduce(
+                // set to highest index plus 1
+                (max, hotel) => (max = Math.max(max, hotel.isSelected)),
+                0
+              ) + 1
+        "
       >
         <l-tooltip>{{ $hotelMeta[hotel.id].name }}</l-tooltip>
         <l-icon
