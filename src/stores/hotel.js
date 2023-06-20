@@ -142,7 +142,7 @@ export const useHotelStore = defineStore({
 
       // load ratings over time
       // TODO: this is a temporary solution, will be replaced when the data is in the enriched data file
-      const ratings_time = await fetch("/HotelRec_subset_" + city + "_10_average_ratings_over_time.txt");
+      const ratings_time = await fetch("/HotelRec_subset_" + city + "_10_average_ratings_over_time.json");
       const ratings_time_data = await ratings_time.json();
       this.timeStore.initTimeData(this.hotels, ratings_time_data);
     },

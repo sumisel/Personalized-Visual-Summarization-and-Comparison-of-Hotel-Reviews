@@ -44,7 +44,7 @@ app.config.globalProperties.$city = cities[cityId];
 import hotelMeta from "./assets/hotel_meta.json"
 app.config.globalProperties.$hotelMeta = hotelMeta[cityId]; 
 
-const result = await fetch("/HotelRec_subset_" + cityId + "_10_enriched.txt");
+const result = await fetch("/HotelRec_subset_" + cityId + "_10_enriched.json");
 const data = await result.json();
 
 // static data
