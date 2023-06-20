@@ -1,4 +1,6 @@
 <script>
+import * as d3 from "d3";
+
 import { ref } from "vue";
 
 import "leaflet/dist/leaflet.css";
@@ -28,6 +30,52 @@ export default {
       hotelStore,
     };
   },
+  mounted() {
+    const width = d3.select("#app").node().getBoundingClientRect().width - 344;
+    const height = 600;
+    const svg = d3
+      .select("#svg-map")
+      .attr("width", width)
+      .attr("height", height);
+
+    console.log(this.$city.center);
+
+    const projection = d3
+      .geoMercator()
+      .scale(400000)
+      .center([this.$city.center[1], this.$city.center[0]])
+      .translate([width / 2, height / 2]);
+
+    d3.json(
+      "https://raw.githubusercontent.com/funkeinteraktiv/Berlin-Geodaten/master/berlin_bezirke.geojson"
+    ).then((geojson) => {
+      const path = d3.geoPath().projection(projection);
+      svg
+        .selectAll("path")
+        .data(geojson.features)
+        .enter()
+        .append("path")
+        .attr("fill", "none")
+        .attr("d", path)
+        .style("stroke", "#000");
+    });
+
+    // draw markers for each hotel
+    const markers = svg
+      .selectAll("circle")
+      .data(Object.values(this.$hotelMeta))
+      .enter()
+      .append("circle")
+      .attr("cx", (d) => projection([d.location.long, d.location.lat])[0])
+      .attr("cy", (d) => projection([d.location.long, d.location.lat])[1])
+      .attr("r", 10)
+      .attr("fill", "#888")
+      .attr("stroke", "black")
+      .attr("stroke-width", 2)
+      .on("click", (event, d) => {
+        console.log(d.name);
+      });
+  },
   computed: {
     districtsOfSelectedHotels() {
       const districts = this.hotelStore.selectedHotels.map(
@@ -53,7 +101,11 @@ export default {
       ><strong>none</strong> is</span
     >
     selected.
-    <span v-if="hotelStore.selectedHotels.length > 1 && districtsOfSelectedHotels.length > 0"
+    <span
+      v-if="
+        hotelStore.selectedHotels.length > 1 &&
+        districtsOfSelectedHotels.length > 0
+      "
       >They are
       <span v-if="districtsOfSelectedHotels.length === 1"
         >all located in
@@ -77,7 +129,8 @@ export default {
       >Select more than one hotel to compare.</strong
     >
   </div>
-  <div class="map">
+  <svg id="svg-map" class="map"></svg>
+  <!--div class="map">
     <l-map
       ref="map"
       :center="$city.center"
@@ -129,7 +182,7 @@ export default {
         ></l-icon>
       </l-marker>
     </l-map>
-  </div>
+  </div-->
   <div class="dummy"></div>
 </template>
 
