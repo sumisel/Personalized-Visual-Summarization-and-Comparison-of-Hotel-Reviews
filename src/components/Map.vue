@@ -31,6 +31,13 @@ export default {
     };
   },
   mounted() {
+    function updateSelectedHotels() {
+      markers
+        .attr("fill", (d) => (d.isSelected ? "#000" : "#888"))
+        .attr("stroke", "black")
+        .attr("stroke-width", 2);
+    }
+
     const width = d3.select("#app").node().getBoundingClientRect().width - 344;
     const height = 600;
     const svg = d3
@@ -69,12 +76,15 @@ export default {
       .attr("cx", (d) => projection([d.location.long, d.location.lat])[0])
       .attr("cy", (d) => projection([d.location.long, d.location.lat])[1])
       .attr("r", 10)
-      .attr("fill", "#888")
       .attr("stroke", "black")
       .attr("stroke-width", 2)
       .on("click", (event, d) => {
-        console.log(d.name);
+        const hotel = this.hotelStore.hotels.find((hotel) => hotel.id === d.id);
+        hotel.isSelected = hotel.isSelected ? 0 : 1;
+        updateSelectedHotels();
       });
+
+    updateSelectedHotels();
   },
   computed: {
     districtsOfSelectedHotels() {
