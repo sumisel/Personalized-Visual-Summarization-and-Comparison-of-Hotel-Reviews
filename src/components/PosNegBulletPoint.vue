@@ -96,7 +96,7 @@ export default {
         <br/>
         {{ roundToDecimal(100*sentence['ratio_category'], 2) + '% of '+sentence['category']+' mentions'}}
         <br/>
-        {{ roundToDecimal(100*sentence['cluster_size']/hotelStore.hotelById(hotel['id'])['review_count'], 2) + '% of reviews'}}
+        {{ roundToDecimal(100*sentence['cluster_size']/globals.$reviews[hotel['id']]['review_count'], 2) + '% of reviews'}}
         <br/>
         {{ roundToDecimal(sentence['centrality_score'], 2) + ' centrality score within cluster of similar reviews'}}
       </p>
@@ -107,9 +107,9 @@ export default {
           <v-toolbar-title>{{ hotel['name'] +" - " + sentence['text'] }}</v-toolbar-title>
         </v-toolbar>
         <v-card-text>
-          <div class="text-h6">{{globals.$reviews[hotel['id']][sentence['idx_review']]['title']}}</div>
+          <div class="text-h6">{{globals.$reviews[hotel['id']]['reviews'][sentence['idx_review']]['title']}}</div>
           <div class="d-inline"
-               v-for="word in globals.$reviews[hotel['id']][sentence['idx_review']]['text'].split(' ')"
+               v-for="word in globals.$reviews[hotel['id']]['reviews'][sentence['idx_review']]['text'].split(' ')"
                :style="[{'font-weight': calcFontWeight(matchText(sentence['text'], word)?1:0),
                         'font-size': calcFontSize(matchText(sentence['text'], word)?1:.9),
                         'color': matchText(sentence['text'], word)?sentence['color']:'black',
@@ -126,14 +126,14 @@ export default {
             <v-expansion-panels>
               <v-expansion-panel>
                 <v-expansion-panel-title>
-                  {{globals.$reviews[hotel['id']][review['idx_review']][polarity+'_aspects'][review['idx_sentence']]}}
+                  {{globals.$reviews[hotel['id']]['reviews'][review['idx_review']][polarity+'_aspects'][review['idx_sentence']]}}
                 </v-expansion-panel-title>
                 <v-expansion-panel-text>
                   <div class="d-inline"
-                       v-for="word in globals.$reviews[hotel['id']][review['idx_review']]['text'].split(' ')"
-                       :style="[{'font-weight': calcFontWeight(matchText(globals.$reviews[hotel['id']][review['idx_review']][polarity+'_aspects'][review['idx_sentence']], word)?1:0),
-                        'font-size': calcFontSize(matchText(globals.$reviews[hotel['id']][review['idx_review']][polarity+'_aspects'][review['idx_sentence']], word)?1:.9),
-                        'color': matchText(globals.$reviews[hotel['id']][review['idx_review']][polarity+'_aspects'][review['idx_sentence']], word)?sentence['color']:'black',
+                       v-for="word in globals.$reviews[hotel['id']]['reviews'][review['idx_review']]['text'].split(' ')"
+                       :style="[{'font-weight': calcFontWeight(matchText(globals.$reviews[hotel['id']]['reviews'][review['idx_review']][polarity+'_aspects'][review['idx_sentence']], word)?1:0),
+                        'font-size': calcFontSize(matchText(globals.$reviews[hotel['id']]['reviews'][review['idx_review']][polarity+'_aspects'][review['idx_sentence']], word)?1:.9),
+                        'color': matchText(globals.$reviews[hotel['id']]['reviews'][review['idx_review']][polarity+'_aspects'][review['idx_sentence']], word)?sentence['color']:'black',
                         }]">
                     {{word+' '}} </div>
                 </v-expansion-panel-text>
