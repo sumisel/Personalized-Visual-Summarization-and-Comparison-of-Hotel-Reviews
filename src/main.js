@@ -20,12 +20,8 @@ const vuetify = createVuetify({
 const pinia = createPinia();
 import { useHotelStore } from "./stores/hotel.js";
 import { useCategoryStore } from "./stores/category.js";
-import { useClusterStore } from "./stores/cluster.js";
-import { useTimeStore} from "./stores/ratings_over_time.js";
 const hotelStore = useHotelStore(pinia);
 const categoryStore = useCategoryStore(pinia);
-const clusterStore = useClusterStore(pinia);
-const timeStore = useTimeStore(pinia);
 
 
 // create App
@@ -47,8 +43,8 @@ const data = await result.json();
 
 // static data
 app.config.globalProperties.$reviews = {};
-data.forEach(item => {
-    app.config.globalProperties.$reviews[item['id']] = item['reviews'];
+data.forEach(hotelData => {
+//    app.config.globalProperties.$reviews[hotelData['id']] = hotelData['reviews'];
 })
 
 data.forEach(hotel => {hotel['review_count']=Object.keys(hotel['reviews']).length; hotel['reviews']=[];hotel['reviews_unannotated']=[];}); // for acceptable page performance, separate reviews from hotels

@@ -4,7 +4,6 @@ import ChartPosNeg from "./ChartPosNeg.vue";
 import PosNegBulletPoint from "./PosNegBulletPoint.vue";
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
-import { useClusterStore } from "../stores/cluster.js";
 
 export default {
   components: {
@@ -15,8 +14,7 @@ export default {
   setup() {
     const hotelStore = useHotelStore();
     const categoryStore = useCategoryStore();
-    const clusterStore = useClusterStore();
-    return { hotelStore, categoryStore, clusterStore };
+    return { hotelStore, categoryStore };
   },
   computed: {},
   methods:{},

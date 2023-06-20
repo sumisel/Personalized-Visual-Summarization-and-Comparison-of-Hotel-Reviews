@@ -1,16 +1,12 @@
 import { defineStore, storeToRefs } from 'pinia'
 
 import { useCategoryStore } from "./category.js";
-import { useClusterStore } from "./cluster.js";
-import { useTimeStore} from "./ratings_over_time.js";
 import { globals } from './../main.js'
 
 export const useHotelStore = defineStore({
   id: 'hotel',
   state: () => ({
     categoryStore: useCategoryStore(),
-    clusterStore: useClusterStore(),
-    timeStore: useTimeStore(),
     hotels: [],
   }),
   getters: {
@@ -127,11 +123,6 @@ export const useHotelStore = defineStore({
   },
   actions: {
     async initHotels(data, city) {
-      /*// load hotel ratings
-      city = city.replace(" ", "_");
-      const result = await fetch("/HotelRec_subset_" + city + "_10_enriched.txt");
-      const data = await result.json();
-      */
       this.hotels = data;
 
       // select first three hotels by default
@@ -140,15 +131,18 @@ export const useHotelStore = defineStore({
       // initiate sentiment sentence clusters, for acceptable page performance, separate clusters from hotels
       //this.clusterStore.initClusters(this.hotels);
 
+      /*
       // load ratings over time
       // TODO: this is a temporary solution, will be replaced when the data is in the enriched data file
       const ratings_time = await fetch("/HotelRec_subset_" + city + "_10_average_ratings_over_time.txt");
       const ratings_time_data = await ratings_time.json();
       this.timeStore.initTimeData(this.hotels, ratings_time_data);
+      */
     },
     sentimentSummary(hotel, category, prefix) {
       console.log("sentimentSummary ", hotel['id'], " ", category, " ", prefix);
       let summary = [];
+      return summary;
 
       // compile sentences from all categories if it's the overall summary
       if(category == 'overall') {

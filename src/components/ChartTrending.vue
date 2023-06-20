@@ -5,7 +5,6 @@ import {ref, onMounted, watch} from "vue";
 
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
-import { useTimeStore } from "../stores/ratings_over_time";
 
 export default {
   props: {
@@ -42,13 +41,11 @@ export default {
     const svg = ref();
     const hotelStore = useHotelStore();
     const categoryStore = useCategoryStore();
-    const timeStore = useTimeStore();
 
     return {
       svg,
       hotelStore,
       categoryStore,
-      timeStore,
     };
   },
   mounted() {
@@ -154,7 +151,7 @@ export default {
 
       // draw multi line chart
       if(this.categoryId == "line"){
-        const d = this.timeStore.dataById[this.hotelId];
+        const d = undefined
         if(d == undefined) {
           return;
         }

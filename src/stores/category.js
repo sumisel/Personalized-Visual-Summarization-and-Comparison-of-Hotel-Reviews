@@ -65,11 +65,15 @@ export const useCategoryStore = defineStore({
   },
   actions: {
     hover(categoryId) {
+      console.log("hover", categoryId);
       this.unhover();
       this.categoriesById[categoryId].hover = true;
+      console.log("hover finished", categoryId);
     },
     unhover() {
+      console.log("unhover");
       this.categories.forEach(category => { category.hover = false });
+      console.log("unhover finished");
     },
     async getCategoryRepresentative(hotelId, categoryId){
       const params = (new URL(document.location)).searchParams;

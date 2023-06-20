@@ -1,6 +1,5 @@
 <script>
 import { useHotelStore } from "../stores/hotel.js";
-import { useClusterStore} from "../stores/cluster.js";
 import { useCategoryStore} from "../stores/category";
 import {globals} from "./../main";
 
@@ -22,8 +21,7 @@ export default {
   setup() {
     const hotelStore = useHotelStore();
     const categoryStore = useCategoryStore();
-    const clusterStore = useClusterStore();
-    return { hotelStore, categoryStore, clusterStore, globals };
+    return { hotelStore, categoryStore, globals };
   },
   computed: {},
   methods:{

@@ -2,7 +2,6 @@
 import ChartTrending from "./ChartTrending.vue";
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
-import { useTimeStore } from "../stores/ratings_over_time";
 
 export default {
   components: {
@@ -11,8 +10,7 @@ export default {
   setup() {
     const hotelStore = useHotelStore();
     const categoryStore = useCategoryStore();
-    const timeStore = useTimeStore();
-    return { hotelStore, categoryStore, timeStore };
+    return { hotelStore, categoryStore};
   },
   computed: {},
   data: () => ({
