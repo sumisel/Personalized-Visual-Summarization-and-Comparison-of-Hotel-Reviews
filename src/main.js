@@ -42,29 +42,28 @@ const cityId = params.get("city") ? params.get("city") : "Berlin";
 import cities from "./assets/cities.json"
 app.config.globalProperties.$city = cities[cityId];
 import hotelMeta from "./assets/hotel_meta.json"
-app.config.globalProperties.$hotelMeta = hotelMeta[cityId]; 
+app.config.globalProperties.$hotelMeta = hotelMeta[cityId];
+hotelStore.initHotels(cityId)
+    .then(r => {
+        // trigger loading of data that depends on category values
+        const tmp = categoryStore.categoriesById["location"].value;
+        categoryStore.categoriesById["location"].value = 40;
+        categoryStore.categoriesById["location"].value = tmp;
+        // trigger loading of data that depends on hotel selection
+        //hotelStore.hotels[0].isSelected = 0;
+        //hotelStore.hotels[0].isSelected = 1;
+    });
 
-const result = await fetch("/HotelRec_subset_" + cityId + "_10_enriched.json");
+// load reviews
+const result = await fetch("/HotelRec_subset_" + cityId + "_10_reviews.json");
 const data = await result.json();
-
-// static data
-app.config.globalProperties.$reviews = {};
-data.forEach(item => {
-    app.config.globalProperties.$reviews[item['id']] = item['reviews'];
-})
-
-data.forEach(hotel => {hotel['review_count']=Object.keys(hotel['reviews']).length; hotel['reviews']=[];hotel['reviews_unannotated']=[];}); // for acceptable page performance, separate reviews from hotels
-hotelStore.initHotels(data, cityId)
-//hotelStore.loadHotels(cityId)
-.then(r => {
-    // trigger loading of data that depends on category values
-    const tmp = categoryStore.categoriesById["location"].value;
-    categoryStore.categoriesById["location"].value = 40;
-    categoryStore.categoriesById["location"].value = tmp;
-    // trigger loading of data that depends on hotel selection
-    //hotelStore.hotels[0].isSelected = 0;
-    //hotelStore.hotels[0].isSelected = 1;
+Object.keys(data).map(key => {
+    const elem=data[key];
+    elem['review_count']=Object.keys(elem['reviews']).length;
+    elem['reviews_unannotated']=[]; // we don't need that for now
+    return elem;
 });
+app.config.globalProperties.$reviews = data;
 
 // mount App
 app.mount('#app');
