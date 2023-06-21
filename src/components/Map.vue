@@ -38,6 +38,8 @@ export default {
         .attr("stroke-width", 2);
     }
 
+    const cityId = this.$city.name.replace(" ", "_").toLowerCase();
+
     const width = d3.select("#app").node().getBoundingClientRect().width - 344;
     const height = 600;
     const svg = d3
@@ -53,11 +55,8 @@ export default {
       .center([this.$city.center[1], this.$city.center[0]])
       .translate([width / 2, height / 2]);
 
-    d3.json(
-      `./geo/districts_${this.$city.name
-        .replace(" ", "_")
-        .toLowerCase()}.geojson`
-    ).then((geojson) => {
+    // draw districts
+    d3.json(`./geo/districts_${cityId}.geojson`).then((geojson) => {
       var polygonsOnly = geojson.features.filter(function (feature) {
         return (
           feature.geometry.type === "Polygon" ||
@@ -74,13 +73,30 @@ export default {
         .attr("fill", "none")
         .attr("d", path)
         .style("stroke", "#ddd")
-        .style("stroke-width", "10px");
+        .style("stroke-width", "20px");
+    });
+
+    // draw waterways
+    d3.json(`./geo/waterways_${cityId}.geojson`).then((geojson) => {
+      var linesOnly = geojson.features.filter(function (feature) {
+        return feature.geometry.type === "LineString";
+      });
+      const path = d3.geoPath().projection(projection);
+      svg
+        .select(".waterways")
+        .selectAll("path")
+        .data(linesOnly)
+        .enter()
+        .append("path")
+        .attr("fill", "none")
+        .attr("d", path)
+        // semi transparent blue
+        .style("stroke", "#9af")
+        .style("stroke-width", "15px");
     });
 
     // draw roads
-    d3.json(
-      `./geo/roads_${this.$city.name.replace(" ", "_").toLowerCase()}.geojson`
-    ).then((geojson) => {
+    d3.json(`./geo/roads_${cityId}.geojson`).then((geojson) => {
       var linesOnly = geojson.features.filter(function (feature) {
         return feature.geometry.type === "LineString";
       });
@@ -172,6 +188,7 @@ export default {
   </div>
   <svg id="svg-map" class="map">
     <g class="districts"></g>
+    <g class="waterways"></g>
     <g class="roads"></g>
     <g class="markers"></g>
   </svg>

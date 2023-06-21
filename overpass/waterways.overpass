@@ -1,0 +1,9 @@
+[out:json][timeout:25];
+(
+  way["waterway"="riverbank"]({{bbox}});
+  way["waterway"="river"]({{bbox}});
+  way["waterway"="canal"]({{bbox}});
+);
+out body;
+>;
+out skel qt;
