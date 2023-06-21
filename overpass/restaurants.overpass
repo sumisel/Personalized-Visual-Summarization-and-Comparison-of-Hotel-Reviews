@@ -1,0 +1,6 @@
+[out:json];
+(
+  node["amenity"="restaurant"]({{bbox}});
+  way["amenity"="restaurant"]({{bbox}});
+);
+out center;

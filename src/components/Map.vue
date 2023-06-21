@@ -110,6 +110,22 @@ export default {
         .style("stroke-width", "4px");
     });
 
+    // draw restaurants
+    d3.json(`./geo/restaurants_${cityId}.geojson`).then((geojson) => {
+      var pointsOnly = geojson.features.filter(function (feature) {
+        return feature.geometry.type === "Point";
+      });
+      const path = d3.geoPath().projection(projection);
+      svg
+        .select(".restaurants")
+        .selectAll("path")
+        .data(pointsOnly)
+        .enter()
+        .append("path")
+        .attr("fill", "#aaa")
+        .attr("d", path.pointRadius(2));
+    });
+
     // draw markers for each hotel
     const markers = svg
       .select(".markers")
@@ -222,6 +238,7 @@ export default {
     <g class="districts"></g>
     <g class="waterways"></g>
     <g class="roads"></g>
+    <g class="restaurants"></g>
     <g class="markers"></g>
   </svg>
   <div class="dummy"></div>
