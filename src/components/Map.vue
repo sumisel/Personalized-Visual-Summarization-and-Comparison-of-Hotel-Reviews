@@ -53,7 +53,7 @@ export default {
       .center([this.$city.center[1], this.$city.center[0]])
       .translate([width / 2, height / 2]);
 
-    d3.json(`./geo/districts_${this.$city.name.toLowerCase()}.geojson`).then(
+    d3.json(`./geo/districts_${this.$city.name.replace(" ", "_").toLowerCase()}.geojson`).then(
       (geojson) => {
         var polygonsOnly = geojson.features.filter(function (feature) {
           return (
