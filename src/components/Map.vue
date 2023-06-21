@@ -69,7 +69,8 @@ export default {
           .append("path")
           .attr("fill", "none")
           .attr("d", path)
-          .style("stroke", "#000");
+          .style("stroke", "#ddd")
+          .style("stroke-width", "5px")
       }
     );
 
