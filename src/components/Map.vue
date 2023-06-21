@@ -129,7 +129,42 @@ export default {
         const hotel = this.hotelStore.hotels.find((hotel) => hotel.id === d.id);
         hotel.isSelected = hotel.isSelected ? 0 : 1;
         updateSelectedHotels();
+      })
+      .on("mouseover", (event, d) => {
+        d3.select(event.target).transition().attr("r", 20);
+        svg
+          .select(".markers")
+          .selectAll("text")
+          .filter((text) => text.id === d.id)
+          .transition()
+          .attr("opacity", 1)
+          .attr("font-size", "20px");
+      })
+      .on("mouseout", (event, d) => {
+        d3.select(event.target).transition().attr("r", 15);
+        svg
+          .select(".markers")
+          .selectAll("text")
+          .filter((text) => text.id === d.id)
+          .transition()
+          .attr("opacity", 0)
+          .attr("font-size", "0");
       });
+
+    // add hotel names as hidden text labels
+    svg
+      .select(".markers")
+      .selectAll("text")
+      .data(Object.values(this.$hotelMeta))
+      .enter()
+      .append("text")
+      .attr("x", (d) => projection([d.location.long, d.location.lat])[0])
+      .attr("y", (d) => projection([d.location.long, d.location.lat])[1] - 30)
+      .attr("text-anchor", "middle")
+      .attr("font-size", "0")
+      .attr("fill", "black")
+      .text((d) => d.name)
+      .attr("opacity", 0);
 
     updateSelectedHotels();
   },
