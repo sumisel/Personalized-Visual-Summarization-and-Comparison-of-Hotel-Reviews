@@ -72,7 +72,7 @@ export default {
         .append("path")
         .attr("fill", "none")
         .attr("d", path)
-        .style("stroke", "#ddd")
+        .style("stroke", "#eaeaea")
         .style("stroke-width", "20px");
     });
 
@@ -91,8 +91,8 @@ export default {
         .attr("fill", "none")
         .attr("d", path)
         // semi transparent blue
-        .style("stroke", "#9af")
-        .style("stroke-width", "15px");
+        .style("stroke", "#cdf")
+        .style("stroke-width", "12px");
     });
 
     // draw roads
@@ -109,7 +109,7 @@ export default {
         .append("path")
         .attr("fill", "none")
         .attr("d", path)
-        .style("stroke", "#999")
+        .style("stroke", "#fee")
         .style("stroke-width", "4px");
     });
 
