@@ -33,7 +33,7 @@ export default {
   mounted() {
     function updateSelectedHotels() {
       markers
-        .attr("fill", (d) => (d.isSelected ? "#000" : "#888"))
+        .attr("fill", (d) => (d.isSelected ? "#000" : "#ccc"))
         .attr("stroke", "black")
         .attr("stroke-width", 2);
     }
@@ -66,6 +66,7 @@ export default {
       });
       const path = d3.geoPath().projection(projection);
       svg
+        .select(".districts")
         .selectAll("path")
         .data(polygonsOnly)
         .enter()
@@ -85,6 +86,7 @@ export default {
       });
       const path = d3.geoPath().projection(projection);
       svg
+        .select(".roads")
         .selectAll("path")
         .data(linesOnly)
         .enter()
@@ -97,13 +99,14 @@ export default {
 
     // draw markers for each hotel
     const markers = svg
+      .select(".markers")
       .selectAll("circle")
       .data(Object.values(this.$hotelMeta))
       .enter()
       .append("circle")
       .attr("cx", (d) => projection([d.location.long, d.location.lat])[0])
       .attr("cy", (d) => projection([d.location.long, d.location.lat])[1])
-      .attr("r", 10)
+      .attr("r", 15)
       .attr("stroke", "black")
       .attr("stroke-width", 2)
       .on("click", (event, d) => {
@@ -167,7 +170,11 @@ export default {
       >Select more than one hotel to compare.</strong
     >
   </div>
-  <svg id="svg-map" class="map"></svg>
+  <svg id="svg-map" class="map">
+    <g class="districts"></g>
+    <g class="roads"></g>
+    <g class="markers"></g>
+  </svg>
   <!--div class="map">
     <l-map
       ref="map"
