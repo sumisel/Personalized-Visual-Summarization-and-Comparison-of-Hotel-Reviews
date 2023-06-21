@@ -49,23 +49,29 @@ export default {
 
     const projection = d3
       .geoMercator()
-      .scale(400000)
+      .scale(600000)
       .center([this.$city.center[1], this.$city.center[0]])
       .translate([width / 2, height / 2]);
 
-    d3.json(
-      "https://raw.githubusercontent.com/funkeinteraktiv/Berlin-Geodaten/master/berlin_bezirke.geojson"
-    ).then((geojson) => {
-      const path = d3.geoPath().projection(projection);
-      svg
-        .selectAll("path")
-        .data(geojson.features)
-        .enter()
-        .append("path")
-        .attr("fill", "none")
-        .attr("d", path)
-        .style("stroke", "#000");
-    });
+    d3.json(`./geo/districts_${this.$city.name.toLowerCase()}.geojson`).then(
+      (geojson) => {
+        var polygonsOnly = geojson.features.filter(function (feature) {
+          return (
+            feature.geometry.type === "Polygon" ||
+            feature.geometry.type === "MultiPolygon"
+          );
+        });
+        const path = d3.geoPath().projection(projection);
+        svg
+          .selectAll("path")
+          .data(polygonsOnly)
+          .enter()
+          .append("path")
+          .attr("fill", "none")
+          .attr("d", path)
+          .style("stroke", "#000");
+      }
+    );
 
     // draw markers for each hotel
     const markers = svg
