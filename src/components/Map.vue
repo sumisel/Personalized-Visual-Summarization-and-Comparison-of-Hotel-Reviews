@@ -15,6 +15,11 @@ export default {
       hotelStore,
     };
   },
+  data() {
+    return {
+      focusedHotel: "",
+    };
+  },
   mounted() {
     function updateSelectedHotels() {
       markers.attr("stroke-width", (d) => (d.isSelected ? 6 : 2));
@@ -26,17 +31,15 @@ export default {
         .selectAll("circle")
         .attr("opacity", 1)
         .attr("r", 15);
-      svg
-        .select(".markers")
-        .selectAll("text")
-        .attr("opacity", 0)
-        .attr("font-size", "0");
     }
 
     function resetZoom() {
       resetAllMarkers();
       svg.select(".map-container").transition().attr("transform", "");
+      that.focusedHotel = "";
     }
+
+    const that = this;
 
     const cityId = this.$city.name.replace(" ", "_").toLowerCase();
 
@@ -47,8 +50,6 @@ export default {
       .attr("width", width)
       .attr("height", height)
       .on("click", resetZoom);
-
-    console.log(this.$city.center);
 
     const projection = d3
       .geoMercator()
@@ -147,7 +148,9 @@ export default {
         hotel.isSelected = hotel.isSelected ? 0 : 1;
         updateSelectedHotels();
       })
+      // focus on click
       .on("click", (event, d) => {
+        this.focusedHotel = d.name;
         resetAllMarkers();
         d3.select(event.target).transition().attr("r", 60).attr("opacity", 0.5);
         svg
@@ -178,21 +181,6 @@ export default {
           );
         event.stopPropagation();
       });
-
-    // add hotel names as hidden text labels
-    svg
-      .select(".markers")
-      .selectAll("text")
-      .data(Object.values(this.$hotelMeta))
-      .enter()
-      .append("text")
-      .attr("x", (d) => projection([d.location.long, d.location.lat])[0])
-      .attr("y", (d) => projection([d.location.long, d.location.lat])[1] - 70)
-      .attr("text-anchor", "middle")
-      .attr("font-size", "0")
-      .attr("fill", "black")
-      .text((d) => d.name)
-      .attr("opacity", 0);
 
     updateSelectedHotels();
   },
@@ -250,39 +238,66 @@ export default {
       >Select more than one hotel to compare.</strong
     >
   </div>
-  <svg id="svg-map" class="map">
-    <g class="map-container">
-      <g class="districts"></g>
-      <g class="waterways"></g>
-      <g class="roads"></g>
-      <g class="restaurants"></g>
-      <g class="markers"></g>
-    </g>
-  </svg>
-  <div class="dummy"></div>
+  <div class="map-container">
+    <svg id="svg-map" class="map">
+      <g class="map-container">
+        <g class="districts"></g>
+        <g class="waterways"></g>
+        <g class="roads"></g>
+        <g class="restaurants"></g>
+        <g class="markers"></g>
+      </g>
+    </svg>
+    <div class="dummy"></div>
+    <div class="map-overlay">
+      <div class="hotel-header text-h5" v-if="focusedHotel">
+        {{ focusedHotel }}
+      </div>
+    </div>
+  </div>
 </template>
 
 <style lang="scss">
-.map {
-  height: 600px;
-  width: calc(100vw - 344px);
-  left: 0;
-  position: absolute;
-  & .markers {
-    & circle {
-      cursor: pointer;
-      filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
-    }
-  }
-}
-
-.dummy {
-  height: 600px;
-}
-
 .instruction {
   font-style: italic;
   color: gray;
   font-size: 0.9rem;
+}
+
+.map-container {
+  & .map {
+    height: 600px;
+    width: calc(100vw - 344px);
+    left: 0;
+    position: absolute;
+    & .markers {
+      & circle {
+        cursor: pointer;
+        filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+      }
+    }
+  }
+
+  & .dummy {
+    height: 600px;
+  }
+
+  & .map-overlay {
+    position: relative;
+    & .hotel-header {
+      position: absolute;
+      top: -530px;
+      left: 22.5%;
+      width: 50%;
+      height: 80px;
+      background-color: white;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    }
+  }
 }
 </style>
