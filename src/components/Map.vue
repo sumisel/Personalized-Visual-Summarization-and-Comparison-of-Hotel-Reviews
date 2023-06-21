@@ -38,6 +38,19 @@ export default {
         .attr("stroke-width", 2);
     }
 
+    function resetAllMarkers() {
+      svg
+        .select(".markers")
+        .selectAll("circle")
+        .attr("opacity", 1)
+        .attr("r", 15);
+      svg
+        .select(".markers")
+        .selectAll("text")
+        .attr("opacity", 0)
+        .attr("font-size", "0");
+    }
+
     const cityId = this.$city.name.replace(" ", "_").toLowerCase();
 
     const width = d3.select("#app").node().getBoundingClientRect().width - 344;
@@ -90,7 +103,6 @@ export default {
         .append("path")
         .attr("fill", "none")
         .attr("d", path)
-        // semi transparent blue
         .style("stroke", "#cdf")
         .style("stroke-width", "12px");
     });
@@ -131,6 +143,7 @@ export default {
         updateSelectedHotels();
       })
       .on("mouseover", (event, d) => {
+        resetAllMarkers();
         d3.select(event.target).transition().attr("r", 20);
         svg
           .select(".markers")
@@ -139,16 +152,15 @@ export default {
           .transition()
           .attr("opacity", 1)
           .attr("font-size", "20px");
-      })
-      .on("mouseout", (event, d) => {
-        d3.select(event.target).transition().attr("r", 15);
         svg
           .select(".markers")
-          .selectAll("text")
-          .filter((text) => text.id === d.id)
+          .selectAll("circle")
+          .filter((circle) => circle.id !== d.id)
           .transition()
-          .attr("opacity", 0)
-          .attr("font-size", "0");
+          .attr("opacity", 0.2);
+      })
+      .on("mouseout", (event, d) => {
+        resetAllMarkers();
       });
 
     // add hotel names as hidden text labels
@@ -283,13 +295,20 @@ export default {
   <div class="dummy"></div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .map {
   height: 600px;
   width: calc(100vw - 344px);
   left: 0;
   position: absolute;
+  & .markers {
+    & circle {
+      cursor: pointer;
+      filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+    }
+  }
 }
+
 .dummy {
   height: 600px;
 }
