@@ -3,24 +3,9 @@ import * as d3 from "d3";
 
 import { ref } from "vue";
 
-import "leaflet/dist/leaflet.css";
-import {
-  LMap,
-  LTileLayer,
-  LMarker,
-  LTooltip,
-  LIcon,
-} from "@vue-leaflet/vue-leaflet";
 import { useHotelStore } from "@/stores/hotel";
 
 export default {
-  components: {
-    LMap,
-    LTileLayer,
-    LMarker,
-    LTooltip,
-    LIcon,
-  },
   setup() {
     const map = ref();
     const hotelStore = useHotelStore();
@@ -239,59 +224,6 @@ export default {
     <g class="roads"></g>
     <g class="markers"></g>
   </svg>
-  <!--div class="map">
-    <l-map
-      ref="map"
-      :center="$city.center"
-      :zoom="$city.zoom"
-      :minZoom="$city.zoom"
-      :maxZoom="$city.zoom"
-      :useGlobalLeaflet="false"
-      :options="{
-        zoomControl: false,
-        scrollWheelZoom: false,
-        doubleClickZoom: false,
-        dragging: false,
-        attributionControl: false,
-      }"
-    >
-      <l-tile-layer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        layer-type="base"
-        name="OpenStreetMap"
-      ></l-tile-layer>
-      <l-marker
-        v-for="(hotel, index) in hotelStore.hotels.filter(
-          (hotel) =>
-            $hotelMeta[hotel.id].location.lat &&
-            $hotelMeta[hotel.id].location.long
-        )"
-        :key="index"
-        :lat-lng="[
-          $hotelMeta[hotel.id].location.lat,
-          $hotelMeta[hotel.id].location.long,
-        ]"
-        @click="
-          hotel.isSelected = hotel.isSelected
-            ? 0
-            : hotelStore.selectedHotels.reduce(
-                // set to highest index plus 1
-                (max, hotel) => (max = Math.max(max, hotel.isSelected)),
-                0
-              ) + 1
-        "
-      >
-        <l-tooltip>{{ $hotelMeta[hotel.id].name }}</l-tooltip>
-        <l-icon
-          :icon-url="
-            hotel.isSelected
-              ? 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png'
-              : 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-grey.png'
-          "
-        ></l-icon>
-      </l-marker>
-    </l-map>
-  </div-->
   <div class="dummy"></div>
 </template>
 
