@@ -17,10 +17,7 @@ export default {
   },
   mounted() {
     function updateSelectedHotels() {
-      markers
-        .attr("fill", (d) => (d.isSelected ? "#000" : "#ccc"))
-        .attr("stroke", "black")
-        .attr("stroke-width", 2);
+      markers.attr("stroke-width", (d) => (d.isSelected ? 6 : 2));
     }
 
     function resetAllMarkers() {
@@ -36,6 +33,11 @@ export default {
         .attr("font-size", "0");
     }
 
+    function resetZoom() {
+      resetAllMarkers();
+      svg.select(".map-container").transition().attr("transform", "");
+    }
+
     const cityId = this.$city.name.replace(" ", "_").toLowerCase();
 
     const width = d3.select("#app").node().getBoundingClientRect().width - 344;
@@ -43,7 +45,8 @@ export default {
     const svg = d3
       .select("#svg-map")
       .attr("width", width)
-      .attr("height", height);
+      .attr("height", height)
+      .on("click", resetZoom);
 
     console.log(this.$city.center);
 
@@ -137,15 +140,16 @@ export default {
       .attr("cy", (d) => projection([d.location.long, d.location.lat])[1])
       .attr("r", 15)
       .attr("stroke", "black")
-      .attr("stroke-width", 2)
-      .on("click", (event, d) => {
+      .attr("fill", "#ccc")
+      // select on right click
+      .on("contextmenu", (event, d) => {
         const hotel = this.hotelStore.hotels.find((hotel) => hotel.id === d.id);
         hotel.isSelected = hotel.isSelected ? 0 : 1;
         updateSelectedHotels();
       })
-      .on("mouseover", (event, d) => {
+      .on("click", (event, d) => {
         resetAllMarkers();
-        d3.select(event.target).transition().attr("r", 20);
+        d3.select(event.target).transition().attr("r", 60).attr("opacity", 0.5);
         svg
           .select(".markers")
           .selectAll("text")
@@ -159,9 +163,20 @@ export default {
           .filter((circle) => circle.id !== d.id)
           .transition()
           .attr("opacity", 0.2);
-      })
-      .on("mouseout", (event, d) => {
-        resetAllMarkers();
+        // zoom on the selected hotel
+        const x = projection([d.location.long, d.location.lat])[0];
+        const y = projection([d.location.long, d.location.lat])[1];
+        const k = 2;
+        svg
+          .select(".map-container")
+          .transition()
+          .attr(
+            "transform",
+            `translate(${width / 2}, ${
+              height / 2
+            }) scale(${k}) translate(${-x}, ${-y})`
+          );
+        event.stopPropagation();
       });
 
     // add hotel names as hidden text labels
@@ -172,7 +187,7 @@ export default {
       .enter()
       .append("text")
       .attr("x", (d) => projection([d.location.long, d.location.lat])[0])
-      .attr("y", (d) => projection([d.location.long, d.location.lat])[1] - 30)
+      .attr("y", (d) => projection([d.location.long, d.location.lat])[1] - 70)
       .attr("text-anchor", "middle")
       .attr("font-size", "0")
       .attr("fill", "black")
@@ -229,17 +244,20 @@ export default {
     >
   </div>
   <div class="ml-12 mt-4 instruction">
-    Please click a marker to select/deselect a hotel.
+    Please click a marker to focus a hotel, and right-click to select/deselect
+    one.
     <strong v-if="hotelStore.selectedHotels.length < 2"
       >Select more than one hotel to compare.</strong
     >
   </div>
   <svg id="svg-map" class="map">
-    <g class="districts"></g>
-    <g class="waterways"></g>
-    <g class="roads"></g>
-    <g class="restaurants"></g>
-    <g class="markers"></g>
+    <g class="map-container">
+      <g class="districts"></g>
+      <g class="waterways"></g>
+      <g class="roads"></g>
+      <g class="restaurants"></g>
+      <g class="markers"></g>
+    </g>
   </svg>
   <div class="dummy"></div>
 </template>
