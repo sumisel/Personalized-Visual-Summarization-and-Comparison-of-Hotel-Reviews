@@ -53,26 +53,47 @@ export default {
       .center([this.$city.center[1], this.$city.center[0]])
       .translate([width / 2, height / 2]);
 
-    d3.json(`./geo/districts_${this.$city.name.replace(" ", "_").toLowerCase()}.geojson`).then(
-      (geojson) => {
-        var polygonsOnly = geojson.features.filter(function (feature) {
-          return (
-            feature.geometry.type === "Polygon" ||
-            feature.geometry.type === "MultiPolygon"
-          );
-        });
-        const path = d3.geoPath().projection(projection);
-        svg
-          .selectAll("path")
-          .data(polygonsOnly)
-          .enter()
-          .append("path")
-          .attr("fill", "none")
-          .attr("d", path)
-          .style("stroke", "#ddd")
-          .style("stroke-width", "5px")
-      }
-    );
+    d3.json(
+      `./geo/districts_${this.$city.name
+        .replace(" ", "_")
+        .toLowerCase()}.geojson`
+    ).then((geojson) => {
+      var polygonsOnly = geojson.features.filter(function (feature) {
+        return (
+          feature.geometry.type === "Polygon" ||
+          feature.geometry.type === "MultiPolygon"
+        );
+      });
+      const path = d3.geoPath().projection(projection);
+      svg
+        .selectAll("path")
+        .data(polygonsOnly)
+        .enter()
+        .append("path")
+        .attr("fill", "none")
+        .attr("d", path)
+        .style("stroke", "#ddd")
+        .style("stroke-width", "10px");
+    });
+
+    // draw roads
+    d3.json(
+      `./geo/roads_${this.$city.name.replace(" ", "_").toLowerCase()}.geojson`
+    ).then((geojson) => {
+      var linesOnly = geojson.features.filter(function (feature) {
+        return feature.geometry.type === "LineString";
+      });
+      const path = d3.geoPath().projection(projection);
+      svg
+        .selectAll("path")
+        .data(linesOnly)
+        .enter()
+        .append("path")
+        .attr("fill", "none")
+        .attr("d", path)
+        .style("stroke", "#999")
+        .style("stroke-width", "4px");
+    });
 
     // draw markers for each hotel
     const markers = svg
