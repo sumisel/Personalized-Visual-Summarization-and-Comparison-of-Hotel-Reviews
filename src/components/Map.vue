@@ -252,13 +252,13 @@ export default {
       >.</span
     >
   </div>
-  <div class="ml-12 mt-4 instruction">
+  <v-alert class="mt-4 mb-2 instruction text-center">
     Please click a marker to focus a hotel, and then select/deselect it using
     the toggle switch.
     <strong v-if="hotelStore.selectedHotels.length < 2"
       >Select more than one hotel to compare.</strong
     >
-  </div>
+  </v-alert>
   <div class="map-container">
     <svg id="svg-map" class="map">
       <g class="map-container">
