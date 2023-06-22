@@ -72,7 +72,12 @@ const scrollTo = (hash) => {
         <div class="text-h1 my-16" id="city-name">
           {{ $city.name }}
         </div>
-        <div class="text-right text-caption">
+        <v-card class="typewriter-container">
+          <div class="typewriter">
+            Choose your preferences, select some hotels, and compare them.
+          </div>
+        </v-card>
+        <div class="text-right text-caption attribution">
           Image by
           <a :href="$city.img?.href">{{ $city.img?.attribution }}</a>
           ({{ $city.img?.license }})
@@ -92,20 +97,6 @@ const scrollTo = (hash) => {
             :is="section.component"
             class="ml-16"
           ></component>
-          <div class="ml-16" v-else>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Molestiae at, ratione odit iure deleniti quae corrupti libero ex
-              adipisci nobis nihil eveniet hic autem aliquid reprehenderit
-              mollitia. Temporibus, repudiandae quae.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
-              harum accusantium earum saepe neque. Earum quo, tempora cupiditate
-              quod repellat praesentium ad dicta odit dolores alias. Eligendi
-              quos veritatis animi?
-            </p>
-          </div>
         </div>
       </div>
     </v-main>
@@ -120,6 +111,47 @@ const scrollTo = (hash) => {
   background-size: 100%;
   background-position-x: center;
   background-position-y: center;
+
+  & .attribution {
+    opacity: 0.3;
+  }
+
+  & .typewriter-container {
+    padding: 1rem 2rem;
+    margin-bottom: 2rem;
+    & .typewriter {
+      // source: https://css-tricks.com/snippets/css/typewriter-effect/
+      font-family: monospace;
+      overflow: hidden; /* Ensures the content is not revealed until the animation */
+      border-right: 0.15em solid orange; /* The typwriter cursor */
+      white-space: nowrap; /* Keeps the content on a single line */
+      margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+      letter-spacing: 0.17em; /* Adjust as needed */
+      animation: typing 8s steps(68, end), blink-caret 0.5s step-end infinite;
+      font-size: 1.2rem;
+    }
+  }
+
+  /* The typing effect */
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  /* The typewriter cursor effect */
+  @keyframes blink-caret {
+    from,
+    to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: orange;
+    }
+  }
 }
 
 .content {

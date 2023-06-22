@@ -11,9 +11,10 @@ const poiStore = usePoiStore();
 
 <template>
   <v-sheet class="ma-2 pa-2">
-    <div class="my-4">
+    <div class="text-h5 my-4">My Preferences</div>
+    <div class="my-12">
       <div class="text-h6 mb-4">
-        <v-icon>mdi-map-marker-radius</v-icon> My Points of Interest
+        <v-icon>mdi-map-marker-radius</v-icon> Points of Interest
       </div>
       <v-autocomplete
         label="Choose your favorites"
@@ -32,9 +33,8 @@ const poiStore = usePoiStore();
         </template>
       </v-autocomplete>
     </div>
-    <v-divider></v-divider>
-    <div class="my-8">
-      <div class="text-h6 mb-4"><v-icon>mdi-sort</v-icon> My Priorities</div>
+    <div class="my-12">
+      <div class="text-h6 mb-4"><v-icon>mdi-sort</v-icon> Priorities</div>
       <div class="d-flex justify-center">
         <Glyph></Glyph>
         <div>
