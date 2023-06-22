@@ -32,6 +32,7 @@ export default {
   data() {
     return {
       focusedHotel: "",
+      selectionChanged: false,
     };
   },
   mounted() {
@@ -216,7 +217,7 @@ export default {
 </script>
 
 <template>
-  <div class="text">
+  <div class="text mb-4">
     Among the available
     <strong>{{ Object.keys($hotelMeta).length }}</strong> hotels
     <v-icon icon="mdi-circle-outline" size="x-small"></v-icon>,
@@ -252,13 +253,7 @@ export default {
       >.</span
     >
   </div>
-  <v-alert class="mt-4 mb-2 instruction text-center">
-    Please click a marker to focus a hotel, and then select/deselect it using
-    the toggle switch.
-    <strong v-if="hotelStore.selectedHotels.length < 2"
-      >Select more than one hotel to compare.</strong
-    >
-  </v-alert>
+
   <div class="map-container">
     <svg id="svg-map" class="map">
       <g class="map-container">
@@ -277,24 +272,45 @@ export default {
       </g>
     </svg>
     <div class="dummy"></div>
-    <div class="map-overlay" v-if="focusedHotel">
-      <div class="hotel-header elevation-6 d-flex">
+    <div class="map-overlay">
+      <v-alert
+        class="mb-2 mt-2 instruction text-center"
+        v-if="
+          !selectionChanged ||
+          hotelStore.selectedHotels.length < 2 ||
+          poiStore.selectedPois.length === 0
+        "
+      >
+        <span v-if="!selectionChanged"
+          >Click a marker to focus a hotel, and then (de)select it using the
+          switch.</span
+        >
+        <strong v-if="hotelStore.selectedHotels.length < 2"
+          >Select more than one hotel to compare.</strong
+        >
+        <strong v-if="poiStore.selectedPois.length === 0"
+          >Choose your favorite points of interests, to see related
+          information.</strong
+        >
+      </v-alert>
+      <div class="hotel-header elevation-6 d-flex" v-if="focusedHotel">
         <div class="text-h5">{{ $hotelMeta[focusedHotel]?.name }}</div>
       </div>
-      <div class="switch-container">
+      <div class="switch-container" v-if="focusedHotel">
         <v-switch
           :model-value="hotelStore.hotelIsSelected(focusedHotel)"
           color="black"
           @change="
             hotelStore.toggleHotelSelection(focusedHotel);
             updateSelectedHotels();
+            selectionChanged = true;
           "
         >
         </v-switch>
       </div>
       <div
         class="hotel-details elevation-4"
-        v-if="poiStore.selectedPois.length"
+        v-if="focusedHotel && poiStore.selectedPois.length"
       >
         <v-chip
           v-for="poi in poiStore.selectedPois.filter(
@@ -330,12 +346,6 @@ export default {
   top: -2px;
 }
 
-.instruction {
-  font-style: italic;
-  color: gray;
-  font-size: 0.9rem;
-}
-
 .map-container {
   & .map {
     height: 600px;
@@ -360,6 +370,15 @@ export default {
     & > div {
       position: absolute;
     }
+    & .instruction {
+      font-style: italic;
+      color: gray;
+      font-size: 0.9rem;
+      top: -590px;
+      width: 100%;
+      padding: 0.2rem;
+    }
+
     & .hotel-header {
       background-color: white;
       top: -530px;
