@@ -16,8 +16,9 @@ export default {
       d3.select("#svg-map")
         .select(".markers")
         .selectAll("circle")
-        .attr("stroke-width", (d) =>
-          this.hotelStore.hotelIsSelected(d.id) ? 6 : 2
+        .transition()
+        .attr("fill", (d) =>
+          this.hotelStore.hotelIsSelected(d.id) ? "black" : "white"
         );
     }
 
@@ -166,6 +167,7 @@ export default {
       .attr("r", 10)
       .attr("stroke", "black")
       .attr("fill", "#ccc")
+      .attr("stroke-width", "2px")
       // focus on click
       .on("click", (event, d) => {
         this.focusedHotel = d.id;
@@ -214,9 +216,10 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div class="text">
     Among the available
-    <strong>{{ Object.keys($hotelMeta).length }}</strong> hotels,
+    <strong>{{ Object.keys($hotelMeta).length }}</strong> hotels
+    <v-icon icon="mdi-circle-outline" size="x-small"></v-icon>,
     <span v-if="hotelStore.selectedHotels.length > 1"
       ><strong>{{ hotelStore.selectedHotels.length }}</strong> are</span
     >
@@ -226,7 +229,7 @@ export default {
     <span v-if="hotelStore.selectedHotels.length === 0"
       ><strong>none</strong> is</span
     >
-    selected.
+    selected <v-icon icon="mdi-circle" size="x-small"></v-icon>.
     <span
       v-if="
         hotelStore.selectedHotels.length > 1 &&
@@ -321,6 +324,11 @@ export default {
 </template>
 
 <style lang="scss">
+.text .v-icon {
+  display: relative;
+  top: -2px;
+}
+
 .instruction {
   font-style: italic;
   color: gray;
