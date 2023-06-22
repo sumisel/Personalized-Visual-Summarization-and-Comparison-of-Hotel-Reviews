@@ -12,10 +12,20 @@ export default {
     const hotelStore = useHotelStore();
     const poiStore = usePoiStore();
 
+    function updateSelectedHotels() {
+      d3.select("#svg-map")
+        .select(".markers")
+        .selectAll("circle")
+        .attr("stroke-width", (d) =>
+          this.hotelStore.hotelIsSelected(d.id) ? 6 : 2
+        );
+    }
+
     return {
       map,
       hotelStore,
       poiStore,
+      updateSelectedHotels,
     };
   },
   data() {
@@ -24,10 +34,6 @@ export default {
     };
   },
   mounted() {
-    function updateSelectedHotels() {
-      markers.attr("stroke-width", (d) => (d.isSelected ? 6 : 2));
-    }
-
     function resetAllMarkers() {
       svg
         .select(".markers")
@@ -160,12 +166,6 @@ export default {
       .attr("r", 10)
       .attr("stroke", "black")
       .attr("fill", "#ccc")
-      // select on right click
-      .on("contextmenu", (event, d) => {
-        const hotel = this.hotelStore.hotels.find((hotel) => hotel.id === d.id);
-        hotel.isSelected = hotel.isSelected ? 0 : 1;
-        updateSelectedHotels();
-      })
       // focus on click
       .on("click", (event, d) => {
         this.focusedHotel = d.id;
@@ -200,7 +200,7 @@ export default {
         event.stopPropagation();
       });
 
-    updateSelectedHotels();
+    this.updateSelectedHotels();
   },
   computed: {
     districtsOfSelectedHotels() {
@@ -250,8 +250,8 @@ export default {
     >
   </div>
   <div class="ml-12 mt-4 instruction">
-    Please click a marker to focus a hotel, and right-click to select/deselect
-    one.
+    Please click a marker to focus a hotel, and then select/deselect it using
+    the toggle switch.
     <strong v-if="hotelStore.selectedHotels.length < 2"
       >Select more than one hotel to compare.</strong
     >
@@ -275,10 +275,24 @@ export default {
     </svg>
     <div class="dummy"></div>
     <div class="map-overlay" v-if="focusedHotel">
-      <div class="hotel-header text-h5">
-        {{ $hotelMeta[focusedHotel]?.name }}
+      <div class="hotel-header elevation-6 d-flex">
+        <div class="text-h5">{{ $hotelMeta[focusedHotel]?.name }}</div>
       </div>
-      <div class="hotel-details" v-if="poiStore.selectedPois.length">
+      <div class="switch-container">
+          <v-switch
+            :model-value="hotelStore.hotelIsSelected(focusedHotel)"
+            color="black"
+            @change="
+              hotelStore.toggleHotelSelection(focusedHotel);
+              updateSelectedHotels();
+            "
+          >
+          </v-switch>
+        </div>
+      <div
+        class="hotel-details elevation-4"
+        v-if="poiStore.selectedPois.length"
+      >
         <v-chip
           v-for="poi in poiStore.selectedPois.filter(
             (poi) => $hotelMeta[focusedHotel]?.poiInfo[poi]
@@ -322,11 +336,10 @@ export default {
     opacity: 0.8;
     & > div {
       position: absolute;
-      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-      background-color: white;
+      
     }
     & .hotel-header {
-      position: absolute;
+      background-color: white;
       top: -530px;
       left: 27.5%;
       width: 40%;
@@ -335,10 +348,13 @@ export default {
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
+    }
+    & .switch-container {
+      top: -500px;
+      left: 62.8%;
     }
     & .hotel-details {
-      position: absolute;
+      background-color: white;
       top: -160px;
       left: 17.5%;
       width: 60%;

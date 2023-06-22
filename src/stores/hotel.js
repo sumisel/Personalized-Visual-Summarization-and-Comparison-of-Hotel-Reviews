@@ -124,6 +124,16 @@ export const useHotelStore = defineStore({
     hotelById: (state) => {
       return (id) => state.hotels.find(hotel => hotel.id === id);
     },
+    hotelIsSelected: (state) => {
+      return (id) => state.hotelById(id).isSelected > 0;
+    },
+    toggleHotelSelection: (state) => {
+      return (id) => {
+        const hotel = state.hotelById(id);
+        hotel.isSelected = hotel.isSelected > 0 ? 0 : 1;
+      }
+    }
+
   },
   actions: {
     async initHotels(city) {
