@@ -31,6 +31,13 @@ const poiStore = usePoiStore();
             :text="item.raw"
           ></v-chip>
         </template>
+        <template v-slot:item="{ props, item }">
+          <v-list-item
+            v-bind="props"
+            :prepend-icon="$poiMeta[item.raw].icon"
+            :title="item.raw"
+          ></v-list-item>
+        </template>
       </v-autocomplete>
     </div>
     <div class="my-12">
