@@ -1,32 +1,208 @@
 <script>
+import * as d3 from "d3";
+
 import { ref } from "vue";
 
-import "leaflet/dist/leaflet.css";
-import {
-  LMap,
-  LTileLayer,
-  LMarker,
-  LTooltip,
-  LIcon,
-} from "@vue-leaflet/vue-leaflet";
 import { useHotelStore } from "@/stores/hotel";
+import { usePoiStore } from "@/stores/poi";
 
 export default {
-  components: {
-    LMap,
-    LTileLayer,
-    LMarker,
-    LTooltip,
-    LIcon,
-  },
   setup() {
     const map = ref();
     const hotelStore = useHotelStore();
+    const poiStore = usePoiStore();
+
+    function updateSelectedHotels() {
+      d3.select("#svg-map")
+        .select(".markers")
+        .selectAll("circle")
+        .transition()
+        .attr("fill", (d) =>
+          this.hotelStore.hotelIsSelected(d.id) ? "black" : "white"
+        );
+    }
 
     return {
       map,
       hotelStore,
+      poiStore,
+      updateSelectedHotels,
     };
+  },
+  data() {
+    return {
+      focusedHotel: "",
+    };
+  },
+  mounted() {
+    function resetAllMarkers() {
+      svg
+        .select(".markers")
+        .selectAll("circle")
+        .attr("opacity", 1)
+        .attr("r", 10);
+    }
+
+    function resetZoom() {
+      resetAllMarkers();
+      svg.select(".map-container").transition().attr("transform", "");
+      that.focusedHotel = "";
+    }
+
+    const that = this;
+
+    const cityId = this.$city.name.replace(" ", "_").toLowerCase();
+
+    const width = d3.select("#app").node().getBoundingClientRect().width - 344;
+    const height = 600;
+    const svg = d3
+      .select("#svg-map")
+      .attr("width", width)
+      .attr("height", height)
+      .on("click", resetZoom);
+
+    const projection = d3
+      .geoMercator()
+      .scale(600000)
+      .center([this.$city.center[1], this.$city.center[0]])
+      .translate([width / 2, height / 2]);
+
+    // draw districts
+    d3.json(`./geo/districts_${cityId}.geojson`).then((geojson) => {
+      var polygonsOnly = geojson.features.filter(function (feature) {
+        return (
+          feature.geometry.type === "Polygon" ||
+          feature.geometry.type === "MultiPolygon"
+        );
+      });
+      const path = d3.geoPath().projection(projection);
+      svg
+        .select(".districts")
+        .selectAll("path")
+        .data(polygonsOnly)
+        .enter()
+        .append("path")
+        .attr("fill", "none")
+        .attr("d", path)
+        .style("stroke", "#eaeaea")
+        .style("stroke-width", "20px");
+    });
+
+    // draw waterways
+    d3.json(`./geo/waterways_${cityId}.geojson`).then((geojson) => {
+      var linesOnly = geojson.features.filter(function (feature) {
+        return feature.geometry.type === "LineString";
+      });
+      const path = d3.geoPath().projection(projection);
+      svg
+        .select(".waterways")
+        .selectAll("path")
+        .data(linesOnly)
+        .enter()
+        .append("path")
+        .attr("fill", "none")
+        .attr("d", path)
+        .style("stroke", "#cdf")
+        .style("stroke-width", "12px");
+    });
+
+    // draw roads
+    d3.json(`./geo/roads_${cityId}.geojson`).then((geojson) => {
+      var linesOnly = geojson.features.filter(function (feature) {
+        return feature.geometry.type === "LineString";
+      });
+      const path = d3.geoPath().projection(projection);
+      svg
+        .select(".roads")
+        .selectAll("path")
+        .data(linesOnly)
+        .enter()
+        .append("path")
+        .attr("fill", "none")
+        .attr("d", path)
+        .style("stroke", "#fee")
+        .style("stroke-width", "4px");
+    });
+
+    // draw sightseeing
+    d3.json(`./geo/sightseeing_${cityId}.geojson`).then((geojson) => {
+      const path = d3.geoPath().projection(projection);
+      svg
+        .select(".sightseeing")
+        .selectAll("path")
+        .data(geojson.features)
+        .enter()
+        .append("path")
+        .attr("fill", "none")
+        .attr("d", path)
+        .style("stroke", "#ccb")
+        .style("stroke-width", "2px");
+    });
+
+    // draw restaurants
+    d3.json(`./geo/restaurants_${cityId}.geojson`).then((geojson) => {
+      var pointsOnly = geojson.features.filter(function (feature) {
+        return feature.geometry.type === "Point";
+      });
+      const path = d3.geoPath().projection(projection);
+      svg
+        .select(".restaurants")
+        .selectAll("path")
+        .data(pointsOnly)
+        .enter()
+        .append("path")
+        .attr("fill", "#bbb")
+        .attr("d", path.pointRadius(2));
+    });
+
+    // draw markers for each hotel
+    const markers = svg
+      .select(".markers")
+      .selectAll("circle")
+      .data(Object.values(this.$hotelMeta))
+      .enter()
+      .append("circle")
+      .attr("cx", (d) => projection([d.location.long, d.location.lat])[0])
+      .attr("cy", (d) => projection([d.location.long, d.location.lat])[1])
+      .attr("r", 10)
+      .attr("stroke", "black")
+      .attr("fill", "#ccc")
+      .attr("stroke-width", "2px")
+      // focus on click
+      .on("click", (event, d) => {
+        this.focusedHotel = d.id;
+        resetAllMarkers();
+        d3.select(event.target).transition().attr("r", 60).attr("opacity", 0.5);
+        svg
+          .select(".markers")
+          .selectAll("text")
+          .filter((text) => text.id === d.id)
+          .transition()
+          .attr("opacity", 1)
+          .attr("font-size", "20px");
+        svg
+          .select(".markers")
+          .selectAll("circle")
+          .filter((circle) => circle.id !== d.id)
+          .transition()
+          .attr("opacity", 0.2);
+        // zoom on the selected hotel
+        const x = projection([d.location.long, d.location.lat])[0];
+        const y = projection([d.location.long, d.location.lat])[1];
+        const k = 2;
+        svg
+          .select(".map-container")
+          .transition()
+          .attr(
+            "transform",
+            `translate(${width / 2}, ${
+              height / 2
+            }) scale(${k}) translate(${-x}, ${-y})`
+          );
+        event.stopPropagation();
+      });
+
+    this.updateSelectedHotels();
   },
   computed: {
     districtsOfSelectedHotels() {
@@ -40,9 +216,10 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div class="text">
     Among the available
-    <strong>{{ Object.keys($hotelMeta).length }}</strong> hotels,
+    <strong>{{ Object.keys($hotelMeta).length }}</strong> hotels
+    <v-icon icon="mdi-circle-outline" size="x-small"></v-icon>,
     <span v-if="hotelStore.selectedHotels.length > 1"
       ><strong>{{ hotelStore.selectedHotels.length }}</strong> are</span
     >
@@ -52,8 +229,12 @@ export default {
     <span v-if="hotelStore.selectedHotels.length === 0"
       ><strong>none</strong> is</span
     >
-    selected.
-    <span v-if="hotelStore.selectedHotels.length > 1 && districtsOfSelectedHotels.length > 0"
+    selected <v-icon icon="mdi-circle" size="x-small"></v-icon>.
+    <span
+      v-if="
+        hotelStore.selectedHotels.length > 1 &&
+        districtsOfSelectedHotels.length > 0
+      "
       >They are
       <span v-if="districtsOfSelectedHotels.length === 1"
         >all located in
@@ -72,81 +253,139 @@ export default {
     >
   </div>
   <div class="ml-12 mt-4 instruction">
-    Please click a marker to select/deselect a hotel.
+    Please click a marker to focus a hotel, and then select/deselect it using
+    the toggle switch.
     <strong v-if="hotelStore.selectedHotels.length < 2"
       >Select more than one hotel to compare.</strong
     >
   </div>
-  <div class="map">
-    <l-map
-      ref="map"
-      :center="$city.center"
-      :zoom="$city.zoom"
-      :minZoom="$city.zoom"
-      :maxZoom="$city.zoom"
-      :useGlobalLeaflet="false"
-      :options="{
-        zoomControl: false,
-        scrollWheelZoom: false,
-        doubleClickZoom: false,
-        dragging: false,
-        attributionControl: false,
-      }"
-    >
-      <l-tile-layer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        layer-type="base"
-        name="OpenStreetMap"
-      ></l-tile-layer>
-      <l-marker
-        v-for="(hotel, index) in hotelStore.hotels.filter(
-          (hotel) =>
-            $hotelMeta[hotel.id].location.lat &&
-            $hotelMeta[hotel.id].location.long
-        )"
-        :key="index"
-        :lat-lng="[
-          $hotelMeta[hotel.id].location.lat,
-          $hotelMeta[hotel.id].location.long,
-        ]"
-        @click="
-          hotel.isSelected = hotel.isSelected
-            ? 0
-            : hotelStore.selectedHotels.reduce(
-                // set to highest index plus 1
-                (max, hotel) => (max = Math.max(max, hotel.isSelected)),
-                0
-              ) + 1
-        "
-      >
-        <l-tooltip>{{ $hotelMeta[hotel.id].name }}</l-tooltip>
-        <l-icon
-          :icon-url="
-            hotel.isSelected
-              ? 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png'
-              : 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-grey.png'
+  <div class="map-container">
+    <svg id="svg-map" class="map">
+      <g class="map-container">
+        <g class="districts"></g>
+        <g class="waterways"></g>
+        <g class="roads"></g>
+        <g
+          class="sightseeing"
+          v-show="poiStore.selectedPois.includes('sightseeing')"
+        ></g>
+        <g
+          class="restaurants"
+          v-show="poiStore.selectedPois.includes('restaurants')"
+        ></g>
+        <g class="markers"></g>
+      </g>
+    </svg>
+    <div class="dummy"></div>
+    <div class="map-overlay" v-if="focusedHotel">
+      <div class="hotel-header elevation-6 d-flex">
+        <div class="text-h5">{{ $hotelMeta[focusedHotel]?.name }}</div>
+      </div>
+      <div class="switch-container">
+        <v-switch
+          :model-value="hotelStore.hotelIsSelected(focusedHotel)"
+          color="black"
+          @change="
+            hotelStore.toggleHotelSelection(focusedHotel);
+            updateSelectedHotels();
           "
-        ></l-icon>
-      </l-marker>
-    </l-map>
+        >
+        </v-switch>
+      </div>
+      <div
+        class="hotel-details elevation-4"
+        v-if="poiStore.selectedPois.length"
+      >
+        <v-chip
+          v-for="poi in poiStore.selectedPois.filter(
+            (poi) => $hotelMeta[focusedHotel]?.poiInfo[poi]
+          )"
+          :key="poi"
+        >
+          <v-icon
+            start
+            :icon="
+              $hotelMeta[focusedHotel]?.poiInfo[poi].startsWith('(+)')
+                ? 'mdi-plus'
+                : $hotelMeta[focusedHotel]?.poiInfo[poi].startsWith('(-)')
+                ? 'mdi-minus'
+                : 'mdi-plus-minus'
+            "
+          ></v-icon>
+          <v-icon start :icon="$poiMeta[poi].icon"></v-icon>
+          <span
+            v-html="
+              $hotelMeta[focusedHotel]?.poiInfo[poi].replace(/^\([+-]\) /, '')
+            "
+          ></span>
+        </v-chip>
+      </div>
+    </div>
   </div>
-  <div class="dummy"></div>
 </template>
 
-<style lang="scss" scoped>
-.map {
-  height: 600px;
-  width: calc(100vw - 344px);
-  left: 0;
-  position: absolute;
-}
-.dummy {
-  height: 600px;
+<style lang="scss">
+.text .v-icon {
+  display: relative;
+  top: -2px;
 }
 
 .instruction {
   font-style: italic;
   color: gray;
   font-size: 0.9rem;
+}
+
+.map-container {
+  & .map {
+    height: 600px;
+    width: calc(100vw - 344px);
+    left: 0;
+    position: absolute;
+    & .markers {
+      & circle {
+        cursor: pointer;
+        filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+      }
+    }
+  }
+
+  & .dummy {
+    height: 600px;
+  }
+
+  & .map-overlay {
+    position: relative;
+    opacity: 0.8;
+    & > div {
+      position: absolute;
+    }
+    & .hotel-header {
+      background-color: white;
+      top: -530px;
+      left: 27.5%;
+      width: 40%;
+      height: 80px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    & .switch-container {
+      top: -500px;
+      left: 62.8%;
+    }
+    & .hotel-details {
+      background-color: white;
+      top: -160px;
+      left: 17.5%;
+      width: 60%;
+      max-height: 150px;
+      padding: 10px;
+      & .v-chip {
+        margin: 2px;
+      }
+    }
+  }
 }
 </style>

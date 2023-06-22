@@ -4,7 +4,6 @@ import Map from "./components/Map.vue";
 import HotelOverview from "./components/HotelOverview.vue";
 import PosNeg from "./components/PosNeg.vue";
 import Trending from "./components/Trending.vue";
-import CloseBy from "./components/CloseBy.vue";
 
 const sections = [
   {
@@ -24,12 +23,6 @@ const sections = [
     title: "Good and Bad",
     icon: "mdi-plus-minus-variant",
     component: PosNeg,
-  },
-  {
-    id: "close-by",
-    title: "Am I Close?",
-    icon: "mdi-map-marker-radius",
-    component: CloseBy,
   },
   {
     id: "trend",
@@ -81,9 +74,7 @@ const scrollTo = (hash) => {
         </div>
         <div class="text-right text-caption">
           Image by
-          <a :href="$city.img?.href">{{
-            $city.img?.attribution
-          }}</a>
+          <a :href="$city.img?.href">{{ $city.img?.attribution }}</a>
           ({{ $city.img?.license }})
         </div>
         <div

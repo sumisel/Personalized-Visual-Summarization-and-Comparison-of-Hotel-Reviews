@@ -21,7 +21,7 @@ const pinia = createPinia();
 import { useHotelStore } from "./stores/hotel.js";
 import { useCategoryStore } from "./stores/category.js";
 import { useClusterStore } from "./stores/cluster.js";
-import { useTimeStore} from "./stores/ratings_over_time.js";
+import { useTimeStore } from "./stores/ratings_over_time.js";
 const hotelStore = useHotelStore(pinia);
 const categoryStore = useCategoryStore(pinia);
 const clusterStore = useClusterStore(pinia);
@@ -43,6 +43,8 @@ import cities from "./assets/cities.json"
 app.config.globalProperties.$city = cities[cityId];
 import hotelMeta from "./assets/hotel_meta.json"
 app.config.globalProperties.$hotelMeta = hotelMeta[cityId];
+import poiMeta from "./assets/poi_meta.json"
+app.config.globalProperties.$poiMeta = poiMeta;
 hotelStore.initHotels(cityId)
     .then(r => {
         // trigger loading of data that depends on category values
@@ -58,9 +60,9 @@ hotelStore.initHotels(cityId)
 const result = await fetch("/HotelRec_subset_" + cityId + "_10_reviews.json");
 const data = await result.json();
 Object.keys(data).map(key => {
-    const elem=data[key];
-    elem['review_count']=Object.keys(elem['reviews']).length;
-    elem['reviews_unannotated']=[]; // we don't need that for now
+    const elem = data[key];
+    elem['review_count'] = Object.keys(elem['reviews']).length;
+    elem['reviews_unannotated'] = []; // we don't need that for now
     return elem;
 });
 app.config.globalProperties.$reviews = data;

@@ -1,0 +1,12 @@
+[out:json][timeout:25];
+(
+  way["highway"="motorway"]({{bbox}});
+  way["highway"="trunk"]({{bbox}});
+  way["highway"="primary"]({{bbox}});
+  way["highway"="secondary"]({{bbox}});
+  way["highway"="tertiary"]({{bbox}});
+
+);
+out body;
+>;
+out skel qt;

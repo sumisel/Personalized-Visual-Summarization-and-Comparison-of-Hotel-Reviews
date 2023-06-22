@@ -1,0 +1,8 @@
+[out:json][timeout:25];
+area["name"="Berlin"]->.searchArea;
+(
+  relation(area.searchArea)["admin_level"="10"];
+);
+out body;
+>;
+out skel qt;

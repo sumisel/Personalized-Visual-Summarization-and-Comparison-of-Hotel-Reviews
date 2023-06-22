@@ -3,174 +3,214 @@
         "Hotel_Review-g187323-d230550-Reviews-Park_Inn_by_Radisson_Berlin_Alexanderplatz-Berlin.html": {
             "name": "Park Inn by Radisson Berlin Alexanderplatz",
             "ratings": {
-              "cleanliness": 4.336488812392427,
-              "service": 3.80564263322884,
-              "value": 3.8755799240826656,
-              "location": 4.690549450549451,
-              "sleep": 3.994438827098079,
-              "rooms": 3.7707338254450717
+                "cleanliness": 4.336488812392427,
+                "service": 3.80564263322884,
+                "value": 3.8755799240826656,
+                "location": 4.690549450549451,
+                "sleep": 3.994438827098079,
+                "rooms": 3.7707338254450717
             },
             "location": {
                 "lat": 52.52323593377977,
                 "long": 13.412744147428139
             },
-            "district": "Mitte"
+            "district": "Mitte",
+            "poiInfo": {
+                "restaurants": "(+) many <strong>restaurants</strong> nearby",
+                "sightseeing": "not close, but also not far from major <strong>sights</strong>"
+            }
         },
         "Hotel_Review-g187323-d589462-Reviews-Melia_Berlin-Berlin.html": {
             "name": "Melia Berlin",
             "ratings": {
-              "cleanliness": 4.797733711048159,
-              "service": 4.528343666961913,
-              "value": 4.40625,
-              "location": 4.866514546491729,
-              "sleep": 4.588874680306906,
-              "rooms": 4.589358010410642
+                "cleanliness": 4.797733711048159,
+                "service": 4.528343666961913,
+                "value": 4.40625,
+                "location": 4.866514546491729,
+                "sleep": 4.588874680306906,
+                "rooms": 4.589358010410642
             },
             "location": {
                 "lat": 52.52158560943486,
                 "long": 13.388433404853155
             },
-            "district": "Mitte"
+            "district": "Mitte",
+            "poiInfo": {
+                "restaurants": "(+) many <strong>restaurants</strong> nearby",
+                "sightseeing": "(+) close to major <strong>sights</strong>"
+            }
         },
         "Hotel_Review-g187323-d781064-Reviews-Adina_Apartment_Hotel_Berlin_Checkpoint_Charlie-Berlin.html": {
             "name": "Adina Apartment Berlin Checkpoint Charlie",
             "ratings": {
-              "cleanliness": 4.773809523809524,
-              "service": 4.620412267471091,
-              "value": 4.585601935874168,
-              "location": 4.509561998766194,
-              "sleep": 4.635883905013193,
-              "rooms": 4.748928352725046
+                "cleanliness": 4.773809523809524,
+                "service": 4.620412267471091,
+                "value": 4.585601935874168,
+                "location": 4.509561998766194,
+                "sleep": 4.635883905013193,
+                "rooms": 4.748928352725046
             },
             "location": {
                 "lat": 52.50991001736232,
                 "long": 13.397445562389724
             },
-            "district": "Mitte"
+            "district": "Mitte",
+            "poiInfo": {
+                "restaurants": "(+) many <strong>restaurants</strong> nearby",
+                "sightseeing": "(+) close to major <strong>sights</strong>"
+            }
         },
         "Hotel_Review-g187323-d190694-Reviews-Hotel_Adlon_Kempinski-Berlin.html": {
             "name": "Adlon Kempinski",
             "ratings": {
-              "cleanliness": 4.823367065317387,
-              "service": 4.640024405125076,
-              "value": 4.255064456721915,
-              "location": 4.896935933147632,
-              "sleep": 4.70042643923241,
-              "rooms": 4.708615682478219
+                "cleanliness": 4.823367065317387,
+                "service": 4.640024405125076,
+                "value": 4.255064456721915,
+                "location": 4.896935933147632,
+                "sleep": 4.70042643923241,
+                "rooms": 4.708615682478219
             },
             "location": {
                 "lat": 52.516193223183464,
                 "long": 13.38003003822563
             },
-            "district": "Mitte"
+            "district": "Mitte",
+            "poiInfo": {
+                "restaurants": "(+) many <strong>restaurants</strong> nearby",
+                "sightseeing": "(+) close to major <strong>sights</strong>"
+            }
         },
         "Hotel_Review-g187323-d191437-Reviews-The_Westin_Grand_Berlin-Berlin.html": {
             "name": "The Westin Grand Berlin",
             "ratings": {
-              "cleanliness": 4.620503597122302,
-              "service": 4.239543726235741,
-              "value": 3.988277727682597,
-              "location": 4.7944700460829495,
-              "sleep": 4.412997903563942,
-              "rooms": 4.212488350419385
+                "cleanliness": 4.620503597122302,
+                "service": 4.239543726235741,
+                "value": 3.988277727682597,
+                "location": 4.7944700460829495,
+                "sleep": 4.412997903563942,
+                "rooms": 4.212488350419385
             },
             "location": {
                 "lat": 52.516086409333994,
                 "long": 13.388512012423096
             },
-            "district": "Mitte"
+            "district": "Mitte",
+            "poiInfo": {
+                "restaurants": "(+) many <strong>restaurants</strong> nearby",
+                "sightseeing": "(+) close to major <strong>sights</strong>"
+            }
         },
         "Hotel_Review-g187323-d1307675-Reviews-The_Circus_Hotel-Berlin.html": {
             "name": "The Circus",
             "ratings": {
-              "cleanliness": 4.848214285714286,
-              "service": 4.809334092202618,
-              "value": 4.7207392197125255,
-              "location": 4.77116212338594,
-              "sleep": 4.4573770491803275,
-              "rooms": 4.594244604316547
+                "cleanliness": 4.848214285714286,
+                "service": 4.809334092202618,
+                "value": 4.7207392197125255,
+                "location": 4.77116212338594,
+                "sleep": 4.4573770491803275,
+                "rooms": 4.594244604316547
             },
             "location": {
                 "lat": 52.529669672707435,
                 "long": 13.40116314409216
             },
-            "district": "Mitte"
+            "district": "Mitte",
+            "poiInfo": {
+                "restaurants": "(+) many <strong>restaurants</strong> nearby",
+                "sightseeing": "not close, but also not far from major <strong>sights</strong>"
+            }
         },
         "Hotel_Review-g187323-d233880-Reviews-Mercure_Hotel_Residenz_Berlin_Checkpoint_Charlie-Berlin.html": {
             "name": "Mercure Residenz Berlin Checkpoint Charlie",
             "ratings": {
-              "cleanliness": 4.732516222062005,
-              "service": 4.483793517406963,
-              "value": 4.446931407942238,
-              "location": 4.642533936651584,
-              "sleep": 4.552758954501452,
-              "rooms": 4.63355408388521
+                "cleanliness": 4.732516222062005,
+                "service": 4.483793517406963,
+                "value": 4.446931407942238,
+                "location": 4.642533936651584,
+                "sleep": 4.552758954501452,
+                "rooms": 4.63355408388521
             },
             "location": {
                 "lat": 52.50876342111009,
                 "long": 13.39307286239428
             },
-            "district": "Mitte"
+            "district": "Mitte",
+            "poiInfo": {
+                "restaurants": "(+) many <strong>restaurants</strong> nearby",
+                "sightseeing": "(+) close to major <strong>sights</strong>"
+            }
         },
         "Hotel_Review-g187323-d289019-Reviews-The_Ritz_Carlton_Berlin-Berlin.html": {
             "name": "The Ritz Carlton Berlin",
             "ratings": {
-              "cleanliness": 4.815061963775024,
-              "service": 4.6216783216783215,
-              "value": 4.383732057416268,
-              "location": 4.8231292517006805,
-              "sleep": 4.667423382519864,
-              "rooms": 4.6857707509881426
+                "cleanliness": 4.815061963775024,
+                "service": 4.6216783216783215,
+                "value": 4.383732057416268,
+                "location": 4.8231292517006805,
+                "sleep": 4.667423382519864,
+                "rooms": 4.6857707509881426
             },
             "location": {
                 "lat": 52.51051091075139,
                 "long": 13.375242220636112
             },
-            "district": "Tiergarten"
+            "district": "Tiergarten",
+            "poiInfo": {
+                "restaurants": "(+) many <strong>restaurants</strong> nearby",
+                "sightseeing": "(+) close to major <strong>sights</strong>"
+            }
         },
         "Hotel_Review-g187323-d202450-Reviews-Pullman_Berlin_Schweizerhof-Berlin.html": {
             "name": "Pullman Berlin Schweizerhof",
             "ratings": {
-              "cleanliness": 4.764764764764765,
-              "service": 4.615903975993999,
-              "value": 4.455455455455455,
-              "location": 4.480298189563365,
-              "sleep": 4.60561797752809,
-              "rooms": 4.536430834213305
+                "cleanliness": 4.764764764764765,
+                "service": 4.615903975993999,
+                "value": 4.455455455455455,
+                "location": 4.480298189563365,
+                "sleep": 4.60561797752809,
+                "rooms": 4.536430834213305
             },
             "location": {
                 "lat": 52.506153368476284,
                 "long": 13.343966770942998
             },
-            "district": "Tiergarten"
+            "district": "Tiergarten",
+            "poiInfo": {
+                "restaurants": "some <strong>restaurants</strong> nearby",
+                "sightseeing": "close to the Zoo, but only few other <strong>sights</strong> nearby"
+            }
         },
         "Hotel_Review-g187323-d638834-Reviews-Hotel_Berlin_Berlin-Berlin.html": {
             "name": "Berlin Berlin",
             "ratings": {
-              "cleanliness": 4.427480916030534,
-              "service": 4.116091109478325,
-              "value": 4.06344696969697,
-              "location": 4.137293086660176,
-              "sleep": 4.1389195148842335,
-              "rooms": 4.127638190954774
+                "cleanliness": 4.427480916030534,
+                "service": 4.116091109478325,
+                "value": 4.06344696969697,
+                "location": 4.137293086660176,
+                "sleep": 4.1389195148842335,
+                "rooms": 4.127638190954774
             },
             "location": {
                 "lat": 52.50405489713002,
                 "long": 13.352185151350383
             },
-            "district": "Tiergarten"
+            "district": "Tiergarten",
+            "poiInfo": {
+                "restaurants": "some <strong>restaurants</strong> nearby",
+                "sightseeing": "(-) only few <strong>sights</strong> nearby"
+            }
         }
     },
     "New_York": {
         "Hotel_Review-g60763-d93450-Reviews-Grand_Hyatt_New_York-New_York_City_New_York.html": {
             "name": "Grand Hyatt New York",
             "ratings": {
-              "sleep": 3.936730006264356,
-              "service": 3.7954545454545454,
-              "cleanliness": 3.909596662030598,
-              "value": 3.4806485355648538,
-              "location": 4.669620253164557,
-              "rooms": 3.6759373349762368
+                "sleep": 3.936730006264356,
+                "service": 3.7954545454545454,
+                "cleanliness": 3.909596662030598,
+                "value": 3.4806485355648538,
+                "location": 4.669620253164557,
+                "rooms": 3.6759373349762368
             },
             "location": {
                 "lat": 40.752183571593946,
@@ -180,12 +220,12 @@
         "Hotel_Review-g60763-d93437-Reviews-Hotel_Edison_Times_Square-New_York_City_New_York.html": {
             "name": "Edison Times Square",
             "ratings": {
-              "sleep": 3.8383869011522136,
-              "service": 3.974403023535475,
-              "cleanliness": 3.9488856589147288,
-              "value": 3.93181266682844,
-              "location": 4.846702317290553,
-              "rooms": 3.44234592445328
+                "sleep": 3.8383869011522136,
+                "service": 3.974403023535475,
+                "cleanliness": 3.9488856589147288,
+                "value": 3.93181266682844,
+                "location": 4.846702317290553,
+                "rooms": 3.44234592445328
             },
             "location": {
                 "lat": 40.760258940619366,
@@ -195,12 +235,12 @@
         "Hotel_Review-g60763-d99352-Reviews-Hilton_Garden_Inn_Times_Square-New_York_City_New_York.html": {
             "name": "Hilton Garden Inn Times Square",
             "ratings": {
-              "sleep": 4.471750696731695,
-              "service": 4.496954933008526,
-              "cleanliness": 4.603448275862069,
-              "value": 4.33326284626771,
-              "location": 4.81840300818403,
-              "rooms": 4.407302142544818
+                "sleep": 4.471750696731695,
+                "service": 4.496954933008526,
+                "cleanliness": 4.603448275862069,
+                "value": 4.33326284626771,
+                "location": 4.81840300818403,
+                "rooms": 4.407302142544818
             },
             "location": {
                 "lat": 40.76142463940273,
@@ -210,12 +250,12 @@
         "Hotel_Review-g60763-d99307-Reviews-Wellington_Hotel-New_York_City_New_York.html": {
             "name": "Wellington",
             "ratings": {
-              "sleep": 3.678435114503817,
-              "service": 3.7481443562835937,
-              "cleanliness": 3.7302807486631018,
-              "value": 3.72196261682243,
-              "location": 4.751861042183623,
-              "rooms": 3.2868322558693435
+                "sleep": 3.678435114503817,
+                "service": 3.7481443562835937,
+                "cleanliness": 3.7302807486631018,
+                "value": 3.72196261682243,
+                "location": 4.751861042183623,
+                "rooms": 3.2868322558693435
             },
             "location": {
                 "lat": 40.764646977251175,
@@ -225,12 +265,12 @@
         "Hotel_Review-g60763-d93457-Reviews-Hampton_Inn_Manhattan_Times_Square_North-New_York_City_New_York.html": {
             "name": "Hampton Inn Manhattan Times Square North",
             "ratings": {
-              "sleep": 4.421906022501655,
-              "service": 4.507401503074471,
-              "cleanliness": 4.519758507135016,
-              "value": 4.328528691868371,
-              "location": 4.793531619982674,
-              "rooms": 4.359098687963491
+                "sleep": 4.421906022501655,
+                "service": 4.507401503074471,
+                "cleanliness": 4.519758507135016,
+                "value": 4.328528691868371,
+                "location": 4.793531619982674,
+                "rooms": 4.359098687963491
             },
             "location": {
                 "lat": 40.76338496887761,
@@ -240,12 +280,12 @@
         "Hotel_Review-g60763-d208454-Reviews-Sofitel_New_York-New_York_City_New_York.html": {
             "name": "Sofitel New York",
             "ratings": {
-              "sleep": 4.6700710479573715,
-              "service": 4.521289687423087,
-              "cleanliness": 4.736557524782217,
-              "value": 4.121573301549463,
-              "location": 4.821416582745888,
-              "rooms": 4.493415007656968
+                "sleep": 4.6700710479573715,
+                "service": 4.521289687423087,
+                "cleanliness": 4.736557524782217,
+                "value": 4.121573301549463,
+                "location": 4.821416582745888,
+                "rooms": 4.493415007656968
             },
             "location": {
                 "lat": 40.75587945295093,
@@ -255,12 +295,12 @@
         "Hotel_Review-g60763-d1218792-Reviews-Hilton_Garden_Inn_New_York_West_35th_Street-New_York_City_New_York.html": {
             "name": "Hilton Garden Inn New York West 35th Street",
             "ratings": {
-              "sleep": 4.51656524678837,
-              "service": 4.570836381370397,
-              "cleanliness": 4.693865216077365,
-              "value": 4.348516631705125,
-              "location": 4.799813780260708,
-              "rooms": 4.346500777604977
+                "sleep": 4.51656524678837,
+                "service": 4.570836381370397,
+                "cleanliness": 4.693865216077365,
+                "value": 4.348516631705125,
+                "location": 4.799813780260708,
+                "rooms": 4.346500777604977
             },
             "location": {
                 "lat": 40.750554796892665,
@@ -270,12 +310,12 @@
         "Hotel_Review-g60763-d93569-Reviews-Belvedere_Hotel-New_York_City_New_York.html": {
             "name": "Belvedere",
             "ratings": {
-              "sleep": 4.102595051297525,
-              "service": 4.1918017742428875,
-              "cleanliness": 4.381153846153846,
-              "value": 4.133103183736095,
-              "location": 4.74171270718232,
-              "rooms": 4.049062624650977
+                "sleep": 4.102595051297525,
+                "service": 4.1918017742428875,
+                "cleanliness": 4.381153846153846,
+                "value": 4.133103183736095,
+                "location": 4.74171270718232,
+                "rooms": 4.049062624650977
             },
             "location": {
                 "lat": 40.76229482485695,
@@ -285,12 +325,12 @@
         "Hotel_Review-g60763-d99762-Reviews-Hotel_Giraffe_by_Library_Hotel_Collection-New_York_City_New_York.html": {
             "name": "Giraffe by Library Collection",
             "ratings": {
-              "sleep": 4.611408199643494,
-              "service": 4.8068862275449105,
-              "cleanliness": 4.865101289134438,
-              "value": 4.425994449583719,
-              "location": 4.668444013572468,
-              "rooms": 4.6892655367231635
+                "sleep": 4.611408199643494,
+                "service": 4.8068862275449105,
+                "cleanliness": 4.865101289134438,
+                "value": 4.425994449583719,
+                "location": 4.668444013572468,
+                "rooms": 4.6892655367231635
             },
             "location": {
                 "lat": 40.74234843628629,
@@ -300,12 +340,12 @@
         "Hotel_Review-g60763-d112064-Reviews-Warwick_New_York-New_York_City_New_York.html": {
             "name": "Warwick New York",
             "ratings": {
-              "sleep": 4.548180924287119,
-              "service": 4.422552664188352,
-              "cleanliness": 4.54534263438654,
-              "value": 4.166735622672735,
-              "location": 4.849740932642487,
-              "rooms": 4.357537154989385
+                "sleep": 4.548180924287119,
+                "service": 4.422552664188352,
+                "cleanliness": 4.54534263438654,
+                "value": 4.166735622672735,
+                "location": 4.849740932642487,
+                "rooms": 4.357537154989385
             },
             "location": {
                 "lat": 40.76267520772386,
@@ -317,12 +357,12 @@
         "Hotel_Review-g187147-d587294-Reviews-The_Westin_Paris_Vendome-Paris_Ile_de_France.html": {
             "name": "The Westin Paris Vendome",
             "ratings": {
-              "service": 4.049887471867967,
-              "rooms": 3.8153846153846156,
-              "value": 3.4826235927557514,
-              "location": 4.841913676547062,
-              "cleanliness": 4.262839879154079,
-              "sleep": 4.125732899022801
+                "service": 4.049887471867967,
+                "rooms": 3.8153846153846156,
+                "value": 3.4826235927557514,
+                "location": 4.841913676547062,
+                "cleanliness": 4.262839879154079,
+                "sleep": 4.125732899022801
             },
             "location": {
                 "lat": 48.86581261187898,
@@ -332,12 +372,12 @@
         "Hotel_Review-g187147-d197656-Reviews-Mercure_Paris_Centre_Eiffel_Tower_Hotel-Paris_Ile_de_France.html": {
             "name": "Mercure Paris Centre Eiffel Tower",
             "ratings": {
-              "service": 3.8414015675426465,
-              "rooms": 3.696778269109286,
-              "value": 3.693558474046279,
-              "location": 4.682345360824742,
-              "cleanliness": 4.114250614250614,
-              "sleep": 4.074982480728802
+                "service": 3.8414015675426465,
+                "rooms": 3.696778269109286,
+                "value": 3.693558474046279,
+                "location": 4.682345360824742,
+                "cleanliness": 4.114250614250614,
+                "sleep": 4.074982480728802
             },
             "location": {
                 "lat": 48.85536706454114,
@@ -347,12 +387,12 @@
         "Hotel_Review-g187147-d233528-Reviews-Novotel_Paris_Centre_Tour_Eiffel-Paris_Ile_de_France.html": {
             "name": "Novotel Paris Centre Tour Eiffel",
             "ratings": {
-              "service": 3.6085611139762763,
-              "rooms": 3.457569585879158,
-              "value": 3.377865094957433,
-              "location": 3.948524365133837,
-              "cleanliness": 3.792691029900332,
-              "sleep": 3.78408195429472
+                "service": 3.6085611139762763,
+                "rooms": 3.457569585879158,
+                "value": 3.377865094957433,
+                "location": 3.948524365133837,
+                "cleanliness": 3.792691029900332,
+                "sleep": 3.78408195429472
             },
             "location": {
                 "lat": 48.85000143695886,
@@ -362,12 +402,12 @@
         "Hotel_Review-g187147-d207663-Reviews-K_K_Hotel_Cayre-Paris_Ile_de_France.html": {
             "name": "K+K Cayre",
             "ratings": {
-              "service": 4.5580901856763925,
-              "rooms": 4.281410256410257,
-              "value": 4.244149272612271,
-              "location": 4.7990331491712706,
-              "cleanliness": 4.733583489681051,
-              "sleep": 4.56857855361596
+                "service": 4.5580901856763925,
+                "rooms": 4.281410256410257,
+                "value": 4.244149272612271,
+                "location": 4.7990331491712706,
+                "cleanliness": 4.733583489681051,
+                "sleep": 4.56857855361596
             },
             "location": {
                 "lat": 48.85546053202657,
@@ -377,12 +417,12 @@
         "Hotel_Review-g187147-d207742-Reviews-InterContinental_Paris_Le_Grand-Paris_Ile_de_France.html": {
             "name": "InterContinental Paris Le Grand",
             "ratings": {
-              "service": 4.319976771196283,
-              "rooms": 4.235632183908046,
-              "value": 3.7219983883964547,
-              "location": 4.7941929974380875,
-              "cleanliness": 4.532905296950241,
-              "sleep": 4.405076142131979
+                "service": 4.319976771196283,
+                "rooms": 4.235632183908046,
+                "value": 3.7219983883964547,
+                "location": 4.7941929974380875,
+                "cleanliness": 4.532905296950241,
+                "sleep": 4.405076142131979
             },
             "location": {
                 "lat": 48.87038918049388,
@@ -392,12 +432,12 @@
         "Hotel_Review-g187147-d250928-Reviews-Park_Hyatt_Paris_Vendome-Paris_Ile_de_France.html": {
             "name": "Park Hyatt Paris Vendome",
             "ratings": {
-              "service": 4.738359201773836,
-              "rooms": 4.688163884673748,
-              "value": 4.067657992565056,
-              "location": 4.906225980015373,
-              "cleanliness": 4.842712842712842,
-              "sleep": 4.788524590163934
+                "service": 4.738359201773836,
+                "rooms": 4.688163884673748,
+                "value": 4.067657992565056,
+                "location": 4.906225980015373,
+                "cleanliness": 4.842712842712842,
+                "sleep": 4.788524590163934
             },
             "location": {
                 "lat": 48.86891952594483,
@@ -407,12 +447,12 @@
         "Hotel_Review-g187147-d506900-Reviews-Hotel_des_Arts_Montmartre-Paris_Ile_de_France.html": {
             "name": "des Arts Montmartre",
             "ratings": {
-              "service": 4.480055983205038,
-              "rooms": 4.079162875341219,
-              "value": 4.361518550474547,
-              "location": 4.74952380952381,
-              "cleanliness": 4.652096342551293,
-              "sleep": 4.268264840182648
+                "service": 4.480055983205038,
+                "rooms": 4.079162875341219,
+                "value": 4.361518550474547,
+                "location": 4.74952380952381,
+                "cleanliness": 4.652096342551293,
+                "sleep": 4.268264840182648
             },
             "location": {
                 "lat": 48.88638649903344,
@@ -422,12 +462,12 @@
         "Hotel_Review-g187147-d197424-Reviews-Novotel_Paris_Les_Halles-Paris_Ile_de_France.html": {
             "name": "Novotel Paris Les Halles",
             "ratings": {
-              "service": 4.146017699115045,
-              "rooms": 3.876757650951199,
-              "value": 3.765084473049075,
-              "location": 4.6331114808652245,
-              "cleanliness": 4.21340964840556,
-              "sleep": 4.020774315391879
+                "service": 4.146017699115045,
+                "rooms": 3.876757650951199,
+                "value": 3.765084473049075,
+                "location": 4.6331114808652245,
+                "cleanliness": 4.21340964840556,
+                "sleep": 4.020774315391879
             },
             "location": {
                 "lat": 48.86094927643057,
@@ -437,12 +477,12 @@
         "Hotel_Review-g187147-d207687-Reviews-Crowne_Plaza_Paris_Republique-Paris_Ile_de_France.html": {
             "name": "Crowne Plaza Paris Republique",
             "ratings": {
-              "service": 3.9017566688353935,
-              "rooms": 3.791630340017437,
-              "value": 3.6522108843537415,
-              "location": 4.268643306379156,
-              "cleanliness": 4.080133555926544,
-              "sleep": 3.9606299212598426
+                "service": 3.9017566688353935,
+                "rooms": 3.791630340017437,
+                "value": 3.6522108843537415,
+                "location": 4.268643306379156,
+                "cleanliness": 4.080133555926544,
+                "sleep": 3.9606299212598426
             },
             "location": {
                 "lat": 48.86727243601443,
@@ -452,12 +492,12 @@
         "Hotel_Review-g187147-d197610-Reviews-Paris_Marriott_Rive_Gauche_Hotel_Conference_Center-Paris_Ile_de_France.html": {
             "name": "Paris Marriott Rive Gauche",
             "ratings": {
-              "service": 4.089743589743589,
-              "rooms": 3.963991769547325,
-              "value": 3.8047846889952153,
-              "location": 3.6495901639344264,
-              "cleanliness": 4.295411089866157,
-              "sleep": 4.268324607329843
+                "service": 4.089743589743589,
+                "rooms": 3.963991769547325,
+                "value": 3.8047846889952153,
+                "location": 3.6495901639344264,
+                "cleanliness": 4.295411089866157,
+                "sleep": 4.268324607329843
             },
             "location": {
                 "lat": 48.831756982852085,
