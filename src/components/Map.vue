@@ -366,13 +366,13 @@ export default {
 
   & .map-overlay {
     position: relative;
-    opacity: 0.8;
     & > div {
       position: absolute;
     }
     & .instruction {
       font-style: italic;
-      color: gray;
+      background-color: rgba(200, 200, 200, 0.8);
+      color: grey;
       font-size: 0.9rem;
       top: -590px;
       width: 100%;
@@ -380,7 +380,7 @@ export default {
     }
 
     & .hotel-header {
-      background-color: white;
+      background-color: rgba(255, 255, 255, 0.8);
       top: -530px;
       left: 27.5%;
       width: 40%;
@@ -395,7 +395,7 @@ export default {
       left: 62.8%;
     }
     & .hotel-details {
-      background-color: white;
+      background-color: rgba(255, 255, 255, 0.8);
       top: -160px;
       left: 17.5%;
       width: 60%;
