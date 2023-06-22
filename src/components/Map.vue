@@ -4,15 +4,18 @@ import * as d3 from "d3";
 import { ref } from "vue";
 
 import { useHotelStore } from "@/stores/hotel";
+import { usePoiStore } from "@/stores/poi";
 
 export default {
   setup() {
     const map = ref();
     const hotelStore = useHotelStore();
+    const poiStore = usePoiStore();
 
     return {
       map,
       hotelStore,
+      poiStore,
     };
   },
   data() {
@@ -30,7 +33,7 @@ export default {
         .select(".markers")
         .selectAll("circle")
         .attr("opacity", 1)
-        .attr("r", 15);
+        .attr("r", 10);
     }
 
     function resetZoom() {
@@ -139,7 +142,7 @@ export default {
       .append("circle")
       .attr("cx", (d) => projection([d.location.long, d.location.lat])[0])
       .attr("cy", (d) => projection([d.location.long, d.location.lat])[1])
-      .attr("r", 15)
+      .attr("r", 10)
       .attr("stroke", "black")
       .attr("fill", "#ccc")
       // select on right click
@@ -244,7 +247,10 @@ export default {
         <g class="districts"></g>
         <g class="waterways"></g>
         <g class="roads"></g>
-        <g class="restaurants"></g>
+        <g
+          class="restaurants"
+          v-show="poiStore.selectedPois.includes('restaurants')"
+        ></g>
         <g class="markers"></g>
       </g>
     </svg>
