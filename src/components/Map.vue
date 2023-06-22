@@ -128,7 +128,7 @@ export default {
         .append("path")
         .attr("fill", "none")
         .attr("d", path)
-        .style("stroke", "#aa8")
+        .style("stroke", "#ccb")
         .style("stroke-width", "2px");
     });
 
@@ -274,16 +274,19 @@ export default {
       </g>
     </svg>
     <div class="dummy"></div>
-    <div class="map-overlay">
-      <div class="hotel-header text-h5" v-if="focusedHotel">
+    <div class="map-overlay" v-if="focusedHotel">
+      <div class="hotel-header text-h5">
         {{ $hotelMeta[focusedHotel]?.name }}
       </div>
-      <div class="hotel-details">
-        <ul>
-          <li v-for="poi in poiStore.selectedPois" :key="poi">
-            {{ $hotelMeta[focusedHotel]?.poiInfo[poi] }}
-          </li>
-        </ul>
+      <div class="hotel-details" v-if="poiStore.selectedPois.length">
+        <v-chip
+          v-for="poi in poiStore.selectedPois.filter(
+            (poi) => $hotelMeta[focusedHotel]?.poiInfo[poi]
+          )"
+          :key="poi"
+        >
+          {{ $hotelMeta[focusedHotel]?.poiInfo[poi] }}
+        </v-chip>
       </div>
     </div>
   </div>
@@ -316,19 +319,34 @@ export default {
 
   & .map-overlay {
     position: relative;
+    opacity: 0.8;
+    & > div {
+      position: absolute;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+      background-color: white;
+    }
     & .hotel-header {
       position: absolute;
       top: -530px;
-      left: 22.5%;
-      width: 50%;
+      left: 27.5%;
+      width: 40%;
       height: 80px;
-      background-color: white;
       padding: 0 20px;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    & .hotel-details {
+      position: absolute;
+      top: -160px;
+      left: 17.5%;
+      width: 60%;
+      max-height: 150px;
+      padding: 10px;
+      & .v-chip {
+        margin: 2px;
+      }
     }
   }
 }

@@ -168,7 +168,8 @@
             },
             "district": "Tiergarten",
             "poiInfo": {
-                "restaurants": "some restaurants nearby"
+                "restaurants": "some restaurants nearby",
+                "sightseeing": "close to the Zoo, but only few other sights nearby"
             }
         },
         "Hotel_Review-g187323-d638834-Reviews-Hotel_Berlin_Berlin-Berlin.html": {
@@ -187,7 +188,8 @@
             },
             "district": "Tiergarten",
             "poiInfo": {
-                "restaurants": "many restaurants nearby"
+                "restaurants": "some restaurants nearby",
+                "sightseeing": "only few sights nearby"
             }
         }
     },
