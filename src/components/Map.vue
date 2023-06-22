@@ -153,7 +153,7 @@ export default {
       })
       // focus on click
       .on("click", (event, d) => {
-        this.focusedHotel = d.name;
+        this.focusedHotel = d.id;
         resetAllMarkers();
         d3.select(event.target).transition().attr("r", 60).attr("opacity", 0.5);
         svg
@@ -257,7 +257,14 @@ export default {
     <div class="dummy"></div>
     <div class="map-overlay">
       <div class="hotel-header text-h5" v-if="focusedHotel">
-        {{ focusedHotel }}
+        {{ $hotelMeta[focusedHotel]?.name }}
+      </div>
+      <div class="hotel-details">
+        <ul>
+          <li v-for="poi in poiStore.selectedPois" :key="poi">
+            {{ $hotelMeta[focusedHotel]?.poiInfo[poi] }}
+          </li>
+        </ul>
       </div>
     </div>
   </div>
