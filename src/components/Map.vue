@@ -117,6 +117,21 @@ export default {
         .style("stroke-width", "4px");
     });
 
+    // draw sightseeing
+    d3.json(`./geo/sightseeing_${cityId}.geojson`).then((geojson) => {
+      const path = d3.geoPath().projection(projection);
+      svg
+        .select(".sightseeing")
+        .selectAll("path")
+        .data(geojson.features)
+        .enter()
+        .append("path")
+        .attr("fill", "none")
+        .attr("d", path)
+        .style("stroke", "#aa8")
+        .style("stroke-width", "2px");
+    });
+
     // draw restaurants
     d3.json(`./geo/restaurants_${cityId}.geojson`).then((geojson) => {
       var pointsOnly = geojson.features.filter(function (feature) {
@@ -129,7 +144,7 @@ export default {
         .data(pointsOnly)
         .enter()
         .append("path")
-        .attr("fill", "#aaa")
+        .attr("fill", "#bbb")
         .attr("d", path.pointRadius(2));
     });
 
@@ -247,6 +262,10 @@ export default {
         <g class="districts"></g>
         <g class="waterways"></g>
         <g class="roads"></g>
+        <g
+          class="sightseeing"
+          v-show="poiStore.selectedPois.includes('sightseeing')"
+        ></g>
         <g
           class="restaurants"
           v-show="poiStore.selectedPois.includes('restaurants')"
