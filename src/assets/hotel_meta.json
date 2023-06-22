@@ -16,7 +16,8 @@
             },
             "district": "Mitte",
             "poiInfo": {
-                "restaurants": "many restaurants nearby"
+                "restaurants": "(+) many <strong>restaurants</strong> nearby",
+                "sightseeing": "not close, but also not far from major <strong>sights</strong>"
             }
         },
         "Hotel_Review-g187323-d589462-Reviews-Melia_Berlin-Berlin.html": {
@@ -35,7 +36,8 @@
             },
             "district": "Mitte",
             "poiInfo": {
-                "restaurants": "many restaurants nearby"
+                "restaurants": "(+) many <strong>restaurants</strong> nearby",
+                "sightseeing": "(+) close to major <strong>sights</strong>"
             }
         },
         "Hotel_Review-g187323-d781064-Reviews-Adina_Apartment_Hotel_Berlin_Checkpoint_Charlie-Berlin.html": {
@@ -54,7 +56,8 @@
             },
             "district": "Mitte",
             "poiInfo": {
-                "restaurants": "many restaurants nearby"
+                "restaurants": "(+) many <strong>restaurants</strong> nearby",
+                "sightseeing": "(+) close to major <strong>sights</strong>"
             }
         },
         "Hotel_Review-g187323-d190694-Reviews-Hotel_Adlon_Kempinski-Berlin.html": {
@@ -73,7 +76,8 @@
             },
             "district": "Mitte",
             "poiInfo": {
-                "restaurants": "many restaurants nearby"
+                "restaurants": "(+) many <strong>restaurants</strong> nearby",
+                "sightseeing": "(+) close to major <strong>sights</strong>"
             }
         },
         "Hotel_Review-g187323-d191437-Reviews-The_Westin_Grand_Berlin-Berlin.html": {
@@ -92,7 +96,8 @@
             },
             "district": "Mitte",
             "poiInfo": {
-                "restaurants": "many restaurants nearby"
+                "restaurants": "(+) many <strong>restaurants</strong> nearby",
+                "sightseeing": "(+) close to major <strong>sights</strong>"
             }
         },
         "Hotel_Review-g187323-d1307675-Reviews-The_Circus_Hotel-Berlin.html": {
@@ -111,7 +116,8 @@
             },
             "district": "Mitte",
             "poiInfo": {
-                "restaurants": "many restaurants nearby"
+                "restaurants": "(+) many <strong>restaurants</strong> nearby",
+                "sightseeing": "not close, but also not far from major <strong>sights</strong>"
             }
         },
         "Hotel_Review-g187323-d233880-Reviews-Mercure_Hotel_Residenz_Berlin_Checkpoint_Charlie-Berlin.html": {
@@ -130,7 +136,8 @@
             },
             "district": "Mitte",
             "poiInfo": {
-                "restaurants": "many restaurants nearby"
+                "restaurants": "(+) many <strong>restaurants</strong> nearby",
+                "sightseeing": "(+) close to major <strong>sights</strong>"
             }
         },
         "Hotel_Review-g187323-d289019-Reviews-The_Ritz_Carlton_Berlin-Berlin.html": {
@@ -149,7 +156,8 @@
             },
             "district": "Tiergarten",
             "poiInfo": {
-                "restaurants": "many restaurants nearby"
+                "restaurants": "(+) many <strong>restaurants</strong> nearby",
+                "sightseeing": "(+) close to major <strong>sights</strong>"
             }
         },
         "Hotel_Review-g187323-d202450-Reviews-Pullman_Berlin_Schweizerhof-Berlin.html": {
@@ -168,8 +176,8 @@
             },
             "district": "Tiergarten",
             "poiInfo": {
-                "restaurants": "some restaurants nearby",
-                "sightseeing": "close to the Zoo, but only few other sights nearby"
+                "restaurants": "some <strong>restaurants</strong> nearby",
+                "sightseeing": "close to the Zoo, but only few other <strong>sights</strong> nearby"
             }
         },
         "Hotel_Review-g187323-d638834-Reviews-Hotel_Berlin_Berlin-Berlin.html": {
@@ -188,8 +196,8 @@
             },
             "district": "Tiergarten",
             "poiInfo": {
-                "restaurants": "some restaurants nearby",
-                "sightseeing": "only few sights nearby"
+                "restaurants": "some <strong>restaurants</strong> nearby",
+                "sightseeing": "(-) only few <strong>sights</strong> nearby"
             }
         }
     },

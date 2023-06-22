@@ -279,16 +279,16 @@ export default {
         <div class="text-h5">{{ $hotelMeta[focusedHotel]?.name }}</div>
       </div>
       <div class="switch-container">
-          <v-switch
-            :model-value="hotelStore.hotelIsSelected(focusedHotel)"
-            color="black"
-            @change="
-              hotelStore.toggleHotelSelection(focusedHotel);
-              updateSelectedHotels();
-            "
-          >
-          </v-switch>
-        </div>
+        <v-switch
+          :model-value="hotelStore.hotelIsSelected(focusedHotel)"
+          color="black"
+          @change="
+            hotelStore.toggleHotelSelection(focusedHotel);
+            updateSelectedHotels();
+          "
+        >
+        </v-switch>
+      </div>
       <div
         class="hotel-details elevation-4"
         v-if="poiStore.selectedPois.length"
@@ -299,7 +299,21 @@ export default {
           )"
           :key="poi"
         >
-          {{ $hotelMeta[focusedHotel]?.poiInfo[poi] }}
+          <v-icon
+            start
+            :icon="
+              $hotelMeta[focusedHotel]?.poiInfo[poi].startsWith('(+)')
+                ? 'mdi-plus'
+                : $hotelMeta[focusedHotel]?.poiInfo[poi].startsWith('(-)')
+                ? 'mdi-minus'
+                : 'mdi-plus-minus'
+            "
+          ></v-icon>
+          <span
+            v-html="
+              $hotelMeta[focusedHotel]?.poiInfo[poi].replace(/^\([+-]\) /, '')
+            "
+          ></span>
         </v-chip>
       </div>
     </div>
@@ -336,7 +350,6 @@ export default {
     opacity: 0.8;
     & > div {
       position: absolute;
-      
     }
     & .hotel-header {
       background-color: white;
