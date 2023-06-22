@@ -312,6 +312,7 @@ export default {
                 : 'mdi-plus-minus'
             "
           ></v-icon>
+          <v-icon start :icon="$poiMeta[poi].icon"></v-icon>
           <span
             v-html="
               $hotelMeta[focusedHotel]?.poiInfo[poi].replace(/^\([+-]\) /, '')

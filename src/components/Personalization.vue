@@ -12,20 +12,29 @@ const poiStore = usePoiStore();
 <template>
   <v-sheet class="ma-2 pa-2">
     <div class="my-4">
-      <div class="text-h6 mb-4">My Points of Interest</div>
+      <div class="text-h6 mb-4">
+        <v-icon>mdi-map-marker-radius</v-icon> My Points of Interest
+      </div>
       <v-autocomplete
         label="Choose your favorites"
-        prepend-icon="mdi-map-marker-plus"
         :items="poiStore.pois"
         v-model="poiStore.selectedPois"
         chips
         closable-chips
         multiple
-      ></v-autocomplete>
+      >
+        <template v-slot:chip="{ props, item }">
+          <v-chip
+            v-bind="props"
+            :prepend-icon="$poiMeta[item.raw].icon"
+            :text="item.raw"
+          ></v-chip>
+        </template>
+      </v-autocomplete>
     </div>
     <v-divider></v-divider>
     <div class="my-8">
-      <div class="text-h6 mb-4">My Priorities</div>
+      <div class="text-h6 mb-4"><v-icon>mdi-sort</v-icon> My Priorities</div>
       <div class="d-flex justify-center">
         <Glyph></Glyph>
         <div>
