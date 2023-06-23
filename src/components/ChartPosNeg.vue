@@ -46,12 +46,14 @@ export default {
     const hotelStore = useHotelStore();
     const categoryStore = useCategoryStore();
     const emitter = inject("emitter");
+    const reviews = inject("reviews");
 
     return {
       svg,
       hotelStore,
       categoryStore,
       emitter,
+      reviews,
     };
   },
   mounted() {
@@ -182,8 +184,7 @@ export default {
         .range([0, svg.attr("height")])
         .padding(0.1);
 
-      const xValue =
-        num_items / this.hotelStore.hotelById(hotelId)["review_count"];
+      const xValue = num_items / this.reviews[hotelId]["review_count"];
 
       // bars
       if (polarity == "neg") {

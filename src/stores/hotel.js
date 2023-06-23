@@ -68,14 +68,11 @@ export const useHotelStore = defineStore({
         return counts;
       }
     },
-    hotelByName: (state) => {
-      return (name) => state.hotels.find(hotel => hotel.name === name);
-    },
     hotelById: (state) => {
       return (id) => state.hotels.find(hotel => hotel.id === id);
     },
     hotelIsSelected: (state) => {
-      return (id) => state.hotelById(id).isSelected > 0;
+      return (id) => state.selectedHotelIds.includes(id);
     },
   },
   actions: {
