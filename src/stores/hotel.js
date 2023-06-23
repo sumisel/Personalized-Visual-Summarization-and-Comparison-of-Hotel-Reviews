@@ -108,46 +108,5 @@ export const useHotelStore = defineStore({
         this.selectedHotelIds.push(id);
       }
     },
-    sentimentSummary(hotel, category, prefix) {
-      const reviews = inject("reviews");
-      let summary = [];
-
-      // compile sentences from all categories if it's the overall summary
-      if (category == 'overall') {
-        for (let cat of this.categoryStore.relevantCategories) {
-          let num_sentences = 0;
-          if (cat['value'] > 33) {
-            num_sentences = 1;
-          }
-          if (cat['value'] > 66) {
-            num_sentences = 2;
-          }
-          let sentences = reviews[hotel['id']][prefix + '_summary'][cat['id']].sort((a, b) => a['idx_summary'] - b['idx_summary']).slice(0, num_sentences);
-          sentences.forEach((sentence, i) => {
-            sentence['color'] = cat['color'];
-            sentence['category'] = cat['id'];
-          });
-          summary.push(...sentences);
-        }
-      } else {
-        summary = reviews[hotel['id']][prefix + '_summary'][category].sort((a, b) => a['idx_summary'] - b['idx_summary']).slice(0, 5);
-
-        summary.forEach((sentence, i) => {
-          sentence['color'] = this.categoryStore.categoriesById[category]['color'];
-          sentence['category'] = category;
-        });
-      }
-      console.log("sentimentSummary ", summary);
-
-      summary.forEach((sentence, i) => {
-        sentence['text'] = reviews[hotel['id']]['reviews'][sentence['idx_review']][prefix + '_aspects'][sentence['idx_sentence']];
-        sentence['idx_similar_reviews'].forEach((rev, j) => {
-          rev['text'] = reviews[hotel['id']]['reviews'][rev['idx_review']][prefix + '_aspects'][rev['idx_sentence']];
-        });
-      });
-
-      //console.log("sentimentSummary ", summary);
-      return summary;
-    },
   },
 })
