@@ -19,20 +19,17 @@ export default {
     return { hotelStore, categoryStore, clusterStore };
   },
   computed: {},
-  methods:{},
+  methods: {},
   data: () => ({
     panel: [0, 1],
-  })
+  }),
 };
-
 </script>
 
 <template>
   <div>
-    <div
-        class="my-2 flex-grow-1">
-      <v-expansion-panels
-          v-model="panel">
+    <div class="my-2 flex-grow-1">
+      <v-expansion-panels v-model="panel">
         <v-expansion-panel>
           <v-expansion-panel-title :key="'title_overall'">
             <v-row>
@@ -40,16 +37,21 @@ export default {
                 <b><u>Sentiment Overview</u></b>
               </div>
               <div class="pa-2 sentiment-text-title"></div>
-              <div class="pa-2 ">
+              <div class="pa-2">
                 <ChartPosNeg
-                    :categoryId= "'overall'"
-                    :hotelId= "'selected'"
-                    :posNeg= "hotelStore.countsCategoryPosNeg('overall', hotelStore.selectedHotels)"
-                    :color="'#999999'"
-                    :width="200"
-                    :height="20"
-                    :xMin = "-6"
-                    :xMax = "6"
+                  :categoryId="'overall'"
+                  :hotelId="'selected'"
+                  :posNeg="
+                    hotelStore.countsCategoryPosNeg(
+                      'overall',
+                      hotelStore.selectedHotels
+                    )
+                  "
+                  :color="'#999999'"
+                  :width="200"
+                  :height="20"
+                  :xMin="-6"
+                  :xMax="6"
                 ></ChartPosNeg>
               </div>
               <div class="pa-2 sentiment-text-title"></div>
@@ -57,47 +59,50 @@ export default {
           </v-expansion-panel-title>
           <v-expansion-panel-text>
             <v-table class="my-2 flex-grow-1">
-              <tr
-                  v-for="hotel in hotelStore.selectedHotels" :key="'overall_'+hotel.id">
-                <table>
-                  <tr>
-                    <td class="pa-2 hotel-name"></td>
-                    <td colspan="3" class="sentiment-chart">
-                      <ChartPosNeg
-                          :categoryId="'overall'"
-                          :hotelId="hotel['id']"
-                          :posNeg= "hotelStore.countsCategoryPosNeg('overall',[hotel])"
-                          :color="'#999999'"
-                          :width="200"
-                          :height="10"
-                          :xMin = "-6"
-                          :xMax = "6"
-                      ></ChartPosNeg>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="pa-2 hotel-name">{{ hotel['name'] }}</td>
-                    <td class="pa-2 sentiment-text">
-                      <PosNegBulletPoint
-                          :hotel = "hotel"
-                          :categoryId = "'overall'"
-                          :polarity = "'neg'"
-                          :key = "'neg_overall_bullet_points'">
-                      </PosNegBulletPoint>
-                    </td>
-                    <td class="placeholder"></td>
-                    <td class="pa-2 sentiment-text">
-                      <PosNegBulletPoint
-                          :hotel = "hotel"
-                          :categoryId = "'overall'"
-                          :polarity = "'pos'"
-                          :key = "'pos_overall_bullet_points'">
-                      </PosNegBulletPoint>
-                    </td>
-                  </tr>
-                </table>
-                <hr/>
-              </tr>
+              <template
+                v-for="hotel in hotelStore.selectedHotels"
+                :key="'overall_' + hotel.id"
+              >
+                <tr>
+                  <td class="pa-2 hotel-name"></td>
+                  <td colspan="3" class="sentiment-chart">
+                    <ChartPosNeg
+                      :categoryId="'overall'"
+                      :hotelId="hotel['id']"
+                      :posNeg="
+                        hotelStore.countsCategoryPosNeg('overall', [hotel])
+                      "
+                      :color="'#999999'"
+                      :width="200"
+                      :height="10"
+                      :xMin="-6"
+                      :xMax="6"
+                    ></ChartPosNeg>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="pa-2 hotel-name">{{ hotel["name"] }}</td>
+                  <td class="pa-2 sentiment-text">
+                    <PosNegBulletPoint
+                      :hotel="hotel"
+                      :categoryId="'overall'"
+                      :polarity="'neg'"
+                      :key="'neg_overall_bullet_points'"
+                    >
+                    </PosNegBulletPoint>
+                  </td>
+                  <td class="placeholder"></td>
+                  <td class="pa-2 sentiment-text">
+                    <PosNegBulletPoint
+                      :hotel="hotel"
+                      :categoryId="'overall'"
+                      :polarity="'pos'"
+                      :key="'pos_overall_bullet_points'"
+                    >
+                    </PosNegBulletPoint>
+                  </td>
+                </tr>
+              </template>
             </v-table>
           </v-expansion-panel-text>
         </v-expansion-panel>
@@ -108,7 +113,7 @@ export default {
       <CategoryPosNeg
         v-for="category in categoryStore.relevantCategories"
         :category="category"
-        :key="'posneg_card_'+category['id']"
+        :key="'posneg_card_' + category['id']"
         @mouseenter="categoryStore.hover(category['id'])"
         @mouseleave="categoryStore.unhover()"
       ></CategoryPosNeg>
@@ -137,5 +142,6 @@ export default {
   width: 100% !important;
   text-align: center;
   vertical-align: middle;
+  border-top: 1px solid grey;
 }
 </style>
