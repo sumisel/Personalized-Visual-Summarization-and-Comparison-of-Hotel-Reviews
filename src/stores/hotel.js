@@ -77,17 +77,6 @@ export const useHotelStore = defineStore({
     hotelIsSelected: (state) => {
       return (id) => state.hotelById(id).isSelected > 0;
     },
-    toggleHotelSelection: (state) => {
-      return (id) => {
-        const hotel = state.hotelById(id);
-        hotel.isSelected = hotel.isSelected > 0 ? 0 : 1;
-        if (state.selectedHotelIds.includes(id)) {
-          state.selectedHotelIds.splice(state.selectedHotelIds.indexOf(id), 1);
-        } else {
-          state.selectedHotelIds.push(id);
-        }
-      }
-    },
   },
   actions: {
     async initHotels(city, hotelMeta) {
@@ -110,7 +99,15 @@ export const useHotelStore = defineStore({
       const ratings_time_data = await ratings_time.json();
       this.timeStore.initTimeData(this.hotels, ratings_time_data);
     },
-
+    toggleHotelSelection(id) {
+      const hotel = this.hotelById(id);
+      hotel.isSelected = hotel.isSelected > 0 ? 0 : 1;
+      if (this.selectedHotelIds.includes(id)) {
+        this.selectedHotelIds.splice(state.selectedHotelIds.indexOf(id), 1);
+      } else {
+        this.selectedHotelIds.push(id);
+      }
+    },
     sentimentSummary(hotel, category, prefix) {
       const reviews = inject("reviews");
       let summary = [];
