@@ -1,5 +1,5 @@
 <script setup>
-import { computed, getCurrentInstance } from "vue";
+import { computed, getCurrentInstance, inject } from "vue";
 
 import Glyph from "./Glyph.vue";
 import CategoryName from "./CategoryName.vue";
@@ -14,8 +14,7 @@ const props = defineProps({
   hotel: Object,
 });
 
-const $hotelMeta =
-  getCurrentInstance().appContext.config.globalProperties.$hotelMeta;
+const hotelMeta = inject("hotelMeta");
 
 const offset = computed(() => {
   const overallRating = categoryStore.categories.reduce(
@@ -40,7 +39,7 @@ const bestCategories = computed(() => {
   };
   hotelStore.selectedHotelIds.forEach((hotel2Id) => {
     if (props.hotel.id != hotel2Id) {
-      const hotel2 = $hotelMeta[hotel2Id];
+      const hotel2 = hotelMeta[hotel2Id];
       categories.forEach((category) => {
         ratingsDiff[category.id] = Math.min(
           ratingsDiff[category.id],

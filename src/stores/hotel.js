@@ -1,3 +1,4 @@
+import { inject } from 'vue';
 import { defineStore, storeToRefs } from 'pinia'
 
 import { useCategoryStore } from "./category.js";
@@ -19,6 +20,7 @@ export const useHotelStore = defineStore({
     // TODO: use such a list of Ids state instead of "hotels"
     selectedHotelIds: (state) => state.selectedHotels.map(hotel => hotel.id),
     minRatings: (state) => {
+      const hotelMeta = inject("hotelMeta");
       let minRatings = {
         location: 5.0,
         value: 5.0,
@@ -28,7 +30,7 @@ export const useHotelStore = defineStore({
         sleep: 5.0,
       }
       state.selectedHotelIds.forEach(hotelId => {
-        const hotel = globals.$hotelMeta[hotelId];
+        const hotel = hotelMeta[hotelId];
         for (let categoryId in hotel.ratings) {
           minRatings[categoryId] = Math.min(minRatings[categoryId], hotel.ratings[categoryId]);
         }
@@ -36,6 +38,7 @@ export const useHotelStore = defineStore({
       return minRatings
     },
     maxRatings: (state) => {
+      const hotelMeta = inject("hotelMeta");
       let maxRatings = {
         location: 0.0,
         value: 0.0,
@@ -45,7 +48,7 @@ export const useHotelStore = defineStore({
         sleep: 0.0,
       }
       state.selectedHotelIds.forEach(hotelId => {
-        const hotel = globals.$hotelMeta[hotelId];
+        const hotel = hotelMeta[hotelId];
         for (let categoryId in hotel.ratings) {
           maxRatings[categoryId] = Math.max(maxRatings[categoryId], hotel.ratings[categoryId]);
         }
@@ -83,8 +86,8 @@ export const useHotelStore = defineStore({
 
   },
   actions: {
-    async initHotels(city) {
-      this.hotels = Object.keys(globals.$hotelMeta).map(key => { const elem = globals.$hotelMeta[key]; elem['id'] = key; return elem; });
+    async initHotels(city, hotelMeta) {
+      this.hotels = Object.keys(hotelMeta).map(key => { const elem = hotelMeta[key]; elem['id'] = key; return elem; });
 
       // select first three hotels by default
       this.hotels.forEach((hotel, i) => hotel["isSelected"] = i < 3 ? i + 1 : 0);

@@ -1,4 +1,5 @@
 <script>
+import { inject } from "vue";
 import ChartTrending from "./ChartTrending.vue";
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
@@ -12,7 +13,8 @@ export default {
     const hotelStore = useHotelStore();
     const categoryStore = useCategoryStore();
     const timeStore = useTimeStore();
-    return { hotelStore, categoryStore, timeStore };
+    const hotelMeta = inject("hotelMeta");
+    return { hotelStore, categoryStore, timeStore, hotelMeta };
   },
   computed: {},
   data: () => ({
@@ -33,7 +35,7 @@ export default {
             <v-expansion-panel-title :key="'title_' + hotelId">
               <v-row>
                 <div class="pa-2 hotel-name-title">
-                  <b>{{ $hotelMeta[hotelId].name }}</b>
+                  <b>{{ hotelMeta[hotelId].name }}</b>
                 </div>
                 <div class="pa-2 time-chart">
                   <ChartTrending

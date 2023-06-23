@@ -2,6 +2,7 @@
 import HotelRating from "./HotelRating.vue";
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
+import { inject } from "vue";
 
 export default {
   components: {
@@ -10,7 +11,8 @@ export default {
   setup() {
     const hotelStore = useHotelStore();
     const categoryStore = useCategoryStore();
-    return { hotelStore, categoryStore };
+    const hotelMeta = inject("hotelMeta");
+    return { hotelStore, categoryStore, hotelMeta };
   },
   computed: {
     ratingVarietyDescription() {
@@ -45,7 +47,7 @@ export default {
       <HotelRating
         v-for="hotelId in hotelStore.selectedHotelIds"
         :key="hotelId"
-        :hotel="$hotelMeta[hotelId]"
+        :hotel="hotelMeta[hotelId]"
       ></HotelRating>
       <v-label class="ml-4"
         >Rating weighted by priorities <v-icon icon="mdi-arrow-right"></v-icon

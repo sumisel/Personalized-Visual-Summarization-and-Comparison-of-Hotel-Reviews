@@ -42,10 +42,12 @@ const cityId = params.get("city") ? params.get("city") : "Berlin";
 import cities from "./assets/cities.json"
 app.config.globalProperties.$city = cities[cityId];
 import hotelMeta from "./assets/hotel_meta.json"
-app.config.globalProperties.$hotelMeta = hotelMeta[cityId];
+app.provide("hotelMeta", hotelMeta[cityId])
 import poiMeta from "./assets/poi_meta.json"
+// TODO: switch to provide/inject
 app.config.globalProperties.$poiMeta = poiMeta;
-hotelStore.initHotels(cityId)
+// TODO: avoid this hack
+hotelStore.initHotels(cityId, hotelMeta[cityId])
     .then(r => {
         // trigger loading of data that depends on category values
         const tmp = categoryStore.categoriesById["location"].value;
@@ -65,6 +67,7 @@ Object.keys(data).map(key => {
     elem['reviews_unannotated'] = []; // we don't need that for now
     return elem;
 });
+// TODO: switch to provide/inject
 app.config.globalProperties.$reviews = data;
 
 // mount App
