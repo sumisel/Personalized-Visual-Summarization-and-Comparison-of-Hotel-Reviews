@@ -11,13 +11,11 @@ export const useHotelStore = defineStore({
     categoryStore: useCategoryStore(),
     clusterStore: useClusterStore(),
     timeStore: useTimeStore(),
+    // TODO: remove "hotels" as part of the state, it is already part of the hotelMeta
     hotels: [],
     selectedHotelIds: [],
   }),
   getters: {
-    selectedHotels: (state) => state.hotels.filter(hotel => hotel.isSelected)
-      .sort((a, b) => a.isSelected - b.isSelected), // sort by index
-    // TODO: use such a list of Ids state instead of "hotels"
     minRatings: (state) => {
       const hotelMeta = inject("hotelMeta");
       let minRatings = {
@@ -68,9 +66,6 @@ export const useHotelStore = defineStore({
         return counts;
       }
     },
-    hotelById: (state) => {
-      return (id) => state.hotels.find(hotel => hotel.id === id);
-    },
     hotelIsSelected: (state) => {
       return (id) => state.selectedHotelIds.includes(id);
     },
@@ -97,7 +92,7 @@ export const useHotelStore = defineStore({
       this.timeStore.initTimeData(this.hotels, ratings_time_data);
     },
     toggleHotelSelection(id) {
-      const hotel = this.hotelById(id);
+      const hotel = this.hotels.find(hotel => hotel.id === id);
       hotel.isSelected = hotel.isSelected > 0 ? 0 : 1;
       if (this.selectedHotelIds.includes(id)) {
         this.selectedHotelIds.splice(state.selectedHotelIds.indexOf(id), 1);

@@ -5,9 +5,11 @@ import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
 import ChartPosNeg from "@/components/ChartPosNeg.vue";
 import PosNegBulletPoint from "@/components/PosNegBulletPoint.vue";
+import { inject } from "vue";
 
 const hotelStore = useHotelStore();
 const categoryStore = useCategoryStore();
+const hotelMeta = inject("hotelMeta");
 
 const props = defineProps({
   category: Object,
@@ -42,7 +44,7 @@ const props = defineProps({
                   :posNeg="
                     hotelStore.countsCategoryPosNeg(
                       category['id'],
-                      hotelStore.selectedHotels
+                      hotelStore.selectedHotelIds.map((id) => hotelMeta[id])
                     )
                   "
                   :color="category['color']"
@@ -65,7 +67,9 @@ const props = defineProps({
           >
             <v-table class="my-2 flex-grow-1" table-layout="fixed">
               <template
-                v-for="hotel in hotelStore.selectedHotels"
+                v-for="hotel in hotelStore.selectedHotelIds.map(
+                  (id) => hotelMeta[id]
+                )"
                 :key="category['id'] + '_' + hotel['id']"
               >
                 <tr>

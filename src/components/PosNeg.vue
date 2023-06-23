@@ -5,6 +5,7 @@ import PosNegBulletPoint from "./PosNegBulletPoint.vue";
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
 import { useClusterStore } from "../stores/cluster.js";
+import { inject } from "vue";
 
 export default {
   components: {
@@ -16,7 +17,8 @@ export default {
     const hotelStore = useHotelStore();
     const categoryStore = useCategoryStore();
     const clusterStore = useClusterStore();
-    return { hotelStore, categoryStore, clusterStore };
+    const hotelMeta = inject("hotelMeta");
+    return { hotelStore, categoryStore, clusterStore, hotelMeta };
   },
   computed: {},
   methods: {},
@@ -44,7 +46,7 @@ export default {
                   :posNeg="
                     hotelStore.countsCategoryPosNeg(
                       'overall',
-                      hotelStore.selectedHotels
+                      hotelStore.selectedHotelIds.map((id) => hotelMeta[id])
                     )
                   "
                   :color="'#999999'"
@@ -60,7 +62,9 @@ export default {
           <v-expansion-panel-text>
             <v-table class="my-2 flex-grow-1">
               <template
-                v-for="hotel in hotelStore.selectedHotels"
+                v-for="hotel in hotelStore.selectedHotelIds.map(
+                  (id) => hotelMeta[id]
+                )"
                 :key="'overall_' + hotel.id"
               >
                 <tr>

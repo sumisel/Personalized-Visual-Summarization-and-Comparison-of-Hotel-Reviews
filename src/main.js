@@ -52,9 +52,6 @@ hotelStore.initHotels(cityId, hotelMeta[cityId])
         const tmp = categoryStore.categoriesById["location"].value;
         categoryStore.categoriesById["location"].value = 40;
         categoryStore.categoriesById["location"].value = tmp;
-        // trigger loading of data that depends on hotel selection
-        //hotelStore.hotels[0].isSelected = 0;
-        //hotelStore.hotels[0].isSelected = 1;
     });
 
 // load reviews
