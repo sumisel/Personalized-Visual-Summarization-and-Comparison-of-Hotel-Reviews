@@ -217,43 +217,6 @@ export default {
 </script>
 
 <template>
-  <div class="text mb-4">
-    Among the available
-    <strong>{{ Object.keys($hotelMeta).length }}</strong> hotels
-    <v-icon icon="mdi-circle-outline" size="x-small"></v-icon>,
-    <span v-if="hotelStore.selectedHotels.length > 1"
-      ><strong>{{ hotelStore.selectedHotels.length }}</strong> are</span
-    >
-    <span v-if="hotelStore.selectedHotels.length === 1"
-      >only <strong>1</strong> is</span
-    >
-    <span v-if="hotelStore.selectedHotels.length === 0"
-      ><strong>none</strong> is</span
-    >
-    selected <v-icon icon="mdi-circle" size="x-small"></v-icon>.
-    <span
-      v-if="
-        hotelStore.selectedHotels.length > 1 &&
-        districtsOfSelectedHotels.length > 0
-      "
-      >They are
-      <span v-if="districtsOfSelectedHotels.length === 1"
-        >all located in
-        <strong
-          >{{ this.$city.name }} {{ districtsOfSelectedHotels[0] }}</strong
-        ></span
-      ><span v-else
-        >located in <strong>{{ this.$city.name + " " }}</strong>
-        <span v-if="districtsOfSelectedHotels.length === 2">
-          <strong>{{ districtsOfSelectedHotels[0] }}</strong> and
-          <strong>{{ districtsOfSelectedHotels[1] }}</strong></span
-        ><span v-else
-          >{{ districtsOfSelectedHotels.length }} districts</span
-        > </span
-      >.</span
-    >
-  </div>
-
   <div class="map-container">
     <svg id="svg-map" class="map">
       <g class="map-container">
@@ -283,15 +246,14 @@ export default {
       >
         <span v-if="!selectionChanged"
           >Click a marker to focus a hotel, and then (de)select it using the
-          switch.</span
-        >
+          switch.
+        </span>
         <strong v-if="hotelStore.selectedHotels.length < 2"
-          >Select more than one hotel to compare.</strong
-        >
+          >Select more than one hotel to compare.
+        </strong>
         <strong v-if="poiStore.selectedPois.length === 0"
-          >Choose your favorite points of interests, to see related
-          information.</strong
-        >
+          >Choose your favorite points of interests, to see related information.
+        </strong>
       </v-alert>
       <div class="hotel-header elevation-6 d-flex" v-if="focusedHotel">
         <div class="text-h5">{{ $hotelMeta[focusedHotel]?.name }}</div>
@@ -338,6 +300,50 @@ export default {
       </div>
     </div>
   </div>
+  <div class="text mt-4">
+    Among the available
+    <strong>{{ Object.keys($hotelMeta).length }}</strong> hotels
+    <v-icon icon="mdi-circle-outline" size="x-small"></v-icon>,
+    <span v-if="hotelStore.selectedHotels.length > 1"
+      ><strong>{{ hotelStore.selectedHotels.length }}</strong> are</span
+    >
+    <span v-if="hotelStore.selectedHotels.length === 1"
+      >only <strong>1</strong> is</span
+    >
+    <span v-if="hotelStore.selectedHotels.length === 0"
+      ><strong>none</strong> is</span
+    >
+    selected<span v-if="hotelStore.selectedHotels.length > 1">: </span
+    ><span v-else>! </span>
+    <span v-for="(hotel, index) in hotelStore.selectedHotels" :key="hotel.id">
+      <strong
+        ><v-icon icon="mdi-circle" size="x-small"></v-icon>
+        {{ $hotelMeta[hotel.id].name }}</strong
+      ><span v-if="index < hotelStore.selectedHotels.length - 1">, </span
+      ><span v-else>. </span>
+    </span>
+    <span
+      v-if="
+        hotelStore.selectedHotels.length > 1 &&
+        districtsOfSelectedHotels.length > 0
+      "
+      >They are
+      <span v-if="districtsOfSelectedHotels.length === 1"
+        >all located in
+        <strong
+          >{{ this.$city.name }} {{ districtsOfSelectedHotels[0] }}</strong
+        ></span
+      ><span v-else
+        >located in <strong>{{ this.$city.name + " " }}</strong>
+        <span v-if="districtsOfSelectedHotels.length === 2">
+          <strong>{{ districtsOfSelectedHotels[0] }}</strong> and
+          <strong>{{ districtsOfSelectedHotels[1] }}</strong></span
+        ><span v-else
+          >{{ districtsOfSelectedHotels.length }} districts</span
+        > </span
+      >.</span
+    >
+  </div>
 </template>
 
 <style lang="scss">
@@ -372,7 +378,7 @@ export default {
     & .instruction {
       font-style: italic;
       background-color: rgba(200, 200, 200, 0.8);
-      color: grey;
+      color: #444;
       font-size: 0.9rem;
       top: -590px;
       width: 100%;
