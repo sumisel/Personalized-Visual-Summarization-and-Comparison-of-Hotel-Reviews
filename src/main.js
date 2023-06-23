@@ -48,7 +48,7 @@ import poiMeta from "./assets/poi_meta.json"
 app.provide("poiMeta", poiMeta)
 
 // TODO: avoid this hack
-hotelStore.initHotels(hotelMeta[cityId])
+hotelStore.initHotelSelection(hotelMeta[cityId])
 // trigger loading of data that depends on category values
 const tmp = categoryStore.categoriesById["location"].value;
 categoryStore.categoriesById["location"].value = 40;

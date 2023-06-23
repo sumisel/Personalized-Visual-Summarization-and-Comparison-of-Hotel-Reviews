@@ -46,7 +46,7 @@ export default {
                   :posNeg="
                     hotelStore.countsCategoryPosNeg(
                       'overall',
-                      hotelStore.selectedHotelIds.map((id) => hotelMeta[id])
+                      hotelStore.selectedHotelIds
                     )
                   "
                   :color="'#999999'"
@@ -62,19 +62,17 @@ export default {
           <v-expansion-panel-text>
             <v-table class="my-2 flex-grow-1">
               <template
-                v-for="hotel in hotelStore.selectedHotelIds.map(
-                  (id) => hotelMeta[id]
-                )"
-                :key="'overall_' + hotel.id"
+                v-for="hotelId in hotelStore.selectedHotelIds"
+                :key="'overall_' + hotelId"
               >
                 <tr>
                   <td class="pa-2 hotel-name"></td>
                   <td colspan="3" class="sentiment-chart">
                     <ChartPosNeg
                       :categoryId="'overall'"
-                      :hotelId="hotel['id']"
+                      :hotelId="hotelId"
                       :posNeg="
-                        hotelStore.countsCategoryPosNeg('overall', [hotel])
+                        hotelStore.countsCategoryPosNeg('overall', [hotelId])
                       "
                       :color="'#999999'"
                       :width="200"
@@ -85,10 +83,10 @@ export default {
                   </td>
                 </tr>
                 <tr>
-                  <td class="pa-2 hotel-name">{{ hotel["name"] }}</td>
+                  <td class="pa-2 hotel-name">{{ hotelMeta[hotelId].name }}</td>
                   <td class="pa-2 sentiment-text">
                     <PosNegBulletPoint
-                      :hotel="hotel"
+                      :hotelId="hotelId"
                       :categoryId="'overall'"
                       :polarity="'neg'"
                       :key="'neg_overall_bullet_points'"
@@ -98,7 +96,7 @@ export default {
                   <td class="placeholder"></td>
                   <td class="pa-2 sentiment-text">
                     <PosNegBulletPoint
-                      :hotel="hotel"
+                      :hotelId="hotelId"
                       :categoryId="'overall'"
                       :polarity="'pos'"
                       :key="'pos_overall_bullet_points'"

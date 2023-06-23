@@ -51,14 +51,14 @@ export const useHotelStore = defineStore({
       return maxRatings
     },
     countsCategoryPosNeg: (state) => {
-      return (category, hotels) => {
+      return (category, hotelIds) => {
         const reviews = inject("reviews");
         let counts = [];
-        hotels.forEach(hotel => {
+        hotelIds.forEach(hotelId => {
           counts.push({
-            "name": hotel['name'],
-            "posCount": reviews[hotel['id']]['counts']['pos'][category],
-            "negCount": reviews[hotel['id']]['counts']['neg'][category],
+            "name": hotelId,
+            "posCount": reviews[hotelId]['counts']['pos'][category],
+            "negCount": reviews[hotelId]['counts']['neg'][category],
           })
         })
         return counts;
@@ -69,9 +69,7 @@ export const useHotelStore = defineStore({
     },
   },
   actions: {
-    initHotels(hotelMeta) {
-      this.hotels = Object.keys(hotelMeta).map(key => { const elem = hotelMeta[key]; elem['id'] = key; return elem; });
-
+    initHotelSelection(hotelMeta) {
       // select first three hotels by default
       Object.keys(hotelMeta).forEach((hotelId, i) => {
         if (i < 3) {
