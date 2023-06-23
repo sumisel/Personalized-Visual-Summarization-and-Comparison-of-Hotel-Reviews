@@ -17,47 +17,54 @@ export default {
   computed: {},
   data: () => ({
     panel: [0, 1],
-  })
+  }),
 };
-
 </script>
 
 <template>
-  <div class="ml-12">
+  <div>
     <div class="d-flex flex-column my-4">
-      <div
-          class="ma-2 flex-grow-1 w-90">
+      <div class="my-2 flex-grow-1">
         <v-expansion-panels
-            v-for="hotel in hotelStore.selectedHotels" :key="'time_'+hotel.id">
+          v-for="hotel in hotelStore.selectedHotels"
+          :key="'time_' + hotel.id"
+        >
           <v-expansion-panel>
-            <v-expansion-panel-title :key="'title_'+hotel.id">
+            <v-expansion-panel-title :key="'title_' + hotel.id">
               <v-row>
-                <div class="pa-2 hotel-name-title"><b>{{ hotel.name }}</b></div>
+                <div class="pa-2 hotel-name-title">
+                  <b>{{ hotel.name }}</b>
+                </div>
                 <div class="pa-2 time-chart">
                   <ChartTrending
-                      :hotelId = "hotel.id"
-                      :categoryId="'line'"
-                      :color="'#999999'"
-                      :width="200"
-                      :height="50"
-                      :yMin = "1"
-                      :yMax = "5"
+                    :hotelId="hotel.id"
+                    :categoryId="'line'"
+                    :color="'#999999'"
+                    :width="200"
+                    :height="50"
+                    :yMin="1"
+                    :yMax="5"
                   ></ChartTrending>
                 </div>
               </v-row>
             </v-expansion-panel-title>
             <v-expansion-panel-text>
-              <v-row class="d-flex"
-                  v-for="category in categoryStore.relevantCategories.sort((a, b) => b.value - a.value)" :key="'time_'+hotel.id+'_'+category.id">
+              <v-row
+                class="d-flex"
+                v-for="category in categoryStore.relevantCategories.sort(
+                  (a, b) => b.value - a.value
+                )"
+                :key="'time_' + hotel.id + '_' + category.id"
+              >
                 <div class="pa-2 time-chart">
                   <ChartTrending
-                      :hotelId="hotel.id"
-                      :categoryId="category.id"
-                      :color="category.color"
-                      :width="1000"
-                      :height="50"
-                      :yMin = "1"
-                      :yMax = "5"
+                    :hotelId="hotel.id"
+                    :categoryId="category.id"
+                    :color="category.color"
+                    :width="1000"
+                    :height="50"
+                    :yMin="1"
+                    :yMax="5"
                   ></ChartTrending>
                 </div>
               </v-row>
@@ -65,10 +72,6 @@ export default {
           </v-expansion-panel>
         </v-expansion-panels>
       </div>
-
-
-
-
     </div>
   </div>
 </template>

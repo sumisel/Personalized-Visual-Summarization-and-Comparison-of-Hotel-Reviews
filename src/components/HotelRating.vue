@@ -23,7 +23,7 @@ const topCategories = computed(() => hotelStore.topCategories(props.hotel));
 
 <template>
   <v-card
-    class="ma-2 flex-grow-1 w-50"
+    class="my-2 flex-grow-1 w-50"
     :style="`margin-left: ${offset} !important;`"
     ><div class="d-flex flex-no-wrap justify-space-between">
       <div

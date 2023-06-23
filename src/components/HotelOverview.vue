@@ -32,7 +32,7 @@ export default {
 </script>
 
 <template>
-  <div class="ml-12">
+  <div>
     <p>
       Customers have rated the
       <b

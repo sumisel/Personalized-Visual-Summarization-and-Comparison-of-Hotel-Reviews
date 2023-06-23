@@ -21,18 +21,8 @@ const props = defineProps({
 
 <template>
   <div class="d-block flex-no-wrap justify-space-between">
-    <!--<div
-      class="ma-2 flex-grow-1 w-100">
-      <v-icon
-          :icon="category.icon"
-          class="mr-2"
-          :color="category.color"
-      ></v-icon>
-      {{ category.title }}
-    </div>
-    -->
     <div
-        class="ma-2 flex-grow-1 w-90">
+        class="my-2 flex-grow-1">
       <v-expansion-panels>
         <v-expansion-panel>
           <v-expansion-panel-title :key="'title_'+category['id']"
@@ -60,7 +50,7 @@ const props = defineProps({
           </v-expansion-panel-title>
           <v-expansion-panel-text
               :style="[(category['hover'] || categoryStore.noCategoryHovered)?{'opacity': 1}:{'opacity': .2}]">
-            <v-table class="ma-2 flex-grow-1 w-90" table-layout="fixed">
+            <v-table class="my-2 flex-grow-1" table-layout="fixed">
               <tr v-for="hotel in hotelStore.selectedHotels" :key="category['id']+'_'+hotel['id']">
                 <table>
                   <tr>

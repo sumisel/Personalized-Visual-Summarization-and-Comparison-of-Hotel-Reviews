@@ -10,7 +10,7 @@ const poiStore = usePoiStore();
 </script>
 
 <template>
-  <v-sheet class="ma-2 pa-2">
+  <v-sheet class="pa-4">
     <div class="text-h5 my-4">My Preferences</div>
     <div class="my-12">
       <div class="text-h6 mb-4">

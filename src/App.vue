@@ -95,7 +95,6 @@ const scrollTo = (hash) => {
           <component
             v-if="section.component"
             :is="section.component"
-            class="ml-16"
           ></component>
         </div>
       </div>
@@ -157,6 +156,10 @@ const scrollTo = (hash) => {
 .content {
   max-width: 1000px;
   margin-top: 500px;
+
+  & .text-h4 {
+    margin-left: -0.5rem;
+  }
 }
 
 .hover {

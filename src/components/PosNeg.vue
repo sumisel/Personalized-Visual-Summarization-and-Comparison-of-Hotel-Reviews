@@ -28,9 +28,9 @@ export default {
 </script>
 
 <template>
-  <div class="ml-12">
+  <div>
     <div
-        class="ma-2 flex-grow-1 w-90">
+        class="my-2 flex-grow-1">
       <v-expansion-panels
           v-model="panel">
         <v-expansion-panel>
@@ -56,7 +56,7 @@ export default {
             </v-row>
           </v-expansion-panel-title>
           <v-expansion-panel-text>
-            <v-table class="ma-2 flex-grow-1 w-90">
+            <v-table class="my-2 flex-grow-1">
               <tr
                   v-for="hotel in hotelStore.selectedHotels" :key="'overall_'+hotel.id">
                 <table>
