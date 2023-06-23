@@ -1,14 +1,9 @@
 import { inject } from 'vue';
 import { defineStore } from 'pinia'
 
-import { useCategoryStore } from "./category.js";
-import { useClusterStore } from "./cluster.js";
-
 export const useHotelStore = defineStore({
   id: 'hotel',
   state: () => ({
-    categoryStore: useCategoryStore(),
-    clusterStore: useClusterStore(),
     selectedHotelIds: [],
   }),
   getters: {
