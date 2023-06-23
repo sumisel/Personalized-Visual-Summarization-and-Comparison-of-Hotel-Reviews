@@ -65,14 +65,12 @@ export default {
     watch(
       () => this.hotelStore.selectedHotelIds,
       () => {
-        console.log("ChartPosNeg selected hotels changed");
         this.plot();
       }
     );
     watch(
       () => this.categoryStore.relevantCategories,
       () => {
-        console.log("ChartPosNeg relevant categories changed");
         this.plot();
       }
     );
@@ -82,7 +80,6 @@ export default {
     this.emitter.on(
       "highlight_" + this.categoryId + "_" + this.hotelId.replaceAll(".", "_"),
       (params) => {
-        console.log("chart receive highlight");
         this.highlight(
           params["svgId"],
           params["categoryId"],
@@ -106,8 +103,6 @@ export default {
     plot() {
       // get values for each hotel
       const data = this.posNeg;
-      console.log("chart ", this.categoryId);
-      console.log("chart ", data);
 
       // remove all previous elements
       d3.select(this.svg).selectAll("*").remove();

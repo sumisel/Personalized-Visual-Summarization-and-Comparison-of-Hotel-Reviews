@@ -54,7 +54,6 @@ export default {
       }
     },
     highlight(categoryId, hotelId, num_items, polarity) {
-      console.log("mouseenter highlight");
       this.emitter.emit(
         "highlight_" + categoryId + "_" + hotelId.replaceAll(".", "_"),
         { categoryId, hotelId, num_items, polarity }

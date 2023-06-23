@@ -6,11 +6,11 @@ export const useClusterStore = defineStore({
     clusters: {}
   }),
   getters: {
-    clustersById: (state) => { return (category) => Object.fromEntries(state.clusters[category].map(cluster => [cluster['id'], cluster]))},
-    hoveredCluster: (state) => { return (category) => state.clusters[category].reduce((hoveredCluster, cluster) => cluster['hover'] ? cluster : hoveredCluster, {})},
+    clustersById: (state) => { return (category) => Object.fromEntries(state.clusters[category].map(cluster => [cluster['id'], cluster])) },
+    hoveredCluster: (state) => { return (category) => state.clusters[category].reduce((hoveredCluster, cluster) => cluster['hover'] ? cluster : hoveredCluster, {}) },
   },
   actions: {
-    noClusterHovered(categoryId) { return this.clusters[categoryId].reduce((notHovered, cluster) => notHovered = notHovered && !cluster['hover'], true)},
+    noClusterHovered(categoryId) { return this.clusters[categoryId].reduce((notHovered, cluster) => notHovered = notHovered && !cluster['hover'], true) },
     hover(categoryId, clusterId) {
       this.unhover(categoryId);
       this.clustersById(categoryId)[clusterId]['hover'] = true;
@@ -19,7 +19,6 @@ export const useClusterStore = defineStore({
       this.clusters[categoryId].forEach(cluster => { cluster['hover'] = false });
     },
     initClusters(hotels) {
-      console.log("init clusters")
       hotels.forEach(hotel => {
 
         Object.keys(hotel['pos_summary']).forEach(categoryId => {
@@ -27,7 +26,7 @@ export const useClusterStore = defineStore({
             this.clusters[categoryId] = [];
           }
           hotel['pos_summary'][categoryId].forEach(sentence => {
-            const cluster = {"id": sentence['cluster'], "hover": false};
+            const cluster = { "id": sentence['cluster'], "hover": false };
             if (!this.clustersById(categoryId)[cluster['id']]) {
               this.clusters[categoryId].push(cluster);
             }
@@ -41,7 +40,7 @@ export const useClusterStore = defineStore({
             this.clusters[categoryId] = [];
           }
           hotel['neg_summary'][categoryId].forEach(sentence => {
-            const cluster = {"id": sentence['cluster'], "hover": false};
+            const cluster = { "id": sentence['cluster'], "hover": false };
             if (!this.clustersById(categoryId)[cluster['id']]) {
               this.clusters[categoryId].push(cluster);
             }
