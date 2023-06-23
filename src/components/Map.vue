@@ -166,7 +166,9 @@ export default {
     const markers = svg
       .select(".markers")
       .selectAll("circle")
-      .data(Object.values(this.hotelMeta))
+      .data(
+        Object.entries(this.hotelMeta).map(([id, meta]) => ({ id, ...meta }))
+      )
       .enter()
       .append("circle")
       .attr("cx", (d) => projection([d.location.long, d.location.lat])[0])
