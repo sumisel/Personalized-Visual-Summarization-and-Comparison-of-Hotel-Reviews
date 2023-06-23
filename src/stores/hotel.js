@@ -1,16 +1,14 @@
 import { inject } from 'vue';
-import { defineStore, storeToRefs } from 'pinia'
+import { defineStore } from 'pinia'
 
 import { useCategoryStore } from "./category.js";
 import { useClusterStore } from "./cluster.js";
-import { useTimeStore } from "./ratings_over_time.js";
 
 export const useHotelStore = defineStore({
   id: 'hotel',
   state: () => ({
     categoryStore: useCategoryStore(),
     clusterStore: useClusterStore(),
-    timeStore: useTimeStore(),
     // TODO: remove "hotels" as part of the state, it is already part of the hotelMeta
     hotels: [],
     selectedHotelIds: [],
@@ -71,7 +69,7 @@ export const useHotelStore = defineStore({
     },
   },
   actions: {
-    async initHotels(city, hotelMeta) {
+    initHotels(hotelMeta) {
       this.hotels = Object.keys(hotelMeta).map(key => { const elem = hotelMeta[key]; elem['id'] = key; return elem; });
 
       // select first three hotels by default

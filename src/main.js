@@ -48,13 +48,12 @@ import poiMeta from "./assets/poi_meta.json"
 app.provide("poiMeta", poiMeta)
 
 // TODO: avoid this hack
-hotelStore.initHotels(cityId, hotelMeta[cityId])
-    .then(r => {
-        // trigger loading of data that depends on category values
-        const tmp = categoryStore.categoriesById["location"].value;
-        categoryStore.categoriesById["location"].value = 40;
-        categoryStore.categoriesById["location"].value = tmp;
-    });
+hotelStore.initHotels(hotelMeta[cityId])
+// trigger loading of data that depends on category values
+const tmp = categoryStore.categoriesById["location"].value;
+categoryStore.categoriesById["location"].value = 40;
+categoryStore.categoriesById["location"].value = tmp;
+
 
 // load reviews
 const result = await fetch("/HotelRec_subset_" + cityId + "_10_reviews.json");
