@@ -63,7 +63,7 @@ app.provide("reviews", data);
 // TODO: this is a temporary solution, will be replaced when the data is in the enriched data file
 const ratings_time = await fetch("/HotelRec_subset_" + cityId + "_10_average_ratings_over_time.json");
 const ratings_time_data = await ratings_time.json();
-timeStore.initTimeData(Object.keys(hotelMeta), ratings_time_data);
+timeStore.initTimeData(Object.keys(hotelMeta[cityId]), ratings_time_data);
 
 // mount app
 app.mount('#app');
