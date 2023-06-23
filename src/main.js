@@ -42,18 +42,16 @@ app.provide("city", cities[cityId])
 // load hotel meta data
 import hotelMeta from "./assets/hotel_meta.json"
 app.provide("hotelMeta", hotelMeta[cityId])
+hotelStore.initHotelSelection(hotelMeta[cityId])
 
 // load POI meta data
 import poiMeta from "./assets/poi_meta.json"
 app.provide("poiMeta", poiMeta)
 
-// TODO: avoid this hack
-hotelStore.initHotelSelection(hotelMeta[cityId])
 // trigger loading of data that depends on category values
 const tmp = categoryStore.categoriesById["location"].value;
 categoryStore.categoriesById["location"].value = 40;
 categoryStore.categoriesById["location"].value = tmp;
-
 
 // load reviews
 const result = await fetch("/HotelRec_subset_" + cityId + "_10_reviews.json");

@@ -9,8 +9,6 @@ export const useHotelStore = defineStore({
   state: () => ({
     categoryStore: useCategoryStore(),
     clusterStore: useClusterStore(),
-    // TODO: remove "hotels" as part of the state, it is already part of the hotelMeta
-    hotels: [],
     selectedHotelIds: [],
   }),
   getters: {
