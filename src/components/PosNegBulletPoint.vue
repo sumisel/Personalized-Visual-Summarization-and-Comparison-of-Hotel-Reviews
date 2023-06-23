@@ -2,7 +2,6 @@
 import { useHotelStore } from "../stores/hotel.js";
 import { useClusterStore } from "../stores/cluster.js";
 import { useCategoryStore } from "../stores/category";
-import { globals } from "./../main";
 
 export default {
   props: {
@@ -23,7 +22,7 @@ export default {
     const hotelStore = useHotelStore();
     const categoryStore = useCategoryStore();
     const clusterStore = useClusterStore();
-    return { hotelStore, categoryStore, clusterStore, globals };
+    return { hotelStore, categoryStore, clusterStore };
   },
   computed: {},
   methods: {
@@ -95,8 +94,7 @@ export default {
       // filter to only show clusters with more than 1% of reviews
       .filter(
         (sentence) =>
-          sentence['cluster_size'] >
-          globals.$reviews[hotel.id].review_count * 0.01 
+          sentence['cluster_size'] > this.$reviews[hotel.id].review_count * 0.01
       )"
     :key="
       categoryId +
@@ -146,7 +144,7 @@ export default {
           {{
             roundToDecimal(
               (100 * sentence["cluster_size"]) /
-                globals.$reviews[hotel["id"]]["review_count"],
+                $reviews[hotel["id"]]["review_count"],
               2
             ) + "% of reviews"
           }}
@@ -168,13 +166,11 @@ export default {
         <v-card-text>
           <div class="text-h6">
             {{
-              this.$reviews[hotel["id"]]["reviews"][sentence["idx_review"]][
-                "title"
-              ]
+              $reviews[hotel["id"]]["reviews"][sentence["idx_review"]]["title"]
             }}
           </div>
           <span
-            v-for="(word, index) in globals.$reviews[hotel['id']]['reviews'][
+            v-for="(word, index) in $reviews[hotel['id']]['reviews'][
               sentence['idx_review']
             ]['text'].split(' ')"
             :style="[
@@ -206,21 +202,21 @@ export default {
               <v-expansion-panel>
                 <v-expansion-panel-title>
                   {{
-                    globals.$reviews[hotel["id"]]["reviews"][
-                      review["idx_review"]
-                    ][polarity + "_aspects"][review["idx_sentence"]]
+                    $reviews[hotel["id"]]["reviews"][review["idx_review"]][
+                      polarity + "_aspects"
+                    ][review["idx_sentence"]]
                   }}
                 </v-expansion-panel-title>
                 <v-expansion-panel-text>
                   <span
-                    v-for="(word, index) in globals.$reviews[hotel['id']][
-                      'reviews'
-                    ][review['idx_review']]['text'].split(' ')"
+                    v-for="(word, index) in $reviews[hotel['id']]['reviews'][
+                      review['idx_review']
+                    ]['text'].split(' ')"
                     :style="[
                       {
                         'font-weight': calcFontWeight(
                           matchText(
-                            globals.$reviews[hotel['id']]['reviews'][
+                            $reviews[hotel['id']]['reviews'][
                               review['idx_review']
                             ][polarity + '_aspects'][review['idx_sentence']],
                             word
@@ -230,7 +226,7 @@ export default {
                         ),
                         'font-size': calcFontSize(
                           matchText(
-                            globals.$reviews[hotel['id']]['reviews'][
+                            $reviews[hotel['id']]['reviews'][
                               review['idx_review']
                             ][polarity + '_aspects'][review['idx_sentence']],
                             word
@@ -239,7 +235,7 @@ export default {
                             : 0.9
                         ),
                         color: matchText(
-                          globals.$reviews[hotel['id']]['reviews'][
+                          $reviews[hotel['id']]['reviews'][
                             review['idx_review']
                           ][polarity + '_aspects'][review['idx_sentence']],
                           word
