@@ -17,8 +17,10 @@ import { createPinia } from 'pinia'
 const pinia = createPinia();
 import { useHotelStore } from "./stores/hotel.js";
 import { useCategoryStore } from "./stores/category.js";
+import { useTimeStore } from './stores/ratings_over_time'
 const hotelStore = useHotelStore(pinia);
 const categoryStore = useCategoryStore(pinia);
+const timeStore = useTimeStore(pinia);
 
 // create App
 const app = createApp(App)
@@ -64,6 +66,12 @@ Object.keys(data).forEach(key => {
     elem['reviews_unannotated'] = []; // we don't need that for now
 });
 app.provide("reviews", data);
+
+// load ratings over time
+// TODO: this is a temporary solution, will be replaced when the data is in the enriched data file
+const ratings_time = await fetch("/HotelRec_subset_" + cityId + "_10_average_ratings_over_time.json");
+const ratings_time_data = await ratings_time.json();
+timeStore.initTimeData(Object.keys(hotelMeta), ratings_time_data);
 
 // mount app
 app.mount('#app');
