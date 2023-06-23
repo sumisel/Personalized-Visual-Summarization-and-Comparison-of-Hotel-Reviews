@@ -1,7 +1,7 @@
 <script>
 import * as d3 from "d3";
 
-import {ref, onMounted, watch, computed} from "vue";
+import { ref, onMounted, watch, computed, inject } from "vue";
 
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
@@ -45,11 +45,13 @@ export default {
     const svg = ref();
     const hotelStore = useHotelStore();
     const categoryStore = useCategoryStore();
+    const emitter = inject("emitter");
 
     return {
       svg,
       hotelStore,
       categoryStore,
+      emitter,
     };
   },
   mounted() {
@@ -58,25 +60,45 @@ export default {
       .attr("height", this.height)
       .attr("style", "max-width: 100%; height: auto; height: intrinsic;");
 
-    watch(() => this.hotelStore.selectedHotelIds, () => {
-      console.log('ChartPosNeg selected hotels changed');
-      this.plot();
-    });
-    watch(() => this.categoryStore.relevantCategories, () => {
-      console.log('ChartPosNeg relevant categories changed');
-      this.plot();
-    });
+    watch(
+      () => this.hotelStore.selectedHotelIds,
+      () => {
+        console.log("ChartPosNeg selected hotels changed");
+        this.plot();
+      }
+    );
+    watch(
+      () => this.categoryStore.relevantCategories,
+      () => {
+        console.log("ChartPosNeg relevant categories changed");
+        this.plot();
+      }
+    );
 
     this.plot();
 
-
-    this.emitter.on("highlight_"+this.categoryId+'_'+this.hotelId.replaceAll('.', '_'), (params) => {
-      console.log('chart receive highlight');
-      this.highlight(params['svgId'], params['categoryId'], params['hotelId'], params['num_items'], params['polarity']);
-    });
-    this.emitter.on("unhighlight_"+this.categoryId+'_'+this.hotelId.replaceAll('.', '_'), (params) => {
-      this.unhighlight(params['categoryId'], params['hotelId']);
-    });
+    this.emitter.on(
+      "highlight_" + this.categoryId + "_" + this.hotelId.replaceAll(".", "_"),
+      (params) => {
+        console.log("chart receive highlight");
+        this.highlight(
+          params["svgId"],
+          params["categoryId"],
+          params["hotelId"],
+          params["num_items"],
+          params["polarity"]
+        );
+      }
+    );
+    this.emitter.on(
+      "unhighlight_" +
+        this.categoryId +
+        "_" +
+        this.hotelId.replaceAll(".", "_"),
+      (params) => {
+        this.unhighlight(params["categoryId"], params["hotelId"]);
+      }
+    );
   },
   methods: {
     plot() {
@@ -90,9 +112,10 @@ export default {
       const svg = d3.select(this.svg).append("g");
 
       // x axis
-      const x = d3.scaleLinear()
-          .domain([this.xMin, this.xMax])
-          .range([ 0, this.width]);
+      const x = d3
+        .scaleLinear()
+        .domain([this.xMin, this.xMax])
+        .range([0, this.width]);
       /*svg.append("g")
           .attr("transform", "translate(0," + this.height + ")")
           .call(d3.axisBottom(x))
@@ -102,92 +125,115 @@ export default {
        */
 
       // y axis
-      const y = d3.scaleBand()
-          .domain(data.map(function(d) { return d.name; }))
-          .range([ 0, this.height ])
-          .padding(.1);
+      const y = d3
+        .scaleBand()
+        .domain(
+          data.map(function (d) {
+            return d.name;
+          })
+        )
+        .range([0, this.height])
+        .padding(0.1);
 
       // bars
-      svg.selectAll("myRect")
-          .data(data)
-          .enter()
-          .append("rect")
-          .attr("y", function(d) { return y(d['name']); })
-          .attr("x", function(d) { return x(-d['negCount']); })
-          .attr("width", function(d) { return x(d['posCount'])-x(-d['negCount']); })
-          .attr("height", y.bandwidth() )
-          .attr("fill", this.color)
+      svg
+        .selectAll("myRect")
+        .data(data)
+        .enter()
+        .append("rect")
+        .attr("y", function (d) {
+          return y(d["name"]);
+        })
+        .attr("x", function (d) {
+          return x(-d["negCount"]);
+        })
+        .attr("width", function (d) {
+          return x(d["posCount"]) - x(-d["negCount"]);
+        })
+        .attr("height", y.bandwidth())
+        .attr("fill", this.color);
 
       // add the y Axis on top of the bars
-      svg.append("g")
-          .attr("transform", "translate(" + (x(0)-.5) + ",0)")
-          .call(d3.axisLeft(y)
-              .tickSizeOuter(0))
-          .selectAll("path").attr("stroke-width", "2px");
+      svg
+        .append("g")
+        .attr("transform", "translate(" + (x(0) - 0.5) + ",0)")
+        .call(d3.axisLeft(y).tickSizeOuter(0))
+        .selectAll("path")
+        .attr("stroke-width", "2px");
       svg.selectAll("text").remove();
-
     },
 
     highlight(svgId, categoryId, hotelId, num_items, polarity) {
-      const svg = d3.select("#"+categoryId+'_'+hotelId.replaceAll('.', '_'));
+      const svg = d3.select(
+        "#" + categoryId + "_" + hotelId.replaceAll(".", "_")
+      );
 
       // x axis
       let xScale = 1;
-      if(categoryId=='overall') xScale = 1;
-      const x = d3.scaleLinear()
-          .domain([-xScale,xScale])
-          .range([ 0, svg.attr("width")]);
+      if (categoryId == "overall") xScale = 1;
+      const x = d3
+        .scaleLinear()
+        .domain([-xScale, xScale])
+        .range([0, svg.attr("width")]);
       // y axis
-      const y = d3.scaleBand()
-          .domain([hotelId])
-          .range([ 0, svg.attr("height") ])
-          .padding(.1);
+      const y = d3
+        .scaleBand()
+        .domain([hotelId])
+        .range([0, svg.attr("height")])
+        .padding(0.1);
 
-
-      const xValue = num_items / this.hotelStore.hotelById(hotelId)['review_count']
+      const xValue =
+        num_items / this.hotelStore.hotelById(hotelId)["review_count"];
 
       // bars
-      if (polarity=="neg") {
-        svg.select("g").append("rect")
-            .attr("class", "highlight")
-            .attr("y", y(hotelId))
-            .attr("x", x(-xValue))
-            .attr("width", x(0)-x(-xValue))
-            .attr("height", y.bandwidth())
-            .attr("fill", "black")
-            .attr("stroke-width", "1px")
-            .attr("stroke", "white");
-
+      if (polarity == "neg") {
+        svg
+          .select("g")
+          .append("rect")
+          .attr("class", "highlight")
+          .attr("y", y(hotelId))
+          .attr("x", x(-xValue))
+          .attr("width", x(0) - x(-xValue))
+          .attr("height", y.bandwidth())
+          .attr("fill", "black")
+          .attr("stroke-width", "1px")
+          .attr("stroke", "white");
       } else {
-        svg.select("g").append("rect")
-            .attr("class", "highlight")
-            .attr("y", y(hotelId))
-            .attr("x", x(0))
-            .attr("width", x(xValue)-x(0))
-            .attr("height", y.bandwidth())
-            .attr("fill", "black")
-            .attr("stroke-width", "1px")
-            .attr("stroke", "white");
+        svg
+          .select("g")
+          .append("rect")
+          .attr("class", "highlight")
+          .attr("y", y(hotelId))
+          .attr("x", x(0))
+          .attr("width", x(xValue) - x(0))
+          .attr("height", y.bandwidth())
+          .attr("fill", "black")
+          .attr("stroke-width", "1px")
+          .attr("stroke", "white");
       }
     },
 
     unhighlight(categoryId, hotelId) {
-      d3.select("#"+categoryId+'_'+hotelId.replaceAll('.', '_')).selectAll(".highlight").remove();
+      d3.select("#" + categoryId + "_" + hotelId.replaceAll(".", "_"))
+        .selectAll(".highlight")
+        .remove();
     },
-
   },
 };
 </script>
 
 <style>
-  .y-axis{
-    size: 2px;
-  }
-  .tick line{
-    visibility:hidden;
-  }
+.y-axis {
+  size: 2px;
+}
+.tick line {
+  visibility: hidden;
+}
 </style>
 
 <template>
-  <svg ref="svg" :id="this.categoryId+'_'+this.hotelId.replaceAll('.', '_')"></svg>
+  <svg
+    ref="svg"
+    :id="this.categoryId + '_' + this.hotelId.replaceAll('.', '_')"
+  ></svg>
 </template>

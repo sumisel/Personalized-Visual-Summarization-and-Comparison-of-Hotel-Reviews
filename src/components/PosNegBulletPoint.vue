@@ -24,7 +24,8 @@ export default {
     const categoryStore = useCategoryStore();
     const clusterStore = useClusterStore();
     const reviews = inject("reviews");
-    return { hotelStore, categoryStore, clusterStore, reviews };
+    const emitter = inject("emitter");
+    return { hotelStore, categoryStore, clusterStore, reviews, emitter };
   },
   computed: {},
   methods: {

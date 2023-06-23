@@ -1,40 +1,37 @@
 import { createApp } from 'vue'
-import { createPinia } from 'pinia'
 import '@mdi/font/css/materialdesignicons.css'
-import mitt from 'mitt';
-const emitter = mitt();
 import App from './App.vue'
 
-// Vuetify
+// set up Vuetify
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
-
 const vuetify = createVuetify({
     components,
     directives,
 })
 
 // set up Pinia 
+import { createPinia } from 'pinia'
 const pinia = createPinia();
 import { useHotelStore } from "./stores/hotel.js";
 import { useCategoryStore } from "./stores/category.js";
-import { useClusterStore } from "./stores/cluster.js";
-import { useTimeStore } from "./stores/ratings_over_time.js";
 const hotelStore = useHotelStore(pinia);
 const categoryStore = useCategoryStore(pinia);
-const clusterStore = useClusterStore(pinia);
-const timeStore = useTimeStore(pinia);
 
 // create App
 const app = createApp(App)
 app.use(vuetify)
 app.use(pinia)
-// TODO: avoid this hack
-app.config.globalProperties.emitter = emitter;
 
-// set city and load 
+// set up event emitter
+// TODO: check if needed
+import mitt from 'mitt';
+const emitter = mitt();
+app.provide("emitter", emitter);
+
+// set city and load city meta data
 const params = new URL(document.location).searchParams;
 const cityId = params.get("city") ? params.get("city") : "Berlin";
 import cities from "./assets/cities.json"
