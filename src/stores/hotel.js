@@ -4,7 +4,6 @@ import { defineStore, storeToRefs } from 'pinia'
 import { useCategoryStore } from "./category.js";
 import { useClusterStore } from "./cluster.js";
 import { useTimeStore } from "./ratings_over_time.js";
-import { globals } from './../main.js'
 
 export const useHotelStore = defineStore({
   id: 'hotel',
@@ -57,12 +56,13 @@ export const useHotelStore = defineStore({
     },
     countsCategoryPosNeg: (state) => {
       return (category, hotels) => {
+        const reviews = inject("reviews");
         let counts = [];
         hotels.forEach(hotel => {
           counts.push({
             "name": hotel['name'],
-            "posCount": globals.$reviews[hotel['id']]['counts']['pos'][category],
-            "negCount": globals.$reviews[hotel['id']]['counts']['neg'][category],
+            "posCount": reviews[hotel['id']]['counts']['pos'][category],
+            "negCount": reviews[hotel['id']]['counts']['neg'][category],
           })
         })
         return counts;
@@ -102,7 +102,7 @@ export const useHotelStore = defineStore({
       this.timeStore.initTimeData(this.hotels, ratings_time_data);
     },
     sentimentSummary(hotel, category, prefix) {
-      console.log("sentimentSummary ", hotel['id'], " ", category, " ", prefix);
+      const reviews = inject("reviews");
       let summary = [];
 
       // compile sentences from all categories if it's the overall summary
@@ -115,7 +115,7 @@ export const useHotelStore = defineStore({
           if (cat['value'] > 66) {
             num_sentences = 2;
           }
-          let sentences = globals.$reviews[hotel['id']][prefix + '_summary'][cat['id']].sort((a, b) => a['idx_summary'] - b['idx_summary']).slice(0, num_sentences);
+          let sentences = reviews[hotel['id']][prefix + '_summary'][cat['id']].sort((a, b) => a['idx_summary'] - b['idx_summary']).slice(0, num_sentences);
           sentences.forEach((sentence, i) => {
             sentence['color'] = cat['color'];
             sentence['category'] = cat['id'];
@@ -123,7 +123,7 @@ export const useHotelStore = defineStore({
           summary.push(...sentences);
         }
       } else {
-        summary = globals.$reviews[hotel['id']][prefix + '_summary'][category].sort((a, b) => a['idx_summary'] - b['idx_summary']).slice(0, 5);
+        summary = reviews[hotel['id']][prefix + '_summary'][category].sort((a, b) => a['idx_summary'] - b['idx_summary']).slice(0, 5);
 
         summary.forEach((sentence, i) => {
           sentence['color'] = this.categoryStore.categoriesById[category]['color'];
@@ -133,9 +133,9 @@ export const useHotelStore = defineStore({
       console.log("sentimentSummary ", summary);
 
       summary.forEach((sentence, i) => {
-        sentence['text'] = globals.$reviews[hotel['id']]['reviews'][sentence['idx_review']][prefix + '_aspects'][sentence['idx_sentence']];
+        sentence['text'] = reviews[hotel['id']]['reviews'][sentence['idx_review']][prefix + '_aspects'][sentence['idx_sentence']];
         sentence['idx_similar_reviews'].forEach((rev, j) => {
-          rev['text'] = globals.$reviews[hotel['id']]['reviews'][rev['idx_review']][prefix + '_aspects'][rev['idx_sentence']];
+          rev['text'] = reviews[hotel['id']]['reviews'][rev['idx_review']][prefix + '_aspects'][rev['idx_sentence']];
         });
       });
 
