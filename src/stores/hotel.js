@@ -2,7 +2,7 @@ import { defineStore, storeToRefs } from 'pinia'
 
 import { useCategoryStore } from "./category.js";
 import { useClusterStore } from "./cluster.js";
-import { useTimeStore} from "./ratings_over_time.js";
+import { useTimeStore } from "./ratings_over_time.js";
 import { globals } from './../main.js'
 
 export const useHotelStore = defineStore({
@@ -15,7 +15,7 @@ export const useHotelStore = defineStore({
   }),
   getters: {
     selectedHotels: (state) => state.hotels.filter(hotel => hotel.isSelected)
-                                            .sort((a, b) => a.isSelected - b.isSelected), // sort by index
+      .sort((a, b) => a.isSelected - b.isSelected), // sort by index
     // TODO: use such a list of Ids state instead of "hotels"
     selectedHotelIds: (state) => state.selectedHotels.map(hotel => hotel.id),
     minRatings: (state) => {
@@ -27,7 +27,8 @@ export const useHotelStore = defineStore({
         cleanliness: 5.0,
         sleep: 5.0,
       }
-      state.selectedHotels.forEach(hotel => {
+      state.selectedHotelIds.forEach(hotelId => {
+        const hotel = globals.$hotelMeta[hotelId];
         for (let categoryId in hotel.ratings) {
           minRatings[categoryId] = Math.min(minRatings[categoryId], hotel.ratings[categoryId]);
         }
@@ -43,64 +44,21 @@ export const useHotelStore = defineStore({
         cleanliness: 0.0,
         sleep: 0.0,
       }
-      state.selectedHotels.forEach(hotel => {
+      state.selectedHotelIds.forEach(hotelId => {
+        const hotel = globals.$hotelMeta[hotelId];
         for (let categoryId in hotel.ratings) {
           maxRatings[categoryId] = Math.max(maxRatings[categoryId], hotel.ratings[categoryId]);
         }
       })
       return maxRatings
     },
-
-    bestCategories: (state) => {
-      return (hotel) => {
-        const categories = state.categoryStore.relevantCategories;
-        const ratingsDiff = {
-          location: 5.0,
-          value: 5.0,
-          rooms: 5.0,
-          service: 5.0,
-          cleanliness: 5.0,
-          sleep: 5.0,
-        };
-        state.selectedHotels.forEach((hotel2) => {
-          if (hotel.id != hotel2.id) {
-            categories.forEach((category) => {
-              ratingsDiff[category.id] = Math.min(
-                ratingsDiff[category.id],
-                hotel.ratings[category.id] - hotel2.ratings[category.id]
-              );
-            });
-          }
-        });
-        const clearlyBestCategories = [];
-        categories.forEach((category) => {
-          if (ratingsDiff[category.id] > 0.29) {
-            clearlyBestCategories.push(category.id);
-          }
-        });
-        return clearlyBestCategories;
-      }
-    },
-    topCategories: (state) => {
-      return (hotel) => {
-        const topCategories = state.categoryStore.relevantCategories.filter(
-          (category) =>
-            !state.bestCategories(hotel).includes(category.id) &&
-            hotel.ratings[category.id] - state.minRatings[category.id] >
-            0.29 &&
-            hotel.ratings[category.id] -
-            state.maxRatings[category.id] >
-            -0.29
-        );
-        return topCategories.map((category) => category.id);
-      }
-    },
     countsCategoryPosNeg: (state) => {
       return (category, hotels) => {
         //console.log("countsCategoryPosNeg ", category);
         let counts = [];
         hotels.forEach(hotel => {
-          counts.push({"name": hotel['name'],
+          counts.push({
+            "name": hotel['name'],
             "posCount": globals.$reviews[hotel['id']]['counts']['pos'][category],
             "negCount": globals.$reviews[hotel['id']]['counts']['neg'][category],
           })
@@ -130,10 +88,10 @@ export const useHotelStore = defineStore({
   },
   actions: {
     async initHotels(city) {
-      this.hotels = Object.keys(globals.$hotelMeta).map(key => {const elem=globals.$hotelMeta[key]; elem['id']=key; return elem;});
+      this.hotels = Object.keys(globals.$hotelMeta).map(key => { const elem = globals.$hotelMeta[key]; elem['id'] = key; return elem; });
 
       // select first three hotels by default
-      this.hotels.forEach((hotel, i) => hotel["isSelected"] = i < 3 ? i+1 : 0);
+      this.hotels.forEach((hotel, i) => hotel["isSelected"] = i < 3 ? i + 1 : 0);
 
       // initiate sentiment sentence clusters, for acceptable page performance, separate clusters from hotels
       //this.clusterStore.initClusters(this.hotels);
@@ -149,16 +107,16 @@ export const useHotelStore = defineStore({
       let summary = [];
 
       // compile sentences from all categories if it's the overall summary
-      if(category == 'overall') {
-        for(let cat of this.categoryStore.relevantCategories) {
+      if (category == 'overall') {
+        for (let cat of this.categoryStore.relevantCategories) {
           let num_sentences = 0;
-          if ( cat['value'] > 33 ) {
+          if (cat['value'] > 33) {
             num_sentences = 1;
           }
-          if ( cat['value'] > 66 ) {
+          if (cat['value'] > 66) {
             num_sentences = 2;
           }
-          let sentences = globals.$reviews[hotel['id']][prefix+'_summary'][cat['id']].sort((a, b) => a['idx_summary'] - b['idx_summary']).slice(0, num_sentences);
+          let sentences = globals.$reviews[hotel['id']][prefix + '_summary'][cat['id']].sort((a, b) => a['idx_summary'] - b['idx_summary']).slice(0, num_sentences);
           sentences.forEach((sentence, i) => {
             sentence['color'] = cat['color'];
             sentence['category'] = cat['id'];
@@ -166,7 +124,7 @@ export const useHotelStore = defineStore({
           summary.push(...sentences);
         }
       } else {
-        summary = globals.$reviews[hotel['id']][prefix+'_summary'][category].sort((a, b) => a['idx_summary'] - b['idx_summary']).slice(0, 5);
+        summary = globals.$reviews[hotel['id']][prefix + '_summary'][category].sort((a, b) => a['idx_summary'] - b['idx_summary']).slice(0, 5);
 
         summary.forEach((sentence, i) => {
           sentence['color'] = this.categoryStore.categoriesById[category]['color'];
@@ -176,9 +134,9 @@ export const useHotelStore = defineStore({
       console.log("sentimentSummary ", summary);
 
       summary.forEach((sentence, i) => {
-        sentence['text'] = globals.$reviews[hotel['id']]['reviews'][sentence['idx_review']][prefix+'_aspects'][sentence['idx_sentence']];
+        sentence['text'] = globals.$reviews[hotel['id']]['reviews'][sentence['idx_review']][prefix + '_aspects'][sentence['idx_sentence']];
         sentence['idx_similar_reviews'].forEach((rev, j) => {
-          rev['text'] = globals.$reviews[hotel['id']]['reviews'][rev['idx_review']][prefix+'_aspects'][rev['idx_sentence']];
+          rev['text'] = globals.$reviews[hotel['id']]['reviews'][rev['idx_review']][prefix + '_aspects'][rev['idx_sentence']];
         });
       });
 
