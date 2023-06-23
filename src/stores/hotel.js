@@ -54,7 +54,6 @@ export const useHotelStore = defineStore({
     },
     countsCategoryPosNeg: (state) => {
       return (category, hotels) => {
-        //console.log("countsCategoryPosNeg ", category);
         let counts = [];
         hotels.forEach(hotel => {
           counts.push({
@@ -62,10 +61,7 @@ export const useHotelStore = defineStore({
             "posCount": globals.$reviews[hotel['id']]['counts']['pos'][category],
             "negCount": globals.$reviews[hotel['id']]['counts']['neg'][category],
           })
-          //console.log(hotel['counts']['pos']);
-          //console.log(hotel['counts']['pos'][category]);
         })
-        //console.log("countsCategoryPosNeg counts", counts);
         return counts;
       }
     },
