@@ -5,9 +5,8 @@ import { ref, onMounted } from "vue";
 
 import { useCategoryStore } from "../stores/category.js";
 import { useHotelStore } from "../stores/hotel.js";
-import CategoryMatchReview from "@/components/CategoryMatchReview.vue";
+
 export default {
-  components: {CategoryMatchReview},
   props: {
     ratings: {
       type: Object,
@@ -30,14 +29,6 @@ export default {
         cleanliness: 3.0,
         sleep: 3.0,
       },
-    },
-    hotelId: {
-      type: String,
-      default: "hotelId",
-    },
-    hotelName: {
-      type: String,
-      default: "hotelName",
     },
   },
   setup() {
@@ -64,7 +55,6 @@ export default {
       this.plot();
     });
 
-    //WARNING if all individual reviews are loaded into the hotel data, this makes the site very slow
     this.hotelStore.$subscribe(() => {
       this.plot();
     });
@@ -134,14 +124,6 @@ export default {
         .on("mouseout", () => {
           this.categoryStore.unhover();
         })
-        .on("click", (event, d) => {
-          console.log(this.hotelName);
-          const result = this.categoryStore.getCategoryRepresentative(this.hotelId, d.data.category.id);
-          result.then((value) => {
-            console.log(value);
-            //this.categoryMatchReview.show();
-          });
-        });
 
       d3.select(this.svg)
         .selectAll("text")
@@ -169,14 +151,4 @@ export default {
 
 <template>
   <svg ref="svg"></svg>
-
-  <!--<v-tooltip activator="parent" location="here" max-width="50px">
-    <v-icon
-        :icon="this.categoryStore.hoveredCategory.icon"
-        class="mr-2"
-        :color="this.categoryStore.hoveredCategory.color"
-    ></v-icon>
-  </v-tooltip>-->
-
-
 </template>

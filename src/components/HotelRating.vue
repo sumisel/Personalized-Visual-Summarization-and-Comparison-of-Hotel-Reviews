@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from "vue";
+import { computed, getCurrentInstance, inject } from "vue";
 
 import Glyph from "./Glyph.vue";
 import CategoryName from "./CategoryName.vue";
@@ -14,11 +14,60 @@ const props = defineProps({
   hotel: Object,
 });
 
-const offset = computed(
-  () => `${hotelStore.overallRating(props.hotel) * 80}px`
-);
-const bestCategories = computed(() => hotelStore.bestCategories(props.hotel));
-const topCategories = computed(() => hotelStore.topCategories(props.hotel));
+const hotelMeta = inject("hotelMeta");
+
+const offset = computed(() => {
+  const overallRating = categoryStore.categories.reduce(
+    (sum, category) =>
+      (sum +=
+        props.hotel.ratings[category.id] *
+        categoryStore.normalizedCategoryValues[category.id]),
+    0
+  );
+  return `${overallRating * 80}px`;
+});
+
+const bestCategories = computed(() => {
+  const categories = categoryStore.relevantCategories;
+  const ratingsDiff = {
+    location: 5.0,
+    value: 5.0,
+    rooms: 5.0,
+    service: 5.0,
+    cleanliness: 5.0,
+    sleep: 5.0,
+  };
+  hotelStore.selectedHotelIds.forEach((hotel2Id) => {
+    if (props.hotel.id != hotel2Id) {
+      const hotel2 = hotelMeta[hotel2Id];
+      categories.forEach((category) => {
+        ratingsDiff[category.id] = Math.min(
+          ratingsDiff[category.id],
+          props.hotel.ratings[category.id] - hotel2.ratings[category.id]
+        );
+      });
+    }
+  });
+  const clearlyBestCategories = [];
+  categories.forEach((category) => {
+    if (ratingsDiff[category.id] > 0.29) {
+      clearlyBestCategories.push(category.id);
+    }
+  });
+  return clearlyBestCategories;
+});
+
+const topCategories = computed(() => {
+  const topCategories = categoryStore.relevantCategories.filter(
+    (category) =>
+      !bestCategories.value.includes(category.id) &&
+      props.hotel.ratings[category.id] - hotelStore.minRatings[category.id] >
+        0.29 &&
+      props.hotel.ratings[category.id] - hotelStore.maxRatings[category.id] >
+        -0.29
+  );
+  return topCategories.map((category) => category.id);
+});
 </script>
 
 <template>

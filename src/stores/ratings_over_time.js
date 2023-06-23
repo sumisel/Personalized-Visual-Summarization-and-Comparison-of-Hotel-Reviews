@@ -9,10 +9,10 @@ export const useTimeStore = defineStore({
     dataById: (state) => state.ratings_over_time,
   },
   actions: {
-    initTimeData(hotels, ratings_time_data) {
+    initTimeData(hotelIds, ratings_time_data) {
       this.ratings_over_time = {};
-      hotels.forEach(hotel => {
-        this.ratings_over_time[hotel.id] = ratings_time_data[hotel.id];
+      hotelIds.forEach(hotelId => {
+        this.ratings_over_time[hotelId] = ratings_time_data[hotelId];
       })
     }
   },

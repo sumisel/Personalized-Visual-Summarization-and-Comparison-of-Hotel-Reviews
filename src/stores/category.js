@@ -61,7 +61,7 @@ export const useCategoryStore = defineStore({
     },
     relevantCategories: (state) => state.categories.filter(category => category.value > 10).sort((a, b) => b.value - a.value),
     noCategoryHovered: (state) => state.categories.reduce((notHovered, category) => notHovered = notHovered && !category.hover, true),
-    hoveredCategory: (state) => state.categories.reduce((hoveredCategory, category) => category.hover ? category : hoveredCategory, {"icon": "mdi-clipboard-check", "title": "", "color": ""}), // TODO return empty icon if no category is hovered
+    hoveredCategory: (state) => state.categories.reduce((hoveredCategory, category) => category.hover ? category : hoveredCategory, { "icon": "mdi-clipboard-check", "title": "", "color": "" }), // TODO return empty icon if no category is hovered
   },
   actions: {
     hover(categoryId) {
@@ -70,17 +70,6 @@ export const useCategoryStore = defineStore({
     },
     unhover() {
       this.categories.forEach(category => { category.hover = false });
-    },
-    async getCategoryRepresentative(hotelId, categoryId){
-      const params = (new URL(document.location)).searchParams;
-      const city = params.get("city")?params.get("city"):"Berlin";
-      console.log("read category representatives file");
-      console.log(city);
-      console.log(hotelId);
-      console.log(categoryId);
-      const result = await fetch("/HotelRec_subset_"+city+"_10_category_matching_reviews.txt");
-      const data = await result.json();
-      return data[hotelId][categoryId];
     },
   },
 })

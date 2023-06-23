@@ -1,13 +1,17 @@
-<script setup xmlns="http://www.w3.org/1999/html">
+<script setup>
+// TODO: consider deleting this component, or merging it with PosNeg.vue
+
 import CategoryName from "./CategoryName.vue";
 
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
 import ChartPosNeg from "@/components/ChartPosNeg.vue";
 import PosNegBulletPoint from "@/components/PosNegBulletPoint.vue";
+import { inject } from "vue";
 
 const hotelStore = useHotelStore();
 const categoryStore = useCategoryStore();
+const hotelMeta = inject("hotelMeta");
 
 const props = defineProps({
   category: Object,
@@ -15,6 +19,19 @@ const props = defineProps({
     subPanel: [0, 1],
   }),
 });
+
+function countsCategoryPosNeg(category, hotelIds) {
+  const reviews = inject("reviews");
+  let counts = [];
+  hotelIds.forEach((hotelId) => {
+    counts.push({
+      name: hotelId,
+      posCount: reviews[hotelId]["counts"]["pos"][category],
+      negCount: reviews[hotelId]["counts"]["neg"][category],
+    });
+  });
+  return counts;
+}
 </script>
 
 <template>
@@ -40,9 +57,9 @@ const props = defineProps({
                   :categoryId="category['id']"
                   :hotelId="'selected'"
                   :posNeg="
-                    hotelStore.countsCategoryPosNeg(
+                    countsCategoryPosNeg(
                       category['id'],
-                      hotelStore.selectedHotels
+                      hotelStore.selectedHotelIds
                     )
                   "
                   :color="category['color']"
@@ -65,34 +82,30 @@ const props = defineProps({
           >
             <v-table class="my-2 flex-grow-1" table-layout="fixed">
               <template
-                v-for="hotel in hotelStore.selectedHotels"
-                :key="category['id'] + '_' + hotel['id']"
+                v-for="hotelId in hotelStore.selectedHotelIds"
+                :key="category['id'] + '_' + hotelId"
               >
                 <tr>
                   <td class="pa-2 hotel-name"></td>
                   <td colspan="3" class="sentiment-chart">
                     <ChartPosNeg
                       :categoryId="category['id']"
-                      :hotelId="hotel['id']"
-                      :posNeg="
-                        hotelStore.countsCategoryPosNeg(category['id'], [hotel])
-                      "
+                      :hotelId="hotelId"
+                      :posNeg="countsCategoryPosNeg(category['id'], [hotelId])"
                       :color="category['color']"
                       :width="200"
                       :height="10"
                       :xMin="-1"
                       :xMax="1"
-                      :key="
-                        'posneg_chart_' + hotel['id'] + '_' + category['id']
-                      "
+                      :key="'posneg_chart_' + hotelId + '_' + category['id']"
                     ></ChartPosNeg>
                   </td>
                 </tr>
                 <tr>
-                  <td class="pa-2 hotel-name">{{ hotel.name }}</td>
+                  <td class="pa-2 hotel-name">{{ hotelMeta[hotelId].name }}</td>
                   <td class="pa-2 sentiment-text">
                     <PosNegBulletPoint
-                      :hotel="hotel"
+                      :hotelId="hotelId"
                       :categoryId="category['id']"
                       :polarity="'neg'"
                     ></PosNegBulletPoint>
@@ -100,7 +113,7 @@ const props = defineProps({
                   <td class="placeholder"></td>
                   <td class="pa-2 sentiment-text">
                     <PosNegBulletPoint
-                      :hotel="hotel"
+                      :hotelId="hotelId"
                       :categoryId="category['id']"
                       :polarity="'pos'"
                     ></PosNegBulletPoint>

@@ -2,27 +2,29 @@
 import { useHotelStore } from "../stores/hotel.js";
 import { useClusterStore } from "../stores/cluster.js";
 import { useCategoryStore } from "../stores/category";
+import { inject } from "vue";
 
 export default {
   props: {
-    hotel: {
-      type: Object,
-      default: () => ({}),
-    },
-    categoryId: {
-      type: String,
-      default: "categoryId",
-    },
-    polarity: {
-      type: String,
-      default: "polarity",
-    },
+    hotelId: String,
+    categoryId: String,
+    polarity: String,
   },
   setup() {
     const hotelStore = useHotelStore();
     const categoryStore = useCategoryStore();
     const clusterStore = useClusterStore();
-    return { hotelStore, categoryStore, clusterStore };
+    const reviews = inject("reviews");
+    const emitter = inject("emitter");
+    const hotelMeta = inject("hotelMeta");
+    return {
+      hotelStore,
+      categoryStore,
+      clusterStore,
+      reviews,
+      emitter,
+      hotelMeta,
+    };
   },
   computed: {},
   methods: {
@@ -52,7 +54,6 @@ export default {
       }
     },
     highlight(categoryId, hotelId, num_items, polarity) {
-      console.log("mouseenter highlight");
       this.emitter.emit(
         "highlight_" + categoryId + "_" + hotelId.replaceAll(".", "_"),
         { categoryId, hotelId, num_items, polarity }
@@ -64,7 +65,6 @@ export default {
         { categoryId, hotelId }
       );
     },
-
     matchText(text, word) {
       return text
         .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "")
@@ -80,6 +80,53 @@ export default {
     roundToDecimal: function (number, decimals) {
       return number.toFixed(decimals);
     },
+    sentimentSummary(hotelId, category, prefix) {
+      const reviews = inject("reviews");
+      let summary = [];
+      // compile sentences from all categories if it's the overall summary
+      if (category == "overall") {
+        for (let cat of this.categoryStore.relevantCategories) {
+          let num_sentences = 0;
+          if (cat["value"] > 33) {
+            num_sentences = 1;
+          }
+          if (cat["value"] > 66) {
+            num_sentences = 2;
+          }
+          let sentences = reviews[hotelId][prefix + "_summary"][cat["id"]]
+            .sort((a, b) => a["idx_summary"] - b["idx_summary"])
+            .slice(0, num_sentences);
+          sentences.forEach((sentence, i) => {
+            sentence["color"] = cat["color"];
+            sentence["category"] = cat["id"];
+          });
+          summary.push(...sentences);
+        }
+      } else {
+        summary = reviews[hotelId][prefix + "_summary"][category]
+          .sort((a, b) => a["idx_summary"] - b["idx_summary"])
+          .slice(0, 5);
+
+        summary.forEach((sentence, i) => {
+          sentence["color"] =
+            this.categoryStore.categoriesById[category]["color"];
+          sentence["category"] = category;
+        });
+      }
+      summary.forEach((sentence, i) => {
+        sentence["text"] =
+          reviews[hotelId]["reviews"][sentence["idx_review"]][
+            prefix + "_aspects"
+          ][sentence["idx_sentence"]];
+        sentence["idx_similar_reviews"].forEach((rev, j) => {
+          rev["text"] =
+            reviews[hotelId]["reviews"][rev["idx_review"]][prefix + "_aspects"][
+              rev["idx_sentence"]
+            ];
+        });
+      });
+      return summary;
+    },
   },
 };
 </script>
@@ -89,33 +136,29 @@ export default {
     class="d-flex justify-content-center"
     scrollable
     width="auto"
-    v-for="sentence in hotelStore
-      .sentimentSummary(hotel, categoryId, polarity)
+    v-for="sentence in sentimentSummary(hotelId, categoryId, polarity)
       // filter to only show clusters with more than 1% of reviews
       .filter(
         (sentence) =>
-          sentence['cluster_size'] > this.$reviews[hotel.id].review_count * 0.01
+          sentence['cluster_size'] > this.reviews[hotelId].review_count * 0.01
       )"
     :key="
       categoryId +
       '_' +
       polarity +
       '_' +
-      hotel['id'] +
+      hotelId +
       '_' +
       sentence['idx_summary']
     "
   >
     <template v-slot:activator="{ props }">
-      <!--@mouseenter="clusterStore.hover(sentence['category'], sentence['cluster']); highlight(categoryId, hotel['id'], sentence['cluster_size'], polarity);"
-        @mouseleave="clusterStore.unhover(sentence['category']); unhighlight(categoryId, hotel['id']);"
-                  'opacity': calcHover(clusterStore.clustersById(sentence['category'])[sentence['cluster']]['hover'], sentence['category']),-->
       <p
         v-bind="props"
         @mouseenter="
-          highlight(categoryId, hotel['id'], sentence['cluster_size'], polarity)
+          highlight(categoryId, hotelId, sentence['cluster_size'], polarity)
         "
-        @mouseleave="unhighlight(categoryId, hotel['id'])"
+        @mouseleave="unhighlight(categoryId, hotelId)"
         :style="[
           {
             'font-weight': calcFontWeight(sentence['ratio_category']),
@@ -144,7 +187,7 @@ export default {
           {{
             roundToDecimal(
               (100 * sentence["cluster_size"]) /
-                $reviews[hotel["id"]]["review_count"],
+                reviews[hotelId]["review_count"],
               2
             ) + "% of reviews"
           }}
@@ -160,17 +203,15 @@ export default {
       <v-card style="width: 30%">
         <v-toolbar>
           <v-toolbar-title>{{
-            hotel["name"] + " - " + sentence["text"]
+            hotelMeta[hotelId].name + " - " + sentence["text"]
           }}</v-toolbar-title>
         </v-toolbar>
         <v-card-text>
           <div class="text-h6">
-            {{
-              $reviews[hotel["id"]]["reviews"][sentence["idx_review"]]["title"]
-            }}
+            {{ reviews[hotelId]["reviews"][sentence["idx_review"]]["title"] }}
           </div>
           <span
-            v-for="(word, index) in $reviews[hotel['id']]['reviews'][
+            v-for="(word, index) in reviews[hotelId]['reviews'][
               sentence['idx_review']
             ]['text'].split(' ')"
             :style="[
@@ -202,23 +243,23 @@ export default {
               <v-expansion-panel>
                 <v-expansion-panel-title>
                   {{
-                    $reviews[hotel["id"]]["reviews"][review["idx_review"]][
+                    reviews[hotelId]["reviews"][review["idx_review"]][
                       polarity + "_aspects"
                     ][review["idx_sentence"]]
                   }}
                 </v-expansion-panel-title>
                 <v-expansion-panel-text>
                   <span
-                    v-for="(word, index) in $reviews[hotel['id']]['reviews'][
+                    v-for="(word, index) in reviews[hotelId]['reviews'][
                       review['idx_review']
                     ]['text'].split(' ')"
                     :style="[
                       {
                         'font-weight': calcFontWeight(
                           matchText(
-                            $reviews[hotel['id']]['reviews'][
-                              review['idx_review']
-                            ][polarity + '_aspects'][review['idx_sentence']],
+                            reviews[hotelId]['reviews'][review['idx_review']][
+                              polarity + '_aspects'
+                            ][review['idx_sentence']],
                             word
                           )
                             ? 1
@@ -226,18 +267,18 @@ export default {
                         ),
                         'font-size': calcFontSize(
                           matchText(
-                            $reviews[hotel['id']]['reviews'][
-                              review['idx_review']
-                            ][polarity + '_aspects'][review['idx_sentence']],
+                            reviews[hotelId]['reviews'][review['idx_review']][
+                              polarity + '_aspects'
+                            ][review['idx_sentence']],
                             word
                           )
                             ? 1
                             : 0.9
                         ),
                         color: matchText(
-                          $reviews[hotel['id']]['reviews'][
-                            review['idx_review']
-                          ][polarity + '_aspects'][review['idx_sentence']],
+                          reviews[hotelId]['reviews'][review['idx_review']][
+                            polarity + '_aspects'
+                          ][review['idx_sentence']],
                           word
                         )
                           ? sentence['color']

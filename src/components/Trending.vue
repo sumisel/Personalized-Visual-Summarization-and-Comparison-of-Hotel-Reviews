@@ -1,4 +1,5 @@
 <script>
+import { inject } from "vue";
 import ChartTrending from "./ChartTrending.vue";
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
@@ -12,7 +13,8 @@ export default {
     const hotelStore = useHotelStore();
     const categoryStore = useCategoryStore();
     const timeStore = useTimeStore();
-    return { hotelStore, categoryStore, timeStore };
+    const hotelMeta = inject("hotelMeta");
+    return { hotelStore, categoryStore, timeStore, hotelMeta };
   },
   computed: {},
   data: () => ({
@@ -26,18 +28,18 @@ export default {
     <div class="d-flex flex-column my-4">
       <div class="my-2 flex-grow-1">
         <v-expansion-panels
-          v-for="hotel in hotelStore.selectedHotels"
-          :key="'time_' + hotel.id"
+          v-for="hotelId in hotelStore.selectedHotelIds"
+          :key="'time_' + hotelId"
         >
           <v-expansion-panel>
-            <v-expansion-panel-title :key="'title_' + hotel.id">
+            <v-expansion-panel-title :key="'title_' + hotelId">
               <v-row>
                 <div class="pa-2 hotel-name-title">
-                  <b>{{ hotel.name }}</b>
+                  <b>{{ hotelMeta[hotelId].name }}</b>
                 </div>
                 <div class="pa-2 time-chart">
                   <ChartTrending
-                    :hotelId="hotel.id"
+                    :hotelId="hotelId"
                     :categoryId="'line'"
                     :color="'#999999'"
                     :width="200"
@@ -54,11 +56,11 @@ export default {
                 v-for="category in categoryStore.relevantCategories.sort(
                   (a, b) => b.value - a.value
                 )"
-                :key="'time_' + hotel.id + '_' + category.id"
+                :key="'time_' + hotelId + '_' + category.id"
               >
                 <div class="pa-2 time-chart">
                   <ChartTrending
-                    :hotelId="hotel.id"
+                    :hotelId="hotelId"
                     :categoryId="category.id"
                     :color="category.color"
                     :width="1000"

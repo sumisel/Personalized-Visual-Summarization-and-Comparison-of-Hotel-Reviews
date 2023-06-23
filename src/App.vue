@@ -4,6 +4,7 @@ import Map from "./components/Map.vue";
 import HotelOverview from "./components/HotelOverview.vue";
 import PosNeg from "./components/PosNeg.vue";
 import Trending from "./components/Trending.vue";
+import { inject } from "vue";
 
 const sections = [
   {
@@ -31,6 +32,8 @@ const sections = [
     component: Trending,
   },
 ];
+
+const city = inject("city");
 
 const scrollTo = (hash) => {
   location.hash = `#${hash}`;
@@ -66,11 +69,11 @@ const scrollTo = (hash) => {
             rgba(255, 255, 255, 0),
             rgba(255, 255, 255, 1)
           ),
-          url('${$city.img?.url}');`"
+          url('${city.img?.url}');`"
     >
       <div class="content mx-auto">
         <div class="text-h1 my-16" id="city-name">
-          {{ $city.name }}
+          {{ city.name }}
         </div>
         <v-card class="typewriter-container">
           <div class="typewriter">
@@ -79,8 +82,8 @@ const scrollTo = (hash) => {
         </v-card>
         <div class="text-right text-caption attribution">
           Image by
-          <a :href="$city.img?.href">{{ $city.img?.attribution }}</a>
-          ({{ $city.img?.license }})
+          <a :href="city.img?.href">{{ city.img?.attribution }}</a>
+          ({{ city.img?.license }})
         </div>
         <div
           v-for="section in sections"

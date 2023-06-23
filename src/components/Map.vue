@@ -1,7 +1,7 @@
 <script>
 import * as d3 from "d3";
 
-import { ref } from "vue";
+import { inject, ref } from "vue";
 
 import { useHotelStore } from "@/stores/hotel";
 import { usePoiStore } from "@/stores/poi";
@@ -11,6 +11,9 @@ export default {
     const map = ref();
     const hotelStore = useHotelStore();
     const poiStore = usePoiStore();
+    const hotelMeta = inject("hotelMeta");
+    const city = inject("city");
+    const poiMeta = inject("poiMeta");
 
     function updateSelectedHotels() {
       d3.select("#svg-map")
@@ -26,6 +29,9 @@ export default {
       map,
       hotelStore,
       poiStore,
+      hotelMeta,
+      city,
+      poiMeta,
       updateSelectedHotels,
     };
   },
@@ -52,7 +58,7 @@ export default {
 
     const that = this;
 
-    const cityId = this.$city.name.replace(" ", "_").toLowerCase();
+    const cityId = this.city.name.replace(" ", "_").toLowerCase();
 
     const width = d3.select("#app").node().getBoundingClientRect().width - 344;
     const height = 600;
@@ -65,7 +71,7 @@ export default {
     const projection = d3
       .geoMercator()
       .scale(600000)
-      .center([this.$city.center[1], this.$city.center[0]])
+      .center([this.city.center[1], this.city.center[0]])
       .translate([width / 2, height / 2]);
 
     // draw districts
@@ -160,7 +166,9 @@ export default {
     const markers = svg
       .select(".markers")
       .selectAll("circle")
-      .data(Object.values(this.$hotelMeta))
+      .data(
+        Object.entries(this.hotelMeta).map(([id, meta]) => ({ id, ...meta }))
+      )
       .enter()
       .append("circle")
       .attr("cx", (d) => projection([d.location.long, d.location.lat])[0])
@@ -207,8 +215,8 @@ export default {
   },
   computed: {
     districtsOfSelectedHotels() {
-      const districts = this.hotelStore.selectedHotels.map(
-        (hotel) => this.$hotelMeta[hotel.id].district
+      const districts = this.hotelStore.selectedHotelIds.map(
+        (hotelId) => this.hotelMeta[hotelId].district
       );
       return [...new Set(districts.filter((district) => district))];
     },
@@ -216,8 +224,8 @@ export default {
       const positivePois = [];
       this.poiStore.selectedPois.forEach((poi) => {
         let positive = true;
-        this.hotelStore.selectedHotels.forEach((hotel) => {
-          if (!this.$hotelMeta[hotel.id].poiInfo[poi].startsWith("(+)")) {
+        this.hotelStore.selectedHotelIds.forEach((hotelId) => {
+          if (!this.hotelMeta[hotelId].poiInfo[poi].startsWith("(+)")) {
             positive = false;
           }
         });
@@ -255,7 +263,7 @@ export default {
         class="mb-2 mt-2 instruction text-center"
         v-if="
           !selectionChanged ||
-          hotelStore.selectedHotels.length < 2 ||
+          hotelStore.selectedHotelIds.length < 2 ||
           poiStore.selectedPois.length === 0
         "
       >
@@ -263,7 +271,7 @@ export default {
           >Click a marker to focus a hotel, and then (de)select it using the
           switch.
         </span>
-        <strong v-if="hotelStore.selectedHotels.length < 2"
+        <strong v-if="hotelStore.selectedHotelIds.length < 2"
           >Select more than one hotel to compare.
         </strong>
         <strong v-if="poiStore.selectedPois.length === 0"
@@ -271,7 +279,7 @@ export default {
         </strong>
       </v-alert>
       <div class="hotel-header elevation-6 d-flex" v-if="focusedHotel">
-        <div class="text-h5">{{ $hotelMeta[focusedHotel]?.name }}</div>
+        <div class="text-h5">{{ hotelMeta[focusedHotel]?.name }}</div>
       </div>
       <div class="switch-container" v-if="focusedHotel">
         <v-switch
@@ -291,24 +299,24 @@ export default {
       >
         <v-chip
           v-for="poi in poiStore.selectedPois.filter(
-            (poi) => $hotelMeta[focusedHotel]?.poiInfo[poi]
+            (poi) => hotelMeta[focusedHotel]?.poiInfo[poi]
           )"
           :key="poi"
         >
           <v-icon
             start
             :icon="
-              $hotelMeta[focusedHotel]?.poiInfo[poi].startsWith('(+)')
+              hotelMeta[focusedHotel]?.poiInfo[poi].startsWith('(+)')
                 ? 'mdi-plus'
-                : $hotelMeta[focusedHotel]?.poiInfo[poi].startsWith('(-)')
+                : hotelMeta[focusedHotel]?.poiInfo[poi].startsWith('(-)')
                 ? 'mdi-minus'
                 : 'mdi-plus-minus'
             "
           ></v-icon>
-          <v-icon start :icon="$poiMeta[poi].icon"></v-icon>
+          <v-icon start :icon="poiMeta[poi].icon"></v-icon>
           <span
             v-html="
-              $hotelMeta[focusedHotel]?.poiInfo[poi].replace(/^\([+-]\) /, '')
+              hotelMeta[focusedHotel]?.poiInfo[poi].replace(/^\([+-]\) /, '')
             "
           ></span>
         </v-chip>
@@ -317,39 +325,42 @@ export default {
   </div>
   <div class="text mt-4">
     Among the available
-    <strong>{{ Object.keys($hotelMeta).length }}</strong> hotels
+    <strong>{{ Object.keys(hotelMeta).length }}</strong> hotels
     <v-icon class="inline" icon="mdi-circle-outline" size="x-small"></v-icon>,
-    <span v-if="hotelStore.selectedHotels.length > 1"
-      ><strong>{{ hotelStore.selectedHotels.length }}</strong> are</span
+    <span v-if="hotelStore.selectedHotelIds.length > 1"
+      ><strong>{{ hotelStore.selectedHotelIds.length }}</strong> are</span
     >
-    <span v-if="hotelStore.selectedHotels.length === 1"
+    <span v-if="hotelStore.selectedHotelIds.length === 1"
       >only <strong>1</strong> is</span
     >
-    <span v-if="hotelStore.selectedHotels.length === 0"
+    <span v-if="hotelStore.selectedHotelIds.length === 0"
       ><strong>none</strong> is</span
     >
-    selected<span v-if="hotelStore.selectedHotels.length > 1">: </span
+    selected<span v-if="hotelStore.selectedHotelIds.length > 1">: </span
     ><span v-else>! </span>
-    <span v-for="(hotel, index) in hotelStore.selectedHotels" :key="hotel.id">
+    <span
+      v-for="(hotelId, index) in hotelStore.selectedHotelIds"
+      :key="hotelId"
+    >
       <strong
         ><v-icon class="inline" icon="mdi-circle" size="x-small"></v-icon>
-        {{ $hotelMeta[hotel.id].name }}</strong
-      ><span v-if="index < hotelStore.selectedHotels.length - 1">, </span
+        {{ hotelMeta[hotelId].name }}</strong
+      ><span v-if="index < hotelStore.selectedHotelIds.length - 1">, </span
       ><span v-else>. </span>
     </span>
     <span
       v-if="
-        hotelStore.selectedHotels.length > 1 &&
+        hotelStore.selectedHotelIds.length > 1 &&
         districtsOfSelectedHotels.length > 0
       "
       >They are
       <span v-if="districtsOfSelectedHotels.length === 1"
         >all located in
         <strong
-          >{{ this.$city.name }} {{ districtsOfSelectedHotels[0] }}</strong
+          >{{ this.city.name }} {{ districtsOfSelectedHotels[0] }}</strong
         ></span
       ><span v-else
-        >located in <strong>{{ this.$city.name + " " }}</strong>
+        >located in <strong>{{ this.city.name + " " }}</strong>
         <span v-if="districtsOfSelectedHotels.length === 2">
           <strong>{{ districtsOfSelectedHotels[0] }}</strong> and
           <strong>{{ districtsOfSelectedHotels[1] }}</strong></span
@@ -362,14 +373,14 @@ export default {
   <div
     class="text mt-4"
     v-if="
-      hotelStore.selectedHotels.length > 1 && poiStore.selectedPois.length > 0
+      hotelStore.selectedHotelIds.length > 1 && poiStore.selectedPois.length > 0
     "
   >
     <span v-if="poisWithAllPositiveScores.length > 0"
       >With respect to
       <span v-for="(poi, index) in poisWithAllPositiveScores" :key="poi"
         ><v-chip
-          ><v-icon start :icon="$poiMeta[poi].icon"></v-icon> {{ poi }}</v-chip
+          ><v-icon start :icon="poiMeta[poi].icon"></v-icon> {{ poi }}</v-chip
         ><span v-if="index < poisWithAllPositiveScores.length - 2">, </span
         ><span v-else-if="index === poisWithAllPositiveScores.length - 2">
           and
