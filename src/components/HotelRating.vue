@@ -14,11 +14,19 @@ const props = defineProps({
   hotel: Object,
 });
 
-const offset = computed(
-  () => `${hotelStore.overallRating(props.hotel) * 80}px`
-);
+const offset = computed(() => `${overallRating(props.hotel) * 80}px`);
 const bestCategories = computed(() => hotelStore.bestCategories(props.hotel));
 const topCategories = computed(() => hotelStore.topCategories(props.hotel));
+
+function overallRating(hotel) {
+  return categoryStore.categories.reduce(
+    (sum, category) =>
+      (sum +=
+        hotel.ratings[category.id] *
+        categoryStore.normalizedCategoryValues[category.id]),
+    0
+  );
+}
 </script>
 
 <template>

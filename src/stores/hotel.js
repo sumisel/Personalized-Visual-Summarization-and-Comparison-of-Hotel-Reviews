@@ -50,16 +50,7 @@ export const useHotelStore = defineStore({
       })
       return maxRatings
     },
-    overallRating: (state) => {
-      return (hotel) =>
-      state.categoryStore.categories.reduce(
-          (sum, category) =>
-          (sum +=
-            hotel.ratings[category.id] * state.categoryStore.normalizedCategoryValues[category.id]
-          ),
-          0
-        )
-    },
+
     bestCategories: (state) => {
       return (hotel) => {
         const categories = state.categoryStore.relevantCategories;
