@@ -33,19 +33,24 @@ const app = createApp(App)
 app.use(vuetify)
 app.use(pinia)
 app.config.globalProperties.emitter = emitter;
+// TODO: switch to provide/inject
 const globals = app.config.globalProperties
 export { globals }
 
-// set city and load data
+// set city and load 
 const params = new URL(document.location).searchParams;
 const cityId = params.get("city") ? params.get("city") : "Berlin";
 import cities from "./assets/cities.json"
-app.config.globalProperties.$city = cities[cityId];
+app.provide("city", cities[cityId])
+
+// load hotel meta data
 import hotelMeta from "./assets/hotel_meta.json"
 app.provide("hotelMeta", hotelMeta[cityId])
+
+// load POI meta data
 import poiMeta from "./assets/poi_meta.json"
-// TODO: switch to provide/inject
-app.config.globalProperties.$poiMeta = poiMeta;
+app.provide("poiMeta", poiMeta)
+
 // TODO: avoid this hack
 hotelStore.initHotels(cityId, hotelMeta[cityId])
     .then(r => {

@@ -12,6 +12,8 @@ export default {
     const hotelStore = useHotelStore();
     const poiStore = usePoiStore();
     const hotelMeta = inject("hotelMeta");
+    const city = inject("city");
+    const poiMeta = inject("poiMeta");
 
     function updateSelectedHotels() {
       d3.select("#svg-map")
@@ -28,6 +30,8 @@ export default {
       hotelStore,
       poiStore,
       hotelMeta,
+      city,
+      poiMeta,
       updateSelectedHotels,
     };
   },
@@ -54,7 +58,7 @@ export default {
 
     const that = this;
 
-    const cityId = this.$city.name.replace(" ", "_").toLowerCase();
+    const cityId = this.city.name.replace(" ", "_").toLowerCase();
 
     const width = d3.select("#app").node().getBoundingClientRect().width - 344;
     const height = 600;
@@ -67,7 +71,7 @@ export default {
     const projection = d3
       .geoMercator()
       .scale(600000)
-      .center([this.$city.center[1], this.$city.center[0]])
+      .center([this.city.center[1], this.city.center[0]])
       .translate([width / 2, height / 2]);
 
     // draw districts
@@ -307,7 +311,7 @@ export default {
                 : 'mdi-plus-minus'
             "
           ></v-icon>
-          <v-icon start :icon="$poiMeta[poi].icon"></v-icon>
+          <v-icon start :icon="poiMeta[poi].icon"></v-icon>
           <span
             v-html="
               hotelMeta[focusedHotel]?.poiInfo[poi].replace(/^\([+-]\) /, '')
@@ -351,10 +355,10 @@ export default {
       <span v-if="districtsOfSelectedHotels.length === 1"
         >all located in
         <strong
-          >{{ this.$city.name }} {{ districtsOfSelectedHotels[0] }}</strong
+          >{{ this.city.name }} {{ districtsOfSelectedHotels[0] }}</strong
         ></span
       ><span v-else
-        >located in <strong>{{ this.$city.name + " " }}</strong>
+        >located in <strong>{{ this.city.name + " " }}</strong>
         <span v-if="districtsOfSelectedHotels.length === 2">
           <strong>{{ districtsOfSelectedHotels[0] }}</strong> and
           <strong>{{ districtsOfSelectedHotels[1] }}</strong></span
@@ -374,7 +378,7 @@ export default {
       >With respect to
       <span v-for="(poi, index) in poisWithAllPositiveScores" :key="poi"
         ><v-chip
-          ><v-icon start :icon="$poiMeta[poi].icon"></v-icon> {{ poi }}</v-chip
+          ><v-icon start :icon="poiMeta[poi].icon"></v-icon> {{ poi }}</v-chip
         ><span v-if="index < poisWithAllPositiveScores.length - 2">, </span
         ><span v-else-if="index === poisWithAllPositiveScores.length - 2">
           and

@@ -4,9 +4,11 @@ import Glyph from "./Glyph.vue";
 import { storeToRefs } from "pinia";
 import { useCategoryStore } from "../stores/category.js";
 import { usePoiStore } from "../stores/poi";
+import { inject } from "vue";
 const categoryStore = useCategoryStore();
 const { categories } = storeToRefs(categoryStore);
 const poiStore = usePoiStore();
+const poiMeta = inject("poiMeta");
 </script>
 
 <template>
@@ -27,14 +29,14 @@ const poiStore = usePoiStore();
         <template v-slot:chip="{ props, item }">
           <v-chip
             v-bind="props"
-            :prepend-icon="$poiMeta[item.raw].icon"
+            :prepend-icon="poiMeta[item.raw].icon"
             :text="item.raw"
           ></v-chip>
         </template>
         <template v-slot:item="{ props, item }">
           <v-list-item
             v-bind="props"
-            :prepend-icon="$poiMeta[item.raw].icon"
+            :prepend-icon="poiMeta[item.raw].icon"
             :title="item.raw"
           ></v-list-item>
         </template>
