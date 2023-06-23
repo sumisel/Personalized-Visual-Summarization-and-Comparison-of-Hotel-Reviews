@@ -58,7 +58,7 @@ export default {
       .attr("height", this.height)
       .attr("style", "max-width: 100%; height: auto; height: intrinsic;");
 
-    watch(() => this.hotelStore.selectedHotels, () => {
+    watch(() => this.hotelStore.selectedHotelIds, () => {
       console.log('ChartPosNeg selected hotels changed');
       this.plot();
     });

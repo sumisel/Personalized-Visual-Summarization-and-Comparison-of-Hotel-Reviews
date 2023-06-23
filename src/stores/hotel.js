@@ -16,6 +16,8 @@ export const useHotelStore = defineStore({
   getters: {
     selectedHotels: (state) => state.hotels.filter(hotel => hotel.isSelected)
                                             .sort((a, b) => a.isSelected - b.isSelected), // sort by index
+    // TODO: use such a list of Ids state instead of "hotels"
+    selectedHotelIds: (state) => state.selectedHotels.map(hotel => hotel.id),
     minRatings: (state) => {
       let minRatings = {
         location: 5.0,

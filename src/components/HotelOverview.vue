@@ -36,7 +36,7 @@ export default {
     <p>
       Customers have rated the
       <b
-        ><span>{{ hotelStore.selectedHotels.length }}</span></b
+        ><span>{{ hotelStore.selectedHotelIds.length }}</span></b
       >
       selected hotels <b>{{ ratingVarietyDescription }}</b> with respect to the
       prioritized categories.

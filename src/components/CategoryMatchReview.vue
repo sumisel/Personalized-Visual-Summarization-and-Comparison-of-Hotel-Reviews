@@ -1,4 +1,5 @@
 <script>
+// TODO: Clarify if component still needed
 import CategoryName from "./CategoryName.vue";
 
 export default {
