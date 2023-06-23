@@ -48,20 +48,6 @@ export const useHotelStore = defineStore({
       })
       return maxRatings
     },
-    countsCategoryPosNeg: (state) => {
-      return (category, hotelIds) => {
-        const reviews = inject("reviews");
-        let counts = [];
-        hotelIds.forEach(hotelId => {
-          counts.push({
-            "name": hotelId,
-            "posCount": reviews[hotelId]['counts']['pos'][category],
-            "negCount": reviews[hotelId]['counts']['neg'][category],
-          })
-        })
-        return counts;
-      }
-    },
     hotelIsSelected: (state) => {
       return (id) => state.selectedHotelIds.includes(id);
     },
@@ -74,8 +60,6 @@ export const useHotelStore = defineStore({
           this.selectedHotelIds.push(hotelId);
         }
       });
-
-
     },
     toggleHotelSelection(id) {
       if (this.selectedHotelIds.includes(id)) {

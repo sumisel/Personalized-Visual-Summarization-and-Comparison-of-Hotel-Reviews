@@ -1,4 +1,6 @@
-<script setup xmlns="http://www.w3.org/1999/html">
+<script setup>
+// TODO: consider deleting this component, or merging it with PosNeg.vue
+
 import CategoryName from "./CategoryName.vue";
 
 import { useHotelStore } from "../stores/hotel.js";
@@ -17,6 +19,19 @@ const props = defineProps({
     subPanel: [0, 1],
   }),
 });
+
+function countsCategoryPosNeg(category, hotelIds) {
+  const reviews = inject("reviews");
+  let counts = [];
+  hotelIds.forEach((hotelId) => {
+    counts.push({
+      name: hotelId,
+      posCount: reviews[hotelId]["counts"]["pos"][category],
+      negCount: reviews[hotelId]["counts"]["neg"][category],
+    });
+  });
+  return counts;
+}
 </script>
 
 <template>
@@ -42,7 +57,7 @@ const props = defineProps({
                   :categoryId="category['id']"
                   :hotelId="'selected'"
                   :posNeg="
-                    hotelStore.countsCategoryPosNeg(
+                    countsCategoryPosNeg(
                       category['id'],
                       hotelStore.selectedHotelIds
                     )
@@ -76,11 +91,7 @@ const props = defineProps({
                     <ChartPosNeg
                       :categoryId="category['id']"
                       :hotelId="hotelId"
-                      :posNeg="
-                        hotelStore.countsCategoryPosNeg(category['id'], [
-                          hotelId,
-                        ])
-                      "
+                      :posNeg="countsCategoryPosNeg(category['id'], [hotelId])"
                       :color="category['color']"
                       :width="200"
                       :height="10"

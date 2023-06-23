@@ -21,7 +21,20 @@ export default {
     return { hotelStore, categoryStore, clusterStore, hotelMeta };
   },
   computed: {},
-  methods: {},
+  methods: {
+    countsCategoryPosNeg: (category, hotelIds) => {
+      const reviews = inject("reviews");
+      let counts = [];
+      hotelIds.forEach((hotelId) => {
+        counts.push({
+          name: hotelId,
+          posCount: reviews[hotelId]["counts"]["pos"][category],
+          negCount: reviews[hotelId]["counts"]["neg"][category],
+        });
+      });
+      return counts;
+    },
+  },
   data: () => ({
     panel: [0, 1],
   }),
@@ -44,10 +57,7 @@ export default {
                   :categoryId="'overall'"
                   :hotelId="'selected'"
                   :posNeg="
-                    hotelStore.countsCategoryPosNeg(
-                      'overall',
-                      hotelStore.selectedHotelIds
-                    )
+                    countsCategoryPosNeg('overall', hotelStore.selectedHotelIds)
                   "
                   :color="'#999999'"
                   :width="200"
@@ -71,9 +81,7 @@ export default {
                     <ChartPosNeg
                       :categoryId="'overall'"
                       :hotelId="hotelId"
-                      :posNeg="
-                        hotelStore.countsCategoryPosNeg('overall', [hotelId])
-                      "
+                      :posNeg="countsCategoryPosNeg('overall', [hotelId])"
                       :color="'#999999'"
                       :width="200"
                       :height="10"
