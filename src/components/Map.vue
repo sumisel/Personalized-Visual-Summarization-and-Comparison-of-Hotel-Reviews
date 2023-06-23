@@ -212,6 +212,21 @@ export default {
       );
       return [...new Set(districts.filter((district) => district))];
     },
+    poisWithAllPositiveScores() {
+      const positivePois = [];
+      this.poiStore.selectedPois.forEach((poi) => {
+        let positive = true;
+        this.hotelStore.selectedHotels.forEach((hotel) => {
+          if (!this.$hotelMeta[hotel.id].poiInfo[poi].startsWith("(+)")) {
+            positive = false;
+          }
+        });
+        if (positive) {
+          positivePois.push(poi);
+        }
+      });
+      return positivePois;
+    },
   },
 };
 </script>
@@ -303,7 +318,7 @@ export default {
   <div class="text mt-4">
     Among the available
     <strong>{{ Object.keys($hotelMeta).length }}</strong> hotels
-    <v-icon icon="mdi-circle-outline" size="x-small"></v-icon>,
+    <v-icon class="inline" icon="mdi-circle-outline" size="x-small"></v-icon>,
     <span v-if="hotelStore.selectedHotels.length > 1"
       ><strong>{{ hotelStore.selectedHotels.length }}</strong> are</span
     >
@@ -317,7 +332,7 @@ export default {
     ><span v-else>! </span>
     <span v-for="(hotel, index) in hotelStore.selectedHotels" :key="hotel.id">
       <strong
-        ><v-icon icon="mdi-circle" size="x-small"></v-icon>
+        ><v-icon class="inline" icon="mdi-circle" size="x-small"></v-icon>
         {{ $hotelMeta[hotel.id].name }}</strong
       ><span v-if="index < hotelStore.selectedHotels.length - 1">, </span
       ><span v-else>. </span>
@@ -344,12 +359,36 @@ export default {
       >.</span
     >
   </div>
+  <div
+    class="text mt-4"
+    v-if="
+      hotelStore.selectedHotels.length > 1 && poiStore.selectedPois.length > 0
+    "
+  >
+    <span v-if="poisWithAllPositiveScores.length > 0"
+      >With respect to
+      <span v-for="(poi, index) in poisWithAllPositiveScores" :key="poi"
+        ><v-chip
+          ><v-icon start :icon="$poiMeta[poi].icon"></v-icon> {{ poi }}</v-chip
+        ><span v-if="index < poisWithAllPositiveScores.length - 2">, </span
+        ><span v-else-if="index === poisWithAllPositiveScores.length - 2">
+          and
+        </span> </span
+      >, the selected hotels are all in a favorable location.
+    </span>
+  </div>
 </template>
 
 <style lang="scss">
-.text .v-icon {
-  display: relative;
-  top: -2px;
+.text {
+  & .v-icon.inline {
+    display: relative;
+    top: -2px;
+  }
+  & .v-chip {
+    display: relative;
+    top: -2px;
+  }
 }
 
 .map-container {
