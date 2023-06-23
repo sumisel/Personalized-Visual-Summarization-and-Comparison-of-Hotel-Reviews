@@ -39,6 +39,7 @@ export default {
     return {
       svg,
       categoryStore,
+      hotelStore,
     };
   },
   mounted() {

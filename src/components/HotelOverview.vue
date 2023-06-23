@@ -43,9 +43,9 @@ export default {
     </p>
     <div class="d-flex flex-column hotel-list my-4">
       <HotelRating
-        v-for="hotel in hotelStore.selectedHotels"
-        :key="hotel.id"
-        :hotel="hotel"
+        v-for="hotelId in hotelStore.selectedHotelIds"
+        :key="hotelId"
+        :hotel="$hotelMeta[hotelId]"
       ></HotelRating>
       <v-label class="ml-4"
         >Rating weighted by priorities <v-icon icon="mdi-arrow-right"></v-icon
