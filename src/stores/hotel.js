@@ -12,12 +12,12 @@ export const useHotelStore = defineStore({
     clusterStore: useClusterStore(),
     timeStore: useTimeStore(),
     hotels: [],
+    selectedHotelIds: [],
   }),
   getters: {
     selectedHotels: (state) => state.hotels.filter(hotel => hotel.isSelected)
       .sort((a, b) => a.isSelected - b.isSelected), // sort by index
     // TODO: use such a list of Ids state instead of "hotels"
-    selectedHotelIds: (state) => state.selectedHotels.map(hotel => hotel.id),
     minRatings: (state) => {
       const hotelMeta = inject("hotelMeta");
       let minRatings = {
@@ -81,16 +81,25 @@ export const useHotelStore = defineStore({
       return (id) => {
         const hotel = state.hotelById(id);
         hotel.isSelected = hotel.isSelected > 0 ? 0 : 1;
+        if (state.selectedHotelIds.includes(id)) {
+          state.selectedHotelIds.splice(state.selectedHotelIds.indexOf(id), 1);
+        } else {
+          state.selectedHotelIds.push(id);
+        }
       }
-    }
-
+    },
   },
   actions: {
     async initHotels(city, hotelMeta) {
       this.hotels = Object.keys(hotelMeta).map(key => { const elem = hotelMeta[key]; elem['id'] = key; return elem; });
 
       // select first three hotels by default
-      this.hotels.forEach((hotel, i) => hotel["isSelected"] = i < 3 ? i + 1 : 0);
+      this.hotels.forEach((hotel, i) => {
+        hotel["isSelected"] = i < 3 ? i + 1 : 0;
+        if (i < 3) {
+          this.selectedHotelIds.push(hotel.id);
+        }
+      });
 
       // initiate sentiment sentence clusters, for acceptable page performance, separate clusters from hotels
       //this.clusterStore.initClusters(this.hotels);
@@ -101,6 +110,7 @@ export const useHotelStore = defineStore({
       const ratings_time_data = await ratings_time.json();
       this.timeStore.initTimeData(this.hotels, ratings_time_data);
     },
+
     sentimentSummary(hotel, category, prefix) {
       const reviews = inject("reviews");
       let summary = [];
