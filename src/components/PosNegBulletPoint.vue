@@ -90,7 +90,14 @@ export default {
     class="d-flex justify-content-center"
     scrollable
     width="auto"
-    v-for="sentence in hotelStore.sentimentSummary(hotel, categoryId, polarity)"
+    v-for="sentence in hotelStore
+      .sentimentSummary(hotel, categoryId, polarity)
+      // filter to only show clusters with more than 1% of reviews
+      .filter(
+        (sentence) =>
+          sentence['cluster_size'] >
+          globals.$reviews[hotel.id].review_count * 0.01 
+      )"
     :key="
       categoryId +
       '_' +
@@ -128,8 +135,7 @@ export default {
           :style="[{ color: sentence['color'] }]"
         />
         {{ sentence["text"] }}.
-        <v-tooltip activator="parent" location="bottom" max-width="300px"
-          >
+        <v-tooltip activator="parent" location="bottom" max-width="300px">
           {{
             roundToDecimal(100 * sentence["ratio_category"], 2) +
             "% of " +
@@ -162,7 +168,7 @@ export default {
         <v-card-text>
           <div class="text-h6">
             {{
-              globals.$reviews[hotel["id"]]["reviews"][sentence["idx_review"]][
+              this.$reviews[hotel["id"]]["reviews"][sentence["idx_review"]][
                 "title"
               ]
             }}
@@ -207,9 +213,9 @@ export default {
                 </v-expansion-panel-title>
                 <v-expansion-panel-text>
                   <span
-                    v-for="(word, index) in globals.$reviews[hotel['id']]['reviews'][
-                      review['idx_review']
-                    ]['text'].split(' ')"
+                    v-for="(word, index) in globals.$reviews[hotel['id']][
+                      'reviews'
+                    ][review['idx_review']]['text'].split(' ')"
                     :style="[
                       {
                         'font-weight': calcFontWeight(
