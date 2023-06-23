@@ -36,22 +36,17 @@ app.provide("emitter", emitter);
 // set city and load city meta data
 const params = new URL(document.location).searchParams;
 const cityId = params.get("city") ? params.get("city") : "Berlin";
-import cities from "./assets/cities.json"
-app.provide("city", cities[cityId])
+import cities from "./assets/cities.json";
+app.provide("city", cities[cityId]);
 
 // load hotel meta data
-import hotelMeta from "./assets/hotel_meta.json"
-app.provide("hotelMeta", hotelMeta[cityId])
-hotelStore.initHotelSelection(hotelMeta[cityId])
+import hotelMeta from "./assets/hotel_meta.json";
+app.provide("hotelMeta", hotelMeta[cityId]);
+hotelStore.initHotelSelection(hotelMeta[cityId]);
 
 // load POI meta data
-import poiMeta from "./assets/poi_meta.json"
-app.provide("poiMeta", poiMeta)
-
-// trigger loading of data that depends on category values
-const tmp = categoryStore.categoriesById["location"].value;
-categoryStore.categoriesById["location"].value = 40;
-categoryStore.categoriesById["location"].value = tmp;
+import poiMeta from "./assets/poi_meta.json";
+app.provide("poiMeta", poiMeta);
 
 // load reviews
 const result = await fetch("/HotelRec_subset_" + cityId + "_10_reviews.json");
