@@ -75,15 +75,11 @@ export const useHotelStore = defineStore({
       this.hotels = Object.keys(hotelMeta).map(key => { const elem = hotelMeta[key]; elem['id'] = key; return elem; });
 
       // select first three hotels by default
-      this.hotels.forEach((hotel, i) => {
-        hotel["isSelected"] = i < 3 ? i + 1 : 0;
+      Object.keys(hotelMeta).forEach((hotelId, i) => {
         if (i < 3) {
-          this.selectedHotelIds.push(hotel.id);
+          this.selectedHotelIds.push(hotelId);
         }
       });
-
-      // initiate sentiment sentence clusters, for acceptable page performance, separate clusters from hotels
-      //this.clusterStore.initClusters(this.hotels);
 
       // load ratings over time
       // TODO: this is a temporary solution, will be replaced when the data is in the enriched data file
@@ -92,10 +88,8 @@ export const useHotelStore = defineStore({
       this.timeStore.initTimeData(this.hotels, ratings_time_data);
     },
     toggleHotelSelection(id) {
-      const hotel = this.hotels.find(hotel => hotel.id === id);
-      hotel.isSelected = hotel.isSelected > 0 ? 0 : 1;
       if (this.selectedHotelIds.includes(id)) {
-        this.selectedHotelIds.splice(state.selectedHotelIds.indexOf(id), 1);
+        this.selectedHotelIds.splice(this.selectedHotelIds.indexOf(id), 1);
       } else {
         this.selectedHotelIds.push(id);
       }
