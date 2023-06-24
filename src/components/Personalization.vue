@@ -31,6 +31,9 @@ const poiMeta = inject("poiMeta");
             v-bind="props"
             :prepend-icon="poiMeta[item.raw].icon"
             :text="item.raw"
+            :style="{
+              backgroundColor: poiMeta[item.raw].color,
+            }"
           ></v-chip>
         </template>
         <template v-slot:item="{ props, item }">

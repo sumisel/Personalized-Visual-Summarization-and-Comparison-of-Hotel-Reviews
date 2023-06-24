@@ -142,7 +142,7 @@ export default {
         .append("path")
         .attr("fill", "none")
         .attr("d", path)
-        .style("stroke", "#ccb")
+        .style("stroke", this.poiMeta.sightseeing.color)
         .style("stroke-width", "2px");
     });
 
@@ -158,7 +158,7 @@ export default {
         .data(pointsOnly)
         .enter()
         .append("path")
-        .attr("fill", "#bbb")
+        .attr("fill", this.poiMeta.restaurants.color)
         .attr("d", path.pointRadius(2));
     });
 
@@ -302,6 +302,9 @@ export default {
             (poi) => hotelMeta[focusedHotel]?.poiInfo[poi]
           )"
           :key="poi"
+          :style="{
+            backgroundColor: poiMeta[poi].color,
+          }"
         >
           <v-icon
             start
@@ -380,6 +383,9 @@ export default {
       >With respect to
       <span v-for="(poi, index) in poisWithAllPositiveScores" :key="poi"
         ><v-chip
+          :style="{
+            backgroundColor: poiMeta[poi].color,
+          }"
           ><v-icon start :icon="poiMeta[poi].icon"></v-icon> {{ poi }}</v-chip
         ><span v-if="index < poisWithAllPositiveScores.length - 2">, </span
         ><span v-else-if="index === poisWithAllPositiveScores.length - 2">
