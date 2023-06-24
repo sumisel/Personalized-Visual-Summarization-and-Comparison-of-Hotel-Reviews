@@ -1,0 +1,3300 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-ide",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2023-06-24T10:30:41Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/21302157",
+        "contact:website": "http://www.s-bahn-berlin.de/fahrplanundnetz/bahnhof/tiergarten/151",
+        "light_rail": "yes",
+        "name": "Tiergarten",
+        "network": "Verkehrsverbund Berlin-Brandenburg",
+        "network:short": "VBB",
+        "official_name": "Berlin-Tiergarten",
+        "operator": "DB Netz AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BTGN",
+        "railway:station_category": "4",
+        "station": "light_rail",
+        "uic_ref": "8089091",
+        "wheelchair": "yes",
+        "wikidata": "Q572112",
+        "wikipedia": "de:Bahnhof Berlin-Tiergarten"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3364504,
+          52.5143746
+        ]
+      },
+      "id": "node/21302157"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/27556933",
+        "loc_name": "Bahnhof Zoo",
+        "name": "Berlin Zoologischer Garten",
+        "note": "S-Bahn-Bahnhof ist eigenständiger Bahnhof, daher zwei Bahnhöfe hier!",
+        "operator": "DB Netz AG;DB Station&Service AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BZOO",
+        "railway:station_category": "2",
+        "start_date": "1882-02-07",
+        "toilets:wheelchair": "yes",
+        "train": "yes",
+        "uic_ref": "8010406",
+        "wheelchair": "yes",
+        "wikidata": "Q681785",
+        "wikipedia": "de:Bahnhof Berlin Zoologischer Garten"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3325608,
+          52.5074342
+        ]
+      },
+      "id": "node/27556933"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/29045595",
+        "line": "U9",
+        "name": "Amrumer Straße",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q557577",
+        "wikipedia": "de:U-Bahnhof Amrumer Straße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3501546,
+          52.5423332
+        ]
+      },
+      "id": "node/29045595"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/29046450",
+        "atm": "yes",
+        "atm:operator": "Sparkasse",
+        "line": "U9",
+        "name": "Zoologischer Garten",
+        "network": "Verkehrsverbund Berlin-Brandenburg",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3330236,
+          52.5058669
+        ]
+      },
+      "id": "node/29046450"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/29046970",
+        "name": "Kurfürstendamm",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "toilets:wheelchair": "no",
+        "wheelchair": "yes",
+        "wikidata": "Q663933",
+        "wikipedia": "de:U-Bahnhof Kurfürstendamm"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3314365,
+          52.5038223
+        ]
+      },
+      "id": "node/29046970"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/29046976",
+        "atm": "yes",
+        "atm:operator": "Bankhaus Lenz",
+        "check_date:wheelchair": "2022-08-16",
+        "line": "U9",
+        "name": "Güntzelstraße",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q571563",
+        "wikipedia": "de:U-Bahnhof Güntzelstraße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3310064,
+          52.4920843
+        ]
+      },
+      "id": "node/29046976"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/29046979",
+        "atm": "yes",
+        "atm:operator": "Sparkasse",
+        "line": "U7;U9",
+        "name": "Berliner Straße",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q637739",
+        "wikipedia": "de:U-Bahnhof Berliner Straße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3310103,
+          52.4873298
+        ]
+      },
+      "id": "node/29046979"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/29058259",
+        "disused:public_transport": "station",
+        "disused:railway": "station",
+        "disused:subway": "yes",
+        "name": "U Französische Straße",
+        "platforms": "2",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q571479",
+        "wikipedia": "de:U-Bahnhof Französische Straße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3891706,
+          52.5148248
+        ]
+      },
+      "id": "node/29058259"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/29070457",
+        "check_date:wheelchair": "2022-07-11",
+        "contact:phone": "+49 30 297 43333",
+        "contact:website": "http://www.s-bahn-berlin.de/fahrplanundnetz/bahnhof/beusselstrasse/38",
+        "light_rail": "yes",
+        "name": "Beusselstraße",
+        "network": "Verkehrsverbund Berlin-Brandenburg",
+        "network:short": "VBB",
+        "official_name": "Berlin Beusselstraße",
+        "operator": "DB Netz AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BBEU",
+        "railway:station_category": "4",
+        "station": "light_rail",
+        "uic_ref": "8089118",
+        "wheelchair": "yes",
+        "wikidata": "Q323219",
+        "wikipedia": "de:Bahnhof Berlin Beusselstraße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3293873,
+          52.5344077
+        ]
+      },
+      "id": "node/29070457"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/29123763",
+        "name": "Deutsche Oper",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "indoor",
+        "wheelchair": "no",
+        "wikidata": "Q869501",
+        "wikipedia": "de:U-Bahnhof Deutsche Oper"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3105328,
+          52.511837
+        ]
+      },
+      "id": "node/29123763"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/29123764",
+        "internet_access": "wlan",
+        "internet_access:fee": "no",
+        "name": "Ernst-Reuter-Platz",
+        "operator": "Berliner Verkehrsbetriebe",
+        "operator:short": "BVG",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q658361",
+        "wikipedia": "de:U-Bahnhof Ernst-Reuter-Platz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3221613,
+          52.5118853
+        ]
+      },
+      "id": "node/29123764"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/29494301",
+        "name": "Jannowitzbrücke",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q1647893",
+        "wikipedia": "de:Bahnhof Berlin Jannowitzbrücke"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4181732,
+          52.5153554
+        ]
+      },
+      "id": "node/29494301"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/29803428",
+        "contact:website": "http://www.s-bahn-berlin.de/fahrplanundnetz/bahnhof/rummelsburg/130",
+        "light_rail": "yes",
+        "name": "Rummelsburg",
+        "network": "Verkehrsverbund Berlin-Brandenburg",
+        "network:short": "VBB",
+        "official_name": "Berlin-Rummelsburg (S-Bahn)",
+        "operator": "DB Netz AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BRH",
+        "railway:ref:parent": "BOK",
+        "railway:station_category": "4",
+        "station": "light_rail",
+        "uic_name": "Berlin-Rummelsburg",
+        "uic_ref": "8089084",
+        "wheelchair": "yes",
+        "wikidata": "Q15107132",
+        "wikipedia": "de:Bahnhof Berlin-Rummelsburg (S-Bahn)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.478367,
+          52.501288
+        ]
+      },
+      "id": "node/29803428"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/29833469",
+        "name": "Bayerischer Platz",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q668574",
+        "wikipedia": "de:U-Bahnhof Bayerischer Platz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3405436,
+          52.4885755
+        ]
+      },
+      "id": "node/29833469"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/31207787",
+        "atm": "yes",
+        "atm:operator": "Sparkasse",
+        "name": "Bismarckstraße",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "indoor",
+        "wheelchair": "yes",
+        "wikidata": "Q686132",
+        "wikipedia": "de:U-Bahnhof Bismarckstraße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3052393,
+          52.5115148
+        ]
+      },
+      "id": "node/31207787"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/31207789",
+        "atm": "yes",
+        "atm:operator": "Bankhaus Lenz",
+        "check_date:wheelchair": "2022-11-06",
+        "name": "Richard-Wagner-Platz",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "indoor",
+        "wheelchair": "yes",
+        "wheelchair:description": "Seit 01.07.2014 hat der Bahnhof einen Fahrstuhl Mittelinsel R Wagner Straße",
+        "wikidata": "Q662201",
+        "wikipedia": "de:U-Bahnhof Richard-Wagner-Platz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.306588,
+          52.517387
+        ]
+      },
+      "id": "node/31207789"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/76474606",
+        "name": "Eisenacher Straße",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q571170",
+        "wikipedia": "de:U-Bahnhof Eisenacher Straße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3501694,
+          52.4895529
+        ]
+      },
+      "id": "node/76474606"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/129730678",
+        "name": "Südstern",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q656081",
+        "wikipedia": "de:U-Bahnhof Südstern"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4076671,
+          52.4892983
+        ]
+      },
+      "id": "node/129730678"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/174817813",
+        "name": "Yorckstraße",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q543907",
+        "wikipedia": "de:Bahnhof Berlin Yorckstraße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3706891,
+          52.4929715
+        ]
+      },
+      "id": "node/174817813"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/254087661",
+        "name": "Berlin-Charlottenburg",
+        "operator": "DB Station&Service AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BCHB",
+        "railway:station_category": "3",
+        "train": "yes",
+        "uic_ref": "8010403",
+        "wheelchair": "limited",
+        "wikidata": "Q702596",
+        "wikipedia": "de:Bahnhof Berlin-Charlottenburg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3026447,
+          52.5043157
+        ]
+      },
+      "id": "node/254087661"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/259845849",
+        "atm": "yes",
+        "atm:operator": "Bankhaus Lenz",
+        "name": "Gneisenaustraße",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wheelchair:source": "http://wheelmap.org",
+        "wikidata": "Q668618",
+        "wikipedia": "de:U-Bahnhof Gneisenaustraße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3958247,
+          52.4912895
+        ]
+      },
+      "id": "node/259845849"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/261941954",
+        "contact:website": "http://www.s-bahn-berlin.de/fahrplanundnetz/bahnhof/treptower-park/152",
+        "light_rail": "yes",
+        "name": "Treptower Park",
+        "network": "Verkehrsverbund Berlin-Brandenburg",
+        "network:short": "VBB",
+        "official_name": "Berlin Treptower Park",
+        "operator": "DB Netz AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BTP",
+        "railway:ref:parent": "BOK",
+        "railway:station_category": "4",
+        "station": "light_rail",
+        "surveillance": "indoor",
+        "uic_ref": "8089043",
+        "wheelchair": "yes",
+        "wikidata": "Q559274",
+        "wikipedia": "de:Bahnhof Berlin Treptower Park"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4618296,
+          52.4938491
+        ]
+      },
+      "id": "node/261941954"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/316785013",
+        "contact:website": "http://www.s-bahn-berlin.de/fahrplanundnetz/bahnhof/schoenhauser-allee/135",
+        "light_rail": "yes",
+        "name": "Schönhauser Allee",
+        "network": "Verkehrsverbund Berlin-Brandenburg",
+        "network:short": "VBB",
+        "official_name": "Berlin Schönhauser Allee",
+        "operator": "DB Netz AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BSAL",
+        "railway:station_category": "4",
+        "station": "light_rail",
+        "uic_ref": "8089039",
+        "wheelchair": "yes",
+        "wikidata": "Q571403",
+        "wikipedia": "de:Bahnhof Berlin Schönhauser Allee"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4155955,
+          52.549243
+        ]
+      },
+      "id": "node/316785013"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/459277140",
+        "internet_access": "wlan",
+        "name": "Berlin Gesundbrunnen",
+        "network": "Verkehrsverbund Berlin-Brandenburg",
+        "note": "Der Fernbahn-Teil des Bahnhofs ist ein betrieblich eigenständiger Bahnhof und hat daher einen eigenen Node mit railway=station!",
+        "official_name": "Berlin-Gesundbrunnen",
+        "operator": "DB Station&Service AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BGS",
+        "railway:station_category": "1",
+        "train": "yes",
+        "uic_ref": "8011102",
+        "url": "https://www.bahnhof.de/berlin-gesundbrunnen",
+        "wheelchair": "yes",
+        "wikidata": "Q678286",
+        "wikipedia": "de:Bahnhof Berlin Gesundbrunnen"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3902169,
+          52.5486453
+        ]
+      },
+      "id": "node/459277140"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/530812080",
+        "layer": "5",
+        "name": "Berlin Friedrichstraße",
+        "note": "railway:ref=BFRI für Fernbahn, BFST für S-Bahn oben, BFSTT für S-Bahn unten (vgl. wiki)",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BFRI",
+        "railway:station_category": "2",
+        "start_date": "1882-02-07",
+        "toilets:wheelchair": "yes",
+        "train": "yes",
+        "uic_ref": "8011306",
+        "wheelchair": "limited",
+        "wikidata": "Q702402",
+        "wikipedia": "de:Bahnhof Berlin Friedrichstraße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3869884,
+          52.5201744
+        ]
+      },
+      "id": "node/530812080"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/614445865",
+        "contact:phone": "+49 30 297 43333",
+        "contact:website": "http://www.s-bahn-berlin.de/fahrplanundnetz/bahnhof/wedding/175",
+        "level": "1",
+        "light_rail": "yes",
+        "name": "Wedding",
+        "network": "Verkehrsverbund Berlin-Brandenburg",
+        "network:short": "VBB",
+        "official_name": "Berlin-Wedding (S-Bahn)",
+        "operator": "DB Station&Service AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BWED",
+        "railway:station_category": "4",
+        "station": "light_rail",
+        "uic_name": "Berlin-Wedding",
+        "uic_ref": "8089131",
+        "wheelchair": "yes",
+        "wikidata": "Q638604"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3669996,
+          52.5427866
+        ]
+      },
+      "id": "node/614445865"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/670704950",
+        "contact:phone": "+49 30 297 43333",
+        "contact:website": "http://www.s-bahn-berlin.de/fahrplanundnetz/bahnhof/halensee/69",
+        "light_rail": "yes",
+        "name": "Halensee",
+        "network": "Verkehrsverbund Berlin-Brandenburg",
+        "network:short": "VBB",
+        "official_name": "Berlin-Halensee S-Bahn",
+        "operator": "DB Station&Service AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BHAL",
+        "railway:station_category": "4",
+        "station": "light_rail",
+        "uic_name": "Berlin-Halensee",
+        "uic_ref": "8089109",
+        "wheelchair": "yes",
+        "wikidata": "Q800476",
+        "wikipedia": "de:Bahnhof Berlin-Halensee"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.2905555,
+          52.4960247
+        ]
+      },
+      "id": "node/670704950"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/670801913",
+        "light_rail": "yes",
+        "name": "Ostkreuz",
+        "network": "Verkehrsverbund Berlin-Brandenburg",
+        "network:short": "VBB",
+        "note": "Bitte die 5 Nodes mit uic_ref in Bezug auf das Eisenbahn-Tagging so lassen und auch die Position nicht verändern. Die beiden Stadtbahn-Nodes BOKS und BOKR werden gerendert.",
+        "official_name": "Berlin Ostkreuz (S-Bahn)",
+        "operator": "DB Station&Service AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BOKS",
+        "railway:ref:parent": "BOSB",
+        "railway:station_category": "3",
+        "site": "Bf",
+        "station": "light_rail",
+        "surveillance": "indoor",
+        "surveillance:type": "camera",
+        "toilets:wheelchair": "yes",
+        "uic_name": "Berlin Ostkreuz (S)",
+        "uic_ref": "8089028",
+        "wheelchair": "yes",
+        "wikidata": "Q660045",
+        "wikipedia": "de:Bahnhof Berlin Ostkreuz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4695776,
+          52.5031523
+        ]
+      },
+      "id": "node/670801913"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1127966981",
+        "contact:phone": "+49 30 297 43333",
+        "contact:website": "http://www.s-bahn-berlin.de/fahrplanundnetz/bahnhof/gesundbrunnen/62",
+        "internet_access": "wlan",
+        "layer": "-1",
+        "level": "-1",
+        "light_rail": "yes",
+        "name": "Gesundbrunnen",
+        "network": "Verkehrsverbund Berlin-Brandenburg",
+        "network:short": "VBB",
+        "note": "Der S-Bahn-Teil des Bahnhofs ist ein betrieblich eigenständiger Bahnhof und hat daher einen eigenen Node mit railway=station!",
+        "official_name": "Berlin-Gesundbrunnen S-Bahn",
+        "old_name": "S Nordkreuz",
+        "operator": "DB Station&Service AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BGB",
+        "railway:station_category": "1",
+        "station": "light_rail",
+        "subway": "no",
+        "train": "yes",
+        "uic_name": "Berlin Gesundbrunnen(S)",
+        "uic_ref": "8089015",
+        "wheelchair": "yes",
+        "wikidata": "Q678286",
+        "wikipedia": "de:Bahnhof Berlin Gesundbrunnen"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3900758,
+          52.5491748
+        ]
+      },
+      "id": "node/1127966981"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1351158702",
+        "contact:phone": "+49 30 297 43333",
+        "contact:website": "http://www.s-bahn-berlin.de/fahrplanundnetz/bahnhof/zoologischer-garten/169",
+        "light_rail": "yes",
+        "loc_name": "Bahnhof Zoo",
+        "name": "Zoologischer Garten",
+        "network": "Verkehrsverbund Berlin-Brandenburg",
+        "network:short": "VBB",
+        "note": "S-Bahn-Bahnhof ist eigenständiger Bahnhof, daher zwei Bahnhöfe hier!",
+        "official_name": "Berlin Zoologischer Garten S-Bahn",
+        "operator": "DB Netz AG;DB Station&Service AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BZOS",
+        "railway:station_category": "2",
+        "station": "light_rail",
+        "uic_name": "Berlin Zoologischer Garten",
+        "uic_ref": "8010406",
+        "wheelchair": "yes",
+        "wikidata": "Q681785",
+        "wikipedia": "de:Bahnhof Berlin Zoologischer Garten"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.331868,
+          52.5071378
+        ]
+      },
+      "id": "node/1351158702"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1498939809",
+        "atm": "yes",
+        "atm:operator": "Bankhaus Lenz",
+        "name": "Rosenthaler Platz",
+        "postal_code": "10119",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q663231",
+        "wikipedia": "de:U-Bahnhof Rosenthaler Platz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4011206,
+          52.5298999
+        ]
+      },
+      "id": "node/1498939809"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1947340096",
+        "contact:phone": "+49 30 297 43333",
+        "contact:website": "http://www.s-bahn-berlin.de/fahrplanundnetz/bahnhof/nordbahnhof/109",
+        "light_rail": "yes",
+        "name": "Nordbahnhof",
+        "network": "Verkehrsverbund Berlin-Brandenburg",
+        "network:short": "VBB",
+        "network:wikidata": "Q315451",
+        "official_name": "Berlin Nordbahnhof",
+        "operator": "DB Netz AG;Db Station&Service AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BNB",
+        "railway:station_category": "4",
+        "ref:station": "532",
+        "station": "light_rail",
+        "train": "yes",
+        "uic_ref": "8089024",
+        "wheelchair": "no",
+        "wikidata": "Q673721",
+        "wikipedia": "de:Berlin Nordbahnhof"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3878392,
+          52.5322749
+        ]
+      },
+      "id": "node/1947340096"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2102139395",
+        "name": "Gleisdreieck",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "toilets:wheelchair": "no",
+        "wheelchair": "yes",
+        "wikidata": "Q678372",
+        "wikipedia": "de:U-Bahnhof Gleisdreieck"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3740318,
+          52.4995261
+        ]
+      },
+      "id": "node/2102139395"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2134525648",
+        "contact:website": "http://www.s-bahn-berlin.de/fahrplanundnetz/bahnhof/oranienburger-strasse/113",
+        "light_rail": "yes",
+        "name": "Oranienburger Straße",
+        "network": "Verkehrsverbund Berlin-Brandenburg",
+        "network:short": "VBB",
+        "official_name": "Berlin Oranienburger Straße",
+        "operator": "DB Netz AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BORS",
+        "railway:ref:parent": "BNB",
+        "railway:station_category": "4",
+        "station": "light_rail",
+        "uic_ref": "8089027",
+        "wheelchair": "yes",
+        "wikidata": "Q480249",
+        "wikipedia": "de:Bahnhof Berlin Oranienburger Straße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3930145,
+          52.5252246
+        ]
+      },
+      "id": "node/2134525648"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2459919675",
+        "layer": "-2",
+        "name": "Berlin Hauptbahnhof (tief)",
+        "name:ja": "ベルリン中央駅",
+        "note": "\"Dummy\"-Node für die Betriebsstellenbezeichnung (DS100) der unteren acht Ferngleise; wird unter anderem für die OpenRailwayMap benötigt; name ist ein \"educated\" guess",
+        "official_name": "Berlin Hauptbahnhof - Lehrter Bahnhof",
+        "operator": "DB Netz AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BL",
+        "railway:station_category": "1",
+        "short_name": "Berlin Hbf (tief)",
+        "start_date": "2006-05-28",
+        "toilets:wheelchair": "yes",
+        "train": "yes",
+        "uic_name": "Berlin Hauptbahnhof (tief)",
+        "uic_ref": "8098160",
+        "wheelchair": "yes",
+        "wikidata": "Q1097",
+        "wikipedia": "de:Berlin Hauptbahnhof"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.369861,
+          52.5246361
+        ]
+      },
+      "id": "node/2459919675"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2461322542",
+        "name": "Gesundbrunnen",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3883057,
+          52.5488223
+        ]
+      },
+      "id": "node/2461322542"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2837556546",
+        "contact:website": "http://www.s-bahn-berlin.de/fahrplanundnetz/bahnhof/ostbahnhof/115",
+        "light_rail": "yes",
+        "name": "Ostbahnhof",
+        "network": "Verkehrsverbund Berlin-Brandenburg",
+        "network:short": "VBB",
+        "official_name": "Berlin Ostbahnhof S-Bahn",
+        "operator": "DB Station&Service AG",
+        "platforms": "2",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BOSB",
+        "railway:station_category": "1",
+        "station": "light_rail",
+        "uic_name": "Berlin Ostbahnhof",
+        "uic_ref": "8010255",
+        "wheelchair": "limited",
+        "wikidata": "Q683239",
+        "wikipedia": "de:Berlin Ostbahnhof"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4351709,
+          52.5107448
+        ]
+      },
+      "id": "node/2837556546"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2924245392",
+        "level": "-1",
+        "name": "Wedding",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q638604",
+        "wikipedia": "de:Bahnhof Berlin-Wedding"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3650375,
+          52.5430625
+        ]
+      },
+      "id": "node/2924245392"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3352091173",
+        "loc_name": "U Stadtmitte",
+        "name": "Stadtmitte",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q660066",
+        "wikipedia": "de:U-Bahnhof Stadtmitte"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3905632,
+          52.5121459
+        ]
+      },
+      "id": "node/3352091173"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3419894993",
+        "name": "Berlin Ostbahnhof",
+        "network": "DBUS",
+        "note": "der Fernbahnteil und die S-Bahn-Station sind zwei eigenständige Bahnhöfe im gleichen Gebäude!",
+        "old_name": "Berlin Schlesischer Bahnhof;Berlin (Ost) Hauptbahnhof",
+        "operator": "DB Station&Service AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BHF",
+        "railway:station_category": "1",
+        "short_name": "Berlin Ostbf",
+        "toilets:wheelchair": "no",
+        "train": "yes",
+        "uic_ref": "8010255",
+        "url": "https://www.bahnhof.de/berlin-ostbahnhof",
+        "wheelchair": "yes",
+        "wikidata": "Q683239",
+        "wikipedia": "de:Berlin Ostbahnhof"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4349112,
+          52.5103817
+        ]
+      },
+      "id": "node/3419894993"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3658970189",
+        "light_rail": "yes",
+        "name": "Warschauer Straße",
+        "network": "Verkehrsverbund Berlin-Brandenburg",
+        "network:short": "VBB",
+        "official_name": "Berlin Warschauer Straße",
+        "operator": "DB Netz AG;DB Station&Service AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BWRS",
+        "railway:ref:parent": "BOSB",
+        "railway:station_category": "4",
+        "station": "light_rail",
+        "toilets:wheelchair": "no",
+        "uic_ref": "8089045",
+        "wheelchair": "yes",
+        "wikidata": "Q664036",
+        "wikipedia": "de:Bahnhof Berlin Warschauer Straße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4501205,
+          52.5063685
+        ]
+      },
+      "id": "node/3658970189"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3659830181",
+        "contact:phone": "+49 30 297 43333",
+        "contact:website": "http://www.s-bahn-berlin.de/fahrplanundnetz/bahnhof/greifswalder-strasse/63",
+        "light_rail": "yes",
+        "name": "Greifswalder Straße",
+        "network": "Verkehrsverbund Berlin-Brandenburg",
+        "network:short": "VBB",
+        "official_name": "Berlin Greifswalder Straße S-Bahn",
+        "operator": "DB Netz AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BGSF",
+        "railway:station_category": "4",
+        "station": "light_rail",
+        "surveillance": "indoor",
+        "surveillance:type": "camera",
+        "uic_name": "Berlin Greifswalder Str",
+        "uic_ref": "8089011",
+        "wheelchair": "yes",
+        "wikidata": "Q439246",
+        "wikipedia": "de:Bahnhof Berlin Greifswalder Straße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4389887,
+          52.5402462
+        ]
+      },
+      "id": "node/3659830181"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3772836700",
+        "atm": "yes",
+        "atm:operator": "Sparkasse",
+        "name": "Leopoldplatz",
+        "network": "Verkehrsverbund Berlin-Brandenburg",
+        "network:short": "VBB",
+        "operator": "Berliner Verkehrsbetriebe",
+        "operator:short": "BVG",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "indoor",
+        "toilets:wheelchair": "no",
+        "wheelchair": "yes",
+        "wikidata": "Q1960809",
+        "wikipedia": "de:U-Bahnhof Leopoldplatz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3591672,
+          52.5463833
+        ]
+      },
+      "id": "node/3772836700"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3799307108",
+        "atm": "yes",
+        "atm:operator": "Sparkasse",
+        "name": "Frankfurter Allee",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "indoor",
+        "wheelchair": "yes",
+        "wikidata": "Q552872",
+        "wikipedia": "de:Bahnhof Berlin Frankfurter Allee"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4754364,
+          52.5136227
+        ]
+      },
+      "id": "node/3799307108"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3808290434",
+        "contact:website": "http://www.s-bahn-berlin.de/fahrplanundnetz/bahnhof/charlottenburg/49",
+        "light_rail": "yes",
+        "name": "Charlottenburg",
+        "network": "Verkehrsverbund Berlin-Brandenburg",
+        "network:short": "VBB",
+        "official_name": "Berlin-Charlottenburg S-Bahn",
+        "operator": "DB Netz AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BCHS",
+        "railway:station_category": "3",
+        "ref": "BCHS",
+        "station": "light_rail",
+        "uic_ref": "8010403",
+        "wheelchair": "yes",
+        "wikidata": "Q702596",
+        "wikipedia": "de:Bahnhof Berlin-Charlottenburg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3045162,
+          52.5050484
+        ]
+      },
+      "id": "node/3808290434"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3820796396",
+        "description": "U Naturkundemuseum",
+        "level": "-1",
+        "name": "Naturkundemuseum",
+        "note": "name before 2009 December: U Zinnowitzer Straße",
+        "platforms": "2",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "indoor",
+        "wheelchair": "yes",
+        "wikidata": "Q554399",
+        "wikipedia": "de:U-Bahnhof Naturkundemuseum"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3817076,
+          52.5316567
+        ]
+      },
+      "id": "node/3820796396"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3844356478",
+        "description": "U Voltastraße",
+        "name": "Voltastraße",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q663308",
+        "wikipedia": "de:U-Bahnhof Voltastraße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.392876,
+          52.5422898
+        ]
+      },
+      "id": "node/3844356478"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3844467019",
+        "check_date:wheelchair": "2022-07-22",
+        "name": "Moritzplatz",
+        "network": "Verkehrsverbund Berlin-Brandenburg",
+        "network:short": "VBB",
+        "operator": "Berliner Verkehrsbetriebe",
+        "operator:short": "BVG",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "toilets:wheelchair": "no",
+        "uic_name": "Moritzplatz (U), Berlin",
+        "uic_ref": "730889",
+        "wheelchair": "no",
+        "wikidata": "Q374225",
+        "wikipedia": "de:U-Bahnhof Moritzplatz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4107479,
+          52.5036623
+        ]
+      },
+      "id": "node/3844467019"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3844501316",
+        "atm": "yes",
+        "atm:operator": "Bankhaus Lenz",
+        "name": "Schönleinstraße",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q666868",
+        "wikipedia": "de:U-Bahnhof Schönleinstraße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4220572,
+          52.4930552
+        ]
+      },
+      "id": "node/3844501316"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3846589198",
+        "name": "Strausberger Platz",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "indoor",
+        "wheelchair": "yes",
+        "wheelchair:description": "Fahrstuhl",
+        "wikidata": "Q570999",
+        "wikipedia": "de:U-Bahnhof Strausberger Platz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4315264,
+          52.5180981
+        ]
+      },
+      "id": "node/3846589198"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3846755695",
+        "name": "Weberwiese",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "indoor",
+        "wheelchair": "yes",
+        "wikidata": "Q551768",
+        "wikipedia": "de:U-Bahnhof Weberwiese"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4447135,
+          52.5167465
+        ]
+      },
+      "id": "node/3846755695"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3854590993",
+        "contact:phone": "+49 30 297 43333",
+        "contact:website": "http://www.s-bahn-berlin.de/fahrplanundnetz/bahnhof/anhalter-bahnhof/15",
+        "light_rail": "yes",
+        "name": "Anhalter Bahnhof",
+        "network": "Verkehrsverbund Berlin-Brandenburg",
+        "network:short": "VBB",
+        "official_name": "Berlin Anhalter Bf",
+        "operator": "DB Netz AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BAHU",
+        "railway:station_category": "3",
+        "station": "light_rail",
+        "train": "yes",
+        "uic_name": "Berlin Anhalter Bf",
+        "uic_ref": "8089002",
+        "wheelchair": "yes",
+        "wikidata": "Q695244",
+        "wikipedia": "de:Berlin Anhalter Bahnhof"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3814763,
+          52.5035788
+        ]
+      },
+      "id": "node/3854590993"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3854590996",
+        "contact:phone": "+49 30 297 43333",
+        "contact:website": "http://www.s-bahn-berlin.de/fahrplanundnetz/bahnhof/potsdamer-platz/124",
+        "light_rail": "yes",
+        "name": "Potsdamer Platz",
+        "network": "Verkehrsverbund Berlin-Brandenburg",
+        "network:short": "VBB",
+        "official_name": "Berlin Potsdamer Platz (S-Bahn)",
+        "operator": "DB Netz AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BPOP",
+        "railway:station_category": "2",
+        "station": "light_rail",
+        "uic_name": "Berlin Potsdamer Platz (S)",
+        "uic_ref": "8089032",
+        "wheelchair": "yes",
+        "wikidata": "Q672579",
+        "wikipedia": "de:Bahnhof Berlin Potsdamer Platz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3766399,
+          52.5094035
+        ]
+      },
+      "id": "node/3854590996"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3854590997",
+        "alt_name": "U Hallesches Tor",
+        "name": "Hallesches Tor",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q658302",
+        "wikipedia": "de:U-Bahnhof Hallesches Tor"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3906496,
+          52.4977596
+        ]
+      },
+      "id": "node/3854590997"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3854591000",
+        "heritage": "4",
+        "heritage:operator": "lda",
+        "lda:criteria": "Baudenkmal",
+        "name": "Potsdamer Platz",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:lda": "09095936",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q3909578",
+        "wikimedia_commons": "Category:U-Bahnhof Potsdamer Platz (Berlin)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3782147,
+          52.5091586
+        ]
+      },
+      "id": "node/3854591000"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3856100103",
+        "description": "Hauptbahnhof der Bundesdeutschen Hauptstadt Berlin",
+        "description:de": "Hauptbahnhof der Bundesdeutschen Hauptstadt Berlin",
+        "description:en": "Hauptbahnhof der Bundesdeutschen Hauptstadt Berlin",
+        "description:es": "Estación principal de la capital alemana, Berlín",
+        "description:fr": "Gare principale de la capitale allemande Berlin",
+        "description:ja": "ドイツの首都ベルリンの主要駅",
+        "description:nl": "Hoofdstation van de Duitse hoofdstad Berlijn",
+        "description:ru": "Главный вокзал столицы Германии Берлина",
+        "layer": "5",
+        "name": "Berlin Hauptbahnhof",
+        "name:be": "Берлін-Цэнтральны",
+        "name:de": "Berlin Hauptbahnhof",
+        "name:en": "Berlin Central Station",
+        "name:es": "Estación central de Berlín",
+        "name:fr": "Gare centrale de Berlin",
+        "name:gr": "Κεντρικός σταθμός Βερολίνου",
+        "name:it": "Stazione centrale di Berlino",
+        "name:ja": "ベルリン中央駅",
+        "name:nl": "Berlijn Centraal Station",
+        "network": "DBUS",
+        "official_name": "Berlin Hauptbahnhof-Lehrter Bf (Stadtb)",
+        "old_name": "Lehrter Bahnhof",
+        "operator": "DB Station&Service AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BLS",
+        "railway:station_category": "1",
+        "short_name": "Berlin Hbf",
+        "toilets:wheelchair": "yes",
+        "train": "yes",
+        "uic_name": "Berlin Hauptbahnhof",
+        "uic_ref": "8011160",
+        "url": "https://www.bahnhof.de/berlin-hauptbahnhof",
+        "wheelchair": "yes",
+        "wikidata": "Q1097",
+        "wikipedia": "de:Berlin Hauptbahnhof"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3696614,
+          52.5249451
+        ]
+      },
+      "id": "node/3856100103"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3856100108",
+        "layer": "-3",
+        "name": "Hauptbahnhof",
+        "operator": "Berliner Verkehrsbetriebe",
+        "operator:short": "BVG",
+        "public_transport": "station",
+        "railway": "station",
+        "start_date": "2009-08-09",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "public",
+        "tactile_paving": "yes",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3701242,
+          52.5252819
+        ]
+      },
+      "id": "node/3856100108"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3862767512",
+        "level": "-3",
+        "name": "Brandenburger Tor",
+        "public_transport": "station",
+        "railway": "station",
+        "start_date": "2009-08-09",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q477185",
+        "wikipedia": "de:Bahnhof Berlin Brandenburger Tor"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3809897,
+          52.5166047
+        ]
+      },
+      "id": "node/3862767512"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3867910440",
+        "name": "Weinmeisterstraße",
+        "postal_code": "10119",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q661876",
+        "wikipedia": "de:U-Bahnhof Weinmeisterstraße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4050194,
+          52.5254666
+        ]
+      },
+      "id": "node/3867910440"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3869306763",
+        "contact:website": "http://www.s-bahn-berlin.de/fahrplanundnetz/bahnhof/friedrichstrasse/59",
+        "level": "3",
+        "light_rail": "yes",
+        "name": "Friedrichstraße",
+        "network": "Verkehrsverbund Berlin-Brandenburg",
+        "network:short": "VBB",
+        "official_name": "Berlin Friedrichstraße (Stadtb) S-Bahn",
+        "operator": "DB Netz AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BFST",
+        "railway:station_category": "2",
+        "station": "light_rail",
+        "uic_ref": "8011306",
+        "wheelchair": "yes",
+        "wikidata": "Q702402",
+        "wikipedia": "de:Bahnhof Berlin Friedrichstraße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3868236,
+          52.5204967
+        ]
+      },
+      "id": "node/3869306763"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3869306768",
+        "layer": "-2",
+        "level": "-2",
+        "name": "Friedrichstraße",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q3753274",
+        "wikipedia": "de:Bahnhof Berlin Friedrichstraße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3882862,
+          52.5202635
+        ]
+      },
+      "id": "node/3869306768"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3870475231",
+        "name": "Mohrenstraße",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q658391",
+        "wikipedia": "de:U-Bahnhof Mohrenstraße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3850915,
+          52.5117915
+        ]
+      },
+      "id": "node/3870475231"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3870914569",
+        "internet_access": "wlan",
+        "name": "Warschauer Straße",
+        "name:en": "Warschauer Straße Station",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q664036",
+        "wikipedia": "de:Bahnhof Berlin Warschauer Straße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4490065,
+          52.505014
+        ]
+      },
+      "id": "node/3870914569"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3872632789",
+        "contact:website": "http://www.s-bahn-berlin.de/fahrplanundnetz/bahnhof/landsberger-allee/93",
+        "internet_access": "no",
+        "light_rail": "yes",
+        "name": "Landsberger Allee",
+        "network": "Verkehrsverbund Berlin-Brandenburg",
+        "network:short": "VBB",
+        "official_name": "Berlin Landsberger Allee",
+        "operator": "DB Netz AG;DB Station&Service AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BLST",
+        "railway:ref:parent": "BGSS",
+        "railway:station_category": "4",
+        "ref:station": "534",
+        "station": "light_rail",
+        "surveillance": "indoor",
+        "surveillance:type": "camera",
+        "uic_ref": "8089020",
+        "wheelchair": "yes",
+        "wikidata": "Q800507",
+        "wikipedia": "de:Bahnhof Berlin Landsberger Allee"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4547803,
+          52.529482
+        ]
+      },
+      "id": "node/3872632789"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3875882001",
+        "name": "Görlitzer Bahnhof",
+        "operator": "Berliner Verkehrsbetriebe",
+        "operator:short": "BVG",
+        "phone": "+49 30 19 44 9",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "indoor",
+        "website": "https://www.bvg.de/index.php/de/3729/name/U-Bahnlinie+U1/area/89395.html",
+        "wheelchair": "no",
+        "wikidata": "Q597759",
+        "wikipedia": "de:U-Bahnhof Görlitzer Bahnhof"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4280355,
+          52.4992628
+        ]
+      },
+      "id": "node/3875882001"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3876077784",
+        "name": "Klosterstraße",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q657893",
+        "wikipedia": "de:U-Bahnhof Klosterstraße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4124323,
+          52.5172347
+        ]
+      },
+      "id": "node/3876077784"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3876218098",
+        "name": "Schillingstraße",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "indoor",
+        "wheelchair": "yes",
+        "wikidata": "Q552899",
+        "wikipedia": "de:U-Bahnhof Schillingstraße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4211125,
+          52.52079
+        ]
+      },
+      "id": "node/3876218098"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3876349058",
+        "name": "Frankfurter Tor",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "indoor",
+        "wheelchair": "yes",
+        "wikidata": "Q568627",
+        "wikipedia": "de:U-Bahnhof Frankfurter Tor"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4539745,
+          52.515818
+        ]
+      },
+      "id": "node/3876349058"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3876481637",
+        "internet_access": "wlan",
+        "name": "Schlesisches Tor",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q602282",
+        "wikipedia": "de:U-Bahnhof Schlesisches Tor"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4414625,
+          52.5008341
+        ]
+      },
+      "id": "node/3876481637"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3876909305",
+        "check_date:wheelchair": "2022-07-11",
+        "contact:phone": "+49 30 297 43333",
+        "contact:website": "http://www.s-bahn-berlin.de/fahrplanundnetz/bahnhof/westhafen/158",
+        "light_rail": "yes",
+        "name": "Westhafen",
+        "network": "Verkehrsverbund Berlin-Brandenburg",
+        "network:short": "VBB",
+        "note": "Die S-Bahn-Station hat keine Weichen und ist daher ein Haltepunkt.",
+        "official_name": "Berlin Westhafen (S-Bahn)",
+        "operator": "DB Netz AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BWH",
+        "railway:station_category": "4",
+        "station": "light_rail",
+        "train": "yes",
+        "uic_name": "Berlin Westhafen",
+        "uic_ref": "8089116",
+        "wheelchair": "no",
+        "wikidata": "Q465972",
+        "wikimedia_commons": "Category:Bahnhof Berlin Westhafen",
+        "wikipedia": "de:Bahnhof Berlin Westhafen"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3444152,
+          52.5362768
+        ]
+      },
+      "id": "node/3876909305"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3876909306",
+        "name": "Westhafen",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q465972",
+        "wikipedia": "de:Bahnhof Berlin Westhafen"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3425741,
+          52.536735
+        ]
+      },
+      "id": "node/3876909306"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3881590700",
+        "name": "Prinzenstraße",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wheelchair:description": "Aufzug nur in Richtung Warschauer Straße",
+        "wikidata": "Q689797",
+        "wikipedia": "de:U-Bahnhof Prinzenstraße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.40591,
+          52.4983972
+        ]
+      },
+      "id": "node/3881590700"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3887567777",
+        "description:old_name": "Historischer Bahnhofsname 1926-1937",
+        "name": "Platz der Luftbrücke",
+        "old_name": "Kreuzberg",
+        "operator": "Berliner Verkehrbetriebe",
+        "public_transport": "station",
+        "railway": "station",
+        "source:old_name": "Schriftzug innerhalb der Fliesen der Tunnelwand des Bahnhof;abgedeckt durch Plexiglass o.ä.;Abdeckung trägt die in description hinterlegten Angaben",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q553146",
+        "wikipedia": "de:U-Bahnhof Platz der Luftbrücke"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3859508,
+          52.4860843
+        ]
+      },
+      "id": "node/3887567777"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3900136339",
+        "layer": "-2",
+        "name": "Kottbusser Tor",
+        "platforms": "2",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "indoor",
+        "toilets:wheelchair": "no",
+        "wheelchair": "yes",
+        "wikidata": "Q819768",
+        "wikipedia": "de:U-Bahnhof Kottbusser Tor"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4183107,
+          52.4989853
+        ]
+      },
+      "id": "node/3900136339"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3900580952",
+        "name": "Sophie-Charlotte-Platz",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "toilets:wheelchair": "no",
+        "wheelchair": "yes",
+        "wikidata": "Q657879",
+        "wikipedia": "de:U-Bahnhof Sophie-Charlotte-Platz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.2963306,
+          52.5109137
+        ]
+      },
+      "id": "node/3900580952"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3901824902",
+        "name": "Nollendorfplatz",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "outdoor",
+        "toilets:wheelchair": "no",
+        "wheelchair": "yes",
+        "wikidata": "Q571039",
+        "wikipedia": "de:U-Bahnhof Nollendorfplatz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3537297,
+          52.4995972
+        ]
+      },
+      "id": "node/3901824902"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3904674211",
+        "name": "Spittelmarkt",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q569489",
+        "wikipedia": "de:U-Bahnhof Spittelmarkt"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4041155,
+          52.5112959
+        ]
+      },
+      "id": "node/3904674211"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3906622702",
+        "name": "Kurfürstenstraße",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q690203",
+        "wikipedia": "de:U-Bahnhof Kurfürstenstraße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3619411,
+          52.4999599
+        ]
+      },
+      "id": "node/3906622702"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3906729688",
+        "name": "Schwartzkopffstraße",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "indoor",
+        "wheelchair": "yes",
+        "wheelchair:description": "Fahrstuhl",
+        "wikidata": "Q554360",
+        "wikipedia": "de:U-Bahnhof Schwartzkopffstraße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.377318,
+          52.5351574
+        ]
+      },
+      "id": "node/3906729688"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3908141014",
+        "contact:website": "http://www.s-bahn-berlin.de/fahrplanundnetz/bahnhof/alexanderplatz/26",
+        "internet_access": "wlan",
+        "light_rail": "yes",
+        "name": "Alexanderplatz",
+        "network": "Verkehrsverbund Berlin-Brandenburg",
+        "network:short": "VBB",
+        "official_name": "Berlin Alexanderplatz S-Bahn",
+        "operator": "DB Netz AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BALX",
+        "railway:station_category": "3",
+        "station": "light_rail",
+        "toilets:wheelchair": "yes",
+        "uic_ref": "8089001",
+        "wheelchair": "yes",
+        "wikidata": "Q698497",
+        "wikipedia": "de:Bahnhof Berlin Alexanderplatz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4112804,
+          52.5215661
+        ]
+      },
+      "id": "node/3908141014"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3916325095",
+        "name": "Senefelderplatz",
+        "network": "Verkehrsverbund Berlin-Brandenburg",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q32661454",
+        "wikipedia": "de:U-Bahnhof Senefelderplatz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4126861,
+          52.5323899
+        ]
+      },
+      "id": "node/3916325095"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3918542874",
+        "name": "Konstanzer Straße",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "indoor",
+        "wheelchair": "no",
+        "wikidata": "Q571019",
+        "wikipedia": "de:U-Bahnhof Konstanzer Straße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3090745,
+          52.4945315
+        ]
+      },
+      "id": "node/3918542874"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3928759793",
+        "name": "Oranienburger Tor",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q571485",
+        "wikipedia": "de:U-Bahnhof Oranienburger Tor"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3873583,
+          52.5255998
+        ]
+      },
+      "id": "node/3928759793"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3931919580",
+        "name": "Adenauerplatz",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "indoor",
+        "wheelchair": "yes",
+        "wikidata": "Q570939",
+        "wikipedia": "de:U-Bahnhof Adenauerplatz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3073226,
+          52.5000028
+        ]
+      },
+      "id": "node/3931919580"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3933855820",
+        "name": "Mendelssohn-Bartholdy-Park",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q658405",
+        "wikipedia": "de:U-Bahnhof Mendelssohn-Bartholdy-Park"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3748605,
+          52.503724
+        ]
+      },
+      "id": "node/3933855820"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3933855823",
+        "loc_name": "U Möckernbrücke",
+        "name": "Möckernbrücke",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q704716",
+        "wikipedia": "de:U-Bahnhof Möckernbrücke"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.383123,
+          52.4986927
+        ]
+      },
+      "id": "node/3933855823"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3935369912",
+        "name": "Samariterstraße",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "indoor",
+        "toilets:wheelchair": "no",
+        "wheelchair": "yes",
+        "wikidata": "Q552891",
+        "wikipedia": "de:U-Bahnhof Samariterstraße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4644405,
+          52.5147399
+        ]
+      },
+      "id": "node/3935369912"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3946122064",
+        "name": "Bülowstraße",
+        "note": "http://www.bvg.de/de/Fahrinfo/Verkehrsmeldungen/Verkehrsmeldung-Detail?id=6898",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "outdoor",
+        "wheelchair": "yes",
+        "wikidata": "Q374881",
+        "wikipedia": "de:U-Bahnhof Bülowstraße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3632209,
+          52.4975858
+        ]
+      },
+      "id": "node/3946122064"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3947836158",
+        "name": "Hausvogteiplatz",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q656523",
+        "wikipedia": "de:U-Bahnhof Hausvogteiplatz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.395591,
+          52.5133502
+        ]
+      },
+      "id": "node/3947836158"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3949521962",
+        "internet_access": "wlan",
+        "name": "Mehringdamm",
+        "platforms": "2",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q657905",
+        "wikipedia": "de:U-Bahnhof Mehringdamm"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3886168,
+          52.4941308
+        ]
+      },
+      "id": "node/3949521962"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3957757603",
+        "name": "Uhlandstraße",
+        "public_transport": "station",
+        "railway": "station",
+        "start_date": "1913-10-12",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q568224",
+        "wikipedia": "de:U-Bahnhof Uhlandstraße (Berlin)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3266968,
+          52.5028118
+        ]
+      },
+      "id": "node/3957757603"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3957757604",
+        "atm": "yes",
+        "name": "Wittenbergplatz",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "limited",
+        "wikidata": "Q692727",
+        "wikipedia": "de:U-Bahnhof Wittenbergplatz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3430005,
+          52.5017976
+        ]
+      },
+      "id": "node/3957757604"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3957897529",
+        "line": "U9",
+        "name": "Hansaplatz",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "toilets:wheelchair": "no",
+        "wheelchair": "yes",
+        "wikidata": "Q287552",
+        "wikipedia": "de:U-Bahnhof Hansaplatz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3420365,
+          52.518008
+        ]
+      },
+      "id": "node/3957897529"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3959201657",
+        "line": "U9",
+        "name": "Birkenstraße",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "toilets:wheelchair": "no",
+        "wheelchair": "yes",
+        "wikidata": "Q555998",
+        "wikipedia": "de:U-Bahnhof Birkenstraße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3413533,
+          52.5323818
+        ]
+      },
+      "id": "node/3959201657"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3959653399",
+        "name": "Blissestraße",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q571397",
+        "wikipedia": "de:U-Bahnhof Blissestraße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3205449,
+          52.4864895
+        ]
+      },
+      "id": "node/3959653399"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4213705914",
+        "layer": "-3",
+        "level": "-2",
+        "name": "Bundestag",
+        "operator": "Berliner Verkehrsbetriebe",
+        "operator:short": "BVG",
+        "public_transport": "station",
+        "railway": "station",
+        "start_date": "2009-08-09",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "public",
+        "tactile_paving": "yes",
+        "toilets:wheelchair": "yes",
+        "train": "no",
+        "wheelchair": "yes",
+        "wikidata": "Q694848",
+        "wikipedia": "de:U-Bahnhof Bundestag"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3729545,
+          52.5201123
+        ]
+      },
+      "id": "node/4213705914"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4440948591",
+        "check_date:wheelchair": "2022-08-15",
+        "line": "U9",
+        "name": "Turmstraße",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q571400",
+        "wikipedia": "de:U-Bahnhof Turmstraße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3412971,
+          52.5261489
+        ]
+      },
+      "id": "node/4440948591"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4598414751",
+        "check_date:wheelchair": "2022-09-26",
+        "layer": "-5",
+        "level": "-5",
+        "name": "Alexanderplatz",
+        "name:ja": "アレクサンダー広場",
+        "name:ko": "U 알렉산더광장(역)",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "indoor",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4139082,
+          52.5215849
+        ]
+      },
+      "id": "node/4598414751"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4644994619",
+        "name": "Jungfernheide",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "indoor",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3006301,
+          52.5307879
+        ]
+      },
+      "id": "node/4644994619"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4744165580",
+        "name": "Berlin Ostkreuz (Stadtbahn-F)",
+        "note": "Bitte die 5 Nodes mit uic_ref in Bezug auf das Eisenbahn-Tagging so lassen und auch die Position nicht verändern. Die beiden Stadtbahn-Nodes BOKS und BOKR werden gerendert.",
+        "operator": "DB Netz AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BOKR",
+        "railway:ref:parent": "BHF",
+        "railway:station_category": "3",
+        "train": "yes",
+        "uic_name": "Berlin Ostkreuz",
+        "wheelchair": "yes",
+        "wikidata": "Q660045",
+        "wikimedia_commons": "Category:Bahnhof Berlin Ostkreuz",
+        "wikipedia": "de:Bahnhof Berlin Ostkreuz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4694146,
+          52.5028181
+        ]
+      },
+      "id": "node/4744165580"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4746086763",
+        "name": "Berlin Ostkreuz (Ringbahn-F)",
+        "network": "Verkehrsverbund Berlin-Brandenburg",
+        "note": "Bitte die 5 Nodes mit uic_ref in Bezug auf das Eisenbahn-Tagging so lassen und auch die Position nicht verändern. Die beiden Stadtbahn-Nodes BOKS und BOKR werden gerendert.",
+        "official_name": "Berlin Ostkreuz (Ringbahn-F)",
+        "operator": "DB Netz AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BOKN",
+        "railway:station_category": "3",
+        "site": "Bf",
+        "train": "yes",
+        "uic_name": "Berlin Ostkreuz",
+        "wheelchair": "yes",
+        "wikidata": "Q660045",
+        "wikipedia": "de:Bahnhof Berlin Ostkreuz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4696738,
+          52.5028779
+        ]
+      },
+      "id": "node/4746086763"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4940731304",
+        "check_date:wheelchair": "2022-07-26",
+        "name": "Märkisches Museum",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q657871",
+        "wikipedia": "de:U-Bahnhof Märkisches Museum"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4101754,
+          52.5123348
+        ]
+      },
+      "id": "node/4940731304"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5099979652",
+        "atm": "yes",
+        "atm:operator": "Sparkasse",
+        "name": "Kleistpark",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q571161",
+        "wikipedia": "de:U-Bahnhof Kleistpark"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3602198,
+          52.4903665
+        ]
+      },
+      "id": "node/5099979652"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5116771727",
+        "description": "U Naturkundemuseum",
+        "name": "Naturkundemuseum",
+        "note": "name before 2009 December: U Zinnowitzer Straße",
+        "platforms": "2",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "indoor",
+        "wheelchair": "yes",
+        "wikidata": "Q554399",
+        "wikipedia": "de:U-Bahnhof Naturkundemuseum"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3826762,
+          52.5308775
+        ]
+      },
+      "id": "node/5116771727"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5116771809",
+        "name": "Kochstraße/Checkpoint Charlie",
+        "name:ru": "Кохштрассе",
+        "platforms": "2",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q201849",
+        "wikipedia": "de:U-Bahnhof Kochstraße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3906125,
+          52.5060447
+        ]
+      },
+      "id": "node/5116771809"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5134716875",
+        "level": "-1",
+        "name": "Viktoria-Luise-Platz",
+        "platforms": "1",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q178685",
+        "wikipedia": "de:U-Bahnhof Viktoria-Luise-Platz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3431855,
+          52.4961755
+        ]
+      },
+      "id": "node/5134716875"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5162689183",
+        "name": "Augsburger Straße",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q667035",
+        "wikipedia": "de:U-Bahnhof Augsburger Straße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3364644,
+          52.5004423
+        ]
+      },
+      "id": "node/5162689183"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5162689220",
+        "name": "Hohenzollernplatz",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q571570",
+        "wikipedia": "de:U-Bahnhof Hohenzollernplatz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3247547,
+          52.4940847
+        ]
+      },
+      "id": "node/5162689220"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5162689571",
+        "atm": "yes",
+        "atm:operator": "Sparkasse",
+        "name": "Spichernstraße",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q667046",
+        "wikipedia": "de:U-Bahnhof Spichernstraße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3310091,
+          52.4964453
+        ]
+      },
+      "id": "node/5162689571"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5162689572",
+        "name": "Fehrbelliner Platz",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "indoor",
+        "wheelchair": "yes",
+        "wikidata": "Q663245",
+        "wikipedia": "de:U-Bahnhof Fehrbelliner Platz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3151361,
+          52.4905442
+        ]
+      },
+      "id": "node/5162689572"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5171026793",
+        "atm": "yes",
+        "atm:operator": "Sparkasse",
+        "check_date:wheelchair": "2022-07-28",
+        "name": "Hermannplatz",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q658929",
+        "wikipedia": "de:U-Bahnhof Hermannplatz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4245531,
+          52.4862857
+        ]
+      },
+      "id": "node/5171026793"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5176114547",
+        "name": "Jakob-Kaiser-Platz",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "indoor",
+        "wheelchair": "no",
+        "wikidata": "Q638526",
+        "wikipedia": "de:U-Bahnhof Jakob-Kaiser-Platz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.2933009,
+          52.5362794
+        ]
+      },
+      "id": "node/5176114547"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5176114617",
+        "atm": "yes",
+        "atm:operator": "Sparkasse",
+        "check_date:wheelchair": "2022-11-06",
+        "name": "Wilmersdorfer Straße",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "indoor",
+        "wheelchair": "yes",
+        "wikidata": "Q570961",
+        "wikipedia": "de:U-Bahnhof Wilmersdorfer Straße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3066372,
+          52.5066749
+        ]
+      },
+      "id": "node/5176114617"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5198810677",
+        "name": "Reinickendorfer Straße",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "indoor",
+        "wheelchair": "yes",
+        "wikidata": "Q559249",
+        "wikipedia": "de:U-Bahnhof Reinickendorfer Straße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3702888,
+          52.5400429
+        ]
+      },
+      "id": "node/5198810677"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5219756617",
+        "name": "Rosa-Luxemburg-Platz",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q658790",
+        "wikipedia": "de:U-Bahnhof Rosa-Luxemburg-Platz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4104868,
+          52.5276951
+        ]
+      },
+      "id": "node/5219756617"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5219756618",
+        "check_date:wheelchair": "2022-11-06",
+        "name": "Mierendorffplatz",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "indoor",
+        "toilets:wheelchair": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q571393",
+        "wikipedia": "de:U-Bahnhof Mierendorffplatz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3047721,
+          52.5263437
+        ]
+      },
+      "id": "node/5219756618"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5250030091",
+        "loc_name": "U Stadtmitte",
+        "name": "Stadtmitte",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3898514,
+          52.5106178
+        ]
+      },
+      "id": "node/5250030091"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5250030092",
+        "alt_name": "U Hallesches Tor",
+        "name": "Hallesches Tor",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikipedia": "de:U-Bahnhof Hallesches Tor"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3917126,
+          52.4990257
+        ]
+      },
+      "id": "node/5250030092"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5250030093",
+        "loc_name": "U Möckernbrücke",
+        "name": "Möckernbrücke",
+        "public_transport": "station",
+        "railway": "station",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q704716"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3828981,
+          52.4991179
+        ]
+      },
+      "id": "node/5250030093"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5284961126",
+        "light_rail": "yes",
+        "name": "Ostkreuz (Ringbahn)",
+        "network": "Verkehrsverbund Berlin-Brandenburg",
+        "network:short": "VBB",
+        "note": "Bitte die 5 Nodes mit uic_ref in Bezug auf das Eisenbahn-Tagging so lassen und auch die Position nicht verändern. Die beiden Stadtbahn-Nodes BOKS und BOKR werden gerendert.",
+        "official_name": "Berlin Ostkreuz (Ringbahn-S)",
+        "operator": "DB Netz AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BOK",
+        "railway:station_category": "3",
+        "site": "Bf",
+        "station": "light_rail",
+        "uic_name": "Berlin Ostkreuz (S)",
+        "uic_ref": "8089028",
+        "wheelchair": "yes",
+        "wikidata": "Q660045",
+        "wikipedia": "de:Bahnhof Berlin Ostkreuz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4691195,
+          52.5029812
+        ]
+      },
+      "id": "node/5284961126"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5320311289",
+        "contact:website": "http://www.s-bahn-berlin.de/fahrplanundnetz/bahnhof/friedrichstrasse/59",
+        "level": "-2",
+        "light_rail": "yes",
+        "name": "Friedrichstraße",
+        "network": "Verkehrsverbund Berlin-Brandenburg",
+        "network:short": "VBB",
+        "operator": "DB Netz AG",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "BFSTT",
+        "railway:station_category": "2",
+        "station": "light_rail",
+        "surveillance": "indoor",
+        "uic_ref": "8011306",
+        "wheelchair": "yes",
+        "wikidata": "Q702402",
+        "wikipedia": "de:Bahnhof Berlin Friedrichstraße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3866879,
+          52.520768
+        ]
+      },
+      "id": "node/5320311289"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5713678269",
+        "name": "Heinrich-Heine-Straße",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q663204",
+        "wikipedia": "de:U-Bahnhof Heinrich-Heine-Straße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4160272,
+          52.5104484
+        ]
+      },
+      "id": "node/5713678269"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5713678270",
+        "name": "Eberswalder Straße",
+        "old_name": "U Dimitroffstraße",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q571382",
+        "wikipedia": "de:U-Bahnhof Eberswalder Straße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4121769,
+          52.5415154
+        ]
+      },
+      "id": "node/5713678270"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5713944071",
+        "name": "Bernauer Straße",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q689293",
+        "wikipedia": "de:U-Bahnhof Bernauer Straße"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3966175,
+          52.5374381
+        ]
+      },
+      "id": "node/5713944071"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8170768521",
+        "line": "U5;U6",
+        "name": "Unter den Linden",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "indoor",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.38882,
+          52.5169884
+        ]
+      },
+      "id": "node/8170768521"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8170768522",
+        "name": "Rotes Rathaus",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "indoor",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4080828,
+          52.5188425
+        ]
+      },
+      "id": "node/8170768522"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9082329700",
+        "name": "Museumsinsel",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "surveillance": "indoor",
+        "wheelchair": "yes",
+        "wikidata": "Q1459924",
+        "wikimedia_commons": "Category:U-Bahnhof Museumsinsel",
+        "wikipedia": "en:Museumsinsel (Berlin U-Bahn)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3988844,
+          52.5172626
+        ]
+      },
+      "id": "node/9082329700"
+    }
+  ]
+}

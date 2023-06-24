@@ -1,0 +1,9 @@
+[out:json][timeout:25];
+(
+  node["railway"="station"]({{bbox}});
+  node["station"="subway"]({{bbox}});
+
+);
+out body;
+>;
+out skel qt;

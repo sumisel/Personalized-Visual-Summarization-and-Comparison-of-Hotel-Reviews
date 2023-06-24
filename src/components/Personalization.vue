@@ -20,7 +20,7 @@ const poiMeta = inject("poiMeta");
       </div>
       <v-autocomplete
         label="Choose your favorites"
-        :items="poiStore.pois"
+        :items="Object.keys(poiMeta)"
         v-model="poiStore.selectedPois"
         chips
         closable-chips

@@ -162,6 +162,19 @@ export default {
         .attr("d", path.pointRadius(2));
     });
 
+    // draw public transport stations
+    d3.json(`./geo/public_transport_${cityId}.geojson`).then((geojson) => {
+      const path = d3.geoPath().projection(projection);
+      svg
+        .select(".public_transport")
+        .selectAll("path")
+        .data(geojson.features)
+        .enter()
+        .append("path")
+        .attr("fill", this.poiMeta.public_transport.color)
+        .attr("d", path.pointRadius(6));
+    });
+
     // draw markers for each hotel
     const markers = svg
       .select(".markers")
@@ -225,7 +238,7 @@ export default {
       this.poiStore.selectedPois.forEach((poi) => {
         let positive = true;
         this.hotelStore.selectedHotelIds.forEach((hotelId) => {
-          if (!this.hotelMeta[hotelId].poiInfo[poi].startsWith("(+)")) {
+          if (!this.hotelMeta[hotelId].poiInfo[poi]?.startsWith("(+)")) {
             positive = false;
           }
         });
@@ -253,6 +266,10 @@ export default {
         <g
           class="restaurants"
           v-show="poiStore.selectedPois.includes('restaurants')"
+        ></g>
+        <g
+          class="public_transport"
+          v-show="poiStore.selectedPois.includes('public_transport')"
         ></g>
         <g class="markers"></g>
       </g>

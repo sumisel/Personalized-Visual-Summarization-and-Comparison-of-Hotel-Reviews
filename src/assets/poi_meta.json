@@ -6,5 +6,9 @@
     "sightseeing": {
         "icon": "mdi-binoculars",
         "color": "#e3e8ca"
+    },
+    "public_transport": {
+        "icon": "mdi-bus",
+        "color": "#d0cae8"
     }
 }
