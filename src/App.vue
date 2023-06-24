@@ -125,11 +125,11 @@ const scrollTo = (hash) => {
       // source: https://css-tricks.com/snippets/css/typewriter-effect/
       font-family: monospace;
       overflow: hidden; /* Ensures the content is not revealed until the animation */
-      border-right: 0.15em solid orange; /* The typwriter cursor */
+      border-right: 0.15em solid black; /* The typwriter cursor */
       white-space: nowrap; /* Keeps the content on a single line */
       margin: 0 auto; /* Gives that scrolling effect as the typing happens */
       letter-spacing: 0.17em; /* Adjust as needed */
-      animation: typing 8s steps(68, end), blink-caret 0.5s step-end infinite;
+      animation: typing 8s steps(68, end), blink-caret 0.8s step-end infinite;
       font-size: 1.2rem;
     }
   }
@@ -151,7 +151,7 @@ const scrollTo = (hash) => {
       border-color: transparent;
     }
     50% {
-      border-color: orange;
+      border-color: black;
     }
   }
 }
