@@ -66,16 +66,8 @@ export default {
       const svg = d3.select("#svg-map");
       svg
         .select(".markers")
-        .selectAll("text")
-        .filter((text) => text.id === hotelId)
-        .transition()
-        .attr("opacity", 1)
-        .attr("font-size", "20px");
-      svg
-        .select(".markers")
         .selectAll("circle")
         .filter((circle) => circle.id !== hotelId)
-        .transition()
         .attr("opacity", 0.2);
       // zoom on the selected hotel
       const projectedLocation = this.projection([
