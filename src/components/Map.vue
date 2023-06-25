@@ -26,16 +26,6 @@ export default {
     const width = undefined;
     const height = undefined;
 
-    function updateSelectedHotels() {
-      d3.select("#svg-map")
-        .select(".markers")
-        .selectAll("circle")
-        .transition()
-        .attr("fill", (d) =>
-          this.hotelStore.hotelIsSelected(d.id) ? "black" : "white"
-        );
-    }
-
     return {
       map,
       hotelStore,
@@ -46,7 +36,6 @@ export default {
       projection,
       width,
       height,
-      updateSelectedHotels,
     };
   },
   data() {
@@ -102,16 +91,25 @@ export default {
           }) scale(${k}) translate(${-x}, ${-y})`
         );
     },
+    resetZoom() {
+      this.resetAllMarkers();
+      d3.select("#svg-map")
+        .select(".map-container")
+        .transition()
+        .attr("transform", "");
+      this.focusedHotel = "";
+    },
+    updateSelectedHotels() {
+      d3.select("#svg-map")
+        .select(".markers")
+        .selectAll("circle")
+        .transition()
+        .attr("fill", (d) =>
+          this.hotelStore.hotelIsSelected(d.id) ? "black" : "white"
+        );
+    },
   },
   mounted() {
-    function resetZoom() {
-      that.resetAllMarkers();
-      svg.select(".map-container").transition().attr("transform", "");
-      that.focusedHotel = "";
-    }
-
-    const that = this;
-
     const cityId = this.city.name.replace(" ", "_").toLowerCase();
 
     this.width = d3.select("#app").node().getBoundingClientRect().width - 344;
@@ -120,7 +118,7 @@ export default {
       .select("#svg-map")
       .attr("width", this.width)
       .attr("height", this.height)
-      .on("click", resetZoom);
+      .on("click", this.resetZoom);
 
     this.projection = d3
       .geoMercator()
@@ -243,9 +241,7 @@ export default {
       .attr("cy", (d) => this.projection([d.location.long, d.location.lat])[1])
       .attr("r", 10)
       .attr("stroke", "black")
-      .attr("fill", "#ccc")
       .attr("stroke-width", "2px")
-      // focus on click
       .on("click", (event, d) => {
         this.focusOnHotel(d.id);
         event.stopPropagation();
