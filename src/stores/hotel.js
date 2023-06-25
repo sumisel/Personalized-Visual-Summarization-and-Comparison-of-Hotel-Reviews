@@ -1,10 +1,14 @@
 import { inject } from 'vue';
 import { defineStore } from 'pinia'
 
+import { useCategoryStore } from "./category.js";
+
+
 export const useHotelStore = defineStore({
   id: 'hotel',
   state: () => ({
     selectedHotelIds: [],
+    categoryStore: useCategoryStore(),
   }),
   getters: {
     minRatings: (state) => {
@@ -42,6 +46,17 @@ export const useHotelStore = defineStore({
         }
       })
       return maxRatings
+    },
+    overallRating: (state) => {
+      const hotelMeta = inject("hotelMeta");
+      return (hotelId) =>
+        state.categoryStore.categories.reduce(
+          (sum, category) =>
+          (sum +=
+            hotelMeta[hotelId].ratings[category.id] * state.categoryStore.normalizedCategoryValues[category.id]
+          ),
+          0
+        )
     },
     hotelIsSelected: (state) => {
       return (id) => state.selectedHotelIds.includes(id);

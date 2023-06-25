@@ -21,6 +21,7 @@ export default {
     const hotelMeta = inject("hotelMeta");
     const city = inject("city");
     const poiMeta = inject("poiMeta");
+    const reviews = inject("reviews");
 
     const projection = undefined;
     const width = undefined;
@@ -33,6 +34,7 @@ export default {
       hotelMeta,
       city,
       poiMeta,
+      reviews,
       projection,
       width,
       height,
@@ -291,6 +293,7 @@ export default {
 </script>
 
 <template>
+  <!-- Map -->
   <div class="map-container">
     <svg id="svg-map" class="map">
       <g class="map-container">
@@ -313,6 +316,7 @@ export default {
       </g>
     </svg>
     <div class="dummy"></div>
+    <!-- Overlays -->
     <div class="map-overlay">
       <v-alert
         class="mb-2 mt-2 instruction text-center elevation-6"
@@ -333,9 +337,16 @@ export default {
           >Choose your favorite points of interests, to see related information.
         </strong>
       </v-alert>
-      <div class="hotel-header elevation-6 d-flex" v-if="focusedHotel">
-        <div class="text-h5">{{ hotelMeta[focusedHotel]?.name }}</div>
-      </div>
+      <v-card class="hotel-header elevation-6" v-if="focusedHotel">
+        <v-card-title>
+          {{ hotelMeta[focusedHotel]?.name }}
+        </v-card-title>
+        <v-card-text
+          >Rated
+          {{ hotelStore.overallRating(focusedHotel).toFixed(1) }} according to
+          currently set priorities</v-card-text
+        >
+      </v-card>
       <div class="switch-container" v-if="focusedHotel">
         <v-switch
           :model-value="hotelStore.hotelIsSelected(focusedHotel)"
@@ -526,10 +537,6 @@ export default {
       left: 27.5%;
       width: 40%;
       height: 80px;
-      padding: 0 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
     & .switch-container {
       top: -500px;
