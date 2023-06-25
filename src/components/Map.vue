@@ -20,6 +20,10 @@ export default {
     const city = inject("city");
     const poiMeta = inject("poiMeta");
 
+    const projection = undefined;
+    const width = undefined;
+    const height = undefined;
+
     function updateSelectedHotels() {
       d3.select("#svg-map")
         .select(".markers")
@@ -37,6 +41,9 @@ export default {
       hotelMeta,
       city,
       poiMeta,
+      projection,
+      width,
+      height,
       updateSelectedHotels,
     };
   },
@@ -46,17 +53,57 @@ export default {
       selectionChanged: false,
     };
   },
-  mounted() {
-    function resetAllMarkers() {
-      svg
+  methods: {
+    resetAllMarkers() {
+      d3.select("#svg-map")
         .select(".markers")
         .selectAll("circle")
         .attr("opacity", 1)
         .attr("r", 10);
-    }
-
+    },
+    focusOnHotel(hotelId) {
+      this.focusedHotel = hotelId;
+      this.resetAllMarkers();
+      d3.select(`#svg-map .markers circle[id="${hotelId}"]`)
+        .transition()
+        .attr("r", 60)
+        .attr("opacity", 0.5);
+      const svg = d3.select("#svg-map");
+      svg
+        .select(".markers")
+        .selectAll("text")
+        .filter((text) => text.id === hotelId)
+        .transition()
+        .attr("opacity", 1)
+        .attr("font-size", "20px");
+      svg
+        .select(".markers")
+        .selectAll("circle")
+        .filter((circle) => circle.id !== hotelId)
+        .transition()
+        .attr("opacity", 0.2);
+      // zoom on the selected hotel
+      const projectedLocation = this.projection([
+        this.hotelMeta[hotelId].location.long,
+        this.hotelMeta[hotelId].location.lat,
+      ]);
+      const x = projectedLocation[0];
+      const y = projectedLocation[1];
+      const k = 2;
+      svg
+        .select(".map-container")
+        .transition()
+        .attr(
+          "transform",
+          `translate(${this.width / 2}, ${
+            this.height / 2
+          }) scale(${k}) translate(${-x}, ${-y})`
+        );
+    },
+  },
+  mounted() {
     function resetZoom() {
-      resetAllMarkers();
+      that.resetAllMarkers();
       svg.select(".map-container").transition().attr("transform", "");
       that.focusedHotel = "";
     }
@@ -65,19 +112,19 @@ export default {
 
     const cityId = this.city.name.replace(" ", "_").toLowerCase();
 
-    const width = d3.select("#app").node().getBoundingClientRect().width - 344;
-    const height = 600;
+    this.width = d3.select("#app").node().getBoundingClientRect().width - 344;
+    this.height = 600;
     const svg = d3
       .select("#svg-map")
-      .attr("width", width)
-      .attr("height", height)
+      .attr("width", this.width)
+      .attr("height", this.height)
       .on("click", resetZoom);
 
-    const projection = d3
+    this.projection = d3
       .geoMercator()
       .scale(600000)
       .center([this.city.center[1], this.city.center[0]])
-      .translate([width / 2, height / 2]);
+      .translate([this.width / 2, this.height / 2]);
 
     // draw districts
     d3.json(`./geo/districts_${cityId}.geojson`).then((geojson) => {
@@ -87,7 +134,7 @@ export default {
           feature.geometry.type === "MultiPolygon"
         );
       });
-      const path = d3.geoPath().projection(projection);
+      const path = d3.geoPath().projection(this.projection);
       svg
         .select(".districts")
         .selectAll("path")
@@ -105,7 +152,7 @@ export default {
       var linesOnly = geojson.features.filter(function (feature) {
         return feature.geometry.type === "LineString";
       });
-      const path = d3.geoPath().projection(projection);
+      const path = d3.geoPath().projection(this.projection);
       svg
         .select(".waterways")
         .selectAll("path")
@@ -123,7 +170,7 @@ export default {
       var linesOnly = geojson.features.filter(function (feature) {
         return feature.geometry.type === "LineString";
       });
-      const path = d3.geoPath().projection(projection);
+      const path = d3.geoPath().projection(this.projection);
       svg
         .select(".roads")
         .selectAll("path")
@@ -138,7 +185,7 @@ export default {
 
     // draw sightseeing
     d3.json(`./geo/sightseeing_${cityId}.geojson`).then((geojson) => {
-      const path = d3.geoPath().projection(projection);
+      const path = d3.geoPath().projection(this.projection);
       svg
         .select(".sightseeing")
         .selectAll("path")
@@ -156,7 +203,7 @@ export default {
       var pointsOnly = geojson.features.filter(function (feature) {
         return feature.geometry.type === "Point";
       });
-      const path = d3.geoPath().projection(projection);
+      const path = d3.geoPath().projection(this.projection);
       svg
         .select(".restaurants")
         .selectAll("path")
@@ -169,7 +216,7 @@ export default {
 
     // draw public transport stations
     d3.json(`./geo/public_transport_${cityId}.geojson`).then((geojson) => {
-      const path = d3.geoPath().projection(projection);
+      const path = d3.geoPath().projection(this.projection);
       svg
         .select(".public_transport")
         .selectAll("path")
@@ -189,43 +236,16 @@ export default {
       )
       .enter()
       .append("circle")
-      .attr("cx", (d) => projection([d.location.long, d.location.lat])[0])
-      .attr("cy", (d) => projection([d.location.long, d.location.lat])[1])
+      .attr("id", (d) => d.id)
+      .attr("cx", (d) => this.projection([d.location.long, d.location.lat])[0])
+      .attr("cy", (d) => this.projection([d.location.long, d.location.lat])[1])
       .attr("r", 10)
       .attr("stroke", "black")
       .attr("fill", "#ccc")
       .attr("stroke-width", "2px")
       // focus on click
       .on("click", (event, d) => {
-        this.focusedHotel = d.id;
-        resetAllMarkers();
-        d3.select(event.target).transition().attr("r", 60).attr("opacity", 0.5);
-        svg
-          .select(".markers")
-          .selectAll("text")
-          .filter((text) => text.id === d.id)
-          .transition()
-          .attr("opacity", 1)
-          .attr("font-size", "20px");
-        svg
-          .select(".markers")
-          .selectAll("circle")
-          .filter((circle) => circle.id !== d.id)
-          .transition()
-          .attr("opacity", 0.2);
-        // zoom on the selected hotel
-        const x = projection([d.location.long, d.location.lat])[0];
-        const y = projection([d.location.long, d.location.lat])[1];
-        const k = 2;
-        svg
-          .select(".map-container")
-          .transition()
-          .attr(
-            "transform",
-            `translate(${width / 2}, ${
-              height / 2
-            }) scale(${k}) translate(${-x}, ${-y})`
-          );
+        this.focusOnHotel(d.id);
         event.stopPropagation();
       });
 
@@ -369,9 +389,11 @@ export default {
       :index="index"
       :listLength="hotelStore.selectedHotelIds.length"
     >
-      <strong
-        ><v-icon class="inline" icon="mdi-circle" size="x-small"></v-icon>
-        {{ hotelMeta[hotelId].name }}</strong
+      <a @click="focusOnHotel(hotelId)"
+        ><strong
+          ><v-icon class="inline" icon="mdi-circle" size="x-small"></v-icon>
+          {{ hotelMeta[hotelId].name }}</strong
+        ></a
       > </InlineListItem
     >.
     <span
@@ -422,17 +444,6 @@ export default {
 </template>
 
 <style lang="scss">
-.text {
-  & .v-icon.inline {
-    display: relative;
-    top: -2px;
-  }
-  & .v-chip {
-    display: relative;
-    top: -2px;
-  }
-}
-
 .map-container {
   & .map {
     height: 600px;
@@ -492,6 +503,25 @@ export default {
         margin: 2px;
       }
     }
+  }
+}
+
+.text {
+  & a {
+    text-decoration: none;
+    cursor: pointer;
+    text-decoration: underline;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+  }
+  & .v-icon.inline {
+    display: relative;
+    top: -2px;
+  }
+  & .v-chip {
+    display: relative;
+    top: -2px;
   }
 }
 </style>
