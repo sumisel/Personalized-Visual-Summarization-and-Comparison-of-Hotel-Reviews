@@ -15,8 +15,8 @@ const sections = [
   },
   {
     id: "ratings",
-    title: "Hotel Ratings",
-    icon: "mdi-office-building",
+    title: "Ratings",
+    icon: "mdi-star",
     component: HotelOverview,
   },
   {

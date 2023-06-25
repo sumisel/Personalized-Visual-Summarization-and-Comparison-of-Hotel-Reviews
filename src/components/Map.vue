@@ -337,6 +337,7 @@ export default {
         </v-card-title>
         <v-card-text
           >Rated
+          <v-icon icon="mdi-star" size="x-small" class="inline"></v-icon>
           <strong>{{
             hotelStore.overallRating(focusedHotel).toFixed(1)
           }}</strong>
@@ -586,13 +587,14 @@ export default {
       background-color: rgba(0, 0, 0, 0.05);
     }
   }
-  & .v-icon.inline {
-    display: relative;
-    top: -2px;
-  }
   & .v-chip {
     display: relative;
     top: -2px;
   }
+}
+
+.v-icon.inline {
+  display: relative;
+  top: -2px;
 }
 </style>
