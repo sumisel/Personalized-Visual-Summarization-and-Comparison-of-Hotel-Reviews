@@ -19,6 +19,7 @@ export default {
     const hotelStore = useHotelStore();
     const poiStore = usePoiStore();
     const hotelMeta = inject("hotelMeta");
+    const hotelIds = Object.keys(hotelMeta);
     const city = inject("city");
     const poiMeta = inject("poiMeta");
     const reviews = inject("reviews");
@@ -32,6 +33,7 @@ export default {
       hotelStore,
       poiStore,
       hotelMeta,
+      hotelIds,
       city,
       poiMeta,
       reviews,
@@ -343,22 +345,40 @@ export default {
         </v-card-title>
         <v-card-text
           >Rated
-          {{ hotelStore.overallRating(focusedHotel).toFixed(1) }} according to
-          currently set priorities</v-card-text
+          <strong>{{
+            hotelStore.overallRating(focusedHotel).toFixed(1)
+          }}</strong>
+          according to current priorities</v-card-text
         >
+        <v-card-actions>
+          <v-btn
+            :disabled="hotelIds.indexOf(focusedHotel) === 0"
+            @click="focusOnHotel(hotelIds[hotelIds.indexOf(focusedHotel) - 1])"
+            >Previous</v-btn
+          >
+          <div class="switch-container">
+            <v-switch
+              :model-value="hotelStore.hotelIsSelected(focusedHotel)"
+              color="black"
+              @change="
+                hotelStore.toggleHotelSelection(focusedHotel);
+                updateSelectedHotels();
+                selectionChanged = true;
+              "
+              :label="
+                hotelStore.hotelIsSelected(focusedHotel)
+                  ? 'selected'
+                  : 'not selected'
+              "
+            ></v-switch>
+          </div>
+          <v-btn
+            :disabled="hotelIds.indexOf(focusedHotel) === hotelIds.length - 1"
+            @click="focusOnHotel(hotelIds[hotelIds.indexOf(focusedHotel) + 1])"
+            >Next</v-btn
+          >
+        </v-card-actions>
       </v-card>
-      <div class="switch-container" v-if="focusedHotel">
-        <v-switch
-          :model-value="hotelStore.hotelIsSelected(focusedHotel)"
-          color="black"
-          @change="
-            hotelStore.toggleHotelSelection(focusedHotel);
-            updateSelectedHotels();
-            selectionChanged = true;
-          "
-        >
-        </v-switch>
-      </div>
       <div
         class="hotel-details elevation-4"
         v-if="focusedHotel && poiStore.selectedPois.length"
@@ -526,21 +546,30 @@ export default {
       background-color: rgba(200, 200, 200, 0.8);
       color: #444;
       font-size: 0.9rem;
-      top: -590px;
+      top: -610px;
       width: 100%;
       padding: 0.2rem;
     }
 
     & .hotel-header {
       background-color: rgba(255, 255, 255, 0.8);
-      top: -530px;
-      left: 27.5%;
-      width: 40%;
-      height: 80px;
-    }
-    & .switch-container {
-      top: -500px;
-      left: 62.8%;
+      top: -560px;
+      left: 22.5%;
+      width: 50%;
+      height: 120px;
+      & .v-card-text {
+        padding-bottom: 0;
+      }
+      & .switch-container {
+        // center all elements
+        flex-grow: 1;
+        margin-left: 4.5rem;
+        & .v-switch {
+          max-height: 22px !important;
+          position: relative;
+          top: -17px;
+        }
+      }
     }
     & .hotel-details {
       background-color: rgba(255, 255, 255, 0.8);
