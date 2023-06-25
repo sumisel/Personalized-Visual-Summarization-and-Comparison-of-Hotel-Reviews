@@ -161,7 +161,7 @@ export default {
         .append("path")
         .attr("fill", "none")
         .attr("d", path)
-        .style("stroke", "#cdf")
+        .style("stroke", "#dff8fa")
         .style("stroke-width", "12px");
     });
 
@@ -179,7 +179,7 @@ export default {
         .append("path")
         .attr("fill", "none")
         .attr("d", path)
-        .style("stroke", "#fee")
+        .style("stroke", "#f5f5f5")
         .style("stroke-width", "4px");
     });
 
@@ -302,7 +302,7 @@ export default {
     <div class="dummy"></div>
     <div class="map-overlay">
       <v-alert
-        class="mb-2 mt-2 instruction text-center"
+        class="mb-2 mt-2 instruction text-center elevation-6"
         v-if="
           !selectionChanged ||
           hotelStore.selectedHotelIds.length < 2 ||
@@ -454,6 +454,9 @@ export default {
       & circle {
         cursor: pointer;
         filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+        &:hover {
+          filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.8));
+        }
       }
     }
   }
