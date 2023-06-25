@@ -11,20 +11,14 @@ const hotelStore = useHotelStore();
 const categoryStore = useCategoryStore();
 
 const props = defineProps({
-  hotel: Object,
+  hotelId: String,
 });
 
 const hotelMeta = inject("hotelMeta");
+const hotel = hotelMeta[props.hotelId];
 
 const offset = computed(() => {
-  const overallRating = categoryStore.categories.reduce(
-    (sum, category) =>
-      (sum +=
-        props.hotel.ratings[category.id] *
-        categoryStore.normalizedCategoryValues[category.id]),
-    0
-  );
-  return `${overallRating * 80}px`;
+  return `${hotelStore.overallRating(props.hotelId) * 80}px`;
 });
 
 const bestCategories = computed(() => {
@@ -38,12 +32,12 @@ const bestCategories = computed(() => {
     sleep: 5.0,
   };
   hotelStore.selectedHotelIds.forEach((hotel2Id) => {
-    if (props.hotel.id != hotel2Id) {
+    if (props.hotelId != hotel2Id) {
       const hotel2 = hotelMeta[hotel2Id];
       categories.forEach((category) => {
         ratingsDiff[category.id] = Math.min(
           ratingsDiff[category.id],
-          props.hotel.ratings[category.id] - hotel2.ratings[category.id]
+          hotel.ratings[category.id] - hotel2.ratings[category.id]
         );
       });
     }
@@ -61,10 +55,8 @@ const topCategories = computed(() => {
   const topCategories = categoryStore.relevantCategories.filter(
     (category) =>
       !bestCategories.value.includes(category.id) &&
-      props.hotel.ratings[category.id] - hotelStore.minRatings[category.id] >
-        0.29 &&
-      props.hotel.ratings[category.id] - hotelStore.maxRatings[category.id] >
-        -0.29
+      hotel.ratings[category.id] - hotelStore.minRatings[category.id] > 0.29 &&
+      hotel.ratings[category.id] - hotelStore.maxRatings[category.id] > -0.29
   );
   return topCategories.map((category) => category.id);
 });
@@ -83,7 +75,7 @@ const topCategories = computed(() => {
         <Glyph
           :ratings="hotel.ratings"
           :minRatings="hotelStore.minRatings"
-          :hotelId="hotel.id"
+          :hotelId="hotelId"
           :hotelName="hotel.name"
         ></Glyph>
       </v-avatar>

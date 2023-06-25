@@ -123,7 +123,7 @@ export default {
         })
         .on("mouseout", () => {
           this.categoryStore.unhover();
-        })
+        });
 
       d3.select(this.svg)
         .selectAll("text")
@@ -140,13 +140,13 @@ export default {
 
 
 <style lang="scss">
-  .v-tooltip__content {
-    opacity: 0 !important;
-    --tooltip-background-color: #000 !important;
-    --tooltip-color: #fff !important;
-    --tooltip-opacity: 0 !important;
-    --tooltip-padding: 5px 5px !important;
-  }
+.v-tooltip__content {
+  opacity: 0 !important;
+  --tooltip-background-color: #000 !important;
+  --tooltip-color: #fff !important;
+  --tooltip-opacity: 0 !important;
+  --tooltip-padding: 5px 5px !important;
+}
 </style>
 
 <template>

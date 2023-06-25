@@ -47,7 +47,7 @@ export default {
       <HotelRating
         v-for="hotelId in hotelStore.selectedHotelIds"
         :key="hotelId"
-        :hotel="hotelMeta[hotelId]"
+        :hotelId="hotelId"
       ></HotelRating>
       <v-label class="ml-4"
         >Rating weighted by priorities <v-icon icon="mdi-arrow-right"></v-icon
