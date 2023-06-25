@@ -7,10 +7,12 @@ import { useHotelStore } from "@/stores/hotel";
 import { usePoiStore } from "@/stores/poi";
 
 import InlineListItem from "./InlineListItem.vue";
+import PoiChip from "./PoiChip.vue";
 
 export default {
   components: {
     InlineListItem,
+    PoiChip,
   },
   setup() {
     const map = ref();
@@ -449,14 +451,10 @@ export default {
         :index="index"
         :listLength="poisWithAllPositiveScores.length"
       >
-        <v-chip
-          :style="{
-            backgroundColor: poiMeta[poi].color,
-          }"
-          ><v-icon start :icon="poiMeta[poi].icon"></v-icon> {{ poi }}</v-chip
-        ></InlineListItem
+        <PoiChip :poi="poi"></PoiChip></InlineListItem
       >, the selected hotels are all in a favorable location.
     </span>
+
     <span
       v-if="
         hotelsWithAllPositiveScores.length <
@@ -464,6 +462,7 @@ export default {
         hotelsWithAllPositiveScores.length > 0
       "
     >
+      <span v-if="poisWithAllPositiveScores.length > 0">But only </span>
       <InlineListItem
         v-for="(hotel, index) in hotelsWithAllPositiveScores"
         :key="hotel"
@@ -477,9 +476,13 @@ export default {
           ></a
         >
       </InlineListItem>
-      <span v-if="hotelsWithAllPositiveScores.length === 1"> is</span>
-      <span v-else> are</span> in fitting places for all selected points of
-      interest.</span
+      <span v-if="hotelsWithAllPositiveScores.length === 1">
+        is in a attractive place</span
+      ><span v-else> are in good places</span> for
+      <span v-if="poiStore.selectedPois.length > 1"
+        >all selected points of interest</span
+      ><span v-else><PoiChip :poi="poiStore.selectedPois[0]"></PoiChip></span
+      >.</span
     >
   </div>
 </template>
