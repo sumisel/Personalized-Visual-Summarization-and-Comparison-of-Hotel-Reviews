@@ -273,6 +273,21 @@ export default {
       });
       return positivePois;
     },
+    hotelsWithAllPositiveScores() {
+      const positiveHotels = [];
+      this.hotelStore.selectedHotelIds.forEach((hotelId) => {
+        let positive = true;
+        this.poiStore.selectedPois.forEach((poi) => {
+          if (!this.hotelMeta[hotelId].poiInfo[poi]?.startsWith("(+)")) {
+            positive = false;
+          }
+        });
+        if (positive) {
+          positiveHotels.push(hotelId);
+        }
+      });
+      return positiveHotels;
+    },
   },
 };
 </script>
@@ -368,6 +383,7 @@ export default {
       </div>
     </div>
   </div>
+  <!-- Paragraph on the selected hotels -->
   <div class="text mt-4">
     Among the available
     <strong>{{ Object.keys(hotelMeta).length }}</strong> hotels
@@ -418,6 +434,7 @@ export default {
       >.</span
     >
   </div>
+  <!-- Paragraph on the selected POIs -->
   <div
     class="text mt-4"
     v-if="
@@ -440,6 +457,30 @@ export default {
         ></InlineListItem
       >, the selected hotels are all in a favorable location.
     </span>
+    <span
+      v-if="
+        hotelsWithAllPositiveScores.length <
+          hotelStore.selectedHotelIds.length &&
+        hotelsWithAllPositiveScores.length > 0
+      "
+    >
+      <InlineListItem
+        v-for="(hotel, index) in hotelsWithAllPositiveScores"
+        :key="hotel"
+        :index="index"
+        :listLength="hotelsWithAllPositiveScores.length"
+      >
+        <a @click="focusOnHotel(hotel)"
+          ><strong
+            ><v-icon class="inline" icon="mdi-circle" size="x-small"></v-icon>
+            {{ hotelMeta[hotel].name }}</strong
+          ></a
+        >
+      </InlineListItem>
+      <span v-if="hotelsWithAllPositiveScores.length === 1"> is</span>
+      <span v-else> are</span> in fitting places for all selected points of
+      interest.</span
+    >
   </div>
 </template>
 
