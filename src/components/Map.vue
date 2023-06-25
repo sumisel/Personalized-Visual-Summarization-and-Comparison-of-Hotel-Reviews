@@ -6,7 +6,12 @@ import { inject, ref } from "vue";
 import { useHotelStore } from "@/stores/hotel";
 import { usePoiStore } from "@/stores/poi";
 
+import InlineListItem from "./InlineListItem.vue";
+
 export default {
+  components: {
+    InlineListItem,
+  },
   setup() {
     const map = ref();
     const hotelStore = useHotelStore();
@@ -358,16 +363,17 @@ export default {
     >
     selected<span v-if="hotelStore.selectedHotelIds.length > 1">: </span
     ><span v-else>! </span>
-    <span
+    <InlineListItem
       v-for="(hotelId, index) in hotelStore.selectedHotelIds"
       :key="hotelId"
+      :index="index"
+      :listLength="hotelStore.selectedHotelIds.length"
     >
       <strong
         ><v-icon class="inline" icon="mdi-circle" size="x-small"></v-icon>
         {{ hotelMeta[hotelId].name }}</strong
-      ><span v-if="index < hotelStore.selectedHotelIds.length - 1">, </span
-      ><span v-else>. </span>
-    </span>
+      > </InlineListItem
+    >.
     <span
       v-if="
         hotelStore.selectedHotelIds.length > 1 &&
@@ -398,16 +404,18 @@ export default {
   >
     <span v-if="poisWithAllPositiveScores.length > 0"
       >With respect to
-      <span v-for="(poi, index) in poisWithAllPositiveScores" :key="poi"
-        ><v-chip
+      <InlineListItem
+        v-for="(poi, index) in poisWithAllPositiveScores"
+        :key="poi"
+        :index="index"
+        :listLength="poisWithAllPositiveScores.length"
+      >
+        <v-chip
           :style="{
             backgroundColor: poiMeta[poi].color,
           }"
           ><v-icon start :icon="poiMeta[poi].icon"></v-icon> {{ poi }}</v-chip
-        ><span v-if="index < poisWithAllPositiveScores.length - 2">, </span
-        ><span v-else-if="index === poisWithAllPositiveScores.length - 2">
-          and
-        </span> </span
+        ></InlineListItem
       >, the selected hotels are all in a favorable location.
     </span>
   </div>
