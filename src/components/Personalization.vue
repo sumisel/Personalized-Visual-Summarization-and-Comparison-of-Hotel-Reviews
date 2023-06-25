@@ -5,6 +5,7 @@ import { storeToRefs } from "pinia";
 import { useCategoryStore } from "../stores/category.js";
 import { usePoiStore } from "../stores/poi";
 import { inject } from "vue";
+import PoiChip from "./PoiChip.vue";
 const categoryStore = useCategoryStore();
 const { categories } = storeToRefs(categoryStore);
 const poiStore = usePoiStore();
@@ -27,14 +28,7 @@ const poiMeta = inject("poiMeta");
         multiple
       >
         <template v-slot:chip="{ props, item }">
-          <v-chip
-            v-bind="props"
-            :prepend-icon="poiMeta[item.raw].icon"
-            :text="item.raw"
-            :style="{
-              backgroundColor: poiMeta[item.raw].color,
-            }"
-          ></v-chip>
+          <PoiChip :poi="item.raw" v-bind="props"></PoiChip>
         </template>
         <template v-slot:item="{ props, item }">
           <v-list-item

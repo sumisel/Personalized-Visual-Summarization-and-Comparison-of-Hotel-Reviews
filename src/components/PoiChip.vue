@@ -13,6 +13,7 @@ const props = defineProps({
     :style="{
       backgroundColor: poiMeta[poi].color,
     }"
-    ><v-icon start :icon="poiMeta[poi].icon"></v-icon> {{ poi }}</v-chip
+    ><v-icon start :icon="poiMeta[poi].icon"></v-icon>
+    {{ poi.replaceAll("_", " ") }}</v-chip
   >
 </template>
