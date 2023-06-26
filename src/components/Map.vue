@@ -464,7 +464,7 @@ export default {
     "
   >
     <span v-if="poisWithAllPositiveScores.length > 0"
-      >With respect to
+      >Regarding
       <InlineListItem
         v-for="(poi, index) in poisWithAllPositiveScores"
         :key="poi"
