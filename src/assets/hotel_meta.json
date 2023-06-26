@@ -1,7 +1,7 @@
 {
     "Berlin": {
         "Hotel_Review-g187323-d230550-Reviews-Park_Inn_by_Radisson_Berlin_Alexanderplatz-Berlin.html": {
-            "name": "Park Inn by Radisson Berlin Alexanderplatz",
+            "name": "Alexanderplatz Apex",
             "ratings": {
                 "cleanliness": 4.336488812392427,
                 "service": 3.80564263322884,
@@ -22,7 +22,7 @@
             }
         },
         "Hotel_Review-g187323-d589462-Reviews-Melia_Berlin-Berlin.html": {
-            "name": "Melia Berlin",
+            "name": "Mitte Metropolitan",
             "ratings": {
                 "cleanliness": 4.797733711048159,
                 "service": 4.528343666961913,
@@ -43,7 +43,7 @@
             }
         },
         "Hotel_Review-g187323-d781064-Reviews-Adina_Apartment_Hotel_Berlin_Checkpoint_Charlie-Berlin.html": {
-            "name": "Adina Apartment Berlin Checkpoint Charlie",
+            "name": "The Iron Curtain Inn",
             "ratings": {
                 "cleanliness": 4.773809523809524,
                 "service": 4.620412267471091,
@@ -64,7 +64,7 @@
             }
         },
         "Hotel_Review-g187323-d190694-Reviews-Hotel_Adlon_Kempinski-Berlin.html": {
-            "name": "Adlon Kempinski",
+            "name": "The Prussian Palace",
             "ratings": {
                 "cleanliness": 4.823367065317387,
                 "service": 4.640024405125076,
@@ -85,7 +85,7 @@
             }
         },
         "Hotel_Review-g187323-d191437-Reviews-The_Westin_Grand_Berlin-Berlin.html": {
-            "name": "The Westin Grand Berlin",
+            "name": "Brandenburg Boutique Hotel",
             "ratings": {
                 "cleanliness": 4.620503597122302,
                 "service": 4.239543726235741,
@@ -106,7 +106,7 @@
             }
         },
         "Hotel_Review-g187323-d1307675-Reviews-The_Circus_Hotel-Berlin.html": {
-            "name": "The Circus",
+            "name": "The East Side Elegance",
             "ratings": {
                 "cleanliness": 4.848214285714286,
                 "service": 4.809334092202618,
@@ -127,7 +127,7 @@
             }
         },
         "Hotel_Review-g187323-d233880-Reviews-Mercure_Hotel_Residenz_Berlin_Checkpoint_Charlie-Berlin.html": {
-            "name": "Mercure Residenz Berlin Checkpoint Charlie",
+            "name": "The Checkpoint Charlie Chateau",
             "ratings": {
                 "cleanliness": 4.732516222062005,
                 "service": 4.483793517406963,
@@ -148,7 +148,7 @@
             }
         },
         "Hotel_Review-g187323-d289019-Reviews-The_Ritz_Carlton_Berlin-Berlin.html": {
-            "name": "The Ritz Carlton Berlin",
+            "name": "Potsdamer Platz Pavilion",
             "ratings": {
                 "cleanliness": 4.815061963775024,
                 "service": 4.6216783216783215,
@@ -169,7 +169,7 @@
             }
         },
         "Hotel_Review-g187323-d202450-Reviews-Pullman_Berlin_Schweizerhof-Berlin.html": {
-            "name": "Pullman Berlin Schweizerhof",
+            "name": "Unity Boulevard Inn",
             "ratings": {
                 "cleanliness": 4.764764764764765,
                 "service": 4.615903975993999,
@@ -190,7 +190,7 @@
             }
         },
         "Hotel_Review-g187323-d638834-Reviews-Hotel_Berlin_Berlin-Berlin.html": {
-            "name": "Berlin Berlin",
+            "name": "Berliner Bear Lodge",
             "ratings": {
                 "cleanliness": 4.427480916030534,
                 "service": 4.116091109478325,
