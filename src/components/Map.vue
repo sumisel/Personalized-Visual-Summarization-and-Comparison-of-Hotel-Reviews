@@ -331,8 +331,17 @@ export default {
           >Choose your favorite points of interests, to see related information.
         </strong>
       </v-alert>
+      <!-- Header -->
       <v-card class="hotel-header elevation-6" v-if="focusedHotel">
         <v-card-title>
+          <v-avatar
+            color="#eee"
+            :image="`./img/hotels/${city.name
+              .replace(' ', '_')
+              .toLowerCase()}/${focusedHotel}.png`"
+            class="mr-2"
+          >
+          </v-avatar>
           {{ hotelMeta[focusedHotel]?.name }}
         </v-card-title>
         <v-card-text
