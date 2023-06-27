@@ -59,7 +59,7 @@ export default {
         .attr("r", 10);
     },
     focusOnHotel(hotelId) {
-      this.focusedHotel = hotelId;
+      this.focusedHotel = null;
       this.resetAllMarkers();
       d3.select(`#svg-map .markers circle[id="${hotelId}"]`)
         .transition()
@@ -90,6 +90,10 @@ export default {
             this.height / 2
           }) scale(${k}) translate(${-x}, ${-y})`
         );
+      // set focused hotel after transition duration
+      setTimeout(() => {
+        this.focusedHotel = hotelId;
+      }, TRANSITION_DURATION);
     },
     resetZoom() {
       this.resetAllMarkers();
@@ -380,7 +384,13 @@ export default {
             </v-avatar>
           </div>
           <div class="flex-grow-1">
-            <v-card-title>
+            <v-card-title
+              :style="{
+                'font-weight': hotelStore.hotelIsSelected(focusedHotel)
+                  ? 'bold'
+                  : 'normal',
+              }"
+            >
               {{ hotelMeta[focusedHotel]?.name }}
             </v-card-title>
             <v-card-text>
@@ -395,9 +405,9 @@ export default {
               <v-btn
                 :disabled="previousHotelId === null"
                 @click="focusOnHotel(previousHotelId)"
-                > <v-icon icon="mdi-arrow-left"></v-icon
-              ></v-btn
               >
+                <v-icon icon="mdi-arrow-left"></v-icon
+              ></v-btn>
               <div class="switch-container">
                 <v-switch
                   :model-value="hotelStore.hotelIsSelected(focusedHotel)"
