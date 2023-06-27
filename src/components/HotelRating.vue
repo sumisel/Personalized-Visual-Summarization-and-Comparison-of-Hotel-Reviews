@@ -10,6 +10,8 @@ import { useCategoryStore } from "../stores/category.js";
 const hotelStore = useHotelStore();
 const categoryStore = useCategoryStore();
 
+const city = inject("city");
+
 const props = defineProps({
   hotelId: String,
 });
@@ -65,7 +67,9 @@ const topCategories = computed(() => {
 <template>
   <v-card
     class="my-2 flex-grow-1 w-50"
-    :style="`margin-left: ${offset} !important;`"
+    :style="`margin-left: ${offset} !important; background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 76%, rgba(255, 255, 255, 0.5) 100%), url(./img/hotels/${city.name
+      .replace(' ', '_')
+      .toLowerCase()}/${hotelId}.png) right center / contain no-repeat; `"
     ><div class="d-flex flex-no-wrap justify-space-between">
       <div
         class="bar"
@@ -80,7 +84,13 @@ const topCategories = computed(() => {
         ></Glyph>
       </v-avatar>
       <div class="flex-grow-1">
-        <v-card-title class="text-h5">{{ hotel.name }}</v-card-title>
+        <!-- <v-img
+          :src="`./img/hotels/${city.name
+            .replace(' ', '_')
+            .toLowerCase()}/${hotelId}.png`"
+        > -->
+          <v-card-title class="text-h5">{{ hotel.name }}</v-card-title>
+        <!-- </v-img> -->
         <v-card-text>
           <div class="d-flex flex-row" v-if="bestCategories.length">
             <div class="flex-grow-0 mr-4">
