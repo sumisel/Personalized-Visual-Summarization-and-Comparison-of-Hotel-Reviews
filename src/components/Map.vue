@@ -333,25 +333,31 @@ export default {
       </v-alert>
       <!-- Header -->
       <v-card class="hotel-header elevation-6" v-if="focusedHotel">
-        <v-card-title>
-          <v-avatar
-            color="#eee"
-            :image="`./img/hotels/${city.name
-              .replace(' ', '_')
-              .toLowerCase()}/${focusedHotel}.png`"
-            class="mr-2"
-          >
-          </v-avatar>
-          {{ hotelMeta[focusedHotel]?.name }}
-        </v-card-title>
-        <v-card-text
-          >Rated
-          <v-icon icon="mdi-star" size="x-small" class="inline"></v-icon>
-          <strong>{{
-            hotelStore.overallRating(focusedHotel).toFixed(1)
-          }}</strong>
-          according to current priorities</v-card-text
-        >
+        <v-card-text>
+          <v-list-item class="w-100">
+            <template v-slot:prepend>
+              <v-avatar
+                color="#eee"
+                :image="`./img/hotels/${city.name
+                  .replace(' ', '_')
+                  .toLowerCase()}/${focusedHotel}.png`"
+                class="mr-4"
+              >
+              </v-avatar>
+            </template>
+            <v-list-item-title class="text-h6 pb-1">{{
+              hotelMeta[focusedHotel]?.name
+            }}</v-list-item-title>
+            <v-list-item-content>
+              Rated
+              <v-icon icon="mdi-star" size="x-small" class="inline"></v-icon>
+              <strong>{{
+                hotelStore.overallRating(focusedHotel).toFixed(1)
+              }}</strong>
+              according to current priorities
+            </v-list-item-content>
+          </v-list-item>
+        </v-card-text>
         <v-card-actions>
           <v-btn
             :disabled="hotelIds.indexOf(focusedHotel) === 0"
@@ -561,6 +567,13 @@ export default {
       height: 120px;
       & .v-card-text {
         padding-bottom: 0;
+        & .v-list-item {
+          padding: 0;
+          & .v-avatar {
+            width: 55px !important;
+            height: 55px !important;
+          }
+        }
       }
       & .switch-container {
         // center all elements
