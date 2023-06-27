@@ -580,7 +580,7 @@ export default {
       & .switch-container {
         // center all elements
         flex-grow: 1;
-        margin-left: 2.5rem;
+        margin-left: 1.5rem;
         & .v-switch {
           max-height: 22px !important;
           position: relative;
