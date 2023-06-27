@@ -253,6 +253,11 @@ export default {
         event.stopPropagation();
       });
 
+    // TODO: replace with v-tooltip
+    markers
+      .append("title")
+      .text((d) => `${d.name}`);
+
     this.updateSelectedHotels();
   },
   computed: {
