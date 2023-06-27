@@ -288,6 +288,36 @@ export default {
       });
       return positiveHotels;
     },
+    previousHotelId() {
+      const longitude = this.hotelMeta[this.focusedHotel].location.long;
+      let previousLongitude = -Infinity;
+      let previousHotelId = null;
+      Object.keys(this.hotelMeta).forEach((hotelId) => {
+        if (
+          this.hotelMeta[hotelId].location.long < longitude &&
+          this.hotelMeta[hotelId].location.long > previousLongitude
+        ) {
+          previousLongitude = this.hotelMeta[hotelId].location.long;
+          previousHotelId = hotelId;
+        }
+      });
+      return previousHotelId;
+    },
+    nextHotelId() {
+      const longitude = this.hotelMeta[this.focusedHotel].location.long;
+      let nextLongitude = Infinity;
+      let nextHotelId = null;
+      Object.keys(this.hotelMeta).forEach((hotelId) => {
+        if (
+          this.hotelMeta[hotelId].location.long > longitude &&
+          this.hotelMeta[hotelId].location.long < nextLongitude
+        ) {
+          nextLongitude = this.hotelMeta[hotelId].location.long;
+          nextHotelId = hotelId;
+        }
+      });
+      return nextHotelId;
+    },
   },
 };
 </script>
@@ -363,11 +393,10 @@ export default {
             </v-card-text>
             <v-card-actions>
               <v-btn
-                :disabled="hotelIds.indexOf(focusedHotel) === 0"
-                @click="
-                  focusOnHotel(hotelIds[hotelIds.indexOf(focusedHotel) - 1])
-                "
-                >Previous</v-btn
+                :disabled="previousHotelId === null"
+                @click="focusOnHotel(previousHotelId)"
+                > <v-icon icon="mdi-arrow-left"></v-icon
+              ></v-btn
               >
               <div class="switch-container">
                 <v-switch
@@ -386,14 +415,10 @@ export default {
                 ></v-switch>
               </div>
               <v-btn
-                :disabled="
-                  hotelIds.indexOf(focusedHotel) === hotelIds.length - 1
-                "
-                @click="
-                  focusOnHotel(hotelIds[hotelIds.indexOf(focusedHotel) + 1])
-                "
-                >Next</v-btn
-              >
+                :disabled="nextHotelId === null"
+                @click="focusOnHotel(nextHotelId)"
+                ><v-icon icon="mdi-arrow-right"></v-icon
+              ></v-btn>
             </v-card-actions>
           </div>
         </div>
@@ -584,9 +609,8 @@ export default {
         padding-bottom: 0;
       }
       & .switch-container {
-        // center all elements
         flex-grow: 1;
-        margin-left: 1.5rem;
+        margin-left: 2.5rem;
         & .v-switch {
           max-height: 22px !important;
           position: relative;
