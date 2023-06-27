@@ -84,13 +84,7 @@ const topCategories = computed(() => {
         ></Glyph>
       </v-avatar>
       <div class="flex-grow-1">
-        <!-- <v-img
-          :src="`./img/hotels/${city.name
-            .replace(' ', '_')
-            .toLowerCase()}/${hotelId}.png`"
-        > -->
-          <v-card-title class="text-h5">{{ hotel.name }}</v-card-title>
-        <!-- </v-img> -->
+        <v-card-title class="text-h5">{{ hotel.name }}</v-card-title>
         <v-card-text>
           <div class="d-flex flex-row" v-if="bestCategories.length">
             <div class="flex-grow-0 mr-4">
