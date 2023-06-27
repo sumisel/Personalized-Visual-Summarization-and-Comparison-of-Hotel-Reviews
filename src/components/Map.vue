@@ -333,59 +333,64 @@ export default {
       </v-alert>
       <!-- Header -->
       <v-card class="hotel-header elevation-6" v-if="focusedHotel">
-        <v-card-text>
-          <v-list-item class="w-100">
-            <template v-slot:prepend>
-              <v-avatar
-                color="#eee"
-                :image="`./img/hotels/${city.name
-                  .replace(' ', '_')
-                  .toLowerCase()}/${focusedHotel}.png`"
-                class="mr-4"
-              >
-              </v-avatar>
-            </template>
-            <v-list-item-title class="text-h6 pb-1">{{
-              hotelMeta[focusedHotel]?.name
-            }}</v-list-item-title>
-            <v-list-item-content>
+        <div class="d-flex flex-no-wrap justify-space-between">
+          <div class="pa-3">
+            <v-avatar
+              color="#eee"
+              :image="`./img/hotels/${city.name
+                .replace(' ', '_')
+                .toLowerCase()}/${focusedHotel}.png`"
+            >
+            </v-avatar>
+          </div>
+          <div class="flex-grow-1">
+            <v-card-title>
+              {{ hotelMeta[focusedHotel]?.name }}
+            </v-card-title>
+            <v-card-text>
               Rated
               <v-icon icon="mdi-star" size="x-small" class="inline"></v-icon>
               <strong>{{
                 hotelStore.overallRating(focusedHotel).toFixed(1)
               }}</strong>
               according to current priorities
-            </v-list-item-content>
-          </v-list-item>
-        </v-card-text>
-        <v-card-actions>
-          <v-btn
-            :disabled="hotelIds.indexOf(focusedHotel) === 0"
-            @click="focusOnHotel(hotelIds[hotelIds.indexOf(focusedHotel) - 1])"
-            >Previous</v-btn
-          >
-          <div class="switch-container">
-            <v-switch
-              :model-value="hotelStore.hotelIsSelected(focusedHotel)"
-              color="black"
-              @change="
-                hotelStore.toggleHotelSelection(focusedHotel);
-                updateSelectedHotels();
-                selectionChanged = true;
-              "
-              :label="
-                hotelStore.hotelIsSelected(focusedHotel)
-                  ? 'selected'
-                  : 'not selected'
-              "
-            ></v-switch>
+            </v-card-text>
+            <v-card-actions>
+              <v-btn
+                :disabled="hotelIds.indexOf(focusedHotel) === 0"
+                @click="
+                  focusOnHotel(hotelIds[hotelIds.indexOf(focusedHotel) - 1])
+                "
+                >Previous</v-btn
+              >
+              <div class="switch-container">
+                <v-switch
+                  :model-value="hotelStore.hotelIsSelected(focusedHotel)"
+                  color="black"
+                  @change="
+                    hotelStore.toggleHotelSelection(focusedHotel);
+                    updateSelectedHotels();
+                    selectionChanged = true;
+                  "
+                  :label="
+                    hotelStore.hotelIsSelected(focusedHotel)
+                      ? 'selected'
+                      : 'not selected'
+                  "
+                ></v-switch>
+              </div>
+              <v-btn
+                :disabled="
+                  hotelIds.indexOf(focusedHotel) === hotelIds.length - 1
+                "
+                @click="
+                  focusOnHotel(hotelIds[hotelIds.indexOf(focusedHotel) + 1])
+                "
+                >Next</v-btn
+              >
+            </v-card-actions>
           </div>
-          <v-btn
-            :disabled="hotelIds.indexOf(focusedHotel) === hotelIds.length - 1"
-            @click="focusOnHotel(hotelIds[hotelIds.indexOf(focusedHotel) + 1])"
-            >Next</v-btn
-          >
-        </v-card-actions>
+        </div>
       </v-card>
       <div
         class="hotel-details elevation-4"
@@ -565,20 +570,17 @@ export default {
       left: 22.5%;
       width: 50%;
       height: 120px;
+      & .v-avatar {
+        width: 98px !important;
+        height: 98px !important;
+      }
       & .v-card-text {
         padding-bottom: 0;
-        & .v-list-item {
-          padding: 0;
-          & .v-avatar {
-            width: 55px !important;
-            height: 55px !important;
-          }
-        }
       }
       & .switch-container {
         // center all elements
         flex-grow: 1;
-        margin-left: 4.5rem;
+        margin-left: 2.5rem;
         & .v-switch {
           max-height: 22px !important;
           position: relative;
