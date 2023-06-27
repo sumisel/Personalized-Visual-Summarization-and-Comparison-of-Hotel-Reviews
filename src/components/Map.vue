@@ -9,6 +9,8 @@ import { usePoiStore } from "@/stores/poi";
 import InlineListItem from "./InlineListItem.vue";
 import PoiChip from "./PoiChip.vue";
 
+const TRANSITION_DURATION = 750;
+
 export default {
   components: {
     InlineListItem,
@@ -61,6 +63,7 @@ export default {
       this.resetAllMarkers();
       d3.select(`#svg-map .markers circle[id="${hotelId}"]`)
         .transition()
+        .duration(TRANSITION_DURATION)
         .attr("r", 60)
         .attr("opacity", 0.5);
       const svg = d3.select("#svg-map");
@@ -80,6 +83,7 @@ export default {
       svg
         .select(".map-container")
         .transition()
+        .duration(TRANSITION_DURATION)
         .attr(
           "transform",
           `translate(${this.width / 2}, ${
@@ -92,6 +96,7 @@ export default {
       d3.select("#svg-map")
         .select(".map-container")
         .transition()
+        .duration(TRANSITION_DURATION)
         .attr("transform", "");
       this.focusedHotel = "";
     },
@@ -100,6 +105,7 @@ export default {
         .select(".markers")
         .selectAll("circle")
         .transition()
+        .duration(TRANSITION_DURATION)
         .attr("fill", (d) =>
           this.hotelStore.hotelIsSelected(d.id) ? "black" : "white"
         );
