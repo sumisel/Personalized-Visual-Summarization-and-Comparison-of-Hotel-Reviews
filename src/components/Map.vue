@@ -63,6 +63,10 @@ export default {
         .attr("r", 10);
     },
     focusOnHotel(hotelId) {
+      if (this.focusedHotel === hotelId) {
+        this.resetZoom();
+        return;
+      }
       this.focusedHotel = null;
       this.resetAllMarkers();
       d3.select(`#svg-map .markers circle[id="${hotelId}"]`)
