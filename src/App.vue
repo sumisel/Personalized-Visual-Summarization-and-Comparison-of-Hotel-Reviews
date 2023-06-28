@@ -6,6 +6,8 @@ import PosNeg from "./components/PosNeg.vue";
 import Trending from "./components/Trending.vue";
 import { inject } from "vue";
 
+const toolname = "ViSCitR"
+
 const sections = [
   {
     id: "map",
@@ -44,7 +46,7 @@ const scrollTo = (hash) => {
   <v-app>
     <v-app-bar>
       <img src="/logo.png" alt="logo" class="mr-2 ml-4" height="48" />
-      <v-app-bar-title> Hotel Review Comparison </v-app-bar-title>
+      <v-app-bar-title class="text-h4"> {{ toolname }} </v-app-bar-title>
       <v-btn href="?city=Berlin">Berlin</v-btn>
       <v-btn href="?city=New_York">New York</v-btn>
       <v-btn href="?city=Paris">Paris</v-btn>
