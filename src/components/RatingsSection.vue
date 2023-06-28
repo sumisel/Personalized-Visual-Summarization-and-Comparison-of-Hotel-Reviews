@@ -3,10 +3,12 @@ import HotelRating from "./HotelRating.vue";
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
 import { inject } from "vue";
+import Instruction from './Instruction.vue';
 
 export default {
   components: {
     HotelRating,
+    Instruction,
   },
   setup() {
     const hotelStore = useHotelStore();
@@ -29,11 +31,17 @@ export default {
       );
       return variety > 0.99 ? "somewhat differently" : "quite similarly";
     },
+    prioritiesUnchanged() {
+      return this.categoryStore.categories.every(
+        (category) => category.value === 50
+      );
+    },
   },
 };
 </script>
 
 <template>
+  <Instruction v-if="prioritiesUnchanged">Change priorities to personalize the ratings.</Instruction>
   <div>
     <p>
       Customers have rated the
