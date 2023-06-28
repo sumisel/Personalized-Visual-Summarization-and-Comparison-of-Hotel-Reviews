@@ -1,0 +1,24 @@
+<template>
+  <div class="instruction-container">
+    <v-alert class="mb-2 mt-2 instruction text-center elevation-2">
+      <slot></slot>
+    </v-alert>
+  </div>
+</template>
+
+<style lang="scss">
+.instruction-container {
+  position: relative;
+  & .instruction {
+    font-style: italic;
+    color: #444;
+    font-size: 0.9rem;
+    bottom: 10px;
+    width: 60%;
+    left: 40%;
+    padding: 0.5rem !important;
+    min-height: 50px;
+    position: absolute;
+  }
+}
+</style>

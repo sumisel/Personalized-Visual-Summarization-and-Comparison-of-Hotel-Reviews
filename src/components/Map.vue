@@ -8,6 +8,7 @@ import { usePoiStore } from "@/stores/poi";
 
 import InlineListItem from "./InlineListItem.vue";
 import PoiChip from "./PoiChip.vue";
+import Instruction from "./Instruction.vue";
 
 const TRANSITION_DURATION = 750;
 
@@ -15,6 +16,7 @@ export default {
   components: {
     InlineListItem,
     PoiChip,
+    Instruction,
   },
   setup() {
     const map = ref();
@@ -254,9 +256,7 @@ export default {
       });
 
     // TODO: replace with v-tooltip
-    markers
-      .append("title")
-      .text((d) => `${d.name}`);
+    markers.append("title").text((d) => `${d.name}`);
 
     this.updateSelectedHotels();
   },
@@ -332,6 +332,24 @@ export default {
 </script>
 
 <template>
+  <!-- Instructions -->
+  <Instruction
+    v-if="
+      !selectionChanged ||
+      hotelStore.selectedHotelIds.length < 2 ||
+      poiStore.selectedPois.length === 0
+    "
+  >
+    <span v-if="!selectionChanged"
+      >Click a marker to focus a hotel, and then (de)select it using the switch.
+    </span>
+    <strong v-if="hotelStore.selectedHotelIds.length < 2"
+      >Select more than one hotel to compare.
+    </strong>
+    <strong v-if="poiStore.selectedPois.length === 0"
+      >Choose your favorite points of interests, to see related information.
+    </strong>
+  </Instruction>
   <!-- Map -->
   <div class="map-container">
     <svg id="svg-map" class="map">
@@ -357,25 +375,6 @@ export default {
     <div class="dummy"></div>
     <!-- Overlays -->
     <div class="map-overlay">
-      <v-alert
-        class="mb-2 mt-2 instruction text-center elevation-6"
-        v-if="
-          !selectionChanged ||
-          hotelStore.selectedHotelIds.length < 2 ||
-          poiStore.selectedPois.length === 0
-        "
-      >
-        <span v-if="!selectionChanged"
-          >Click a marker to focus a hotel, and then (de)select it using the
-          switch.
-        </span>
-        <strong v-if="hotelStore.selectedHotelIds.length < 2"
-          >Select more than one hotel to compare.
-        </strong>
-        <strong v-if="poiStore.selectedPois.length === 0"
-          >Choose your favorite points of interests, to see related information.
-        </strong>
-      </v-alert>
       <!-- Header -->
       <v-card class="hotel-header elevation-6" v-if="focusedHotel">
         <div class="d-flex flex-no-wrap justify-space-between">
@@ -599,15 +598,6 @@ export default {
     position: relative;
     & > div {
       position: absolute;
-    }
-    & .instruction {
-      font-style: italic;
-      background-color: rgba(200, 200, 200, 0.8);
-      color: #444;
-      font-size: 0.9rem;
-      top: -610px;
-      width: 100%;
-      padding: 0.2rem;
     }
 
     & .hotel-header {
