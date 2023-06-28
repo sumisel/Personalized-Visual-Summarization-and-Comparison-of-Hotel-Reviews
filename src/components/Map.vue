@@ -523,7 +523,7 @@ export default {
     <span v-if="hotelStore.selectedHotelIds.length === 0"
       ><strong>none</strong> is</span
     >
-    selected<span v-if="hotelStore.selectedHotelIds.length > 1">: </span
+    selected<span v-if="hotelStore.selectedHotelIds.length > 0">: </span
     ><span v-else></span>
     <InlineListItem
       v-for="(hotelId, index) in hotelStore.selectedHotelIds"
