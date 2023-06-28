@@ -1,7 +1,7 @@
 <script setup>
 import Personalization from "./components/Personalization.vue";
 import Map from "./components/Map.vue";
-import HotelOverview from "./components/HotelOverview.vue";
+import RatingsSection from "./components/RatingsSection.vue";
 import PosNeg from "./components/PosNeg.vue";
 import Trending from "./components/Trending.vue";
 import { inject } from "vue";
@@ -17,7 +17,7 @@ const sections = [
     id: "ratings",
     title: "Ratings",
     icon: "mdi-star",
-    component: HotelOverview,
+    component: RatingsSection,
   },
   {
     id: "good-and-bad",
