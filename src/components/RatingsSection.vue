@@ -3,7 +3,7 @@ import HotelRating from "./HotelRating.vue";
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
 import { inject } from "vue";
-import Instruction from './Instruction.vue';
+import Instruction from "./Instruction.vue";
 
 export default {
   components: {
@@ -29,7 +29,16 @@ export default {
             normalizedCategoryValues[categoryId]),
         0
       );
-      return variety > 0.99 ? "somewhat differently" : "quite similarly";
+      if (variety < 0.2) {
+        return "almost identically";
+      } else if (variety < 0.4) {
+        return "quite comparably";
+      } else if (variety < 0.6) {
+        return "somewhat differently";
+      } else if (variety < 0.8) {
+        return "quite variably";
+      }
+      return "with clear differences";
     },
     prioritiesUnchanged() {
       return this.categoryStore.categories.every(
@@ -41,15 +50,17 @@ export default {
 </script>
 
 <template>
-  <Instruction v-if="prioritiesUnchanged">Change priorities to personalize the ratings.</Instruction>
+  <Instruction v-if="prioritiesUnchanged"
+    >Change priorities to personalize the ratings.</Instruction
+  >
   <div>
     <p>
       Customers have rated the
       <b
         ><span>{{ hotelStore.selectedHotelIds.length }}</span></b
       >
-      selected hotels <b>{{ ratingVarietyDescription }}</b> with respect to the
-      prioritized categories.
+      selected hotels <b>{{ ratingVarietyDescription }}</b> according to the
+      categories weighted as prioritized.
     </p>
     <div class="d-flex flex-column hotel-list my-4">
       <HotelRating
