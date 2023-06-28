@@ -1,6 +1,5 @@
 <script setup>
 import { maxIndex } from "d3";
-import { defineProps } from "vue";
 const props = defineProps({
   index: Number,
   listLength: Number,
