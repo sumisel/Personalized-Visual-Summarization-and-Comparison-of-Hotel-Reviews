@@ -57,6 +57,8 @@ export default {
       d3.select("#svg-map")
         .select(".markers")
         .selectAll("circle")
+        .transition()
+        .duration(TRANSITION_DURATION)
         .attr("opacity", 1)
         .attr("r", 10);
     },
