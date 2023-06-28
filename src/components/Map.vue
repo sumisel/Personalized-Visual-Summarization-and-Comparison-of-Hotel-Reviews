@@ -197,6 +197,26 @@ export default {
         .style("stroke-width", "4px");
     });
 
+    // draw landmarks as png images as stored in "city.landmarks"
+    svg
+      .select(".landmarks")
+      .selectAll("image")
+      .data(this.city.landmarks)
+      .enter()
+      .append("image")
+      .attr(
+        "xlink:href",
+        (d) =>
+          `./img/landmarks/${this.city.name.replace(" ", "_").toLowerCase()}/${
+            d.id
+          }.png`
+      )
+      .attr("x", (d) => this.projection([d.location[1], d.location[0]])[0] - 30)
+      .attr("y", (d) => this.projection([d.location[1], d.location[0]])[1] - 20)
+      .attr("width", 60)
+      .attr("height", 60)
+      .attr("opacity", 0.5);
+
     // draw sightseeing
     d3.json(`./geo/sightseeing_${cityId}.geojson`).then((geojson) => {
       const path = d3.geoPath().projection(this.projection);
@@ -363,6 +383,7 @@ export default {
         <g class="districts"></g>
         <g class="waterways"></g>
         <g class="roads"></g>
+        <g class="landmarks"></g>
         <g
           class="sightseeing"
           v-show="poiStore.selectedPois.includes('sightseeing')"

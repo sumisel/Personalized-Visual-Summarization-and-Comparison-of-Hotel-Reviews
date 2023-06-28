@@ -11,7 +11,17 @@
             "attribution": "A. Savin, Wikimedia Commons",
             "license": "CC BY-SA 3.0",
             "href": "https://commons.wikimedia.org/wiki/File:Siegessaeule_Aussicht_10-13_img4_Tiergarten.jpg"
-        }
+        },
+        "landmarks": [
+            {
+                "id": "brandenburg_gate",
+                "name": "Brandenburg Gate",
+                "location": [
+                    52.5163,
+                    13.3777
+                ]
+            }
+        ]
     },
     "Paris": {
         "name": "Paris",
