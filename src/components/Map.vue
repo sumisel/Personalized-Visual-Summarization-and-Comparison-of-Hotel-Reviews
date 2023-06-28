@@ -438,7 +438,10 @@ export default {
                 @click="focusOnHotel(previousHotelId)"
               >
                 <v-icon icon="mdi-arrow-left"></v-icon
-              ></v-btn>
+                ><v-tooltip activator="parent" location="bottom"
+                  >Next hotel to the west</v-tooltip
+                ></v-btn
+              >
               <div class="switch-container">
                 <v-switch
                   :model-value="hotelStore.hotelIsSelected(focusedHotel)"
@@ -459,7 +462,10 @@ export default {
                 :disabled="nextHotelId === null"
                 @click="focusOnHotel(nextHotelId)"
                 ><v-icon icon="mdi-arrow-right"></v-icon
-              ></v-btn>
+                ><v-tooltip activator="parent" location="bottom"
+                  >Next hotel to the east</v-tooltip
+                >
+              </v-btn>
             </v-card-actions>
           </div>
         </div>
