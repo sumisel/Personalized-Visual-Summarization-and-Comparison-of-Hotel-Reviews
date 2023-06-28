@@ -464,6 +464,7 @@ export default {
           </div>
         </div>
       </v-card>
+      <!-- POI details -->
       <div
         class="hotel-details elevation-4"
         v-if="focusedHotel && poiStore.selectedPois.length"
@@ -475,6 +476,11 @@ export default {
           :key="poi"
           :style="{
             backgroundColor: poiMeta[poi].color,
+            opacity: hotelMeta[focusedHotel]?.poiInfo[poi].startsWith('(+)')
+              ? 1
+              : hotelMeta[focusedHotel]?.poiInfo[poi].startsWith('(-)')
+              ? 0.5
+              : 0.7,
           }"
         >
           <v-icon
