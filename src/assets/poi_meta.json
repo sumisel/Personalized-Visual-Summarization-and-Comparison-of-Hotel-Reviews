@@ -1,7 +1,7 @@
 {
     "restaurants": {
         "icon": "mdi-silverware-fork-knife",
-        "color": "#faeec8"
+        "color": "#f0dfa8"
     },
     "sightseeing": {
         "icon": "mdi-binoculars",

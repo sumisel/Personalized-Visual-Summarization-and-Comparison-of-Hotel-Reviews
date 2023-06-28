@@ -383,7 +383,6 @@ export default {
         <g class="districts"></g>
         <g class="waterways"></g>
         <g class="roads"></g>
-        <g class="landmarks"></g>
         <g
           class="sightseeing"
           v-show="poiStore.selectedPois.includes('sightseeing')"
@@ -396,6 +395,7 @@ export default {
           class="public_transport"
           v-show="poiStore.selectedPois.includes('public_transport')"
         ></g>
+        <g class="landmarks"></g>
         <g class="markers"></g>
       </g>
     </svg>
