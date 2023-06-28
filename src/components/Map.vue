@@ -370,7 +370,7 @@ export default {
       >Click a marker to focus a hotel, and then (de)select it using the switch.
     </span>
     <strong v-if="hotelStore.selectedHotelIds.length < 2"
-      >Select more than one hotel to compare.
+      >Select multiple hotels to compare.
     </strong>
     <strong v-if="poiStore.selectedPois.length === 0"
       >Choose your favorite points of interests, to see related information.
@@ -518,7 +518,7 @@ export default {
       ><strong>none</strong> is</span
     >
     selected<span v-if="hotelStore.selectedHotelIds.length > 1">: </span
-    ><span v-else>! </span>
+    ><span v-else></span>
     <InlineListItem
       v-for="(hotelId, index) in hotelStore.selectedHotelIds"
       :key="hotelId"

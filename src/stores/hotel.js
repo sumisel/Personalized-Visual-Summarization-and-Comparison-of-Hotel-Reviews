@@ -63,14 +63,6 @@ export const useHotelStore = defineStore({
     },
   },
   actions: {
-    initHotelSelection(hotelMeta) {
-      // select first three hotels by default
-      Object.keys(hotelMeta).forEach((hotelId, i) => {
-        if (i < 3) {
-          this.selectedHotelIds.push(hotelId);
-        }
-      });
-    },
     toggleHotelSelection(id) {
       if (this.selectedHotelIds.includes(id)) {
         this.selectedHotelIds.splice(this.selectedHotelIds.indexOf(id), 1);

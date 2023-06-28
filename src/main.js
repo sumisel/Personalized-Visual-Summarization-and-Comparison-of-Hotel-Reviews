@@ -42,7 +42,6 @@ app.provide("city", cities[cityId]);
 // load hotel meta data
 import hotelMeta from "./assets/hotel_meta.json";
 app.provide("hotelMeta", hotelMeta[cityId]);
-hotelStore.initHotelSelection(hotelMeta[cityId]);
 
 // load POI meta data
 import poiMeta from "./assets/poi_meta.json";

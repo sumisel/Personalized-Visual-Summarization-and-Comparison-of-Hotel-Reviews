@@ -71,10 +71,11 @@ export default {
 </script>
 
 <template>
-  <Instruction v-if="prioritiesUnchanged"
+  <Instruction
+    v-if="prioritiesUnchanged && hotelStore.selectedHotelIds.length > 1"
     >Change priorities to personalize the ratings.</Instruction
   >
-  <div>
+  <div v-if="hotelStore.selectedHotelIds.length > 1">
     <p>
       <span>
         Customers have rated the

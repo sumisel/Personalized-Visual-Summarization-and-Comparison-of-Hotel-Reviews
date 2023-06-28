@@ -1,10 +1,14 @@
 <script setup>
+import { inject } from "vue";
+
 import Personalization from "./components/Personalization.vue";
 import Map from "./components/Map.vue";
 import RatingsSection from "./components/RatingsSection.vue";
 import PosNeg from "./components/PosNeg.vue";
 import Trending from "./components/Trending.vue";
-import { inject } from "vue";
+
+import { useHotelStore } from "./stores/hotel.js";
+const hotelStore = useHotelStore();
 
 const sections = [
   {
@@ -99,6 +103,10 @@ const scrollTo = (hash) => {
           :key="section.title"
           class="py-6"
           :id="section.id"
+          :class="{
+            'text-disabled':
+              section.id != 'map' && hotelStore.selectedHotelIds.length < 2,
+          }"
         >
           <div class="text-h4 mb-4 pt-16">
             <v-icon :icon="section.icon" class="mr-2"></v-icon

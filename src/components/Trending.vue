@@ -24,7 +24,7 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div v-if="hotelStore.selectedHotelIds.length > 1">
     <div class="d-flex flex-column my-4">
       <div class="my-2 flex-grow-1">
         <v-expansion-panels
