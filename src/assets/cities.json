@@ -26,8 +26,8 @@
     "Paris": {
         "name": "Paris",
         "center": [
-            48.8615,
-            2.3209
+            48.858222,
+            2.2945
         ],
         "zoom": 13,
         "img": {
@@ -35,7 +35,17 @@
             "attribution": "Pierre Blaché, Wikimedia Commons",
             "license": "CC0 1.0",
             "href": "https://commons.wikimedia.org/wiki/File:Paris_from_the_Arc_de_Triomphe,_17_October_2019.jpg"
-        }
+        },
+        "landmarks": [
+            {
+                "id": "eiffel_tower",
+                "name": "Eiffel Tower",
+                "location": [
+                    48.8584,
+                    2.2945
+                ]
+            }
+        ]
     },
     "New_York": {
         "name": "New York",

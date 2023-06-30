@@ -258,7 +258,7 @@ export default {
         )
         .attr(
           "y",
-          (d) => this.projection([d.location[1], d.location[0]])[1] - 20
+          (d) => this.projection([d.location[1], d.location[0]])[1] - 45
         )
         .attr("width", 60)
         .attr("height", 60)
