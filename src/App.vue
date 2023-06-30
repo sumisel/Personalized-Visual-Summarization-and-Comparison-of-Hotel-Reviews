@@ -79,8 +79,9 @@ const scrollTo = (hash) => {
     <v-main
       class="ma-6"
       :style="`background-image: linear-gradient(
-            rgba(255, 255, 255, 0),
-            rgba(255, 255, 255, 1)
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.1) 50%,
+            rgba(255, 255, 255, 1) 100%
           ),
           url('${city.img?.url}');`"
     >
