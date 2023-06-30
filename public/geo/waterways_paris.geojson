@@ -1,0 +1,3100 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-ide",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2023-06-30T04:33:06Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/76910110",
+        "motorboat": "yes",
+        "natural": "water",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.3670593,
+              48.8690016
+            ],
+            [
+              2.3671103,
+              48.8689362
+            ],
+            [
+              2.3671691,
+              48.8689561
+            ],
+            [
+              2.3672202,
+              48.8689733
+            ],
+            [
+              2.3671697,
+              48.8690387
+            ],
+            [
+              2.3671024,
+              48.8690399
+            ],
+            [
+              2.3670593,
+              48.8690016
+            ]
+          ]
+        ]
+      },
+      "id": "way/76910110"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/236684281",
+        "lock": "yes",
+        "natural": "water",
+        "water": "basin",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.4251099,
+              48.8166148
+            ],
+            [
+              2.4251398,
+              48.8166686
+            ],
+            [
+              2.4251192,
+              48.8167231
+            ],
+            [
+              2.4233644,
+              48.8167849
+            ],
+            [
+              2.4233604,
+              48.8167918
+            ],
+            [
+              2.4232651,
+              48.8167944
+            ],
+            [
+              2.4232675,
+              48.8167883
+            ],
+            [
+              2.4232879,
+              48.8167313
+            ],
+            [
+              2.4232584,
+              48.8166807
+            ],
+            [
+              2.4232548,
+              48.8166731
+            ],
+            [
+              2.4233503,
+              48.8166709
+            ],
+            [
+              2.4233581,
+              48.8166765
+            ],
+            [
+              2.4251099,
+              48.8166148
+            ]
+          ]
+        ]
+      },
+      "id": "way/236684281"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/255652335",
+        "lock": "yes",
+        "natural": "water",
+        "water": "basin",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.3657244,
+              48.8468677
+            ],
+            [
+              2.3661325,
+              48.8470969
+            ],
+            [
+              2.3661635,
+              48.8471146
+            ],
+            [
+              2.3661857,
+              48.8471268
+            ],
+            [
+              2.3661818,
+              48.847142
+            ],
+            [
+              2.366174,
+              48.8471546
+            ],
+            [
+              2.3661616,
+              48.8471662
+            ],
+            [
+              2.366147,
+              48.8471745
+            ],
+            [
+              2.3661286,
+              48.8471806
+            ],
+            [
+              2.3661116,
+              48.8471838
+            ],
+            [
+              2.3656706,
+              48.8469327
+            ],
+            [
+              2.365653,
+              48.8469218
+            ],
+            [
+              2.3656685,
+              48.8469175
+            ],
+            [
+              2.3656866,
+              48.8469116
+            ],
+            [
+              2.3657039,
+              48.8469029
+            ],
+            [
+              2.3657134,
+              48.8468921
+            ],
+            [
+              2.3657197,
+              48.8468802
+            ],
+            [
+              2.3657244,
+              48.8468677
+            ]
+          ]
+        ]
+      },
+      "id": "way/255652335"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/16403668",
+        "CEMT": "I",
+        "boat": "yes",
+        "name": "Canal Saint-Martin",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.3657039,
+            48.8469029
+          ],
+          [
+            2.3655159,
+            48.8467935
+          ],
+          [
+            2.3652423,
+            48.846701
+          ]
+        ]
+      },
+      "id": "way/16403668"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/32496111",
+        "CEMT": "Vb",
+        "admin_level": "7",
+        "boat": "yes",
+        "boundary": "administrative",
+        "motorboat": "yes",
+        "name": "La Seine",
+        "name:ar": "السين",
+        "name:arc": "ܣܢ",
+        "name:azb": "سئن چایی",
+        "name:fa": "سن",
+        "name:fr": "La Seine",
+        "name:grc": "Σηκουάνας",
+        "name:kk-Arab": "سەنا",
+        "name:pa": "ਸੈਨ ਦਰਿਆ",
+        "name:pnb": "دریائے سین",
+        "name:syc": "ܣܢ",
+        "name:ur": "دریائے سین",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2007",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4093608,
+            48.8166335
+          ],
+          [
+            2.407618,
+            48.8173953
+          ],
+          [
+            2.4051718,
+            48.8181865
+          ],
+          [
+            2.4018073,
+            48.8193281
+          ],
+          [
+            2.3990779,
+            48.820334
+          ],
+          [
+            2.3963742,
+            48.8215491
+          ],
+          [
+            2.3937564,
+            48.8233178
+          ],
+          [
+            2.3909926,
+            48.8251148
+          ],
+          [
+            2.3905972,
+            48.8254348
+          ],
+          [
+            2.3902559,
+            48.8257262
+          ]
+        ]
+      },
+      "id": "way/32496111"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/32556642",
+        "CEMT": "Vb",
+        "admin_level": "7",
+        "boat": "yes",
+        "boundary": "administrative",
+        "have_riverbank": "yes",
+        "motorboat": "yes",
+        "name": "La Seine",
+        "name:ar": "السين",
+        "name:arc": "ܣܢ",
+        "name:azb": "سئن چایی",
+        "name:be": "Сена",
+        "name:br": "Ar Saena",
+        "name:fa": "سن",
+        "name:fr": "La Seine",
+        "name:grc": "Σηκουάνας",
+        "name:kk-Arab": "سەنا",
+        "name:pa": "ਸੈਨ ਦਰਿਆ",
+        "name:pnb": "دریائے سین",
+        "name:ru": "Сена",
+        "name:sk": "Seina",
+        "name:syc": "ܣܢ",
+        "name:ur": "دریائے سین",
+        "name:vi": "Sông Seine",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2009",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4089823,
+            48.8093613
+          ],
+          [
+            2.4097277,
+            48.8118469
+          ],
+          [
+            2.4102418,
+            48.8139333
+          ],
+          [
+            2.4102403,
+            48.8152295
+          ],
+          [
+            2.4101291,
+            48.8157023
+          ],
+          [
+            2.4099078,
+            48.8160728
+          ],
+          [
+            2.4097601,
+            48.8162242
+          ],
+          [
+            2.4093608,
+            48.8166335
+          ]
+        ]
+      },
+      "id": "way/32556642"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/53273682",
+        "CEMT": "Va",
+        "motorboat": "yes",
+        "name": "La Marne",
+        "name:en": "Marne river",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4549841,
+            48.8130315
+          ],
+          [
+            2.4544691,
+            48.8134978
+          ],
+          [
+            2.4529993,
+            48.8145011
+          ],
+          [
+            2.4518513,
+            48.8153418
+          ],
+          [
+            2.45139,
+            48.8155961
+          ],
+          [
+            2.4497164,
+            48.8158757
+          ],
+          [
+            2.4452359,
+            48.8161314
+          ],
+          [
+            2.4414386,
+            48.8161491
+          ],
+          [
+            2.4381101,
+            48.8167797
+          ],
+          [
+            2.4359201,
+            48.8166739
+          ],
+          [
+            2.4339323,
+            48.8161967
+          ],
+          [
+            2.4333484,
+            48.8160565
+          ],
+          [
+            2.4303749,
+            48.8161182
+          ],
+          [
+            2.4273745,
+            48.8163343
+          ]
+        ]
+      },
+      "id": "way/53273682"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/55462325",
+        "CEMT": "I",
+        "boat": "yes",
+        "layer": "-1",
+        "location": "underground",
+        "motorboat": "yes",
+        "name": "Canal Saint-Martin",
+        "ref:structurae": "s0035598",
+        "tunnel": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.3671691,
+            48.8689561
+          ],
+          [
+            2.3692209,
+            48.8663087
+          ]
+        ]
+      },
+      "id": "way/55462325"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/59291961",
+        "CEMT": "I",
+        "boat": "yes",
+        "lock": "yes",
+        "lock_name": "Écluse n°3 des Morts",
+        "lock_ref": "3",
+        "motorboat": "yes",
+        "name": "Canal Saint-Martin",
+        "vhf": "20",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.3663237,
+            48.8783402
+          ],
+          [
+            2.3660144,
+            48.8779834
+          ]
+        ]
+      },
+      "id": "way/59291961"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/59291968",
+        "CEMT": "I",
+        "boat": "yes",
+        "motorboat": "yes",
+        "name": "Canal Saint-Martin",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.3697055,
+            48.8822735
+          ],
+          [
+            2.3676446,
+            48.8798631
+          ],
+          [
+            2.3674852,
+            48.8796918
+          ],
+          [
+            2.3663237,
+            48.8783402
+          ]
+        ]
+      },
+      "id": "way/59291968"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/99530894",
+        "CEMT": "I",
+        "boat": "yes",
+        "name": "Canal Saint-Martin",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.3686178,
+            48.8519426
+          ],
+          [
+            2.3678657,
+            48.8508035
+          ],
+          [
+            2.3663424,
+            48.8472752
+          ],
+          [
+            2.3662058,
+            48.8471915
+          ],
+          [
+            2.3661616,
+            48.8471662
+          ]
+        ]
+      },
+      "id": "way/99530894"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/99530899",
+        "CEMT": "I",
+        "boat": "yes",
+        "lock": "yes",
+        "lock_name": "Écluse n°9 de l'Arsenal",
+        "lock_ref": "9",
+        "name": "Canal Saint-Martin",
+        "vhf_channel": "20",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.3661616,
+            48.8471662
+          ],
+          [
+            2.3657039,
+            48.8469029
+          ]
+        ]
+      },
+      "id": "way/99530899"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/99530935",
+        "CEMT": "I",
+        "boat": "yes",
+        "lock": "yes",
+        "lock_name": "Écluse n°7 du Temple",
+        "lock_ref": "7",
+        "motorboat": "yes",
+        "name": "Canal Saint-Martin",
+        "vhf": "20",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.366552,
+            48.8697447
+          ],
+          [
+            2.3668268,
+            48.8693928
+          ]
+        ]
+      },
+      "id": "way/99530935"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/99530954",
+        "CEMT": "I",
+        "boat": "yes",
+        "layer": "0",
+        "motorboat": "yes",
+        "name": "Canal Saint-Martin",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.3638655,
+            48.8731998
+          ],
+          [
+            2.3639951,
+            48.8730184
+          ],
+          [
+            2.366552,
+            48.8697447
+          ]
+        ]
+      },
+      "id": "way/99530954"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/99530957",
+        "CEMT": "I",
+        "boat": "yes",
+        "lock": "yes",
+        "lock_name": "Écluse n°5 des Récollets",
+        "lock_ref": "5",
+        "motorboat": "yes",
+        "name": "Canal Saint-Martin",
+        "vhf": "20",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.3633161,
+            48.8739025
+          ],
+          [
+            2.3635907,
+            48.8735453
+          ]
+        ]
+      },
+      "id": "way/99530957"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/99530968",
+        "CEMT": "I",
+        "boat": "yes",
+        "motorboat": "yes",
+        "name": "Canal Saint-Martin",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.3657168,
+            48.8776386
+          ],
+          [
+            2.3655846,
+            48.8774827
+          ],
+          [
+            2.3634233,
+            48.8749805
+          ],
+          [
+            2.3633534,
+            48.8748929
+          ],
+          [
+            2.3632931,
+            48.8747941
+          ],
+          [
+            2.3632447,
+            48.8746971
+          ],
+          [
+            2.3632146,
+            48.8746091
+          ],
+          [
+            2.3631871,
+            48.8745075
+          ],
+          [
+            2.3631735,
+            48.8743863
+          ],
+          [
+            2.363171,
+            48.8742799
+          ],
+          [
+            2.3631863,
+            48.8741878
+          ],
+          [
+            2.3632085,
+            48.8741008
+          ],
+          [
+            2.3632354,
+            48.8740267
+          ],
+          [
+            2.3632647,
+            48.8739674
+          ],
+          [
+            2.3633161,
+            48.8739025
+          ]
+        ]
+      },
+      "id": "way/99530968"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/99533678",
+        "CEMT": "I",
+        "boat": "yes",
+        "lock": "yes",
+        "lock_name": "Écluse n°1 de La Villette",
+        "lock_ref": "1",
+        "motorboat": "yes",
+        "name": "Canal Saint-Martin",
+        "vhf": "20",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.3710595,
+            48.8838398
+          ],
+          [
+            2.3707599,
+            48.88349
+          ]
+        ]
+      },
+      "id": "way/99533678"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/99555151",
+        "CEMT": "Vb",
+        "boat": "yes",
+        "have_riverbank": "yes",
+        "name": "La Seine - Bras Marie",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.3614016,
+            48.84847
+          ],
+          [
+            2.3609463,
+            48.8493101
+          ],
+          [
+            2.3606119,
+            48.8502773
+          ],
+          [
+            2.3605261,
+            48.8510511
+          ],
+          [
+            2.3604347,
+            48.8513546
+          ],
+          [
+            2.3602748,
+            48.8515891
+          ],
+          [
+            2.359814,
+            48.8518746
+          ],
+          [
+            2.3560973,
+            48.8531972
+          ],
+          [
+            2.3538817,
+            48.8539639
+          ],
+          [
+            2.3522295,
+            48.8546776
+          ]
+        ]
+      },
+      "id": "way/99555151"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/99555152",
+        "CEMT": "Va",
+        "boat": "yes",
+        "name": "La Seine - Bras de la Monnaie",
+        "name:be": "Сена",
+        "name:es": "Rio Siena",
+        "name:ru": "Сена",
+        "name:vi": "Sông Seine",
+        "ref:sandre": "F7045121",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.353857,
+            48.8511856
+          ],
+          [
+            2.3532468,
+            48.8512501
+          ],
+          [
+            2.3527977,
+            48.8512989
+          ],
+          [
+            2.3516032,
+            48.8515718
+          ],
+          [
+            2.350401,
+            48.8519243
+          ],
+          [
+            2.3494101,
+            48.8522745
+          ],
+          [
+            2.3484569,
+            48.8526362
+          ],
+          [
+            2.3472222,
+            48.8532166
+          ],
+          [
+            2.3469312,
+            48.8533167
+          ],
+          [
+            2.3453468,
+            48.8538465
+          ],
+          [
+            2.3445511,
+            48.8540651
+          ],
+          [
+            2.34403,
+            48.854294
+          ],
+          [
+            2.3428378,
+            48.8549503
+          ],
+          [
+            2.3421451,
+            48.8555189
+          ],
+          [
+            2.3413172,
+            48.8562324
+          ],
+          [
+            2.3408404,
+            48.8565711
+          ],
+          [
+            2.3385886,
+            48.8578267
+          ],
+          [
+            2.3384698,
+            48.858236
+          ]
+        ]
+      },
+      "id": "way/99555152"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/99555154",
+        "have_riverbank": "yes",
+        "name": "La Seine",
+        "name:ar": "السين",
+        "name:arc": "ܣܢ",
+        "name:azb": "سئن چایی",
+        "name:br": "Ar Saena",
+        "name:fa": "سن",
+        "name:fr": "La Seine",
+        "name:grc": "Σηκουάνας",
+        "name:kk-Arab": "سەنا",
+        "name:pa": "ਸੈਨ ਦਰਿਆ",
+        "name:pnb": "دریائے سین",
+        "name:ru": "Сена",
+        "name:syc": "ܣܢ",
+        "name:ur": "دریائے سین",
+        "name:vi": "Sông Seine",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.2887373,
+            48.857206
+          ],
+          [
+            2.2883424,
+            48.8554663
+          ],
+          [
+            2.279738,
+            48.8495397
+          ],
+          [
+            2.2773364,
+            48.8483379
+          ]
+        ]
+      },
+      "id": "way/99555154"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/99555155",
+        "CEMT": "Vb",
+        "boat": "yes",
+        "have_riverbank": "yes",
+        "name": "La Seine",
+        "name:ar": "السين",
+        "name:arc": "ܣܢ",
+        "name:azb": "سئن چایی",
+        "name:be": "Сена",
+        "name:br": "Ar Saena",
+        "name:fa": "سن",
+        "name:fr": "La Seine",
+        "name:grc": "Σηκουάνας",
+        "name:kk-Arab": "سەنا",
+        "name:pa": "ਸੈਨ ਦਰਿਆ",
+        "name:pnb": "دریائے سین",
+        "name:ru": "Сена",
+        "name:sk": "Seina",
+        "name:syc": "ܣܢ",
+        "name:ur": "دریائے سین",
+        "name:vi": "Sông Seine",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.2887373,
+            48.857206
+          ],
+          [
+            2.2872278,
+            48.8561501
+          ],
+          [
+            2.2857736,
+            48.8550616
+          ],
+          [
+            2.2821983,
+            48.8524747
+          ],
+          [
+            2.2796444,
+            48.8506161
+          ],
+          [
+            2.2781306,
+            48.8493335
+          ],
+          [
+            2.2773364,
+            48.8483379
+          ],
+          [
+            2.2762135,
+            48.8475807
+          ],
+          [
+            2.2735367,
+            48.844855
+          ],
+          [
+            2.2695175,
+            48.8406044
+          ],
+          [
+            2.2683278,
+            48.8393555
+          ],
+          [
+            2.2656067,
+            48.8365822
+          ],
+          [
+            2.2639677,
+            48.8349575
+          ],
+          [
+            2.2618363,
+            48.8329197
+          ],
+          [
+            2.2609303,
+            48.8319847
+          ],
+          [
+            2.2587378,
+            48.8306539
+          ],
+          [
+            2.2570074,
+            48.8294516
+          ],
+          [
+            2.2555123,
+            48.8282739
+          ],
+          [
+            2.2521384,
+            48.8259939
+          ],
+          [
+            2.2501221,
+            48.824957
+          ],
+          [
+            2.2478218,
+            48.824245
+          ],
+          [
+            2.2455044,
+            48.8234426
+          ],
+          [
+            2.2423802,
+            48.8226966
+          ]
+        ]
+      },
+      "id": "way/99555155"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/99555156",
+        "CEMT": "Vb",
+        "boat": "yes",
+        "name": "La Seine",
+        "name:ar": "السين",
+        "name:arc": "ܣܢ",
+        "name:azb": "سئن چایی",
+        "name:be": "Сена",
+        "name:br": "Ar Saena",
+        "name:fa": "سن",
+        "name:fr": "La Seine",
+        "name:grc": "Σηκουάνας",
+        "name:kk-Arab": "سەنا",
+        "name:pa": "ਸੈਨ ਦਰਿਆ",
+        "name:pnb": "دریائے سین",
+        "name:ru": "Сена",
+        "name:sk": "Seina",
+        "name:syc": "ܣܢ",
+        "name:ur": "دریائے سین",
+        "name:vi": "Sông Seine",
+        "ref:sandre": "0010 (6)",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.3902559,
+            48.8257262
+          ],
+          [
+            2.3897747,
+            48.826065
+          ],
+          [
+            2.3876423,
+            48.8275402
+          ],
+          [
+            2.3857059,
+            48.8291394
+          ],
+          [
+            2.3775206,
+            48.8358335
+          ],
+          [
+            2.3729029,
+            48.8400253
+          ],
+          [
+            2.3675127,
+            48.8440078
+          ],
+          [
+            2.3667892,
+            48.844507
+          ],
+          [
+            2.3643773,
+            48.8462946
+          ],
+          [
+            2.3614016,
+            48.84847
+          ]
+        ]
+      },
+      "id": "way/99555156"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/131413846",
+        "CEMT": "I",
+        "boat": "yes",
+        "name": "Bassin de la Villette",
+        "waterway": "canal",
+        "wikidata": "Q810526"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.3794518,
+            48.8883922
+          ],
+          [
+            2.3716152,
+            48.884489
+          ],
+          [
+            2.3710595,
+            48.8838398
+          ]
+        ]
+      },
+      "id": "way/131413846"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/150372226",
+        "CEMT": "Va",
+        "boat": "yes",
+        "maxlength": "125",
+        "maxwidth": "11.5",
+        "name": "La Seine",
+        "name:ar": "السين",
+        "name:arc": "ܣܢ",
+        "name:azb": "سئن چایی",
+        "name:be": "Сена",
+        "name:br": "Ar Saena",
+        "name:fa": "سن",
+        "name:fr": "La Seine",
+        "name:grc": "Σηκουάνας",
+        "name:kk-Arab": "سەنا",
+        "name:pa": "ਸੈਨ ਦਰਿਆ",
+        "name:pnb": "دریائے سین",
+        "name:ru": "Сена",
+        "name:sk": "Seina",
+        "name:syc": "ܣܢ",
+        "name:ur": "دریائے سین",
+        "name:vi": "Sông Seine",
+        "seamark:information": "Alternate area - Area for 125 m x 11.50 m vessels only",
+        "seamark:national_information": "Zone d'alternat - Zone réservée aux bateaux de 125 m x 11.50 m maxi",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.3614016,
+            48.84847
+          ],
+          [
+            2.3601256,
+            48.8490315
+          ],
+          [
+            2.3587373,
+            48.8494975
+          ],
+          [
+            2.3579065,
+            48.8497737
+          ],
+          [
+            2.3567617,
+            48.850281
+          ],
+          [
+            2.3554838,
+            48.8506818
+          ],
+          [
+            2.353857,
+            48.8511856
+          ],
+          [
+            2.3535973,
+            48.8514129
+          ],
+          [
+            2.3531932,
+            48.8517549
+          ],
+          [
+            2.3527544,
+            48.8527909
+          ],
+          [
+            2.3525634,
+            48.8537276
+          ],
+          [
+            2.3522295,
+            48.8546776
+          ]
+        ]
+      },
+      "id": "way/150372226"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/150372229",
+        "CEMT": "Vb",
+        "boat": "yes",
+        "name": "La Seine",
+        "name:ar": "السين",
+        "name:arc": "ܣܢ",
+        "name:azb": "سئن چایی",
+        "name:br": "Ar Saena",
+        "name:fa": "سن",
+        "name:fr": "La Seine",
+        "name:grc": "Σηκουάνας",
+        "name:kk-Arab": "سەنا",
+        "name:pa": "ਸੈਨ ਦਰਿਆ",
+        "name:pl": "Sekwana",
+        "name:pnb": "دریائے سین",
+        "name:ru": "Сена",
+        "name:sk": "Seina",
+        "name:syc": "ܣܢ",
+        "name:ur": "دریائے سین",
+        "name:vi": "Sông Seine",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.3351107,
+            48.8589292
+          ],
+          [
+            2.3328532,
+            48.8593724
+          ],
+          [
+            2.3320168,
+            48.8595746
+          ],
+          [
+            2.3314743,
+            48.8597135
+          ],
+          [
+            2.3298794,
+            48.8601217
+          ],
+          [
+            2.3274298,
+            48.860979
+          ],
+          [
+            2.3247816,
+            48.8618826
+          ],
+          [
+            2.3219806,
+            48.8626906
+          ],
+          [
+            2.31992,
+            48.863268
+          ],
+          [
+            2.3195717,
+            48.8633773
+          ],
+          [
+            2.3189937,
+            48.8635425
+          ],
+          [
+            2.3172781,
+            48.8637609
+          ],
+          [
+            2.3134756,
+            48.8636609
+          ],
+          [
+            2.3104059,
+            48.86375
+          ],
+          [
+            2.3069783,
+            48.8635611
+          ],
+          [
+            2.3017428,
+            48.863497
+          ],
+          [
+            2.3015455,
+            48.8634835
+          ]
+        ]
+      },
+      "id": "way/150372229"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/162760160",
+        "boat": "yes",
+        "motorboat": "yes",
+        "name": "Canal Saint-Martin",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.3704636,
+            48.8831407
+          ],
+          [
+            2.3704039,
+            48.8830745
+          ]
+        ]
+      },
+      "id": "way/162760160"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/162760163",
+        "CEMT": "I",
+        "boat": "yes",
+        "lock": "yes",
+        "lock_name": "Écluse n°2 de La Villette",
+        "lock_ref": "2",
+        "motorboat": "yes",
+        "name": "Canal Saint-Martin",
+        "vhf": "20",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.3707599,
+            48.88349
+          ],
+          [
+            2.3704636,
+            48.8831407
+          ]
+        ]
+      },
+      "id": "way/162760163"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/162762327",
+        "CEMT": "I",
+        "boat": "yes",
+        "motorboat": "yes",
+        "name": "Canal Saint-Martin",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.3671024,
+            48.8690399
+          ],
+          [
+            2.3671691,
+            48.8689561
+          ]
+        ]
+      },
+      "id": "way/162762327"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/162762328",
+        "CEMT": "I",
+        "boat": "yes",
+        "lock": "yes",
+        "lock_name": "Écluse n°6 des Récollets",
+        "lock_ref": "6",
+        "motorboat": "yes",
+        "name": "Canal Saint-Martin",
+        "vhf": "20",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.3635907,
+            48.8735453
+          ],
+          [
+            2.3638655,
+            48.8731998
+          ]
+        ]
+      },
+      "id": "way/162762328"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/162762329",
+        "CEMT": "I",
+        "boat": "yes",
+        "lock": "yes",
+        "lock_name": "Écluse n°8 du Temple",
+        "lock_ref": "8",
+        "motorboat": "yes",
+        "name": "Canal Saint-Martin",
+        "vhf": "20",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.3668268,
+            48.8693928
+          ],
+          [
+            2.3671024,
+            48.8690399
+          ]
+        ]
+      },
+      "id": "way/162762329"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/162762330",
+        "CEMT": "I",
+        "boat": "yes",
+        "lock": "yes",
+        "lock_name": "Écluse n°4 des Morts",
+        "lock_ref": "4",
+        "motorboat": "yes",
+        "name": "Canal Saint-Martin",
+        "vhf": "20",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.3660144,
+            48.8779834
+          ],
+          [
+            2.3657168,
+            48.8776386
+          ]
+        ]
+      },
+      "id": "way/162762330"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/227933426",
+        "boat": "yes",
+        "name": "Petit Bras de la Seine",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.2377123,
+            48.8711125
+          ],
+          [
+            2.2389929,
+            48.8714648
+          ],
+          [
+            2.2396204,
+            48.8716963
+          ],
+          [
+            2.2404331,
+            48.872065
+          ],
+          [
+            2.2410205,
+            48.8723808
+          ],
+          [
+            2.2418253,
+            48.8729185
+          ],
+          [
+            2.2428467,
+            48.8736705
+          ],
+          [
+            2.2456287,
+            48.8762739
+          ],
+          [
+            2.2471843,
+            48.8778544
+          ],
+          [
+            2.2478925,
+            48.8785389
+          ],
+          [
+            2.2506819,
+            48.8807897
+          ],
+          [
+            2.2515939,
+            48.8816504
+          ],
+          [
+            2.252699,
+            48.8829063
+          ],
+          [
+            2.2544478,
+            48.884917
+          ],
+          [
+            2.2551988,
+            48.8860528
+          ],
+          [
+            2.2554311,
+            48.8863626
+          ],
+          [
+            2.2568346,
+            48.8882343
+          ],
+          [
+            2.2577811,
+            48.8887029
+          ],
+          [
+            2.2605576,
+            48.8905717
+          ],
+          [
+            2.261282,
+            48.8908922
+          ],
+          [
+            2.2631703,
+            48.8916893
+          ],
+          [
+            2.269672,
+            48.8950469
+          ],
+          [
+            2.2708414,
+            48.8957029
+          ],
+          [
+            2.271689,
+            48.8962954
+          ],
+          [
+            2.2727082,
+            48.8971277
+          ],
+          [
+            2.2734271,
+            48.8975086
+          ],
+          [
+            2.2749613,
+            48.8981293
+          ],
+          [
+            2.2770212,
+            48.8988698
+          ],
+          [
+            2.2782322,
+            48.8994235
+          ],
+          [
+            2.2790168,
+            48.8998149
+          ],
+          [
+            2.2806533,
+            48.9009284
+          ]
+        ]
+      },
+      "id": "way/227933426"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/236038746",
+        "boat": "yes",
+        "name": "La Seine",
+        "name:ar": "السين",
+        "name:arc": "ܣܢ",
+        "name:azb": "سئن چایی",
+        "name:fa": "سن",
+        "name:fr": "La Seine",
+        "name:grc": "Σηκουάνας",
+        "name:kk-Arab": "سەنا",
+        "name:pa": "ਸੈਨ ਦਰਿਆ",
+        "name:pnb": "دریائے سین",
+        "name:syc": "ܣܢ",
+        "name:ur": "دریائے سین",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.2609303,
+            48.8319847
+          ],
+          [
+            2.2603223,
+            48.8303449
+          ],
+          [
+            2.2602265,
+            48.8299851
+          ],
+          [
+            2.2601018,
+            48.8294355
+          ],
+          [
+            2.2597371,
+            48.8274437
+          ],
+          [
+            2.2592543,
+            48.8268928
+          ],
+          [
+            2.257543,
+            48.8255543
+          ],
+          [
+            2.2564713,
+            48.8248851
+          ],
+          [
+            2.2548233,
+            48.8239756
+          ],
+          [
+            2.2511755,
+            48.8224428
+          ],
+          [
+            2.2468517,
+            48.821136
+          ],
+          [
+            2.2442983,
+            48.820592
+          ],
+          [
+            2.2401999,
+            48.8204861
+          ],
+          [
+            2.2382043,
+            48.8208817
+          ],
+          [
+            2.236849,
+            48.8214292
+          ]
+        ]
+      },
+      "id": "way/236038746"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/236684267",
+        "CEMT": "Va",
+        "lock": "yes",
+        "lock_name": "Écluse n°18 de Saint-Maurice",
+        "lock_ref": "18",
+        "motorboat": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4251398,
+            48.8166686
+          ],
+          [
+            2.4232879,
+            48.8167313
+          ]
+        ]
+      },
+      "id": "way/236684267"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/236684270",
+        "CEMT": "Va",
+        "motorboat": "yes",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4232879,
+            48.8167313
+          ],
+          [
+            2.4227777,
+            48.8167527
+          ],
+          [
+            2.4222983,
+            48.816721
+          ],
+          [
+            2.4213794,
+            48.8166602
+          ]
+        ]
+      },
+      "id": "way/236684270"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/236684271",
+        "CEMT": "Va",
+        "motorboat": "yes",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4273745,
+            48.8163343
+          ],
+          [
+            2.4264464,
+            48.8166772
+          ],
+          [
+            2.4251398,
+            48.8166686
+          ]
+        ]
+      },
+      "id": "way/236684271"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/236684274",
+        "CEMT": "Vb",
+        "motorboat": "yes",
+        "name": "La Marne",
+        "name:en": "Marne river",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4213794,
+            48.8166602
+          ],
+          [
+            2.4202689,
+            48.8168453
+          ],
+          [
+            2.4200526,
+            48.8168891
+          ],
+          [
+            2.4197736,
+            48.8169015
+          ],
+          [
+            2.4195242,
+            48.8168944
+          ],
+          [
+            2.4192695,
+            48.8168551
+          ],
+          [
+            2.4173356,
+            48.8164824
+          ],
+          [
+            2.4149558,
+            48.8162349
+          ],
+          [
+            2.4104606,
+            48.816436
+          ],
+          [
+            2.4093608,
+            48.8166335
+          ]
+        ]
+      },
+      "id": "way/236684274"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/236684276",
+        "name": "La Marne",
+        "name:en": "Marne river",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4273745,
+            48.8163343
+          ],
+          [
+            2.4263063,
+            48.8162734
+          ],
+          [
+            2.4242108,
+            48.8161865
+          ],
+          [
+            2.4229098,
+            48.8162444
+          ],
+          [
+            2.4213794,
+            48.8166602
+          ]
+        ]
+      },
+      "id": "way/236684276"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/236735250",
+        "CEMT": "I",
+        "boat": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.3652423,
+            48.846701
+          ],
+          [
+            2.3643773,
+            48.8462946
+          ]
+        ]
+      },
+      "id": "way/236735250"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/236735252",
+        "CEMT": "I",
+        "boat": "yes",
+        "layer": "-1",
+        "location": "underground",
+        "motorboat": "yes",
+        "name": "Canal Saint-Martin",
+        "ref:structurae": "s0035598",
+        "tunnel": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.3692209,
+            48.8663087
+          ],
+          [
+            2.3711185,
+            48.8638616
+          ],
+          [
+            2.3718875,
+            48.8628745
+          ],
+          [
+            2.372293,
+            48.862293
+          ],
+          [
+            2.3724301,
+            48.8619626
+          ],
+          [
+            2.3725416,
+            48.8614645
+          ],
+          [
+            2.3725514,
+            48.8610115
+          ],
+          [
+            2.3724459,
+            48.8605206
+          ],
+          [
+            2.3722805,
+            48.860076
+          ],
+          [
+            2.3694371,
+            48.8537611
+          ]
+        ]
+      },
+      "id": "way/236735252"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/236735253",
+        "CEMT": "I",
+        "boat": "yes",
+        "layer": "-2",
+        "level": "-2",
+        "location": "underground",
+        "motorboat": "yes",
+        "name": "Canal Saint-Martin",
+        "ref:structurae": "s0035598",
+        "tunnel": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.3694371,
+            48.8537611
+          ],
+          [
+            2.3693604,
+            48.853581
+          ],
+          [
+            2.3690437,
+            48.8528377
+          ],
+          [
+            2.3686178,
+            48.8519426
+          ]
+        ]
+      },
+      "id": "way/236735253"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/236742052",
+        "CEMT": "I",
+        "boat": "yes",
+        "layer": "-1",
+        "motorboat": "yes",
+        "name": "Canal Saint-Martin",
+        "tunnel": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.3704039,
+            48.8830745
+          ],
+          [
+            2.3697055,
+            48.8822735
+          ]
+        ]
+      },
+      "id": "way/236742052"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/511817523",
+        "historic": "aqueduct",
+        "layer": "-1",
+        "name": "Aqueduc de la Dhuis",
+        "source": "//keblo1515.free.fr/souterrinterdit/dhuys.htm",
+        "tunnel": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.5255386,
+            48.8942097
+          ],
+          [
+            2.524876,
+            48.8942132
+          ],
+          [
+            2.5235516,
+            48.8937116
+          ],
+          [
+            2.5232613,
+            48.8936118
+          ],
+          [
+            2.5207373,
+            48.8928747
+          ],
+          [
+            2.5179802,
+            48.8920883
+          ],
+          [
+            2.5170802,
+            48.891832
+          ],
+          [
+            2.5157243,
+            48.8914357
+          ],
+          [
+            2.5143966,
+            48.891053
+          ],
+          [
+            2.5126827,
+            48.8905733
+          ],
+          [
+            2.5121114,
+            48.8904093
+          ],
+          [
+            2.5116688,
+            48.8896527
+          ],
+          [
+            2.5105154,
+            48.8886934
+          ],
+          [
+            2.5095936,
+            48.8875136
+          ],
+          [
+            2.5095399,
+            48.8874423
+          ],
+          [
+            2.5094792,
+            48.8873641
+          ],
+          [
+            2.5093004,
+            48.8871237
+          ],
+          [
+            2.5089969,
+            48.8867372
+          ],
+          [
+            2.5089221,
+            48.886642
+          ],
+          [
+            2.5088477,
+            48.8865442
+          ],
+          [
+            2.5087702,
+            48.8864361
+          ],
+          [
+            2.5084373,
+            48.8860045
+          ],
+          [
+            2.5080961,
+            48.8855558
+          ],
+          [
+            2.5073665,
+            48.8846069
+          ],
+          [
+            2.5062686,
+            48.8848257
+          ],
+          [
+            2.5057595,
+            48.8849272
+          ],
+          [
+            2.5053385,
+            48.8850047
+          ],
+          [
+            2.505218,
+            48.885027
+          ],
+          [
+            2.5049285,
+            48.8850819
+          ],
+          [
+            2.5046334,
+            48.885129
+          ],
+          [
+            2.5040728,
+            48.8852189
+          ],
+          [
+            2.5034854,
+            48.8852154
+          ],
+          [
+            2.5030321,
+            48.8851466
+          ],
+          [
+            2.5012511,
+            48.8844958
+          ],
+          [
+            2.5000307,
+            48.8836932
+          ],
+          [
+            2.4992233,
+            48.8831535
+          ],
+          [
+            2.4962112,
+            48.8816807
+          ],
+          [
+            2.4942613,
+            48.8807159
+          ],
+          [
+            2.4917051,
+            48.8795146
+          ],
+          [
+            2.4898061,
+            48.8786009
+          ],
+          [
+            2.4892992,
+            48.8784669
+          ],
+          [
+            2.4880922,
+            48.8781564
+          ],
+          [
+            2.4868932,
+            48.8778301
+          ],
+          [
+            2.4852356,
+            48.877419
+          ],
+          [
+            2.4846294,
+            48.8773979
+          ],
+          [
+            2.4823469,
+            48.8775513
+          ],
+          [
+            2.4806222,
+            48.8774455
+          ],
+          [
+            2.4777496,
+            48.8773273
+          ],
+          [
+            2.475062,
+            48.8771703
+          ],
+          [
+            2.4696869,
+            48.8769004
+          ],
+          [
+            2.4689827,
+            48.8770795
+          ],
+          [
+            2.4681821,
+            48.8772568
+          ],
+          [
+            2.4648938,
+            48.8780999
+          ],
+          [
+            2.4645209,
+            48.8783751
+          ],
+          [
+            2.4625736,
+            48.8785921
+          ],
+          [
+            2.4599719,
+            48.8788902
+          ],
+          [
+            2.4570054,
+            48.87931
+          ],
+          [
+            2.4562544,
+            48.8791583
+          ],
+          [
+            2.4558198,
+            48.878922
+          ],
+          [
+            2.455667,
+            48.8783963
+          ],
+          [
+            2.4555945,
+            48.8778794
+          ],
+          [
+            2.4555355,
+            48.8776325
+          ],
+          [
+            2.4546906,
+            48.8765776
+          ],
+          [
+            2.4546743,
+            48.8765555
+          ],
+          [
+            2.4545942,
+            48.8764999
+          ],
+          [
+            2.4540818,
+            48.8759866
+          ],
+          [
+            2.453666,
+            48.8754415
+          ],
+          [
+            2.4529982,
+            48.8749053
+          ],
+          [
+            2.4522686,
+            48.8744095
+          ],
+          [
+            2.4518958,
+            48.8742702
+          ],
+          [
+            2.4476967,
+            48.874529
+          ],
+          [
+            2.4471644,
+            48.873905
+          ],
+          [
+            2.4467915,
+            48.8733052
+          ],
+          [
+            2.4457884,
+            48.8725889
+          ],
+          [
+            2.4452707,
+            48.8723314
+          ],
+          [
+            2.4441388,
+            48.8720509
+          ],
+          [
+            2.4434629,
+            48.8718974
+          ],
+          [
+            2.4428835,
+            48.871855
+          ],
+          [
+            2.4419421,
+            48.8718727
+          ],
+          [
+            2.4389514,
+            48.8718568
+          ],
+          [
+            2.4380073,
+            48.8718515
+          ],
+          [
+            2.4368647,
+            48.8722696
+          ],
+          [
+            2.4364349,
+            48.8724598
+          ],
+          [
+            2.4357516,
+            48.8727548
+          ],
+          [
+            2.4277157,
+            48.8759725
+          ],
+          [
+            2.4259293,
+            48.8763165
+          ],
+          [
+            2.4242213,
+            48.8762633
+          ],
+          [
+            2.4231532,
+            48.8762301
+          ],
+          [
+            2.4227992,
+            48.8762124
+          ],
+          [
+            2.4215466,
+            48.8756656
+          ],
+          [
+            2.4206534,
+            48.8756321
+          ],
+          [
+            2.4193606,
+            48.8751981
+          ],
+          [
+            2.4178371,
+            48.8731111
+          ],
+          [
+            2.4164236,
+            48.8719415
+          ],
+          [
+            2.4162962,
+            48.8718912
+          ],
+          [
+            2.4154311,
+            48.8715498
+          ],
+          [
+            2.4143475,
+            48.8714881
+          ],
+          [
+            2.4135402,
+            48.8716963
+          ],
+          [
+            2.4110484,
+            48.8706818
+          ],
+          [
+            2.4080309,
+            48.8705142
+          ],
+          [
+            2.4072658,
+            48.8706753
+          ]
+        ]
+      },
+      "id": "way/511817523"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/533196153",
+        "layer": "-1",
+        "name": "Bras de Gravelle",
+        "tunnel": "culvert",
+        "waterway": "river",
+        "wikidata": "Q109017676",
+        "wikipedia": "fr:Bras de Gravelle"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4361991,
+            48.8179455
+          ],
+          [
+            2.4360935,
+            48.8179488
+          ],
+          [
+            2.4360023,
+            48.8179523
+          ],
+          [
+            2.4358803,
+            48.8179426
+          ]
+        ]
+      },
+      "id": "way/533196153"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/533196154",
+        "name": "Bras de Gravelle",
+        "waterway": "river",
+        "wikidata": "Q109017676",
+        "wikipedia": "fr:Bras de Gravelle"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4409219,
+            48.8177214
+          ],
+          [
+            2.439791,
+            48.8178322
+          ],
+          [
+            2.4388656,
+            48.8179046
+          ],
+          [
+            2.4380583,
+            48.8179135
+          ],
+          [
+            2.4369183,
+            48.8179241
+          ],
+          [
+            2.4364865,
+            48.817947
+          ],
+          [
+            2.4361991,
+            48.8179455
+          ]
+        ]
+      },
+      "id": "way/533196154"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/533196159",
+        "name": "Bras de Gravelle",
+        "waterway": "river",
+        "wikidata": "Q109017676",
+        "wikipedia": "fr:Bras de Gravelle"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4358803,
+            48.8179426
+          ],
+          [
+            2.4354431,
+            48.8179152
+          ],
+          [
+            2.4350877,
+            48.8178552
+          ],
+          [
+            2.4344493,
+            48.8178261
+          ],
+          [
+            2.4340269,
+            48.8178375
+          ],
+          [
+            2.4335481,
+            48.817819
+          ],
+          [
+            2.433064,
+            48.8178278
+          ],
+          [
+            2.4327166,
+            48.8178049
+          ],
+          [
+            2.4324203,
+            48.8177634
+          ],
+          [
+            2.431979,
+            48.8177536
+          ],
+          [
+            2.4313849,
+            48.8177528
+          ],
+          [
+            2.4309625,
+            48.8177678
+          ],
+          [
+            2.4302919,
+            48.8177616
+          ],
+          [
+            2.4285793,
+            48.8177545
+          ],
+          [
+            2.4279168,
+            48.8177669
+          ],
+          [
+            2.4273911,
+            48.8177475
+          ],
+          [
+            2.4268815,
+            48.8177051
+          ],
+          [
+            2.4260285,
+            48.8176203
+          ],
+          [
+            2.4251153,
+            48.8175744
+          ],
+          [
+            2.4247572,
+            48.8175965
+          ]
+        ]
+      },
+      "id": "way/533196159"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/789623290",
+        "CEMT": "Vb",
+        "boat": "yes",
+        "have_riverbank": "yes",
+        "name": "La Seine",
+        "name:ar": "السين",
+        "name:arc": "ܣܢ",
+        "name:azb": "سئن چایی",
+        "name:be": "Сена",
+        "name:br": "Ar Saena",
+        "name:fa": "سن",
+        "name:fr": "La Seine",
+        "name:grc": "Σηκουάνας",
+        "name:kk-Arab": "سەنا",
+        "name:pa": "ਸੈਨ ਦਰਿਆ",
+        "name:pnb": "دریائے سین",
+        "name:ru": "Сена",
+        "name:sk": "Seina",
+        "name:syc": "ܣܢ",
+        "name:ur": "دریائے سین",
+        "name:vi": "Sông Seine",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.2357699,
+            48.8727715
+          ],
+          [
+            2.2427907,
+            48.8775293
+          ],
+          [
+            2.2432511,
+            48.8778527
+          ],
+          [
+            2.2469884,
+            48.8810043
+          ],
+          [
+            2.251281,
+            48.884496
+          ],
+          [
+            2.2527784,
+            48.885783
+          ],
+          [
+            2.2537409,
+            48.8869068
+          ],
+          [
+            2.2544998,
+            48.8877883
+          ],
+          [
+            2.2568526,
+            48.8892414
+          ],
+          [
+            2.259657,
+            48.891606
+          ],
+          [
+            2.2633586,
+            48.8949482
+          ],
+          [
+            2.2652418,
+            48.8959724
+          ],
+          [
+            2.268663,
+            48.89748
+          ],
+          [
+            2.2709321,
+            48.8983253
+          ],
+          [
+            2.2751153,
+            48.899719
+          ],
+          [
+            2.2773162,
+            48.9002737
+          ],
+          [
+            2.2806533,
+            48.9009284
+          ]
+        ]
+      },
+      "id": "way/789623290"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/914456351",
+        "CEMT": "Vb",
+        "boat": "yes",
+        "name": "La Seine",
+        "name:ar": "السين",
+        "name:arc": "ܣܢ",
+        "name:azb": "سئن چایی",
+        "name:br": "Ar Saena",
+        "name:fa": "سن",
+        "name:fr": "La Seine",
+        "name:grc": "Σηκουάνας",
+        "name:kk-Arab": "سەنا",
+        "name:pa": "ਸੈਨ ਦਰਿਆ",
+        "name:pl": "Sekwana",
+        "name:pnb": "دریائے سین",
+        "name:ru": "Сена",
+        "name:sk": "Seina",
+        "name:syc": "ܣܢ",
+        "name:ur": "دریائے سین",
+        "name:vi": "Sông Seine",
+        "seamark:type": "separation_lane",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.3384698,
+            48.858236
+          ],
+          [
+            2.337529,
+            48.8584545
+          ],
+          [
+            2.3351107,
+            48.8589292
+          ]
+        ]
+      },
+      "id": "way/914456351"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/914456352",
+        "CEMT": "Vb",
+        "boat": "yes",
+        "name": "La Seine",
+        "name:ar": "السين",
+        "name:arc": "ܣܢ",
+        "name:azb": "سئن چایی",
+        "name:br": "Ar Saena",
+        "name:fa": "سن",
+        "name:fr": "La Seine",
+        "name:grc": "Σηκουάνας",
+        "name:kk-Arab": "سەنا",
+        "name:pa": "ਸੈਨ ਦਰਿਆ",
+        "name:pl": "Sekwana",
+        "name:pnb": "دریائے سین",
+        "name:ru": "Сена",
+        "name:sk": "Seina",
+        "name:syc": "ܣܢ",
+        "name:ur": "دریائے سین",
+        "name:vi": "Sông Seine",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.3522295,
+            48.8546776
+          ],
+          [
+            2.3505914,
+            48.8554575
+          ],
+          [
+            2.3486817,
+            48.8561052
+          ],
+          [
+            2.347926,
+            48.8563146
+          ],
+          [
+            2.3468041,
+            48.8567282
+          ],
+          [
+            2.345356,
+            48.857044
+          ],
+          [
+            2.3418233,
+            48.8577958
+          ],
+          [
+            2.3400898,
+            48.8581273
+          ],
+          [
+            2.3384698,
+            48.858236
+          ]
+        ]
+      },
+      "id": "way/914456352"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/914456358",
+        "CEMT": "Vb",
+        "boat": "yes",
+        "have_riverbank": "yes",
+        "name": "La Seine",
+        "name:ar": "السين",
+        "name:arc": "ܣܢ",
+        "name:azb": "سئن چایی",
+        "name:br": "Ar Saena",
+        "name:fa": "سن",
+        "name:fr": "La Seine",
+        "name:grc": "Σηκουάνας",
+        "name:kk-Arab": "سەنا",
+        "name:pa": "ਸੈਨ ਦਰਿਆ",
+        "name:pl": "Sekwana",
+        "name:pnb": "دریائے سین",
+        "name:ru": "Сена",
+        "name:sk": "Seina",
+        "name:syc": "ܣܢ",
+        "name:ur": "دریائے سین",
+        "name:vi": "Sông Seine",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.2901364,
+            48.8583814
+          ],
+          [
+            2.2887373,
+            48.857206
+          ]
+        ]
+      },
+      "id": "way/914456358"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/914456360",
+        "CEMT": "Vb",
+        "boat": "yes",
+        "name": "La Seine",
+        "name:br": "Ar Saena",
+        "seamark:type": "separation_lane",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.2943487,
+            48.8615816
+          ],
+          [
+            2.2917578,
+            48.8600092
+          ],
+          [
+            2.2901364,
+            48.8583814
+          ]
+        ]
+      },
+      "id": "way/914456360"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1185670423",
+        "CEMT": "Vb",
+        "boat": "yes",
+        "name": "La Seine",
+        "name:ar": "السين",
+        "name:arc": "ܣܢ",
+        "name:azb": "سئن چایی",
+        "name:br": "Ar Saena",
+        "name:fa": "سن",
+        "name:fr": "La Seine",
+        "name:grc": "Σηκουάνας",
+        "name:kk-Arab": "سەنا",
+        "name:pa": "ਸੈਨ ਦਰਿਆ",
+        "name:pl": "Sekwana",
+        "name:pnb": "دریائے سین",
+        "name:ru": "Сена",
+        "name:sk": "Seina",
+        "name:syc": "ܣܢ",
+        "name:ur": "دریائے سین",
+        "name:vi": "Sông Seine",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.30145,
+            48.863477
+          ],
+          [
+            2.2994962,
+            48.8633434
+          ],
+          [
+            2.296866,
+            48.8626599
+          ],
+          [
+            2.2956982,
+            48.862193
+          ],
+          [
+            2.2943487,
+            48.8615816
+          ]
+        ]
+      },
+      "id": "way/1185670423"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1185670424",
+        "CEMT": "Vb",
+        "boat": "yes",
+        "layer": "-1",
+        "name": "La Seine",
+        "name:ar": "السين",
+        "name:arc": "ܣܢ",
+        "name:azb": "سئن چایی",
+        "name:br": "Ar Saena",
+        "name:fa": "سن",
+        "name:fr": "La Seine",
+        "name:grc": "Σηκουάνας",
+        "name:kk-Arab": "سەنا",
+        "name:pa": "ਸੈਨ ਦਰਿਆ",
+        "name:pl": "Sekwana",
+        "name:pnb": "دریائے سین",
+        "name:ru": "Сена",
+        "name:sk": "Seina",
+        "name:syc": "ܣܢ",
+        "name:ur": "دریائے سین",
+        "name:vi": "Sông Seine",
+        "tunnel": "culvert",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.3015455,
+            48.8634835
+          ],
+          [
+            2.30145,
+            48.863477
+          ]
+        ]
+      },
+      "id": "way/1185670424"
+    }
+  ]
+}
