@@ -11,6 +11,7 @@ import InlineListItem from "./InlineListItem.vue";
 import PoiChip from "./PoiChip.vue";
 import Instruction from "./Instruction.vue";
 
+const MARKER_RADIUS = 12;
 const TRANSITION_DURATION = 750;
 
 export default {
@@ -63,7 +64,7 @@ export default {
         .transition()
         .duration(TRANSITION_DURATION)
         .attr("opacity", 1)
-        .attr("r", 10);
+        .attr("r", MARKER_RADIUS);
       d3.select("#svg-map")
         .select(".markers-labels")
         .selectAll("text")
@@ -150,7 +151,10 @@ export default {
         .attr("x", (d) => this.projection([d.location.long, d.location.lat])[0])
         .attr(
           "y",
-          (d) => this.projection([d.location.long, d.location.lat])[1] - 15
+          (d) =>
+            this.projection([d.location.long, d.location.lat])[1] -
+            MARKER_RADIUS -
+            5
         )
         .attr("text-anchor", "middle")
         .attr("alignment-baseline", "middle")
@@ -321,9 +325,35 @@ export default {
       .attr("id", (d) => d.id)
       .attr("cx", (d) => this.projection([d.location.long, d.location.lat])[0])
       .attr("cy", (d) => this.projection([d.location.long, d.location.lat])[1])
-      .attr("r", 10)
+      .attr("r", MARKER_RADIUS)
       .attr("stroke", "black")
       .attr("stroke-width", "2px")
+      .on("click", (event, d) => {
+        this.focusOnHotel(d.id);
+        event.stopPropagation();
+      });
+
+    // draw POI circles as annontations below each hotel marker
+    const positivePoisPerHotel = Object.entries(
+      this.hotelMeta,
+      ([id, meta]) => ({
+        id,
+        location: meta.location,
+        pois: this.selectedPois,
+      })
+    );
+    console.log(positivePoisPerHotel);
+    svg
+      .select(".markers-annotations")
+      .selectAll("circle")
+      .data(positivePoisPerHotel)
+      .enter()
+      .append("circle")
+      .attr("id", (d) => d.id)
+      .attr("cx", (d) => this.projection([d.location.long, d.location.lat])[0])
+      .attr("cy", (d) => this.projection([d.location.long, d.location.lat])[1])
+      .attr("r", 5)
+      .attr("fill", (d) => this.poiMeta["restaurants"].color)
       .on("click", (event, d) => {
         this.focusOnHotel(d.id);
         event.stopPropagation();
@@ -446,6 +476,7 @@ export default {
         ></g>
         <g class="landmarks"></g>
         <g class="markers"></g>
+        <g class="markers-annotations"></g>
         <g class="markers-labels"></g>
       </g>
     </svg>
