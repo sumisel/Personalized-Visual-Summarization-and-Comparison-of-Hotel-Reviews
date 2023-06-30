@@ -5,6 +5,7 @@ import { inject, ref } from "vue";
 
 import { useHotelStore } from "@/stores/hotel";
 import { usePoiStore } from "@/stores/poi";
+import { useCategoryStore } from "../stores/category";
 
 import InlineListItem from "./InlineListItem.vue";
 import PoiChip from "./PoiChip.vue";
@@ -22,6 +23,7 @@ export default {
     const map = ref();
     const hotelStore = useHotelStore();
     const poiStore = usePoiStore();
+    const categoryStore = useCategoryStore();
     const hotelMeta = inject("hotelMeta");
     const hotelIds = Object.keys(hotelMeta);
     const city = inject("city");
@@ -36,6 +38,7 @@ export default {
       map,
       hotelStore,
       poiStore,
+      categoryStore,
       hotelMeta,
       hotelIds,
       city,
@@ -61,6 +64,12 @@ export default {
         .duration(TRANSITION_DURATION)
         .attr("opacity", 1)
         .attr("r", 10);
+      d3.select("#svg-map")
+        .select(".markers-labels")
+        .selectAll("text")
+        .transition()
+        .duration(TRANSITION_DURATION)
+        .attr("opacity", 1);
     },
     focusOnHotel(hotelId) {
       if (this.focusedHotel === hotelId) {
@@ -74,6 +83,10 @@ export default {
         .duration(TRANSITION_DURATION)
         .attr("r", 60)
         .attr("opacity", 0.5);
+      d3.select(`#svg-map .markers-labels text[id="${hotelId}"]`)
+        .transition()
+        .duration(TRANSITION_DURATION)
+        .attr("opacity", 0);
       const svg = d3.select("#svg-map");
       svg
         .select(".markers")
@@ -122,8 +135,35 @@ export default {
           this.hotelStore.hotelIsSelected(d.id) ? "black" : "white"
         );
     },
+    updateRatings() {
+      d3.select("#svg-map .markers-labels")
+        .selectAll("text")
+        .data(
+          Object.entries(this.hotelMeta).map(([id, meta]) => ({
+            id,
+            rating: this.hotelStore.overallRating(id).toFixed(1),
+            location: meta.location,
+          }))
+        )
+        .join("text")
+        .attr("id", (d) => d.id)
+        .attr("x", (d) => this.projection([d.location.long, d.location.lat])[0])
+        .attr(
+          "y",
+          (d) => this.projection([d.location.long, d.location.lat])[1] - 15
+        )
+        .attr("text-anchor", "middle")
+        .attr("alignment-baseline", "middle")
+        .attr("font-size", "12px")
+        .attr("fill", "black")
+        .text((d) => d.rating);
+    },
   },
   mounted() {
+    this.categoryStore.$subscribe(() => {
+      this.updateRatings();
+    });
+
     const cityId = this.city.name.replace(" ", "_").toLowerCase();
 
     this.width = d3.select("#app").node().getBoundingClientRect().width - 344;
@@ -285,6 +325,7 @@ export default {
     markers.append("title").text((d) => `${d.name}`);
 
     this.updateSelectedHotels();
+    this.updateRatings();
   },
   computed: {
     districtsOfSelectedHotels() {
@@ -397,6 +438,7 @@ export default {
         ></g>
         <g class="landmarks"></g>
         <g class="markers"></g>
+        <g class="markers-labels"></g>
       </g>
     </svg>
     <div class="dummy"></div>
@@ -430,7 +472,7 @@ export default {
               <strong>{{
                 hotelStore.overallRating(focusedHotel).toFixed(1)
               }}</strong>
-              according to current priorities
+              (of 5) according to current priorities
             </v-card-text>
             <v-card-actions>
               <v-btn

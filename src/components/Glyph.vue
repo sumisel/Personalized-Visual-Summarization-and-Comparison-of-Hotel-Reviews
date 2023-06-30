@@ -141,17 +141,6 @@ export default {
 };
 </script>
 
-
-<style lang="scss">
-.v-tooltip__content {
-  opacity: 0 !important;
-  --tooltip-background-color: #000 !important;
-  --tooltip-color: #fff !important;
-  --tooltip-opacity: 0 !important;
-  --tooltip-padding: 5px 5px !important;
-}
-</style>
-
 <template>
   <svg ref="svg"></svg>
 </template>
