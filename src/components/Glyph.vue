@@ -30,6 +30,7 @@ export default {
         sleep: 3.0,
       },
     },
+    showRating: false,
   },
   setup() {
     const svg = ref();
@@ -125,14 +126,16 @@ export default {
           this.categoryStore.unhover();
         });
 
-      d3.select(this.svg)
-        .selectAll("text")
-        .data(overallRating)
-        .join("text")
-        .attr("text-anchor", "middle")
-        .attr("dy", 8)
-        .attr("font-size", "1.5rem")
-        .text((d) => d.toFixed(1));
+      if (this.showRating) {
+        d3.select(this.svg)
+          .selectAll("text")
+          .data(overallRating)
+          .join("text")
+          .attr("text-anchor", "middle")
+          .attr("dy", 8)
+          .attr("font-size", "1.5rem")
+          .text((d) => d.toFixed(1));
+      }
     },
   },
 };

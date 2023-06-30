@@ -81,6 +81,7 @@ const topCategories = computed(() => {
           :minRatings="hotelStore.minRatings"
           :hotelId="hotelId"
           :hotelName="hotel.name"
+          :showRating="true"
         ></Glyph>
       </v-avatar>
       <div class="flex-grow-1">
