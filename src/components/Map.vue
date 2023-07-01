@@ -11,6 +11,7 @@ import InlineListItem from "./InlineListItem.vue";
 import PoiChip from "./PoiChip.vue";
 import Instruction from "./Instruction.vue";
 
+const MARKER_RADIUS = 12;
 const TRANSITION_DURATION = 750;
 
 export default {
@@ -63,10 +64,15 @@ export default {
         .transition()
         .duration(TRANSITION_DURATION)
         .attr("opacity", 1)
-        .attr("r", 10);
+        .attr("r", MARKER_RADIUS);
       d3.select("#svg-map")
         .select(".markers-labels")
         .selectAll("text")
+        .transition()
+        .duration(TRANSITION_DURATION)
+        .attr("opacity", 1);
+      d3.select("#svg-map .markers-annotations")
+        .selectAll("g")
         .transition()
         .duration(TRANSITION_DURATION)
         .attr("opacity", 1);
@@ -84,6 +90,10 @@ export default {
         .attr("r", 60)
         .attr("opacity", 0.5);
       d3.select(`#svg-map .markers-labels text[id="${hotelId}"]`)
+        .transition()
+        .duration(TRANSITION_DURATION)
+        .attr("opacity", 0);
+      d3.select(`#svg-map .markers-annotations g[id="${hotelId}"]`)
         .transition()
         .duration(TRANSITION_DURATION)
         .attr("opacity", 0);
@@ -150,7 +160,10 @@ export default {
         .attr("x", (d) => this.projection([d.location.long, d.location.lat])[0])
         .attr(
           "y",
-          (d) => this.projection([d.location.long, d.location.lat])[1] - 15
+          (d) =>
+            this.projection([d.location.long, d.location.lat])[1] -
+            MARKER_RADIUS -
+            5
         )
         .attr("text-anchor", "middle")
         .attr("alignment-baseline", "middle")
@@ -158,10 +171,53 @@ export default {
         .attr("fill", "black")
         .text((d) => d.rating);
     },
+    updatePoiMarkers() {
+      // draw POI circles as annontations for each hotel marker
+      const positivePoisPerHotel = Object.entries(this.hotelMeta).map(
+        ([id, meta]) => ({
+          id: id,
+          location: meta.location,
+          postivePois: this.poiStore.selectedPois.filter((poi) =>
+            meta.poiInfo[poi]?.startsWith("(+)")
+          ),
+        })
+      );
+      const annotationGroups = d3
+        .select("#svg-map .markers-annotations")
+        .selectAll("g")
+        .data(positivePoisPerHotel)
+        .join("g")
+        .attr("id", (d) => d.id)
+        .attr("transform", (d) => {
+          const x = this.projection([d.location.long, d.location.lat])[0];
+          const y = this.projection([d.location.long, d.location.lat])[1];
+          return `translate(${x}, ${y})`;
+        });
+      annotationGroups
+        .selectAll("circle")
+        .data((d) =>
+          d.postivePois
+            .map((poi) => ({
+              poi: poi,
+              length: d.postivePois.length,
+            }))
+            .reverse()
+        )
+        .join("circle")
+        .attr("cx", (d, i) => -1 * (i * 6 - (d.length - 1) * 3))
+        .attr("cy", 0)
+        .attr("r", 5)
+        .attr("fill", (d) => this.poiMeta[d.poi].color)
+        .attr("stroke", (d) => d3.color(this.poiMeta[d.poi].color).darker());
+    },
   },
   mounted() {
     this.categoryStore.$subscribe(() => {
       this.updateRatings();
+    });
+
+    this.poiStore.$subscribe(() => {
+      this.updatePoiMarkers();
     });
 
     const cityId = this.city.name.replace(" ", "_").toLowerCase();
@@ -325,7 +381,7 @@ export default {
       .attr("id", (d) => d.id)
       .attr("cx", (d) => this.projection([d.location.long, d.location.lat])[0])
       .attr("cy", (d) => this.projection([d.location.long, d.location.lat])[1])
-      .attr("r", 10)
+      .attr("r", MARKER_RADIUS)
       .attr("stroke", "black")
       .attr("stroke-width", "2px")
       .on("click", (event, d) => {
@@ -338,6 +394,7 @@ export default {
 
     this.updateSelectedHotels();
     this.updateRatings();
+    this.updatePoiMarkers();
   },
   computed: {
     districtsOfSelectedHotels() {
@@ -450,6 +507,7 @@ export default {
         ></g>
         <g class="landmarks"></g>
         <g class="markers"></g>
+        <g class="markers-annotations"></g>
         <g class="markers-labels"></g>
       </g>
     </svg>
@@ -679,6 +737,11 @@ export default {
         &:hover {
           filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.8));
         }
+      }
+    }
+    & .markers-annotations {
+      & circle {
+        pointer-events: none;
       }
     }
   }
