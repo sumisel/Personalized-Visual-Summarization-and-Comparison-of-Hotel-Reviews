@@ -334,15 +334,15 @@ export default {
       });
 
     // draw POI circles as annontations below each hotel marker
-    const positivePoisPerHotel = Object.entries(
-      this.hotelMeta,
+    const positivePoisPerHotel = Object.entries(this.hotelMeta).map(
       ([id, meta]) => ({
-        id,
+        id: id,
         location: meta.location,
-        pois: this.selectedPois,
+        postivePois: Object.keys(this.poiMeta).filter((poi) =>
+          meta.poiInfo[poi]?.startsWith("(+)")
+        ),
       })
     );
-    console.log(positivePoisPerHotel);
     svg
       .select(".markers-annotations")
       .selectAll("circle")
