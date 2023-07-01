@@ -162,6 +162,42 @@ export default {
         .attr("fill", "black")
         .text((d) => d.rating);
     },
+    updatePoiMarkers() {
+      // draw POI circles as annontations for each hotel marker
+      const positivePoisPerHotel = Object.entries(this.hotelMeta).map(
+        ([id, meta]) => ({
+          id: id,
+          location: meta.location,
+          postivePois: Object.keys(this.poiMeta).filter((poi) =>
+            meta.poiInfo[poi]?.startsWith("(+)")
+          ),
+        })
+      );
+      const annotationGroups = d3
+        .select("#svg-map .markers-annotations")
+        .selectAll("g")
+        .data(positivePoisPerHotel)
+        .join("g")
+        .attr("transform", (d) => {
+          const x = this.projection([d.location.long, d.location.lat])[0];
+          const y = this.projection([d.location.long, d.location.lat])[1];
+          return `translate(${x}, ${y})`;
+        });
+      annotationGroups
+        .selectAll("circle")
+        .data((d) =>
+          d.postivePois.map((poi) => ({
+            poi: poi,
+            length: d.postivePois.length,
+          }))
+        )
+        .join("circle")
+        .attr("cx", (d, i) => i * 10 - (d.length - 1) * 5)
+        .attr("cy", 0)
+        .attr("r", 5)
+        .attr("fill", (d) => this.poiMeta[d.poi].color)
+        .attr("stroke", (d) => d3.color(this.poiMeta[d.poi].color).darker());
+    },
   },
   mounted() {
     this.categoryStore.$subscribe(() => {
@@ -337,48 +373,12 @@ export default {
         event.stopPropagation();
       });
 
-    // draw POI circles as annontations below each hotel marker
-    const positivePoisPerHotel = Object.entries(this.hotelMeta).map(
-      ([id, meta]) => ({
-        id: id,
-        location: meta.location,
-        postivePois: Object.keys(this.poiMeta).filter((poi) =>
-          meta.poiInfo[poi]?.startsWith("(+)")
-        ),
-      })
-    );
-    const annotationGroups = svg
-      .select(".markers-annotations")
-      .selectAll("g")
-      .data(positivePoisPerHotel)
-      .enter()
-      .append("g")
-      .attr("transform", (d) => {
-        const x = this.projection([d.location.long, d.location.lat])[0];
-        const y = this.projection([d.location.long, d.location.lat])[1];
-        return `translate(${x}, ${y})`;
-      });
-    annotationGroups
-      .selectAll("circle")
-      .data((d) =>
-        d.postivePois.map((poi) => ({
-          poi: poi,
-          length: d.postivePois.length,
-        }))
-      )
-      .enter()
-      .append("circle")
-      .attr("cx", (d, i) => i * 10 - (d.length - 1) * 5)
-      .attr("cy", 0)
-      .attr("r", 5)
-      .attr("fill", (d) => this.poiMeta[d.poi].color)
-      .attr("stroke", (d) => d3.color(this.poiMeta[d.poi].color).darker());
-
     // TODO: replace with v-tooltip
     markers.append("title").text((d) => `${d.name}`);
 
     this.updateSelectedHotels();
     this.updateRatings();
+    this.updatePoiMarkers();
   },
   computed: {
     districtsOfSelectedHotels() {
