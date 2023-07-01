@@ -242,27 +242,6 @@ export default {
       .center([this.city.center[1], this.city.center[0]])
       .translate([this.width / 2, this.height / 2]);
 
-    // draw districts
-    d3.json(`./geo/districts_${cityId}.geojson`).then((geojson) => {
-      var polygonsOnly = geojson.features.filter(function (feature) {
-        return (
-          feature.geometry.type === "Polygon" ||
-          feature.geometry.type === "MultiPolygon"
-        );
-      });
-      const path = d3.geoPath().projection(this.projection);
-      svg
-        .select(".districts")
-        .selectAll("path")
-        .data(polygonsOnly)
-        .enter()
-        .append("path")
-        .attr("fill", "none")
-        .attr("d", path)
-        .style("stroke", "#eaeaea")
-        .style("stroke-width", "20px");
-    });
-
     // draw waterways
     d3.json(`./geo/waterways_${cityId}.geojson`).then((geojson) => {
       var linesOnly = geojson.features.filter(function (feature) {
@@ -418,12 +397,6 @@ export default {
     this.updatePoiMarkers();
   },
   computed: {
-    districtsOfSelectedHotels() {
-      const districts = this.hotelStore.selectedHotelIds.map(
-        (hotelId) => this.hotelMeta[hotelId].district
-      );
-      return [...new Set(districts.filter((district) => district))];
-    },
     poisWithAllPositiveScores() {
       const positivePois = [];
       this.poiStore.selectedPois.forEach((poi) => {
@@ -517,7 +490,6 @@ export default {
   <div class="map-container">
     <svg id="svg-map" class="map">
       <g class="map-container">
-        <g class="districts"></g>
         <g class="waterways"></g>
         <g class="roads"></g>
         <g
@@ -681,27 +653,6 @@ export default {
         ></a
       > </InlineListItem
     >.
-    <span
-      v-if="
-        hotelStore.selectedHotelIds.length > 1 &&
-        districtsOfSelectedHotels.length > 0
-      "
-      >They are
-      <span v-if="districtsOfSelectedHotels.length === 1"
-        >all located in
-        <strong
-          >{{ this.city.name }} {{ districtsOfSelectedHotels[0] }}</strong
-        ></span
-      ><span v-else
-        >located in <strong>{{ this.city.name + " " }}</strong>
-        <span v-if="districtsOfSelectedHotels.length === 2">
-          <strong>{{ districtsOfSelectedHotels[0] }}</strong> and
-          <strong>{{ districtsOfSelectedHotels[1] }}</strong></span
-        ><span v-else
-          >{{ districtsOfSelectedHotels.length }} districts</span
-        > </span
-      >.</span
-    >
   </div>
   <!-- Paragraph on the selected POIs -->
   <div

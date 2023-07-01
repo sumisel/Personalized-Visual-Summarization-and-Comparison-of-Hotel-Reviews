@@ -14,7 +14,6 @@
                 "lat": 52.52323593377977,
                 "long": 13.412744147428139
             },
-            "district": "Mitte",
             "poiInfo": {
                 "restaurants": "(+) many <strong>restaurants</strong> nearby",
                 "sightseeing": "not close, but also not far from major <strong>sights</strong>",
@@ -36,7 +35,6 @@
                 "lat": 52.52158560943486,
                 "long": 13.388433404853155
             },
-            "district": "Mitte",
             "poiInfo": {
                 "restaurants": "(+) many <strong>restaurants</strong> nearby",
                 "sightseeing": "(+) close to major <strong>sights</strong>",
@@ -58,7 +56,6 @@
                 "lat": 52.50991001736232,
                 "long": 13.397445562389724
             },
-            "district": "Mitte",
             "poiInfo": {
                 "restaurants": "(+) many <strong>restaurants</strong> nearby",
                 "sightseeing": "(+) close to major <strong>sights</strong>",
@@ -80,7 +77,6 @@
                 "lat": 52.516193223183464,
                 "long": 13.38003003822563
             },
-            "district": "Mitte",
             "poiInfo": {
                 "restaurants": "(+) many <strong>restaurants</strong> nearby",
                 "sightseeing": "(+) close to major <strong>sights</strong>",
@@ -102,7 +98,6 @@
                 "lat": 52.516086409333994,
                 "long": 13.388512012423096
             },
-            "district": "Mitte",
             "poiInfo": {
                 "restaurants": "(+) many <strong>restaurants</strong> nearby",
                 "sightseeing": "(+) close to major <strong>sights</strong>",
@@ -124,7 +119,6 @@
                 "lat": 52.529669672707435,
                 "long": 13.40116314409216
             },
-            "district": "Mitte",
             "poiInfo": {
                 "restaurants": "(+) many <strong>restaurants</strong> nearby",
                 "sightseeing": "not close, but also not far from major <strong>sights</strong>",
@@ -146,7 +140,6 @@
                 "lat": 52.50876342111009,
                 "long": 13.39307286239428
             },
-            "district": "Mitte",
             "poiInfo": {
                 "restaurants": "(+) many <strong>restaurants</strong> nearby",
                 "sightseeing": "(+) close to major <strong>sights</strong>",
@@ -168,7 +161,6 @@
                 "lat": 52.51051091075139,
                 "long": 13.375242220636112
             },
-            "district": "Tiergarten",
             "poiInfo": {
                 "restaurants": "(+) many <strong>restaurants</strong> nearby",
                 "sightseeing": "(+) close to major <strong>sights</strong>",
@@ -190,7 +182,6 @@
                 "lat": 52.506153368476284,
                 "long": 13.343966770942998
             },
-            "district": "Tiergarten",
             "poiInfo": {
                 "restaurants": "some <strong>restaurants</strong> nearby",
                 "sightseeing": "close to the Zoo, but only few other <strong>sights</strong> nearby",
@@ -212,7 +203,6 @@
                 "lat": 52.50405489713002,
                 "long": 13.352185151350383
             },
-            "district": "Tiergarten",
             "poiInfo": {
                 "restaurants": "some <strong>restaurants</strong> nearby",
                 "sightseeing": "(-) only few <strong>sights</strong> nearby",
