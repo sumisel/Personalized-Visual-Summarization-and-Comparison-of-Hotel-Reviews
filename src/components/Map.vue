@@ -343,21 +343,32 @@ export default {
         ),
       })
     );
-    svg
+    const annotationGroups = svg
       .select(".markers-annotations")
-      .selectAll("circle")
+      .selectAll("g")
       .data(positivePoisPerHotel)
       .enter()
-      .append("circle")
-      .attr("id", (d) => d.id)
-      .attr("cx", (d) => this.projection([d.location.long, d.location.lat])[0])
-      .attr("cy", (d) => this.projection([d.location.long, d.location.lat])[1])
-      .attr("r", 5)
-      .attr("fill", (d) => this.poiMeta["restaurants"].color)
-      .on("click", (event, d) => {
-        this.focusOnHotel(d.id);
-        event.stopPropagation();
+      .append("g")
+      .attr("transform", (d) => {
+        const x = this.projection([d.location.long, d.location.lat])[0];
+        const y = this.projection([d.location.long, d.location.lat])[1];
+        return `translate(${x}, ${y})`;
       });
+    annotationGroups
+      .selectAll("circle")
+      .data((d) =>
+        d.postivePois.map((poi) => ({
+          poi: poi,
+          length: d.postivePois.length,
+        }))
+      )
+      .enter()
+      .append("circle")
+      .attr("cx", (d, i) => i * 10 - (d.length - 1) * 5)
+      .attr("cy", 0)
+      .attr("r", 5)
+      .attr("fill", (d) => this.poiMeta[d.poi].color)
+      .attr("stroke", (d) => d3.color(this.poiMeta[d.poi].color).darker());
 
     // TODO: replace with v-tooltip
     markers.append("title").text((d) => `${d.name}`);
@@ -706,6 +717,11 @@ export default {
         &:hover {
           filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.8));
         }
+      }
+    }
+    & .markers-annotations {
+      & circle {
+        pointer-events: none;
       }
     }
   }
