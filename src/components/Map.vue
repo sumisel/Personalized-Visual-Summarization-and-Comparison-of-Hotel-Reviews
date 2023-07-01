@@ -168,7 +168,7 @@ export default {
         ([id, meta]) => ({
           id: id,
           location: meta.location,
-          postivePois: Object.keys(this.poiMeta).filter((poi) =>
+          postivePois: this.poiStore.selectedPois.filter((poi) =>
             meta.poiInfo[poi]?.startsWith("(+)")
           ),
         })
@@ -202,6 +202,10 @@ export default {
   mounted() {
     this.categoryStore.$subscribe(() => {
       this.updateRatings();
+    });
+
+    this.poiStore.$subscribe(() => {
+      this.updatePoiMarkers();
     });
 
     const cityId = this.city.name.replace(" ", "_").toLowerCase();
