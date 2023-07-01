@@ -1,0 +1,16 @@
+[out:json][timeout:25];
+(
+  way["leisure"="park"]({{bbox}});
+  relation["leisure"="park"]({{bbox}});
+  way["leisure"="garden"]({{bbox}});
+  relation["leisure"="garden"]({{bbox}});
+  way["leisure"="recreation_ground"]({{bbox}});
+  relation["leisure"="recreation_ground"]({{bbox}});
+  way["leisure"="nature_reserve"]({{bbox}});
+  relation["leisure"="nature_reserve"]({{bbox}});
+  way["landuse"="cemetery"]({{bbox}});
+  relation["landuse"="cemetery"]({{bbox}});
+);
+out body;
+>;
+out skel qt;

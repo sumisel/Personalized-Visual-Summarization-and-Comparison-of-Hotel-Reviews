@@ -18,7 +18,8 @@
             "poiInfo": {
                 "restaurants": "(+) many <strong>restaurants</strong> nearby",
                 "sightseeing": "not close, but also not far from major <strong>sights</strong>",
-                "public_transport": "(+) next to major <strong>public transport</strong> hub"
+                "public_transport": "(+) next to major <strong>public transport</strong> hub",
+                "parks": "not too far from a couple of smaller <strong>parks</strong>"
             }
         },
         "Hotel_Review-g187323-d589462-Reviews-Melia_Berlin-Berlin.html": {
@@ -39,7 +40,8 @@
             "poiInfo": {
                 "restaurants": "(+) many <strong>restaurants</strong> nearby",
                 "sightseeing": "(+) close to major <strong>sights</strong>",
-                "public_transport": "(+) next to major <strong>public transport</strong> hub"
+                "public_transport": "(+) next to major <strong>public transport</strong> hub",
+                "parks": "not too far from Tiergarten and a couple of smaller <strong>parks</strong>"
             }
         },
         "Hotel_Review-g187323-d781064-Reviews-Adina_Apartment_Hotel_Berlin_Checkpoint_Charlie-Berlin.html": {
@@ -60,7 +62,8 @@
             "poiInfo": {
                 "restaurants": "(+) many <strong>restaurants</strong> nearby",
                 "sightseeing": "(+) close to major <strong>sights</strong>",
-                "public_transport": "some stations close, but not directly next to main <strong>public transport</strong> lines"
+                "public_transport": "some stations close, but not directly next to main <strong>public transport</strong> lines",
+                "parks": "not too far from Tiergarten and a couple of smaller <strong>parks</strong>"
             }
         },
         "Hotel_Review-g187323-d190694-Reviews-Hotel_Adlon_Kempinski-Berlin.html": {
@@ -81,7 +84,8 @@
             "poiInfo": {
                 "restaurants": "(+) many <strong>restaurants</strong> nearby",
                 "sightseeing": "(+) close to major <strong>sights</strong>",
-                "public_transport": "(+) next to major <strong>public transport</strong> hub"
+                "public_transport": "(+) next to major <strong>public transport</strong> hub",
+                "parks": "(+) next to large Tiergarten <strong>park</strong>"
             }
         },
         "Hotel_Review-g187323-d191437-Reviews-The_Westin_Grand_Berlin-Berlin.html": {
@@ -102,7 +106,8 @@
             "poiInfo": {
                 "restaurants": "(+) many <strong>restaurants</strong> nearby",
                 "sightseeing": "(+) close to major <strong>sights</strong>",
-                "public_transport": "(+) next to major <strong>public transport</strong> hub"
+                "public_transport": "(+) next to major <strong>public transport</strong> hub",
+                "parks": "not too far from Tiergarten and a couple of smaller <strong>parks</strong>"
             }
         },
         "Hotel_Review-g187323-d1307675-Reviews-The_Circus_Hotel-Berlin.html": {
@@ -123,7 +128,8 @@
             "poiInfo": {
                 "restaurants": "(+) many <strong>restaurants</strong> nearby",
                 "sightseeing": "not close, but also not far from major <strong>sights</strong>",
-                "public_transport": "next to a station, but only connected to one <strong>public transport</strong> line"
+                "public_transport": "next to a station, but only connected to one <strong>public transport</strong> line",
+                "parks": "(+) a couple of smaller <strong>parks</strong> closeby"
             }
         },
         "Hotel_Review-g187323-d233880-Reviews-Mercure_Hotel_Residenz_Berlin_Checkpoint_Charlie-Berlin.html": {
@@ -144,7 +150,8 @@
             "poiInfo": {
                 "restaurants": "(+) many <strong>restaurants</strong> nearby",
                 "sightseeing": "(+) close to major <strong>sights</strong>",
-                "public_transport": "some stations close, but not directly next to main <strong>public transport</strong> lines"
+                "public_transport": "some stations close, but not directly next to main <strong>public transport</strong> lines",
+                "parks": "not too far from Tiergarten and a couple of smaller <strong>parks</strong>"
             }
         },
         "Hotel_Review-g187323-d289019-Reviews-The_Ritz_Carlton_Berlin-Berlin.html": {
@@ -165,7 +172,8 @@
             "poiInfo": {
                 "restaurants": "(+) many <strong>restaurants</strong> nearby",
                 "sightseeing": "(+) close to major <strong>sights</strong>",
-                "public_transport": "(+) next to major <strong>public transport</strong> hub"
+                "public_transport": "(+) next to major <strong>public transport</strong> hub",
+                "parks": "(+) next to large Tiergarten <strong>park</strong>"
             }
         },
         "Hotel_Review-g187323-d202450-Reviews-Pullman_Berlin_Schweizerhof-Berlin.html": {
@@ -186,7 +194,8 @@
             "poiInfo": {
                 "restaurants": "some <strong>restaurants</strong> nearby",
                 "sightseeing": "close to the Zoo, but only few other <strong>sights</strong> nearby",
-                "public_transport": "(-) some distance to next <strong>public transport</strong> hub"
+                "public_transport": "(-) some distance to next <strong>public transport</strong> hub",
+                "parks": "not too far from Tiergarten <strong>park</strong>"
             }
         },
         "Hotel_Review-g187323-d638834-Reviews-Hotel_Berlin_Berlin-Berlin.html": {
@@ -207,7 +216,8 @@
             "poiInfo": {
                 "restaurants": "some <strong>restaurants</strong> nearby",
                 "sightseeing": "(-) only few <strong>sights</strong> nearby",
-                "public_transport": "(-) some distance to next <strong>public transport</strong> hub"
+                "public_transport": "(-) some distance to next <strong>public transport</strong> hub",
+                "parks": "not too far from Tiergarten <strong>park</strong>"
             }
         }
     },

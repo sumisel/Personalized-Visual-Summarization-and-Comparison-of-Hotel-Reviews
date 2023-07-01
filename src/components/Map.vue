@@ -375,6 +375,21 @@ export default {
         .attr("d", path.pointRadius(6));
     });
 
+    // draw parks
+    d3.json(`./geo/parks_${cityId}.geojson`).then((geojson) => {
+      const path = d3.geoPath().projection(this.projection);
+      svg
+        .select(".parks")
+        .selectAll("path")
+        .data(geojson.features)
+        .enter()
+        .append("path")
+        .attr("d", path)
+        .attr("fill", "none")
+        .attr("stroke", this.poiMeta.parks.color)
+        .style("stroke-width", "2px");
+    });
+
     // draw markers for each hotel
     const markers = svg
       .select(".markers")
@@ -511,6 +526,7 @@ export default {
           class="public_transport"
           v-show="poiStore.selectedPois.includes('public_transport')"
         ></g>
+        <g class="parks" v-show="poiStore.selectedPois.includes('parks')"></g>
         <g class="landmarks"></g>
         <g class="markers"></g>
         <g class="markers-annotations"></g>

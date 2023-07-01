@@ -10,5 +10,9 @@
     "public_transport": {
         "icon": "mdi-bus",
         "color": "#d0cae8"
+    },
+    "parks": {
+        "icon": "mdi-pine-tree",
+        "color": "#c7e8d0"
     }
 }
