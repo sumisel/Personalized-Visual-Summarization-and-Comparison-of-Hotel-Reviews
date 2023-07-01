@@ -63,7 +63,6 @@ export default {
         .selectAll("circle")
         .transition()
         .duration(TRANSITION_DURATION)
-        .attr("opacity", 1)
         .attr("r", MARKER_RADIUS);
       d3.select("#svg-map")
         .select(".markers-labels")
@@ -127,13 +126,20 @@ export default {
       }, TRANSITION_DURATION);
     },
     resetZoom() {
+      this.focusedHotel = "";
       this.resetAllMarkers();
       d3.select("#svg-map")
         .select(".map-container")
         .transition()
         .duration(TRANSITION_DURATION)
         .attr("transform", "");
-      this.focusedHotel = "";
+      // wait first transition phase to finish
+      setTimeout(() => {
+        d3.selectAll("#svg-map .markers circle")
+          .transition()
+          .duration(TRANSITION_DURATION)
+          .attr("opacity", 1);
+      }, TRANSITION_DURATION);
     },
     updateSelectedHotels() {
       d3.select("#svg-map")
