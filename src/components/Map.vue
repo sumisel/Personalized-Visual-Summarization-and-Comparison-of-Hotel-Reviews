@@ -71,6 +71,11 @@ export default {
         .transition()
         .duration(TRANSITION_DURATION)
         .attr("opacity", 1);
+      d3.select("#svg-map .markers-annotations")
+        .selectAll("g")
+        .transition()
+        .duration(TRANSITION_DURATION)
+        .attr("opacity", 1);
     },
     focusOnHotel(hotelId) {
       if (this.focusedHotel === hotelId) {
@@ -85,6 +90,10 @@ export default {
         .attr("r", 60)
         .attr("opacity", 0.5);
       d3.select(`#svg-map .markers-labels text[id="${hotelId}"]`)
+        .transition()
+        .duration(TRANSITION_DURATION)
+        .attr("opacity", 0);
+      d3.select(`#svg-map .markers-annotations g[id="${hotelId}"]`)
         .transition()
         .duration(TRANSITION_DURATION)
         .attr("opacity", 0);
@@ -178,6 +187,7 @@ export default {
         .selectAll("g")
         .data(positivePoisPerHotel)
         .join("g")
+        .attr("id", (d) => d.id)
         .attr("transform", (d) => {
           const x = this.projection([d.location.long, d.location.lat])[0];
           const y = this.projection([d.location.long, d.location.lat])[1];
