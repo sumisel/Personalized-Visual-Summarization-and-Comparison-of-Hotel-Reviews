@@ -5,7 +5,7 @@
             52.51827,
             13.37767
         ],
-        "zoom": 13,
+        "scale": 600000,
         "img": {
             "url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Siegessaeule_Aussicht_10-13_img4_Tiergarten.jpg",
             "attribution": "A. Savin, Wikimedia Commons",
@@ -35,10 +35,10 @@
     "Paris": {
         "name": "Paris",
         "center": [
-            48.858222,
-            2.2945
+            48.8606,
+            2.3376
         ],
-        "zoom": 13,
+        "scale": 350000,
         "img": {
             "url": "https://upload.wikimedia.org/wikipedia/commons/1/15/Paris_from_the_Arc_de_Triomphe%2C_17_October_2019.jpg",
             "attribution": "Pierre Blaché, Wikimedia Commons",
@@ -63,7 +63,7 @@
             40.7549,
             -73.9781
         ],
-        "zoom": 14,
+        "scale": 800000,
         "img": {
             "url": "https://upload.wikimedia.org/wikipedia/commons/0/03/New_York_City_%28New_York%2C_USA%29%2C_Empire_State_Building_--_2012_--_6436.jpg",
             "attribution": "Dietmar Rabich, Wikimedia Commons",

@@ -238,7 +238,7 @@ export default {
 
     this.projection = d3
       .geoMercator()
-      .scale(600000)
+      .scale(this.city.scale)
       .center([this.city.center[1], this.city.center[0]])
       .translate([this.width / 2, this.height / 2]);
 
