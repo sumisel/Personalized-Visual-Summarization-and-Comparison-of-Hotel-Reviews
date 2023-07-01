@@ -1,3 +1,5 @@
+// Polygons need to be rewinded to be displayed in d3js correctly (e.g. with https://observablehq.com/@bumbeishvili/rewind-geojson) 
+
 [out:json][timeout:25];
 (
   way["leisure"="park"]({{bbox}});
@@ -14,3 +16,4 @@
 out body;
 >;
 out skel qt;
+

@@ -1,0 +1,24 @@
+// Polygons need to be rewinded to be displayed in d3js correctly (e.g. with https://observablehq.com/@bumbeishvili/rewind-geojson) 
+
+[out:json][timeout:25];
+(
+  node["historic"="monument"]({{bbox}});
+  way["historic"="monument"]({{bbox}});
+  relation["historic"="monument"]({{bbox}});
+  node["historic"="memorial"]({{bbox}});
+  way["historic"="memorial"]({{bbox}});
+  relation["historic"="memorial"]({{bbox}});
+  node["historic"="castle"]({{bbox}});
+  way["historic"="castle"]({{bbox}});
+  relation["historic"="castle"]({{bbox}});
+  node["tourism"="museum"]({{bbox}});
+  way["tourism"="museum"]({{bbox}});
+  relation["tourism"="museum"]({{bbox}});
+  node["tourism"="attraction"]({{bbox}});
+  way["tourism"="attraction"]({{bbox}});
+  relation["tourism"="attraction"]({{bbox}});
+);
+// print results
+out body;
+>;
+out skel qt;

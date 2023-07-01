@@ -11,7 +11,7 @@ import InlineListItem from "./InlineListItem.vue";
 import PoiChip from "./PoiChip.vue";
 import Instruction from "./Instruction.vue";
 
-const MARKER_RADIUS = 12;
+const MARKER_RADIUS = 15;
 const TRANSITION_DURATION = 750;
 
 export default {
@@ -310,6 +310,19 @@ export default {
         .attr("opacity", 0.5);
     }
 
+    // draw parks
+    d3.json(`./geo/parks_${cityId}.geojson`).then((geojson) => {
+      const path = d3.geoPath().projection(this.projection);
+      svg
+        .select(".parks")
+        .selectAll("path")
+        .data(geojson.features)
+        .enter()
+        .append("path")
+        .attr("d", path)
+        .attr("fill", this.poiMeta.parks.color);
+    });
+
     // draw sightseeing
     d3.json(`./geo/sightseeing_${cityId}.geojson`).then((geojson) => {
       const path = d3.geoPath().projection(this.projection);
@@ -319,10 +332,8 @@ export default {
         .data(geojson.features)
         .enter()
         .append("path")
-        .attr("fill", "none")
         .attr("d", path)
-        .style("stroke", this.poiMeta.sightseeing.color)
-        .style("stroke-width", "2px");
+        .style("fill", this.poiMeta.sightseeing.color);
     });
 
     // draw restaurants
@@ -352,21 +363,6 @@ export default {
         .append("path")
         .attr("fill", this.poiMeta.public_transport.color)
         .attr("d", path.pointRadius(6));
-    });
-
-    // draw parks
-    d3.json(`./geo/parks_${cityId}.geojson`).then((geojson) => {
-      const path = d3.geoPath().projection(this.projection);
-      svg
-        .select(".parks")
-        .selectAll("path")
-        .data(geojson.features)
-        .enter()
-        .append("path")
-        .attr("d", path)
-        .attr("fill", "none")
-        .attr("stroke", this.poiMeta.parks.color)
-        .style("stroke-width", "2px");
     });
 
     // draw markers for each hotel
@@ -492,6 +488,7 @@ export default {
       <g class="map-container">
         <g class="waterways"></g>
         <g class="roads"></g>
+        <g class="parks" v-show="poiStore.selectedPois.includes('parks')"></g>
         <g
           class="sightseeing"
           v-show="poiStore.selectedPois.includes('sightseeing')"
@@ -504,7 +501,6 @@ export default {
           class="public_transport"
           v-show="poiStore.selectedPois.includes('public_transport')"
         ></g>
-        <g class="parks" v-show="poiStore.selectedPois.includes('parks')"></g>
         <g class="landmarks"></g>
         <g class="markers"></g>
         <g class="markers-annotations"></g>
