@@ -88,11 +88,11 @@ export default {
         .duration(TRANSITION_DURATION)
         .attr("r", 60)
         .attr("opacity", 0.5);
-      d3.select(`#svg-map .markers-labels text[id="${hotelId}"]`)
+      d3.selectAll("#svg-map .markers-labels text")
         .transition()
         .duration(TRANSITION_DURATION)
         .attr("opacity", 0);
-      d3.select(`#svg-map .markers-annotations g[id="${hotelId}"]`)
+      d3.selectAll("#svg-map .markers-annotations g")
         .transition()
         .duration(TRANSITION_DURATION)
         .attr("opacity", 0);
