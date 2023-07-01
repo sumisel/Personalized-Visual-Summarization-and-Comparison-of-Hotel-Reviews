@@ -461,7 +461,7 @@ export default {
       return (poi) => d3.color(this.poiMeta[poi].color).darker();
     },
     poiLighterColor(poi) {
-      return (poi) => d3.color(this.poiMeta[poi].color).copy({ opacity: 0.2 });
+      return (poi) => d3.interpolateRgb(this.poiMeta[poi].color, "white")(0.7);
     },
   },
 };
@@ -584,7 +584,7 @@ export default {
       </v-card>
       <!-- POI details-->
       <div
-        class="hotel-details elevation-4"
+        class="hotel-details"
         v-if="focusedHotel && poiStore.selectedPois.length"
       >
         <v-chip
@@ -603,6 +603,7 @@ export default {
             borderColor: poiDarkerColor(poi),
             borderWidth: '2px',
           }"
+          class="elevation-6"
         >
           <v-icon
             start
@@ -762,12 +763,11 @@ export default {
       }
     }
     & .hotel-details {
-      background-color: rgba(255, 255, 255, 0.8);
+      // transparent
+      background-color: rgba(255, 255, 255, 0);
       top: -160px;
       left: 12.5%;
       width: 70%;
-      max-height: 150px;
-      padding: 10px;
       // center contained elements
       display: flex;
       justify-content: center;
