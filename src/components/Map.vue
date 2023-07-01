@@ -484,6 +484,12 @@ export default {
       });
       return nextHotelId;
     },
+    poiDarkerColor(poi) {
+      return (poi) => d3.color(this.poiMeta[poi].color).darker();
+    },
+    poiLighterColor(poi) {
+      return (poi) => d3.color(this.poiMeta[poi].color).copy({ opacity: 0.2 });
+    },
   },
 };
 </script>
@@ -604,7 +610,7 @@ export default {
           </div>
         </div>
       </v-card>
-      <!-- POI details -->
+      <!-- POI details-->
       <div
         class="hotel-details elevation-4"
         v-if="focusedHotel && poiStore.selectedPois.length"
@@ -615,12 +621,15 @@ export default {
           )"
           :key="poi"
           :style="{
-            backgroundColor: poiMeta[poi].color,
-            opacity: hotelMeta[focusedHotel]?.poiInfo[poi].startsWith('(+)')
-              ? 1
+            backgroundColor: hotelMeta[focusedHotel]?.poiInfo[poi].startsWith(
+              '(+)'
+            )
+              ? poiMeta[poi].color
               : hotelMeta[focusedHotel]?.poiInfo[poi].startsWith('(-)')
-              ? 0.5
-              : 0.7,
+              ? 'white'
+              : poiLighterColor(poi),
+            borderColor: poiDarkerColor(poi),
+            borderWidth: '2px',
           }"
         >
           <v-icon
@@ -804,10 +813,15 @@ export default {
     & .hotel-details {
       background-color: rgba(255, 255, 255, 0.8);
       top: -160px;
-      left: 17.5%;
-      width: 60%;
+      left: 12.5%;
+      width: 70%;
       max-height: 150px;
       padding: 10px;
+      // center contained elements
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
       & .v-chip {
         margin: 2px;
       }
