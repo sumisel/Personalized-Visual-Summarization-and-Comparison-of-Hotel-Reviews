@@ -254,14 +254,18 @@ export default {
         )
         .attr(
           "x",
-          (d) => this.projection([d.location[1], d.location[0]])[0] - 30
+          (d) =>
+            this.projection([d.location[1], d.location[0]])[0] -
+            30 * (d.scale ? d.scale : 1)
         )
         .attr(
           "y",
-          (d) => this.projection([d.location[1], d.location[0]])[1] - 45
+          (d) =>
+            this.projection([d.location[1], d.location[0]])[1] -
+            45 * (d.scale ? d.scale : 1)
         )
-        .attr("width", 60)
-        .attr("height", 60)
+        .attr("width", (d) => 60 * (d.scale ? d.scale : 1))
+        .attr("height", (d) => 60 * (d.scale ? d.scale : 1))
         .attr("opacity", 0.5);
     }
 
