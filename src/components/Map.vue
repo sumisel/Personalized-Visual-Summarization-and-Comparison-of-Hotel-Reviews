@@ -196,13 +196,15 @@ export default {
       annotationGroups
         .selectAll("circle")
         .data((d) =>
-          d.postivePois.map((poi) => ({
-            poi: poi,
-            length: d.postivePois.length,
-          }))
+          d.postivePois
+            .map((poi) => ({
+              poi: poi,
+              length: d.postivePois.length,
+            }))
+            .reverse()
         )
         .join("circle")
-        .attr("cx", (d, i) => i * 10 - (d.length - 1) * 5)
+        .attr("cx", (d, i) => -1 * (i * 6 - (d.length - 1) * 3))
         .attr("cy", 0)
         .attr("r", 5)
         .attr("fill", (d) => this.poiMeta[d.poi].color)
