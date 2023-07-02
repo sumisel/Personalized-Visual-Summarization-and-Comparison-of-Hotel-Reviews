@@ -116,8 +116,7 @@ export default {
         .duration(TRANSITION_DURATION)
         .attr(
           "transform",
-          `translate(${this.width / 2}, ${
-            this.height / 2
+          `translate(${this.width / 2}, ${this.height / 2
           }) scale(${k}) translate(${-x}, ${-y})`
         );
       // set focused hotel after transition duration
@@ -465,21 +464,16 @@ export default {
 
 <template>
   <!-- Instructions -->
-  <Instruction
-    v-if="
-      !selectionChanged ||
-      hotelStore.selectedHotelIds.length < 2 ||
-      poiStore.selectedPois.length === 0
-    "
-  >
-    <span v-if="!selectionChanged"
-      >Click a marker to focus a hotel, and then (de)select it using the switch.
+  <Instruction v-if="!selectionChanged ||
+    hotelStore.selectedHotelIds.length < 2 ||
+    poiStore.selectedPois.length === 0
+    ">
+    <span v-if="!selectionChanged">Click a marker to focus a hotel, and then (de)select it using the switch.
     </span>
-    <strong v-if="hotelStore.selectedHotelIds.length < 2"
-      >Select multiple hotels to compare.
+    <strong v-if="hotelStore.selectedHotelIds.length < 2">Select multiple hotels to compare.
     </strong>
-    <strong v-if="poiStore.selectedPois.length === 0"
-      >Choose your favorite points of interests, to see related information.
+    <strong v-if="poiStore.selectedPois.length === 0">Choose your favorite points of interests, to see related
+      information.
     </strong>
   </Instruction>
   <!-- Map -->
@@ -489,18 +483,9 @@ export default {
         <g class="waterways"></g>
         <g class="roads"></g>
         <g class="parks" v-show="poiStore.selectedPois.includes('parks')"></g>
-        <g
-          class="sightseeing"
-          v-show="poiStore.selectedPois.includes('sightseeing')"
-        ></g>
-        <g
-          class="restaurants"
-          v-show="poiStore.selectedPois.includes('restaurants')"
-        ></g>
-        <g
-          class="public_transport"
-          v-show="poiStore.selectedPois.includes('public_transport')"
-        ></g>
+        <g class="sightseeing" v-show="poiStore.selectedPois.includes('sightseeing')"></g>
+        <g class="restaurants" v-show="poiStore.selectedPois.includes('restaurants')"></g>
+        <g class="public_transport" v-show="poiStore.selectedPois.includes('public_transport')"></g>
         <g class="landmarks"></g>
         <g class="markers"></g>
         <g class="markers-annotations"></g>
@@ -512,24 +497,20 @@ export default {
     <div class="map-overlay">
       <!-- Header -->
       <v-card class="hotel-header elevation-6" v-if="focusedHotel">
+        <v-btn density="compact" icon="mdi-close" @click="resetZoom" class="close-button"></v-btn>
         <div class="d-flex flex-no-wrap justify-space-between">
           <div class="pa-3">
-            <v-avatar
-              color="#eee"
-              :image="`./img/hotels/${city.name
-                .replace(' ', '_')
-                .toLowerCase()}/${focusedHotel}.png`"
-            >
+            <v-avatar color="#eee" :image="`./img/hotels/${city.name
+              .replace(' ', '_')
+              .toLowerCase()}/${focusedHotel}.png`">
             </v-avatar>
           </div>
           <div class="flex-grow-1">
-            <v-card-title
-              :style="{
-                'font-weight': hotelStore.hotelIsSelected(focusedHotel)
-                  ? 'bold'
-                  : 'normal',
-              }"
-            >
+            <v-card-title :style="{
+              'font-weight': hotelStore.hotelIsSelected(focusedHotel)
+                ? 'bold'
+                : 'normal',
+            }">
               {{ hotelMeta[focusedHotel]?.name }}
             </v-card-title>
             <v-card-text>
@@ -541,82 +522,51 @@ export default {
               (of 5) according to current priorities
             </v-card-text>
             <v-card-actions>
-              <v-btn
-                :disabled="previousHotelId === null"
-                @click="focusOnHotel(previousHotelId)"
-              >
-                <v-icon icon="mdi-arrow-left"></v-icon
-                ><v-tooltip activator="parent" location="bottom"
-                  >Next hotel to the west</v-tooltip
-                ></v-btn
-              >
+              <v-btn :disabled="previousHotelId === null" @click="focusOnHotel(previousHotelId)">
+                <v-icon icon="mdi-arrow-left"></v-icon><v-tooltip activator="parent" location="bottom">Next hotel to the
+                  west</v-tooltip></v-btn>
               <div class="switch-container">
-                <v-switch
-                  :model-value="hotelStore.hotelIsSelected(focusedHotel)"
-                  color="black"
-                  @change="
-                    hotelStore.toggleHotelSelection(focusedHotel);
-                    updateSelectedHotels();
-                    selectionChanged = true;
-                  "
-                  :label="
-                    hotelStore.hotelIsSelected(focusedHotel)
-                      ? 'selected'
-                      : 'not selected'
-                  "
-                ></v-switch>
+                <v-switch :model-value="hotelStore.hotelIsSelected(focusedHotel)" color="black" @change="
+                  hotelStore.toggleHotelSelection(focusedHotel);
+                updateSelectedHotels();
+                selectionChanged = true;
+                " :label="hotelStore.hotelIsSelected(focusedHotel)
+    ? 'selected'
+    : 'not selected'
+  "></v-switch>
               </div>
-              <v-btn
-                :disabled="nextHotelId === null"
-                @click="focusOnHotel(nextHotelId)"
-                ><v-icon icon="mdi-arrow-right"></v-icon
-                ><v-tooltip activator="parent" location="bottom"
-                  >Next hotel to the east</v-tooltip
-                >
+              <v-btn :disabled="nextHotelId === null" @click="focusOnHotel(nextHotelId)"><v-icon
+                  icon="mdi-arrow-right"></v-icon><v-tooltip activator="parent" location="bottom">Next hotel to the
+                  east</v-tooltip>
               </v-btn>
             </v-card-actions>
           </div>
         </div>
       </v-card>
       <!-- POI details-->
-      <div
-        class="hotel-details"
-        v-if="focusedHotel && poiStore.selectedPois.length"
-      >
-        <v-chip
-          v-for="poi in poiStore.selectedPois.filter(
-            (poi) => hotelMeta[focusedHotel]?.poiInfo[poi]
-          )"
-          :key="poi"
-          :style="{
-            backgroundColor: hotelMeta[focusedHotel]?.poiInfo[poi].startsWith(
-              '(+)'
-            )
-              ? poiMeta[poi].color
+      <div class="hotel-details" v-if="focusedHotel && poiStore.selectedPois.length">
+        <v-chip v-for="poi in poiStore.selectedPois.filter(
+          (poi) => hotelMeta[focusedHotel]?.poiInfo[poi]
+        )" :key="poi" :style="{
+  backgroundColor: hotelMeta[focusedHotel]?.poiInfo[poi].startsWith(
+    '(+)'
+  )
+    ? poiMeta[poi].color
+    : hotelMeta[focusedHotel]?.poiInfo[poi].startsWith('(-)')
+      ? 'white'
+      : poiLighterColor(poi),
+  borderColor: poiDarkerColor(poi),
+  borderWidth: '2px',
+}" class="elevation-6">
+          <v-icon start :icon="hotelMeta[focusedHotel]?.poiInfo[poi].startsWith('(+)')
+              ? 'mdi-plus'
               : hotelMeta[focusedHotel]?.poiInfo[poi].startsWith('(-)')
-              ? 'white'
-              : poiLighterColor(poi),
-            borderColor: poiDarkerColor(poi),
-            borderWidth: '2px',
-          }"
-          class="elevation-6"
-        >
-          <v-icon
-            start
-            :icon="
-              hotelMeta[focusedHotel]?.poiInfo[poi].startsWith('(+)')
-                ? 'mdi-plus'
-                : hotelMeta[focusedHotel]?.poiInfo[poi].startsWith('(-)')
                 ? 'mdi-minus'
                 : 'mdi-plus-minus'
-            "
-          ></v-icon>
+            "></v-icon>
           <v-icon start :icon="poiMeta[poi].icon"></v-icon>
-          <span
-            v-html="
-              hotelMeta[focusedHotel]?.poiInfo[poi].replace(/^\([+-]\) /, '')
-            "
-          ></span>
+          <span v-html="hotelMeta[focusedHotel]?.poiInfo[poi].replace(/^\([+-]\) /, '')
+            "></span>
         </v-chip>
       </div>
     </div>
@@ -626,79 +576,43 @@ export default {
     Among the available
     <strong>{{ Object.keys(hotelMeta).length }}</strong> hotels
     <v-icon class="inline" icon="mdi-circle-outline" size="x-small"></v-icon>,
-    <span v-if="hotelStore.selectedHotelIds.length > 1"
-      ><strong>{{ hotelStore.selectedHotelIds.length }}</strong> are</span
-    >
-    <span v-if="hotelStore.selectedHotelIds.length === 1"
-      >only <strong>1</strong> is</span
-    >
-    <span v-if="hotelStore.selectedHotelIds.length === 0"
-      ><strong>none</strong> is</span
-    >
-    selected<span v-if="hotelStore.selectedHotelIds.length > 0">: </span
-    ><span v-else></span>
-    <InlineListItem
-      v-for="(hotelId, index) in hotelStore.selectedHotelIds"
-      :key="hotelId"
-      :index="index"
-      :listLength="hotelStore.selectedHotelIds.length"
-    >
-      <a @click="focusOnHotel(hotelId)"
-        ><strong
-          ><v-icon class="inline" icon="mdi-circle" size="x-small"></v-icon>
-          {{ hotelMeta[hotelId].name }}</strong
-        ></a
-      > </InlineListItem
-    >.
+    <span v-if="hotelStore.selectedHotelIds.length > 1"><strong>{{ hotelStore.selectedHotelIds.length }}</strong>
+      are</span>
+    <span v-if="hotelStore.selectedHotelIds.length === 1">only <strong>1</strong> is</span>
+    <span v-if="hotelStore.selectedHotelIds.length === 0"><strong>none</strong> is</span>
+    selected<span v-if="hotelStore.selectedHotelIds.length > 0">: </span><span v-else></span>
+    <InlineListItem v-for="(hotelId, index) in hotelStore.selectedHotelIds" :key="hotelId" :index="index"
+      :listLength="hotelStore.selectedHotelIds.length">
+      <a @click="focusOnHotel(hotelId)"><strong><v-icon class="inline" icon="mdi-circle" size="x-small"></v-icon>
+          {{ hotelMeta[hotelId].name }}</strong></a>
+    </InlineListItem>.
   </div>
   <!-- Paragraph on the selected POIs -->
-  <div
-    class="text mt-4"
-    v-if="
-      hotelStore.selectedHotelIds.length > 1 && poiStore.selectedPois.length > 0
-    "
-  >
-    <span v-if="poisWithAllPositiveScores.length > 0"
-      >Regarding
-      <InlineListItem
-        v-for="(poi, index) in poisWithAllPositiveScores"
-        :key="poi"
-        :index="index"
-        :listLength="poisWithAllPositiveScores.length"
-      >
-        <PoiChip :poi="poi"></PoiChip></InlineListItem
-      >, the selected hotels are all in a favorable location.
+  <div class="text mt-4" v-if="hotelStore.selectedHotelIds.length > 1 && poiStore.selectedPois.length > 0
+    ">
+    <span v-if="poisWithAllPositiveScores.length > 0">Regarding
+      <InlineListItem v-for="(poi, index) in poisWithAllPositiveScores" :key="poi" :index="index"
+        :listLength="poisWithAllPositiveScores.length">
+        <PoiChip :poi="poi"></PoiChip>
+      </InlineListItem>, the selected hotels are all in a favorable location.
     </span>
 
-    <span
-      v-if="
-        hotelsWithAllPositiveScores.length <
-          hotelStore.selectedHotelIds.length &&
-        hotelsWithAllPositiveScores.length > 0
-      "
-    >
+    <span v-if="hotelsWithAllPositiveScores.length <
+      hotelStore.selectedHotelIds.length &&
+      hotelsWithAllPositiveScores.length > 0
+      ">
       <span v-if="poisWithAllPositiveScores.length > 0">But only </span>
-      <InlineListItem
-        v-for="(hotel, index) in hotelsWithAllPositiveScores"
-        :key="hotel"
-        :index="index"
-        :listLength="hotelsWithAllPositiveScores.length"
-      >
-        <a @click="focusOnHotel(hotel)"
-          ><strong
-            ><v-icon class="inline" icon="mdi-circle" size="x-small"></v-icon>
-            {{ hotelMeta[hotel].name }}</strong
-          ></a
-        >
+      <InlineListItem v-for="(hotel, index) in hotelsWithAllPositiveScores" :key="hotel" :index="index"
+        :listLength="hotelsWithAllPositiveScores.length">
+        <a @click="focusOnHotel(hotel)"><strong><v-icon class="inline" icon="mdi-circle" size="x-small"></v-icon>
+            {{ hotelMeta[hotel].name }}</strong></a>
       </InlineListItem>
       <span v-if="hotelsWithAllPositiveScores.length === 1">
-        is in a attractive place</span
-      ><span v-else> are in good places</span> for
-      <span v-if="poiStore.selectedPois.length > 1"
-        >all selected points of interest</span
-      ><span v-else><PoiChip :poi="poiStore.selectedPois[0]"></PoiChip></span
-      >.</span
-    >
+        is in a attractive place</span><span v-else> are in good places</span> for
+      <span v-if="poiStore.selectedPois.length > 1">all selected points of interest</span><span v-else>
+        <PoiChip :poi="poiStore.selectedPois[0]"></PoiChip>
+      </span>.
+    </span>
   </div>
 </template>
 
@@ -709,15 +623,18 @@ export default {
     width: calc(100vw - 344px);
     left: 0;
     position: absolute;
+
     & .markers {
       & circle {
         cursor: pointer;
         filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+
         &:hover {
           filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.8));
         }
       }
     }
+
     & .markers-annotations {
       & circle {
         pointer-events: none;
@@ -731,7 +648,8 @@ export default {
 
   & .map-overlay {
     position: relative;
-    & > div {
+
+    &>div {
       position: absolute;
     }
 
@@ -741,16 +659,27 @@ export default {
       left: 22.5%;
       width: 50%;
       height: 120px;
+
+      & .close-button { 
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        z-index: 1;
+      }
+
       & .v-avatar {
         width: 98px !important;
         height: 98px !important;
       }
+
       & .v-card-text {
         padding-bottom: 0;
       }
+
       & .switch-container {
         flex-grow: 1;
         margin-left: 2.5rem;
+
         & .v-switch {
           max-height: 22px !important;
           position: relative;
@@ -758,6 +687,7 @@ export default {
         }
       }
     }
+
     & .hotel-details {
       // transparent
       background-color: rgba(255, 255, 255, 0);
@@ -769,6 +699,7 @@ export default {
       justify-content: center;
       align-items: center;
       flex-wrap: wrap;
+
       & .v-chip {
         margin: 2px;
       }
@@ -781,10 +712,12 @@ export default {
     text-decoration: none;
     cursor: pointer;
     text-decoration: underline;
+
     &:hover {
       background-color: rgba(0, 0, 0, 0.05);
     }
   }
+
   & .v-chip {
     display: relative;
     top: -2px;
