@@ -1,4 +1,12 @@
 {
+    "parks": {
+        "icon": "mdi-pine-tree",
+        "color": "#c7e8d0"
+    },
+    "public_transport": {
+        "icon": "mdi-train",
+        "color": "#d0cae8"
+    },
     "restaurants": {
         "icon": "mdi-silverware-fork-knife",
         "color": "#d9c37e"
@@ -7,12 +15,8 @@
         "icon": "mdi-binoculars",
         "color": "#e8d4d5"
     },
-    "public_transport": {
-        "icon": "mdi-bus",
-        "color": "#d0cae8"
-    },
-    "parks": {
-        "icon": "mdi-pine-tree",
-        "color": "#c7e8d0"
+    "shopping": {
+        "icon": "mdi-shopping",
+        "color": "#9fdfe0"
     }
 }

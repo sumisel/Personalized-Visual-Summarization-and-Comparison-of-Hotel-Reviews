@@ -351,6 +351,23 @@ export default {
         .attr("d", path.pointRadius(2));
     });
 
+    // draw shopping
+    d3.json(`./geo/shopping_${cityId}.geojson`).then((geojson) => {
+      var pointsOnly = geojson.features.filter(function (feature) {
+        return feature.geometry.type === "Point";
+      });
+      console.log(pointsOnly);
+      const path = d3.geoPath().projection(this.projection);
+      svg
+        .select(".shopping")
+        .selectAll("path")
+        .data(pointsOnly)
+        .enter()
+        .append("path")
+        .attr("fill", this.poiMeta.shopping.color)
+        .attr("d", path.pointRadius(2));
+    });
+
     // draw public transport stations
     d3.json(`./geo/public_transport_${cityId}.geojson`).then((geojson) => {
       const path = d3.geoPath().projection(this.projection);
@@ -484,6 +501,7 @@ export default {
         <g class="roads"></g>
         <g class="parks" v-show="poiStore.selectedPois.includes('parks')"></g>
         <g class="sightseeing" v-show="poiStore.selectedPois.includes('sightseeing')"></g>
+        <g class="shopping" v-show="poiStore.selectedPois.includes('shopping')"></g>
         <g class="restaurants" v-show="poiStore.selectedPois.includes('restaurants')"></g>
         <g class="public_transport" v-show="poiStore.selectedPois.includes('public_transport')"></g>
         <g class="landmarks"></g>
