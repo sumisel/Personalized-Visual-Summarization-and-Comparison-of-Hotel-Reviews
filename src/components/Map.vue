@@ -145,8 +145,6 @@ export default {
       d3.select("#svg-map")
         .select(".markers")
         .selectAll("circle")
-        .transition()
-        .duration(TRANSITION_DURATION)
         .attr("fill", (d) =>
           this.hotelStore.hotelIsSelected(d.id) ? "black" : "white"
         );
