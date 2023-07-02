@@ -356,7 +356,6 @@ export default {
       var pointsOnly = geojson.features.filter(function (feature) {
         return feature.geometry.type === "Point";
       });
-      console.log(pointsOnly);
       const path = d3.geoPath().projection(this.projection);
       svg
         .select(".shopping")
