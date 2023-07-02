@@ -125,6 +125,7 @@ export default {
       }, TRANSITION_DURATION);
     },
     resetZoom() {
+      if (!this.focusedHotel) return;
       this.focusedHotel = "";
       this.resetAllMarkers();
       d3.select("#svg-map")
@@ -531,8 +532,8 @@ export default {
                 updateSelectedHotels();
                 selectionChanged = true;
                 " :label="hotelStore.hotelIsSelected(focusedHotel)
-    ? 'selected'
-    : 'not selected'
+  ? 'selected'
+  : 'not selected'
   "></v-switch>
               </div>
               <v-btn :disabled="nextHotelId === null" @click="focusOnHotel(nextHotelId)"><v-icon
@@ -559,10 +560,10 @@ export default {
   borderWidth: '2px',
 }" class="elevation-6">
           <v-icon start :icon="hotelMeta[focusedHotel]?.poiInfo[poi].startsWith('(+)')
-              ? 'mdi-plus'
-              : hotelMeta[focusedHotel]?.poiInfo[poi].startsWith('(-)')
-                ? 'mdi-minus'
-                : 'mdi-plus-minus'
+            ? 'mdi-plus'
+            : hotelMeta[focusedHotel]?.poiInfo[poi].startsWith('(-)')
+              ? 'mdi-minus'
+              : 'mdi-plus-minus'
             "></v-icon>
           <v-icon start :icon="poiMeta[poi].icon"></v-icon>
           <span v-html="hotelMeta[focusedHotel]?.poiInfo[poi].replace(/^\([+-]\) /, '')
@@ -660,7 +661,7 @@ export default {
       width: 50%;
       height: 120px;
 
-      & .close-button { 
+      & .close-button {
         position: absolute;
         top: 0.5rem;
         right: 0.5rem;
