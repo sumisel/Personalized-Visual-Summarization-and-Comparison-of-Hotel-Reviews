@@ -173,7 +173,8 @@ export default {
         )
         .attr("text-anchor", "middle")
         .attr("alignment-baseline", "middle")
-        .attr("font-size", "12px")
+        .attr("font-size", "14px")
+        .attr("font-weight", "bold")
         .attr("fill", "black")
         .text((d) => d.rating);
     },
@@ -639,6 +640,13 @@ export default {
     & .markers-annotations {
       & circle {
         pointer-events: none;
+      }
+    }
+
+    & .markers-labels {
+      & text {
+        pointer-events: none;
+        filter: drop-shadow(0px 0px 1px white);
       }
     }
   }
