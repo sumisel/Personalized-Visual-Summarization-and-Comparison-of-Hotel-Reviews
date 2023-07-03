@@ -423,7 +423,7 @@ export default {
       });
       return positivePois;
     },
-    hotelsWithAllPositiveScores() {
+    selectedHotelsWithAllPositiveScores() {
       const positiveHotels = [];
       this.hotelStore.selectedHotelIds.forEach((hotelId) => {
         let positive = true;
@@ -433,6 +433,21 @@ export default {
           }
         });
         if (positive) {
+          positiveHotels.push(hotelId);
+        }
+      });
+      return positiveHotels;
+    },
+    nonSelectedHotelsWithAllPositiveScores() {
+      const positiveHotels = [];
+      Object.keys(this.hotelMeta).forEach((hotelId) => {
+        let positive = true;
+        this.poiStore.selectedPois.forEach((poi) => {
+          if (!this.hotelMeta[hotelId].poiInfo[poi]?.startsWith("(+)")) {
+            positive = false;
+          }
+        });
+        if (positive && !this.hotelStore.hotelIsSelected(hotelId)) {
           positiveHotels.push(hotelId);
         }
       });
@@ -614,22 +629,32 @@ export default {
       </InlineListItem>, the selected hotels are all in a favorable location.
     </span>
 
-    <span v-if="hotelsWithAllPositiveScores.length <
+    <span v-if="selectedHotelsWithAllPositiveScores.length <
       hotelStore.selectedHotelIds.length &&
-      hotelsWithAllPositiveScores.length > 0
+      selectedHotelsWithAllPositiveScores.length > 0
       ">
       <span v-if="poisWithAllPositiveScores.length > 0">But only </span>
-      <InlineListItem v-for="(hotel, index) in hotelsWithAllPositiveScores" :key="hotel" :index="index"
-        :listLength="hotelsWithAllPositiveScores.length">
+      <InlineListItem v-for="(hotel, index) in selectedHotelsWithAllPositiveScores" :key="hotel" :index="index"
+        :listLength="selectedHotelsWithAllPositiveScores.length">
         <a @click="focusOnHotel(hotel)"><strong><v-icon class="inline" icon="mdi-circle" size="x-small"></v-icon>
             {{ hotelMeta[hotel].name }}</strong></a>
       </InlineListItem>
-      <span v-if="hotelsWithAllPositiveScores.length === 1">
+      <span v-if="selectedHotelsWithAllPositiveScores.length === 1">
         is in a attractive place</span><span v-else> are in good places</span> for
       <span v-if="poiStore.selectedPois.length > 1">all selected points of interest</span><span v-else>
         <PoiChip :poi="poiStore.selectedPois[0]"></PoiChip>
       </span>.
     </span>
+  </div>
+  <!-- Paragraph on the non-selected hotels with favorable POIs -->
+  <div class="text mt-4" v-if="this.poiStore.selectedPois.length > 0"><span
+      v-if="nonSelectedHotelsWithAllPositiveScores.length > 1">Hotels that match </span><span v-else>A hotel that matches
+    </span>the current selection of points of interests would be
+    <InlineListItem v-for="(hotel, index) in nonSelectedHotelsWithAllPositiveScores" :key="hotel" :index="index"
+      :listLength="nonSelectedHotelsWithAllPositiveScores.length">
+      <a @click="focusOnHotel(hotel)"><strong><v-icon class="inline" icon="mdi-circle" size="x-small"></v-icon>
+          {{ hotelMeta[hotel].name }}</strong></a>
+    </InlineListItem>.
   </div>
 </template>
 
