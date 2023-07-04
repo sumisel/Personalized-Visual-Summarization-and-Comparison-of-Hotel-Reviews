@@ -639,7 +639,7 @@ export default {
             {{ hotelMeta[hotel].name }}</strong></a>
       </InlineListItem>
       <span v-if="selectedHotelsWithAllPositiveScores.length === 1">
-        is in a attractive place</span><span v-else> are in good places</span> for
+        is in an attractive place</span><span v-else> are in good places</span> for
       <span v-if="poiStore.selectedPois.length > 1">all selected points of interest</span><span v-else>
         <PoiChip :poi="poiStore.selectedPois[0]"></PoiChip>
       </span>.
