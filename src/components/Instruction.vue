@@ -24,6 +24,7 @@ const props = defineProps({
     color: #444;
     font-size: 0.9rem;
     padding: 0.5rem !important;
+    font-weight: bold;
 
     &.header-instruction {
       bottom: 10px;

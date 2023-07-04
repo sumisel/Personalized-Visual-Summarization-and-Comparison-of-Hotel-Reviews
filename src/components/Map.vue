@@ -499,15 +499,13 @@ export default {
     hotelStore.selectedHotelIds.length < 2 ||
     poiStore.selectedPois.length === 0
     " headerInstruction>
-    <strong>
-      <span v-if="poiStore.selectedPois.length === 0">Choose your favorite points of interests, to see related
-        information.
-      </span>
-      <span v-if="!selectionChanged">Click a marker to focus a hotel, and then select it using the switch.
-      </span>
-      <span v-if="hotelStore.selectedHotelIds.length < 2">Select multiple hotels to compare.
-      </span>
-    </strong>
+    <span v-if="poiStore.selectedPois.length === 0">Choose your favorite points of interests, to see related
+      information.
+    </span>
+    <span v-if="!selectionChanged">Click a marker to focus a hotel, and then select it using the switch.
+    </span>
+    <span v-if="hotelStore.selectedHotelIds.length < 2">Select multiple hotels to compare.
+    </span>
   </Instruction>
   <!-- Map -->
   <div class="map-container">
@@ -666,7 +664,7 @@ export default {
   <!-- Notification to first select hotels before being able to compare hotels in the next sections -->
   <div class="footer-notification-container" v-if="hotelStore.selectedHotelIds.length < 2">
     <Instruction class="footer-notification">
-      <strong>Select at least two hotels in the map above to compare them in the next sections below.</strong>
+      Select at least two hotels in the map above to compare them in the next sections below.
     </Instruction>
   </div>
 </template>
