@@ -26,9 +26,9 @@ export default {
         this.categoryStore.normalizedCategoryValues;
       const variety = Object.keys(minRatings).reduce(
         (sum, categoryId) =>
-          (sum +=
-            Math.abs(minRatings[categoryId] - maxRatings[categoryId]) *
-            normalizedCategoryValues[categoryId]),
+        (sum +=
+          Math.abs(minRatings[categoryId] - maxRatings[categoryId]) *
+          normalizedCategoryValues[categoryId]),
         0
       );
       if (variety < 0.2) {
@@ -71,45 +71,28 @@ export default {
 </script>
 
 <template>
-  <Instruction
-    v-if="prioritiesUnchanged && hotelStore.selectedHotelIds.length > 1"
-    >Change priorities to personalize the ratings.</Instruction
-  >
+  <Instruction v-if="prioritiesUnchanged && hotelStore.selectedHotelIds.length > 1" headerInstruction>Change priorities to
+    personalize the ratings.</Instruction>
   <div v-if="hotelStore.selectedHotelIds.length > 1">
     <p>
       <span>
         Customers have rated the
-        <b
-          ><span>{{ hotelStore.selectedHotelIds.length }}</span></b
-        >
+        <b><span>{{ hotelStore.selectedHotelIds.length }}</span></b>
         selected hotels <b>{{ ratingVarietyDescription }}</b> according to the
         categories weighted as prioritized.
       </span>
       <span v-if="topRatedHotels.length > 0">
-        <InlineListItem
-          v-for="(hotelId, index) in topRatedHotels"
-          :key="hotelId"
-          :index="index"
-          :listLength="topRatedHotels.length"
-        >
+        <InlineListItem v-for="(hotelId, index) in topRatedHotels" :key="hotelId" :index="index"
+          :listLength="topRatedHotels.length">
           <strong>{{ hotelMeta[hotelId].name }}</strong>
         </InlineListItem>
         <span v-if="topRatedHotels.length > 1"> are </span>
-        <span v-else> is </span> the overall best fitting hotel<span
-          v-if="topRatedHotels.length > 1"
-          >s</span
-        >.
+        <span v-else> is </span> the overall best fitting hotel<span v-if="topRatedHotels.length > 1">s</span>.
       </span>
     </p>
     <div class="d-flex flex-column hotel-list my-4">
-      <HotelRating
-        v-for="hotelId in hotelStore.selectedHotelIds"
-        :key="hotelId"
-        :hotelId="hotelId"
-      ></HotelRating>
-      <v-label class="ml-4"
-        >Rating weighted by priorities <v-icon icon="mdi-arrow-right"></v-icon
-      ></v-label>
+      <HotelRating v-for="hotelId in hotelStore.selectedHotelIds" :key="hotelId" :hotelId="hotelId"></HotelRating>
+      <v-label class="ml-4">Rating weighted by priorities <v-icon icon="mdi-arrow-right"></v-icon></v-label>
     </div>
   </div>
 </template>

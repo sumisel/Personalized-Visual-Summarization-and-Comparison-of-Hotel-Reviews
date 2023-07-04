@@ -498,7 +498,7 @@ export default {
   <Instruction v-if="!selectionChanged ||
     hotelStore.selectedHotelIds.length < 2 ||
     poiStore.selectedPois.length === 0
-    ">
+    " headerInstruction>
     <strong>
       <span v-if="poiStore.selectedPois.length === 0">Choose your favorite points of interests, to see related
         information.
@@ -663,6 +663,12 @@ export default {
           {{ hotelMeta[hotel].name }}</strong></a>
     </InlineListItem>.
   </div>
+  <!-- Notification to first select hotels before being able to compare hotels in the next sections -->
+  <div class="footer-notification-container" v-if="hotelStore.selectedHotelIds.length < 2">
+    <Instruction class="footer-notification">
+      <strong>Select at least two hotels in the map above to compare them in the next sections below.</strong>
+    </Instruction>
+  </div>
 </template>
 
 <style lang="scss">
@@ -783,5 +789,17 @@ export default {
 .v-icon.inline {
   display: relative;
   top: -2px;
+}
+
+.footer-notification-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+
+  & .footer-notification {
+    text-align: center;
+    margin-top: 6rem;
+  }
 }
 </style>
