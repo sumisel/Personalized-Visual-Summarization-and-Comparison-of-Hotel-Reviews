@@ -630,7 +630,6 @@ export default {
         <PoiChip :poi="poi"></PoiChip>
       </InlineListItem>, the selected hotels are all in a favorable location.
     </span>
-
     <span v-if="selectedHotelsWithAllPositiveScores.length <
       hotelStore.selectedHotelIds.length &&
       selectedHotelsWithAllPositiveScores.length > 0
@@ -647,10 +646,16 @@ export default {
         <PoiChip :poi="poiStore.selectedPois[0]"></PoiChip>
       </span>.
     </span>
+    <span v-if="selectedHotelsWithAllPositiveScores.length === 0">
+      <span>None of the selected hotels is in a favorable location for all the selected points of
+        interest.</span>
+    </span>
   </div>
   <!-- Paragraph on the non-selected hotels with favorable POIs -->
-  <div class="text mt-4" v-if="this.poiStore.selectedPois.length > 0"><span
-      v-if="nonSelectedHotelsWithAllPositiveScores.length > 1">Hotels that match </span><span v-else>A hotel that matches
+  <div class="text mt-4"
+    v-if="this.poiStore.selectedPois.length > 0 && nonSelectedHotelsWithAllPositiveScores.length > 0"><span
+      v-if="selectedHotelsWithAllPositiveScores.length === 0">However, </span><span v-else>Additionally, </span><span
+      v-if="nonSelectedHotelsWithAllPositiveScores.length > 1">hotels that match </span><span v-else>a hotel that matches
     </span>the current selection of points of interests would be
     <InlineListItem v-for="(hotel, index) in nonSelectedHotelsWithAllPositiveScores" :key="hotel" :index="index"
       :listLength="nonSelectedHotelsWithAllPositiveScores.length">
