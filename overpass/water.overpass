@@ -1,0 +1,9 @@
+[out:json][timeout:25];
+(
+  way["waterway"="riverbank"]({{bbox}});
+  way["waterway"="river"]({{bbox}});
+  way["waterway"="canal"]({{bbox}}); // skip for Paris
+  relation["natural"="water"]({{bbox}}); // for New York - polygons need to be rewinded to be displayed in d3js correctly (e.g. with https://observablehq.com/@bumbeishvili/rewind-geojson) 
+out body;
+>;
+out skel qt;

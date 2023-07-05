@@ -3,9 +3,7 @@
   way["highway"="motorway"]({{bbox}});
   way["highway"="trunk"]({{bbox}});
   way["highway"="primary"]({{bbox}});
-  way["highway"="secondary"]({{bbox}});
-  way["highway"="tertiary"]({{bbox}});
-
+  way["highway"="secondary"]({{bbox}}); // maybe skip secondary for some cities?
 );
 out body;
 >;

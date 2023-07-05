@@ -241,16 +241,16 @@ export default {
       .center([this.city.center[1], this.city.center[0]])
       .translate([this.width / 2, this.height / 2]);
 
-    // draw waterways
-    d3.json(`./geo/waterways_${cityId}.geojson`).then((geojson) => {
+    // draw water
+    d3.json(`./geo/water_${cityId}.geojson`).then((geojson) => {
       var linesOnly = geojson.features.filter(function (feature) {
-        return feature.geometry.type === "LineString";
+        return feature.geometry?.type === "LineString";
       });
       const path = d3.geoPath().projection(this.projection);
       svg
-        .select(".waterways")
+        .select(".water")
         .selectAll("path")
-        .data(linesOnly)
+        .data(geojson.features)
         .enter()
         .append("path")
         .attr("fill", "none")
@@ -262,7 +262,7 @@ export default {
     // draw roads
     d3.json(`./geo/roads_${cityId}.geojson`).then((geojson) => {
       var linesOnly = geojson.features.filter(function (feature) {
-        return feature.geometry.type === "LineString";
+        return feature.geometry?.type === "LineString";
       });
       const path = d3.geoPath().projection(this.projection);
       svg
@@ -338,7 +338,7 @@ export default {
     // draw restaurants
     d3.json(`./geo/restaurants_${cityId}.geojson`).then((geojson) => {
       var pointsOnly = geojson.features.filter(function (feature) {
-        return feature.geometry.type === "Point";
+        return feature.geometry?.type === "Point";
       });
       const path = d3.geoPath().projection(this.projection);
       svg
@@ -354,7 +354,7 @@ export default {
     // draw shopping
     d3.json(`./geo/shopping_${cityId}.geojson`).then((geojson) => {
       var pointsOnly = geojson.features.filter(function (feature) {
-        return feature.geometry.type === "Point";
+        return feature.geometry?.type === "Point";
       });
       const path = d3.geoPath().projection(this.projection);
       svg
@@ -511,7 +511,7 @@ export default {
   <div class="map-container">
     <svg id="svg-map" class="map">
       <g class="map-container">
-        <g class="waterways"></g>
+        <g class="water"></g>
         <g class="roads"></g>
         <g class="parks" v-show="poiStore.selectedPois.includes('parks')"></g>
         <g class="sightseeing" v-show="poiStore.selectedPois.includes('sightseeing')"></g>
