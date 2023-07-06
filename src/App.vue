@@ -89,6 +89,15 @@ const scrollTo = (hash) => {
           <div class="typewriter">
             Choose your preferences, select some hotels, and compare them.
           </div>
+          <v-overlay activator="parent" location-strategy="connected" scroll-strategy="block">
+            <v-card class="pa-2">
+              <v-card-title>Ok, got it!</v-card-title>
+              <v-card-actions>
+                <v-btn text>Please guide me through.</v-btn>
+                <v-btn text>I don't need instructions.</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-overlay>
         </v-card>
         <div class="text-right text-caption attribution">
           Image by
