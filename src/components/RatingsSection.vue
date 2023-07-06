@@ -76,10 +76,7 @@ export default {
   <div v-if="hotelStore.selectedHotelIds.length > 1">
     <p>
       <span>
-        Customers have rated the
-        <b><span>{{ hotelStore.selectedHotelIds.length }}</span></b>
-        selected hotels <b>{{ ratingVarietyDescription }}</b> according to the
-        categories weighted as prioritized.
+        Customers have rated the selected hotels <b>{{ ratingVarietyDescription }}</b>.
       </span>
       <span v-if="topRatedHotels.length > 0">
         <InlineListItem v-for="(hotelId, index) in topRatedHotels" :key="hotelId" :index="index"
