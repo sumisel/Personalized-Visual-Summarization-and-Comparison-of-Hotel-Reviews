@@ -14,24 +14,28 @@ const sections = [
   {
     id: "map",
     title: "Hotel Selection",
+    subtitle: "Select hotels on the map below.",
     icon: "mdi-map",
     component: Map,
   },
   {
     id: "ratings",
-    title: "Ratings",
+    title: "Customer Ratings",
+    subtitle: "How do the hotels compare across rating categories?",
     icon: "mdi-star",
     component: RatingsSection,
   },
   {
     id: "good-and-bad",
     title: "Good and Bad",
+    subtitle: "What do customers like and dislike about the hotels?",
     icon: "mdi-plus-minus-variant",
     component: PosNeg,
   },
   {
     id: "trend",
     title: "Trending",
+    subtitle: "How do the hotels ratings change over time?",
     icon: "mdi-trending-up",
     component: Trending,
   },
@@ -64,27 +68,19 @@ const scrollTo = (hash) => {
     </v-app-bar>
     <v-navigation-drawer expand-on-hover rail elevation="2">
       <v-list>
-        <v-list-item
-          v-for="section in sections"
-          :key="section.title"
-          :title="section.title"
-          :prepend-icon="section.icon"
-          @click="scrollTo(section.id)"
-        ></v-list-item>
+        <v-list-item v-for="section in sections" :key="section.title" :title="section.title" :prepend-icon="section.icon"
+          @click="scrollTo(section.id)"></v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-navigation-drawer permanent location="right" width="344" elevation="2"
-      ><Personalization
-    /></v-navigation-drawer>
-    <v-main
-      class="ma-6"
-      :style="`background-image: linear-gradient(
+    <v-navigation-drawer permanent location="right" width="344" elevation="2">
+      <Personalization />
+    </v-navigation-drawer>
+    <v-main class="ma-6" :style="`background-image: linear-gradient(
             rgba(255, 255, 255, 0) 0%,
             rgba(255, 255, 255, 0.1) 50%,
             rgba(255, 255, 255, 1) 100%
           ),
-          url('${city.img?.url}');`"
-    >
+          url('${city.img?.url}');`">
       <div class="content mx-auto">
         <div class="text-h1 my-16" id="city-name">
           {{ city.name }}
@@ -99,24 +95,15 @@ const scrollTo = (hash) => {
           <a :href="city.img?.href">{{ city.img?.attribution }}</a>
           ({{ city.img?.license }})
         </div>
-        <div
-          v-for="section in sections"
-          :key="section.title"
-          class="py-6"
-          :id="section.id"
-          :class="{
-            'text-disabled':
-              section.id != 'map' && hotelStore.selectedHotelIds.length < 2,
-          }"
-        >
+        <div v-for="section in sections" :key="section.title" class="py-6" :id="section.id" :class="{
+          'text-disabled':
+            section.id != 'map' && hotelStore.selectedHotelIds.length < 2,
+        }">
           <div class="text-h4 mb-4 pt-16">
-            <v-icon :icon="section.icon" class="mr-2"></v-icon
-            >{{ section.title }}
+            <v-icon :icon="section.icon" class="mr-2"></v-icon>{{ section.title }}
           </div>
-          <component
-            v-if="section.component"
-            :is="section.component"
-          ></component>
+          <div class="text-subtitle mb-4">{{ section.subtitle }}</div>
+          <component v-if="section.component" :is="section.component"></component>
         </div>
       </div>
     </v-main>
@@ -139,13 +126,18 @@ const scrollTo = (hash) => {
   & .typewriter-container {
     padding: 1rem 2rem;
     margin-bottom: 2rem;
+
     & .typewriter {
       // source: https://css-tricks.com/snippets/css/typewriter-effect/
       font-family: monospace;
-      overflow: hidden; /* Ensures the content is not revealed until the animation */
-      white-space: nowrap; /* Keeps the content on a single line */
-      margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-      letter-spacing: 0.17em; /* Adjust as needed */
+      overflow: hidden;
+      /* Ensures the content is not revealed until the animation */
+      white-space: nowrap;
+      /* Keeps the content on a single line */
+      margin: 0 auto;
+      /* Gives that scrolling effect as the typing happens */
+      letter-spacing: 0.17em;
+      /* Adjust as needed */
       animation: typing 8s steps(68, end);
       font-size: 1.2rem;
     }
@@ -156,6 +148,7 @@ const scrollTo = (hash) => {
     from {
       width: 0;
     }
+
     to {
       width: 100%;
     }
@@ -168,6 +161,11 @@ const scrollTo = (hash) => {
 
   & .text-h4 {
     margin-left: -0.5rem;
+  }
+
+  & .text-subtitle {
+    font-size: 1.2rem;
+    color: grey
   }
 }
 

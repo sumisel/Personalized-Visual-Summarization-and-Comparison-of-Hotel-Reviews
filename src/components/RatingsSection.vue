@@ -71,7 +71,7 @@ export default {
 </script>
 
 <template>
-  <Instruction v-if="prioritiesUnchanged && hotelStore.selectedHotelIds.length > 1" headerInstruction>Change priorities to
+  <Instruction v-if="prioritiesUnchanged && hotelStore.selectedHotelIds.length > 1">Change priorities to
     personalize the ratings.</Instruction>
   <div v-if="hotelStore.selectedHotelIds.length > 1">
     <p>
