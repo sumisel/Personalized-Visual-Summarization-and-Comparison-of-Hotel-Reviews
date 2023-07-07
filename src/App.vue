@@ -9,6 +9,8 @@ import Trending from "./components/Trending.vue";
 
 import { useHotelStore } from "./stores/hotel.js";
 const hotelStore = useHotelStore();
+import { useInterfaceStore } from "./stores/interface.js";
+const interfaceStore = useInterfaceStore();
 
 const sections = [
   {
@@ -89,12 +91,13 @@ const scrollTo = (hash) => {
           <div class="typewriter">
             Choose your preferences, select some hotels, and compare them.
           </div>
-          <v-overlay activator="parent" location-strategy="connected" scroll-strategy="block">
+          <v-overlay activator="parent" v-model="interfaceStore.tutorialState.welcome" scroll-strategy="block"
+            location-strategy="connected" :open-on-click="false">
             <v-card class="pa-2">
               <v-card-title>Ok, got it!</v-card-title>
               <v-card-actions>
-                <v-btn text>Please guide me through.</v-btn>
-                <v-btn text>I don't need instructions.</v-btn>
+                <v-btn text @click="interfaceStore.tutorialState.welcome = false;">Please guide me through.</v-btn>
+                <v-btn text @click="interfaceStore.tutorialState.welcome = false;">I don't need instructions.</v-btn>
               </v-card-actions>
             </v-card>
           </v-overlay>
