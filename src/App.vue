@@ -91,15 +91,15 @@ const scrollTo = (hash) => {
           <div class="typewriter">
             Choose your preferences, select some hotels, and compare them.
           </div>
-          <v-overlay activator="parent" v-model="interfaceStore.tutorialState.welcome" scroll-strategy="block"
+          <v-overlay activator="parent" v-model="interfaceStore.tutorialStep.welcome" scroll-strategy="block"
             location-strategy="connected" :open-on-click="false">
             <v-card class="pa-2">
               <v-card-title>Ok, got it!</v-card-title>
               <v-card-actions>
                 <v-btn text
-                  @click="interfaceStore.tutorialState.welcome = false; interfaceStore.tutorialState.poi = true;">Please
+                  @click="interfaceStore.tutorialStep.welcome = false; interfaceStore.tutorialStep.poi = true;">Please
                   guide me through.</v-btn>
-                <v-btn text @click="interfaceStore.tutorialState.welcome = false;">I don't need instructions.</v-btn>
+                <v-btn text @click="interfaceStore.tutorialStep.welcome = false;">I don't need instructions.</v-btn>
               </v-card-actions>
             </v-card>
           </v-overlay>
@@ -112,7 +112,7 @@ const scrollTo = (hash) => {
         <div v-for="section in sections" :key="section.title" class="py-6" :id="section.id" :class="{
           'text-disabled':
             section.id != 'map' && hotelStore.selectedHotelIds.length < 2,
-        }">
+        }" v-if="!interfaceStore.isTutorialActive">
           <div class="text-h4 mb-4 pt-16">
             <v-icon :icon="section.icon" class="mr-2"></v-icon>{{ section.title }}
           </div>

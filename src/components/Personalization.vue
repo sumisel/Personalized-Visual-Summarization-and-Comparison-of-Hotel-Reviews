@@ -31,7 +31,7 @@ const poiMeta = inject("poiMeta");
             :title="item.raw.replaceAll('_', ' ')"></v-list-item>
         </template>
       </v-autocomplete>
-      <v-overlay activator="parent" v-model="interfaceStore.tutorialState.poi" scroll-strategy="block"
+      <v-overlay activator="parent" v-model="interfaceStore.tutorialStep.poi" scroll-strategy="block"
         location-strategy="connected" :open-on-click="false">
         <v-card class="pa-2">
           <v-card-text>Here, you can select what's your preferences regarding the location.</v-card-text>
