@@ -96,7 +96,9 @@ const scrollTo = (hash) => {
             <v-card class="pa-2">
               <v-card-title>Ok, got it!</v-card-title>
               <v-card-actions>
-                <v-btn text @click="interfaceStore.tutorialState.welcome = false;">Please guide me through.</v-btn>
+                <v-btn text
+                  @click="interfaceStore.tutorialState.welcome = false; interfaceStore.tutorialState.poi = true;">Please
+                  guide me through.</v-btn>
                 <v-btn text @click="interfaceStore.tutorialState.welcome = false;">I don't need instructions.</v-btn>
               </v-card-actions>
             </v-card>

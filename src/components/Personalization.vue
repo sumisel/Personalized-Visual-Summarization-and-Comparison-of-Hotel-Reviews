@@ -4,11 +4,13 @@ import Glyph from "./Glyph.vue";
 import { storeToRefs } from "pinia";
 import { useCategoryStore } from "../stores/category.js";
 import { usePoiStore } from "../stores/poi";
+import { useInterfaceStore } from "../stores/interface.js";
 import { inject } from "vue";
 import PoiChip from "./PoiChip.vue";
 const categoryStore = useCategoryStore();
 const { categories } = storeToRefs(categoryStore);
 const poiStore = usePoiStore();
+const interfaceStore = useInterfaceStore();
 const poiMeta = inject("poiMeta");
 </script>
 
@@ -29,6 +31,12 @@ const poiMeta = inject("poiMeta");
             :title="item.raw.replaceAll('_', ' ')"></v-list-item>
         </template>
       </v-autocomplete>
+      <v-overlay activator="parent" v-model="interfaceStore.tutorialState.poi" scroll-strategy="block"
+        location-strategy="connected" :open-on-click="false">
+        <v-card class="pa-2">
+          <v-card-text>Here, you can select what's your preferences regarding the location.</v-card-text>
+        </v-card>
+      </v-overlay>
     </div>
     <div class="my-12">
       <div class="text-h6 mb-4"><v-icon>mdi-sort</v-icon> Priorities</div>

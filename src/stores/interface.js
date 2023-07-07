@@ -5,6 +5,7 @@ export const useInterfaceStore = defineStore({
     state: () => ({
         tutorialState: {
             welcome: true,
+            poi: false,
         },
     }),
 });
