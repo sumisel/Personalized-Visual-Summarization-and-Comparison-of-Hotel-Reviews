@@ -31,8 +31,8 @@ const poiMeta = inject("poiMeta");
             :title="item.raw.replaceAll('_', ' ')"></v-list-item>
         </template>
       </v-autocomplete>
-      <v-overlay activator="parent" v-model="interfaceStore.tutorialStep.poi" scroll-strategy="block"
-        location-strategy="connected" :open-on-click="false" location="start top" offset="20">
+      <v-overlay activator="parent" v-model="interfaceStore.tutorialStep.poi" location-strategy="connected"
+        :open-on-click="false" location="start top" offset="20">
         <v-card class="pa-2">
           <v-card-text>Here, you can select what's your preferences regarding the location.</v-card-text>
         </v-card>
@@ -71,6 +71,12 @@ const poiMeta = inject("poiMeta");
           </tr>
         </tbody>
       </v-table>
+      <v-overlay activator="parent" v-model="interfaceStore.tutorialStep.poi" location-strategy="connected"
+        :open-on-click="false" location="start top" offset="20">
+        <v-card class="pa-2">
+          <v-card-text>And, these are priorities that should be considered for evaluating customer ratings</v-card-text>
+        </v-card>
+      </v-overlay>
     </div>
   </v-sheet>
 </template>
