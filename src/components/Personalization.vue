@@ -32,7 +32,7 @@ const poiMeta = inject("poiMeta");
         </template>
       </v-autocomplete>
       <v-overlay activator="parent" v-model="interfaceStore.tutorialStep.poi" scroll-strategy="block"
-        location-strategy="connected" :open-on-click="false">
+        location-strategy="connected" :open-on-click="false" location="start top" offset="20">
         <v-card class="pa-2">
           <v-card-text>Here, you can select what's your preferences regarding the location.</v-card-text>
         </v-card>
