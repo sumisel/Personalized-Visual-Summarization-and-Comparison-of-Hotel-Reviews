@@ -52,7 +52,7 @@ const scrollTo = (hash) => {
 
 <template>
   <v-app>
-    <v-app-bar>
+    <v-app-bar style="z-index: 3001;">
       <img src="/logo.png" alt="logo" class="mr-2 ml-4" height="48" />
       <v-app-bar-title class="text-h4">
         <span>
@@ -74,7 +74,7 @@ const scrollTo = (hash) => {
           @click="scrollTo(section.id)"></v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-navigation-drawer permanent location="right" width="344" elevation="2">
+    <v-navigation-drawer permanent location="right" width="344" elevation="2" style="z-index: 3000;">
       <Personalization />
     </v-navigation-drawer>
     <v-main class="ma-6" :style="`background-image: linear-gradient(
@@ -144,6 +144,7 @@ const scrollTo = (hash) => {
     margin-bottom: 2rem;
     background-color: $instructions-bg;
     border: $instructions-border;
+    z-index: 2001; // show above first v-overlay
 
     & .typewriter {
       // source: https://css-tricks.com/snippets/css/typewriter-effect/
