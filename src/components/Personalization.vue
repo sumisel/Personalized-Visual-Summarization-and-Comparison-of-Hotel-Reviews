@@ -14,7 +14,7 @@ const poiMeta = inject("poiMeta");
 
 <template>
   <v-sheet class="pa-4">
-    <div class="text-h5 my-4">My Preferences</div>
+    <div class="text-h4 my-4">I. My Preferences</div>
     <div class="my-12">
       <div class="text-h6 mb-4">
         <v-icon>mdi-map-marker-radius</v-icon> Points of Interest

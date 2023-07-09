@@ -664,7 +664,7 @@ export default {
   <!-- Notification to first select hotels before being able to compare hotels in the next sections -->
   <div class="footer-notification-container" v-if="hotelStore.selectedHotelIds.length < 2">
     <Instruction class="footer-notification">
-      Select at least two hotels in the map above to compare them in the next sections below.
+      Select at least two hotels in the map above to compare them in the next section below.
     </Instruction>
   </div>
 </template>

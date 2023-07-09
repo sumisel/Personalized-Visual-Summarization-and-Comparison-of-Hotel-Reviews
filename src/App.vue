@@ -12,13 +12,6 @@ const hotelStore = useHotelStore();
 
 const sections = [
   {
-    id: "map",
-    title: "Hotel Selection",
-    subtitle: "Select hotels on the map below.",
-    icon: "mdi-map",
-    component: Map,
-  },
-  {
     id: "ratings",
     title: "Customer Ratings",
     subtitle: "How do the hotels compare across rating categories?",
@@ -89,15 +82,22 @@ const scrollTo = (hash) => {
           <a :href="city.img?.href">{{ city.img?.attribution }}</a>
           ({{ city.img?.license }})
         </div>
-        <div v-for="section in sections" :key="section.title" class="py-6" :id="section.id" :class="{
-          'text-disabled':
-            section.id != 'map' && hotelStore.selectedHotelIds.length < 2,
-        }">
-          <div class="text-h4 mb-4 pt-16">
-            <v-icon :icon="section.icon" class="mr-2"></v-icon>{{ section.title }}
+        <div>
+          <div class="text-h4 mb-4 pt-16">II. Hotel Selection</div>
+          <Map></Map>
+        </div>
+        <div>
+          <div class="text-h4 mb-4 pt-16">III. Hotel Comparison</div>
+          <div v-for="section in sections" :key="section.title" class="py-6" :id="section.id" :class="{
+            'text-disabled':
+              hotelStore.selectedHotelIds.length < 2,
+          }">
+            <div class="text-h5 mb-4 pt-16">
+              <v-icon :icon="section.icon" class="mr-2"></v-icon>{{ section.title }}
+            </div>
+            <div class="text-subtitle mb-4">{{ section.subtitle }}</div>
+            <component v-if="section.component" :is="section.component"></component>
           </div>
-          <div class="text-subtitle mb-4">{{ section.subtitle }}</div>
-          <component v-if="section.component" :is="section.component"></component>
         </div>
       </div>
     </v-main>
