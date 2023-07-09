@@ -66,16 +66,10 @@ const scrollTo = (hash) => {
       <v-btn href="?city=New_York">New York</v-btn>
       <v-btn href="?city=Paris">Paris</v-btn>
     </v-app-bar>
-    <v-navigation-drawer expand-on-hover rail elevation="2">
-      <v-list>
-        <v-list-item v-for="section in sections" :key="section.title" :title="section.title" :prepend-icon="section.icon"
-          @click="scrollTo(section.id)"></v-list-item>
-      </v-list>
-    </v-navigation-drawer>
     <v-navigation-drawer permanent location="right" width="344" elevation="2">
       <Personalization />
     </v-navigation-drawer>
-    <v-main class="ma-6" :style="`background-image: linear-gradient(
+    <v-main class="mt-12" :style="`background-image: linear-gradient(
             rgba(255, 255, 255, 0) 0%,
             rgba(255, 255, 255, 0.1) 50%,
             rgba(255, 255, 255, 1) 100%
