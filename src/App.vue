@@ -125,6 +125,8 @@ const scrollTo = (hash) => {
 </template>
 
 <style lang="scss">
+@import "./styles/variables.scss";
+
 .v-main {
   width: 100%;
   height: 800px;
@@ -140,6 +142,8 @@ const scrollTo = (hash) => {
   & .typewriter-container {
     padding: 1rem 2rem;
     margin-bottom: 2rem;
+    background-color: $instructions-bg;
+    border: $instructions-border;
 
     & .typewriter {
       // source: https://css-tricks.com/snippets/css/typewriter-effect/
@@ -190,5 +194,10 @@ const scrollTo = (hash) => {
 div,
 p {
   cursor: default;
+}
+
+.v-overlay .v-card {
+  background-color: $instructions-bg;
+  border: $instructions-border;
 }
 </style>

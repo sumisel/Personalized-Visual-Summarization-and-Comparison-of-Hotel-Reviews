@@ -16,6 +16,8 @@ const props = defineProps({
 </template>
 
 <style lang="scss">
+@import "./../styles/variables.scss";
+
 .instruction-container {
   position: relative;
 
@@ -25,6 +27,8 @@ const props = defineProps({
     font-size: 0.9rem;
     padding: 0.5rem !important;
     font-weight: bold;
+    background-color: $instructions-bg;
+    border: $instructions-border;
 
     &.header-instruction {
       bottom: 10px;
