@@ -85,14 +85,14 @@ const scrollTo = (hash) => {
             Choose your preferences, select some hotels, and compare them.
           </div>
           <v-overlay activator="parent" v-model="interfaceStore.tutorialStep.welcome" scroll-strategy="block"
-            location-strategy="connected" :open-on-click="false" persistent>
+            location-strategy="connected" :open-on-click="false" offset="10" persistent>
             <v-card class="pa-2">
               <v-card-actions>
                 <v-btn text
                   @click="interfaceStore.tutorialStep.welcome = false; interfaceStore.tutorialStep.poi = true;">
                   <v-icon icon="mdi-check" class="mr-2"></v-icon> Please
                   guide me through.</v-btn>
-                <v-btn text @click="interfaceStore.tutorialStep.welcome = false;"><v-icon icon="mdi-close" class="mr-2"></v-icon> Thanks, I don't need instructions.</v-btn>
+                <v-btn text @click="interfaceStore.tutorialStep.welcome = false;"><v-icon icon="mdi-close" class="mr-2"></v-icon> Thanks, I don't need a tutorial.</v-btn>
               </v-card-actions>
             </v-card>
           </v-overlay>
@@ -125,7 +125,7 @@ const scrollTo = (hash) => {
 </template>
 
 <style lang="scss">
-@import "./styles/variables.scss";
+@import "./styles/global.scss";
 
 .v-main {
   width: 100%;
@@ -142,9 +142,6 @@ const scrollTo = (hash) => {
   & .typewriter-container {
     padding: 1rem 2rem;
     margin-bottom: 2rem;
-    background-color: $instructions-bg;
-    border: $instructions-border;
-    // show above first v-overlay
 
     & .typewriter {
       // source: https://css-tricks.com/snippets/css/typewriter-effect/
@@ -202,7 +199,6 @@ p {
 }
 
 .v-overlay .v-card {
-  background-color: $instructions-bg;
-  border: $instructions-border;
+  @include instructions;
 }
 </style>
