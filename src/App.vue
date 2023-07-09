@@ -45,6 +45,12 @@ const sections = [
 
 const city = inject("city");
 
+// open welcome overlay after text animation is finished
+setTimeout(() => {
+  interfaceStore.tutorialStep.init = false;
+  interfaceStore.tutorialStep.welcome = true;
+}, 5000);
+
 const scrollTo = (hash) => {
   location.hash = `#${hash}`;
 };
@@ -158,7 +164,7 @@ const scrollTo = (hash) => {
       /* Gives that scrolling effect as the typing happens */
       letter-spacing: 0.17em;
       /* Adjust as needed */
-      animation: typing 8s steps(68, end);
+      animation: typing 5s steps(68, end);
       font-size: 1.2rem;
     }
   }

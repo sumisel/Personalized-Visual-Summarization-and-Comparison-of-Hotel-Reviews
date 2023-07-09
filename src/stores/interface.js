@@ -4,7 +4,8 @@ export const useInterfaceStore = defineStore({
     id: 'interface',
     state: () => ({
         tutorialStep: {
-            welcome: true,
+            init: true,
+            welcome: false,
             poi: false,
         },
     }),
