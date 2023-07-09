@@ -98,9 +98,8 @@ const scrollTo = (hash) => {
             Choose your preferences, select some hotels, and compare them.
           </div>
           <v-overlay activator="parent" v-model="interfaceStore.tutorialStep.welcome" scroll-strategy="block"
-            location-strategy="connected" location="bottom start" :open-on-click="false">
+            location-strategy="connected" :open-on-click="false" persistent>
             <v-card class="pa-2">
-              <v-card-title>Ok, got it!</v-card-title>
               <v-card-actions>
                 <v-btn text
                   @click="interfaceStore.tutorialStep.welcome = false; interfaceStore.tutorialStep.poi = true;">
