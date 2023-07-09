@@ -51,7 +51,7 @@ const scrollTo = (hash) => {
 
 <template>
   <v-app>
-    <v-app-bar style="z-index: 3001;">
+    <v-app-bar>
       <img src="/logo.png" alt="logo" class="mr-2 ml-4" height="48" />
       <v-app-bar-title class="text-h4">
         <span>
@@ -67,7 +67,7 @@ const scrollTo = (hash) => {
       <v-btn href="?city=New_York">New York</v-btn>
       <v-btn href="?city=Paris">Paris</v-btn>
     </v-app-bar>
-    <v-navigation-drawer permanent location="right" width="344" elevation="2" style="z-index: 3000;">
+    <v-navigation-drawer permanent location="right" width="344" elevation="2">
       <Personalization />
     </v-navigation-drawer>
     <v-main class="mt-12" :style="`background-image: linear-gradient(
@@ -144,7 +144,7 @@ const scrollTo = (hash) => {
     margin-bottom: 2rem;
     background-color: $instructions-bg;
     border: $instructions-border;
-    z-index: 2001; // show above first v-overlay
+    // show above first v-overlay
 
     & .typewriter {
       // source: https://css-tricks.com/snippets/css/typewriter-effect/
@@ -195,6 +195,10 @@ const scrollTo = (hash) => {
 div,
 p {
   cursor: default;
+}
+
+.v-overlay__scrim {
+  background-color: transparent !important;
 }
 
 .v-overlay .v-card {
