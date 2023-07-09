@@ -16,15 +16,16 @@ const props = defineProps({
 </template>
 
 <style lang="scss">
+@import "./../styles/global.scss";
+
 .instruction-container {
   position: relative;
 
   & .instruction {
-    font-style: italic;
-    color: #444;
     font-size: 0.9rem;
     padding: 0.5rem !important;
     font-weight: bold;
+    @include instructions;
 
     &.header-instruction {
       bottom: 10px;

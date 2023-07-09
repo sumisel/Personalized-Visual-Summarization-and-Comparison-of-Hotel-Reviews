@@ -9,6 +9,8 @@ import Trending from "./components/Trending.vue";
 
 import { useHotelStore } from "./stores/hotel.js";
 const hotelStore = useHotelStore();
+import { useInterfaceStore } from "./stores/interface.js";
+const interfaceStore = useInterfaceStore();
 
 const sections = [
   {
@@ -35,6 +37,12 @@ const sections = [
 ];
 
 const city = inject("city");
+
+// open welcome overlay after text animation is finished
+setTimeout(() => {
+  interfaceStore.tutorialStep.init = false;
+  interfaceStore.tutorialStep.welcome = true;
+}, 5000);
 
 const scrollTo = (hash) => {
   location.hash = `#${hash}`;
@@ -76,17 +84,29 @@ const scrollTo = (hash) => {
           <div class="typewriter">
             Choose your preferences, select some hotels, and compare them.
           </div>
+          <v-overlay activator="parent" v-model="interfaceStore.tutorialStep.welcome" scroll-strategy="block"
+            location-strategy="connected" :open-on-click="false" offset="10" persistent>
+            <v-card class="pa-2">
+              <v-card-actions>
+                <v-btn text
+                  @click="interfaceStore.tutorialStep.welcome = false; interfaceStore.tutorialStep.poi = true;">
+                  <v-icon icon="mdi-check" class="mr-2"></v-icon> Please
+                  guide me through.</v-btn>
+                <v-btn text @click="interfaceStore.tutorialStep.welcome = false;"><v-icon icon="mdi-close" class="mr-2"></v-icon> Thanks, I don't need a tutorial.</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-overlay>
         </v-card>
         <div class="text-right text-caption attribution">
           Image by
           <a :href="city.img?.href">{{ city.img?.attribution }}</a>
           ({{ city.img?.license }})
         </div>
-        <div>
+        <div v-show="!interfaceStore.isTutorialActive">
           <div class="text-h4 mb-4 pt-16">II. Hotel Selection</div>
           <Map></Map>
         </div>
-        <div>
+        <div v-show="!interfaceStore.isTutorialActive">
           <div class="text-h4 mb-4 pt-16">III. Hotel Comparison</div>
           <div v-for="section in sections" :key="section.title" class="py-6" :id="section.id" :class="{
             'text-disabled':
@@ -105,6 +125,8 @@ const scrollTo = (hash) => {
 </template>
 
 <style lang="scss">
+@import "./styles/global.scss";
+
 .v-main {
   width: 100%;
   height: 800px;
@@ -132,7 +154,7 @@ const scrollTo = (hash) => {
       /* Gives that scrolling effect as the typing happens */
       letter-spacing: 0.17em;
       /* Adjust as needed */
-      animation: typing 8s steps(68, end);
+      animation: typing 5s steps(68, end);
       font-size: 1.2rem;
     }
   }
@@ -170,5 +192,13 @@ const scrollTo = (hash) => {
 div,
 p {
   cursor: default;
+}
+
+.v-overlay__scrim {
+  background-color: transparent !important;
+}
+
+.v-overlay .v-card {
+  @include instructions;
 }
 </style>
