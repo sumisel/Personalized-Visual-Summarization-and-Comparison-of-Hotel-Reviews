@@ -92,14 +92,15 @@ const scrollTo = (hash) => {
             Choose your preferences, select some hotels, and compare them.
           </div>
           <v-overlay activator="parent" v-model="interfaceStore.tutorialStep.welcome" scroll-strategy="block"
-            location-strategy="connected" :open-on-click="false">
+            location-strategy="connected" location="bottom start" :open-on-click="false">
             <v-card class="pa-2">
               <v-card-title>Ok, got it!</v-card-title>
               <v-card-actions>
                 <v-btn text
-                  @click="interfaceStore.tutorialStep.welcome = false; interfaceStore.tutorialStep.poi = true;">Please
+                  @click="interfaceStore.tutorialStep.welcome = false; interfaceStore.tutorialStep.poi = true;">
+                  <v-icon icon="mdi-check" class="mr-2"></v-icon> Please
                   guide me through.</v-btn>
-                <v-btn text @click="interfaceStore.tutorialStep.welcome = false;">I don't need instructions.</v-btn>
+                <v-btn text @click="interfaceStore.tutorialStep.welcome = false;"><v-icon icon="mdi-close" class="mr-2"></v-icon> Thanks, I don't need instructions.</v-btn>
               </v-card-actions>
             </v-card>
           </v-overlay>
