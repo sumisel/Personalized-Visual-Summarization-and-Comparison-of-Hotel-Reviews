@@ -112,7 +112,7 @@ const scrollTo = (hash) => {
         <div v-for="section in sections" :key="section.title" class="py-6" :id="section.id" :class="{
           'text-disabled':
             section.id != 'map' && hotelStore.selectedHotelIds.length < 2,
-        }" v-if="!interfaceStore.isTutorialActive">
+        }" v-show="!interfaceStore.isTutorialActive">
           <div class="text-h4 mb-4 pt-16">
             <v-icon :icon="section.icon" class="mr-2"></v-icon>{{ section.title }}
           </div>
