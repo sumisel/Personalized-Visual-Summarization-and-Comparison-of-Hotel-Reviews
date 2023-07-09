@@ -7,6 +7,7 @@ export const useInterfaceStore = defineStore({
             init: true,
             welcome: false,
             poi: false,
+            priorities: false,
         },
     }),
     getters: {
