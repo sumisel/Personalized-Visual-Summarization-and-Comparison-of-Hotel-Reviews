@@ -797,7 +797,7 @@ export default {
 
   & .footer-notification {
     text-align: center;
-    margin-top: 6rem;
+    margin-top: 3rem;
   }
 }
 </style>

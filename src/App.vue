@@ -88,11 +88,11 @@ const scrollTo = (hash) => {
             location-strategy="connected" :open-on-click="false" offset="10" persistent>
             <v-card class="pa-2">
               <v-card-actions>
-                <v-btn text
-                  @click="interfaceStore.tutorialStep.welcome = false; interfaceStore.tutorialStep.poi = true;">
+                <v-btn text @click="interfaceStore.tutorialStep.welcome = false; interfaceStore.tutorialStep.poi = true;">
                   <v-icon icon="mdi-check" class="mr-2"></v-icon> Please
                   guide me through.</v-btn>
-                <v-btn text @click="interfaceStore.tutorialStep.welcome = false;"><v-icon icon="mdi-close" class="mr-2"></v-icon> Thanks, I don't need a tutorial.</v-btn>
+                <v-btn text @click="interfaceStore.tutorialStep.welcome = false;"><v-icon icon="mdi-close"
+                    class="mr-2"></v-icon> Thanks, I don't need a tutorial.</v-btn>
               </v-card-actions>
             </v-card>
           </v-overlay>
@@ -103,11 +103,12 @@ const scrollTo = (hash) => {
           ({{ city.img?.license }})
         </div>
         <div v-show="!interfaceStore.isTutorialActive">
-          <div class="text-h4 mb-4 pt-16">II. Hotel Selection</div>
+          <div class="text-h4 mt-16 mb-8">II. Hotel Selection</div>
           <Map></Map>
         </div>
         <div v-show="!interfaceStore.isTutorialActive">
-          <div class="text-h4 mb-4 pt-16">III. Hotel Comparison</div>
+          <v-divider class="mt-12"></v-divider>
+          <div class="text-h4 mt-16 mb-4">III. Hotel Comparison</div>
           <div v-for="section in sections" :key="section.title" class="py-6" :id="section.id" :class="{
             'text-disabled':
               hotelStore.selectedHotelIds.length < 2,
