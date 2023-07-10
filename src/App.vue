@@ -142,13 +142,15 @@ function comparisonSectionVisible() {
       </div>
     </v-main>
     <div class="overlay-navigation">
-      <v-btn icon @click="scrollTo('comparison')"
-        v-if="hotelStore.selectedHotelIds.length > 1 && !comparisonSectionVisible()">
-        <v-icon>mdi-arrow-down</v-icon>
-        <v-tooltip activator="parent">
-          <span>Scroll to hotel comparison</span>
-        </v-tooltip>
-      </v-btn>
+      <v-slide-y-transition>
+        <v-btn icon @click="scrollTo('comparison')"
+          v-show="hotelStore.selectedHotelIds.length > 1 && !comparisonSectionVisible()">
+          <v-icon>mdi-arrow-down</v-icon>
+          <v-tooltip activator="parent">
+            <span>Scroll to hotel comparison</span>
+          </v-tooltip>
+        </v-btn>
+      </v-slide-y-transition>
     </div>
   </v-app>
 </template>
