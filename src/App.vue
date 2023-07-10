@@ -16,7 +16,7 @@ const sections = [
   {
     id: "ratings",
     title: "Customer Ratings",
-    subtitle: "How do the hotels compare across rating categories?",
+    subtitle: "How do the hotels compare across review categories?",
     icon: "mdi-star",
     component: RatingsSection,
   },

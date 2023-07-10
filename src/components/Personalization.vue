@@ -43,7 +43,7 @@ const poiMeta = inject("poiMeta");
       </v-overlay>
     </div>
     <div class="my-12">
-      <div class="text-h6 mb-4"><v-icon>mdi-sort</v-icon> Priorities</div>
+      <div class="text-h6 mb-4"><v-icon>mdi-sort</v-icon> Rating Priorities</div>
       <div class="d-flex justify-center">
         <Glyph></Glyph>
         <div>
@@ -58,7 +58,7 @@ const poiMeta = inject("poiMeta");
       <v-table density="compact">
         <thead>
           <tr>
-            <th class="text-left">Category</th>
+            <th class="text-left">Review category</th>
             <th class="text-left w-50">Priority</th>
           </tr>
         </thead>
@@ -80,8 +80,7 @@ const poiMeta = inject("poiMeta");
         <v-card class="pa-2">
           <v-card-text>And, these are priorities that should be considered for evaluating customer ratings</v-card-text>
           <v-card-actions>
-            <v-btn text
-              @click="interfaceStore.tutorialStep.priorities = false">Ok</v-btn>
+            <v-btn text @click="interfaceStore.tutorialStep.priorities = false">Ok</v-btn>
           </v-card-actions>
         </v-card>
       </v-overlay>
