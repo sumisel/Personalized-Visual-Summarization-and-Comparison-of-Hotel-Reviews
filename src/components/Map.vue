@@ -398,6 +398,12 @@ export default {
       .on("click", (event, d) => {
         this.focusOnHotel(d.id);
         event.stopPropagation();
+      })
+      .on("contextmenu", (event, d) => {
+        this.hotelStore.toggleHotelSelection(d.id);
+        this.updateSelectedHotels();
+        this.selectionChanged = true;
+        event.preventDefault();
       });
 
     // TODO: replace with v-tooltip
@@ -502,7 +508,8 @@ export default {
     <span v-if="poiStore.selectedPois.length === 0">Choose your favorite points of interests, to see related
       information.
     </span>
-    <span v-if="!selectionChanged">Click a marker to focus a hotel, and then select it using the switch.
+    <span v-if="!selectionChanged">Click a marker to focus a hotel, and then select it using the switch, or use
+      right-click.
     </span>
     <span v-if="hotelStore.selectedHotelIds.length < 2">Select multiple hotels to compare.
     </span>
