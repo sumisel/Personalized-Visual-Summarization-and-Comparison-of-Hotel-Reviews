@@ -505,14 +505,16 @@ export default {
     hotelStore.selectedHotelIds.length < 2 ||
     poiStore.selectedPois.length === 0
     " headerInstruction>
-    <span v-if="poiStore.selectedPois.length === 0">Choose your favorite points of interests, to see related
-      information.
-    </span>
-    <span v-if="!selectionChanged">Click a marker to focus a hotel, and then select it using the switch, or use
-      right-click.
-    </span>
-    <span v-if="hotelStore.selectedHotelIds.length < 2">Select multiple hotels to compare.
-    </span>
+    <ul>
+      <li v-if="poiStore.selectedPois.length === 0">Choose your favorite points of interests, to see related
+        information.
+      </li>
+      <li v-if="!selectionChanged">Click a marker to focus a hotel, and then select it using the switch, or use
+        right-click.
+      </li>
+      <li v-if="hotelStore.selectedHotelIds.length < 2">Select multiple hotels to compare.
+      </li>
+    </ul>
   </Instruction>
   <!-- Map -->
   <div class="map-container">

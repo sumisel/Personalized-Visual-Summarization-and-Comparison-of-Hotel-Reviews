@@ -34,7 +34,8 @@ const poiMeta = inject("poiMeta");
       <v-overlay activator="parent" v-model="interfaceStore.tutorialStep.poi" location-strategy="connected"
         :open-on-click="false" location="start top" offset="25" persistent>
         <v-card class="pa-2">
-          <v-card-text>Here, you can select what's your preferences regarding the location.</v-card-text>
+          <v-card-text>Here, you can select what's your preferences regarding the location.
+            <v-icon icon="mdi-arrow-right" class="inline"></v-icon></v-card-text>
           <v-card-actions>
             <v-btn text
               @click="interfaceStore.tutorialStep.poi = false; interfaceStore.tutorialStep.priorities = true">Ok</v-btn>
@@ -78,7 +79,10 @@ const poiMeta = inject("poiMeta");
       <v-overlay activator="parent" v-model="interfaceStore.tutorialStep.priorities" location-strategy="connected"
         :open-on-click="false" location="start top" offset="25" persistent>
         <v-card class="pa-2">
-          <v-card-text>And, these are priorities that should be considered for evaluating customer ratings</v-card-text>
+          <v-card-text>And, these are priorities that should be considered for evaluating customer ratings and
+            reviews.
+            <v-icon icon="mdi-arrow-right" class="inline"></v-icon>
+          </v-card-text>
           <v-card-actions>
             <v-btn text @click="interfaceStore.tutorialStep.priorities = false">Ok</v-btn>
           </v-card-actions>
