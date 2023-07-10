@@ -73,23 +73,23 @@ function comparisonSectionVisible() {
     <v-app-bar>
       <img src="/logo.png" alt="logo" class="mr-2 ml-4" height="48" />
       <v-app-bar-title class="text-h4">
-        <span>
+        <a href=".">
           ViSCitR
           <v-tooltip activator="parent" location="right">
             <strong>Vi</strong>sual <strong>S</strong>ummarization and
             <strong>C</strong>ompar<strong>i</strong>son of
             Ho<strong>t</strong>el <strong>R</strong>eviews
           </v-tooltip>
-        </span>
+        </a>
       </v-app-bar-title>
       <v-btn href="?city=Berlin">Berlin</v-btn>
       <v-btn href="?city=New_York">New York</v-btn>
       <v-btn href="?city=Paris">Paris</v-btn>
     </v-app-bar>
-    <v-navigation-drawer permanent location="right" width="344" elevation="2">
+    <v-navigation-drawer permanent location="right" width="344" elevation="2" v-if="city">
       <Personalization />
     </v-navigation-drawer>
-    <v-main class="mt-12" :style="`background-image: linear-gradient(
+    <v-main v-if="city" class="mt-12" :style="`background-image: linear-gradient(
             rgba(255, 255, 255, 0) 0%,
             rgba(255, 255, 255, 0.1) 50%,
             rgba(255, 255, 255, 1) 100%
@@ -157,6 +157,11 @@ function comparisonSectionVisible() {
 
 <style lang="scss">
 @import "./styles/global.scss";
+
+header a {
+  color: inherit;
+  text-decoration: none;
+}
 
 .v-main {
   width: 100%;

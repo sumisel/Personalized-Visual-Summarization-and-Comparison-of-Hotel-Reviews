@@ -22,6 +22,11 @@ const hotelStore = useHotelStore(pinia);
 const categoryStore = useCategoryStore(pinia);
 const timeStore = useTimeStore(pinia);
 
+// data
+import cities from "./assets/cities.json";
+import hotelMeta from "./assets/hotel_meta.json";
+import poiMeta from "./assets/poi_meta.json";
+
 // create App
 const app = createApp(App)
 app.use(vuetify)
@@ -35,34 +40,31 @@ app.provide("emitter", emitter);
 
 // set city and load city meta data
 const params = new URL(document.location).searchParams;
-const cityId = params.get("city") ? params.get("city") : "Berlin";
-import cities from "./assets/cities.json";
-app.provide("city", cities[cityId]);
+const cityId = params.get("city");
 
-// load hotel meta data
-import hotelMeta from "./assets/hotel_meta.json";
-app.provide("hotelMeta", hotelMeta[cityId]);
+app.provide("city", cityId ? cities[cityId] : null);
 
-// load POI meta data
-import poiMeta from "./assets/poi_meta.json";
-app.provide("poiMeta", poiMeta);
+if (cityId) {
+    app.provide("hotelMeta", hotelMeta[cityId]);
+    app.provide("poiMeta", poiMeta);
 
-// load reviews
-const result = await fetch("/HotelRec_subset_" + cityId + "_10_reviews.json");
-const data = await result.json();
-// TODO: check if this is still needed or can be simiplified
-Object.keys(data).forEach(key => {
-    const elem = data[key];
-    elem['review_count'] = Object.keys(elem['reviews']).length;
-    elem['reviews_unannotated'] = []; // we don't need that for now
-});
-app.provide("reviews", data);
+    // load reviews
+    const result = await fetch("/HotelRec_subset_" + cityId + "_10_reviews.json");
+    const data = await result.json();
+    // TODO: check if this is still needed or can be simiplified
+    Object.keys(data).forEach(key => {
+        const elem = data[key];
+        elem['review_count'] = Object.keys(elem['reviews']).length;
+        elem['reviews_unannotated'] = []; // we don't need that for now
+    });
+    app.provide("reviews", data);
 
-// load ratings over time
-// TODO: this is a temporary solution, will be replaced when the data is in the enriched data file
-const ratings_time = await fetch("/HotelRec_subset_" + cityId + "_10_average_ratings_over_time.json");
-const ratings_time_data = await ratings_time.json();
-timeStore.initTimeData(Object.keys(hotelMeta[cityId]), ratings_time_data);
+    // load ratings over time
+    // TODO: this is a temporary solution, will be replaced when the data is in the enriched data file
+    const ratings_time = await fetch("/HotelRec_subset_" + cityId + "_10_average_ratings_over_time.json");
+    const ratings_time_data = await ratings_time.json();
+    timeStore.initTimeData(Object.keys(hotelMeta[cityId]), ratings_time_data);
+}
 
 // mount app
 app.mount('#app');
