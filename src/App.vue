@@ -1,5 +1,5 @@
 <script setup>
-import { inject } from "vue";
+import { inject, ref } from "vue";
 
 import Personalization from "./components/Personalization.vue";
 import Map from "./components/Map.vue";
@@ -38,15 +38,34 @@ const sections = [
 
 const city = inject("city");
 
+const scrollY = ref();
+
 // open welcome overlay after text animation is finished
 setTimeout(() => {
   interfaceStore.tutorialStep.init = false;
   interfaceStore.tutorialStep.welcome = true;
 }, 5000);
 
+window.addEventListener('scroll', () => {
+  scrollY.value = window.scrollY;
+});
+
 const scrollTo = (hash) => {
-  location.hash = `#${hash}`;
+  const element = document.getElementById(hash);
+  if (!element) return;
+  element.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start',
+  });
 };
+
+function comparisonSectionVisible() {
+  const comparisonSection = document.getElementById('comparison');
+  if (!comparisonSection) return false;
+  const comparisonSectionTop = comparisonSection.getBoundingClientRect().top;
+  return comparisonSectionTop < scrollY.value - window.innerHeight / 2;
+};
+
 </script>
 
 <template>
@@ -104,9 +123,9 @@ const scrollTo = (hash) => {
         </div>
         <div v-show="!interfaceStore.isTutorialActive">
           <div class="text-h4 mt-16 mb-8">II. Hotel Selection</div>
-          <Map></Map>
+          <Map id="map"></Map>
         </div>
-        <div v-show="!interfaceStore.isTutorialActive">
+        <div v-show="!interfaceStore.isTutorialActive" id="comparison">
           <v-divider class="mt-12"></v-divider>
           <div class="text-h4 mt-16 mb-4">III. Hotel Comparison</div>
           <div v-for="section in sections" :key="section.title" class="py-6" :id="section.id" :class="{
@@ -122,6 +141,15 @@ const scrollTo = (hash) => {
         </div>
       </div>
     </v-main>
+    <div class="overlay-navigation">
+      <v-btn icon @click="scrollTo('comparison')"
+        v-if="hotelStore.selectedHotelIds.length > 1 && !comparisonSectionVisible()">
+        <v-icon>mdi-arrow-down</v-icon>
+        <v-tooltip activator="parent">
+          <span>Scroll to hotel comparison</span>
+        </v-tooltip>
+      </v-btn>
+    </div>
   </v-app>
 </template>
 
@@ -201,5 +229,18 @@ p {
 
 .v-overlay .v-card {
   @include instructions;
+}
+
+.overlay-navigation {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 1rem;
+  z-index: 2000;
+
+  & .v-btn {
+    @include instructions;
+  }
+
 }
 </style>
