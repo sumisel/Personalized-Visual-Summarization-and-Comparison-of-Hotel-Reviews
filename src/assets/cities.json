@@ -53,7 +53,16 @@
                     48.8584,
                     2.2945
                 ],
-                "scale": 2
+                "scale": 2.5
+            },
+            {
+                "id": "notre_dame",
+                "name": "Notre Dame",
+                "location": [
+                    48.8530,
+                    2.3499
+                ],
+                "scale": 1.5
             }
         ]
     },
@@ -69,6 +78,26 @@
             "attribution": "Dietmar Rabich, Wikimedia Commons",
             "license": "CC BY-SA 4.0",
             "href": "https://commons.wikimedia.org/wiki/File:New_York_City_(New_York,_USA),_Empire_State_Building_--_2012_--_6436.jpg"
-        }
+        },
+        "landmarks": [
+            {
+                "id": "empire_state_building",
+                "name": "Empire State Building",
+                "location": [
+                    40.7484,
+                    -73.9857
+                ],
+                "scale": 2
+            },
+            {
+                "id": "flatiron_building",
+                "name": "Flatiron Building",
+                "location": [
+                    40.7411,
+                    -73.9897
+                ],
+                "scale": 1.5
+            }
+        ]
     }
 }
