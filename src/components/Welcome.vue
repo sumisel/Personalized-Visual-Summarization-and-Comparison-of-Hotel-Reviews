@@ -24,7 +24,7 @@
     </v-card>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .v-card {
     position: absolute;
     top: 50%;
