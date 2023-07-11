@@ -1,6 +1,7 @@
 <script setup>
 import { inject, ref } from "vue";
 
+import Welcome from "./components/Welcome.vue";
 import Personalization from "./components/Personalization.vue";
 import Map from "./components/Map.vue";
 import RatingsSection from "./components/RatingsSection.vue";
@@ -86,6 +87,7 @@ function comparisonSectionVisible() {
       <v-btn href="?city=New_York">New York</v-btn>
       <v-btn href="?city=Paris">Paris</v-btn>
     </v-app-bar>
+    <Welcome v-if="!city" />
     <v-navigation-drawer permanent location="right" width="344" elevation="2" v-if="city">
       <Personalization />
     </v-navigation-drawer>
