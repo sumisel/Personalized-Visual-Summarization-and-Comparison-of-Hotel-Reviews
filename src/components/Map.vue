@@ -253,8 +253,8 @@ export default {
         .data(geojson.features)
         .enter()
         .append("path")
-        .attr("fill", "none")
         .attr("d", path)
+        .attr("fill", cityId === "new_york" ? "#dff8fa" : "none")
         .style("stroke", "#dff8fa")
         .style("stroke-width", "12px");
     });
