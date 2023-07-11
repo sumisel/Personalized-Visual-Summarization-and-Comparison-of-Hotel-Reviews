@@ -223,7 +223,7 @@
     },
     "New_York": {
         "Hotel_Review-g60763-d93450-Reviews-Grand_Hyatt_New_York-New_York_City_New_York.html": {
-            "name": "Grand Hyatt New York",
+            "name": "Skyline Suites NYC",
             "ratings": {
                 "sleep": 3.936730006264356,
                 "service": 3.7954545454545454,
@@ -238,7 +238,7 @@
             }
         },
         "Hotel_Review-g60763-d93437-Reviews-Hotel_Edison_Times_Square-New_York_City_New_York.html": {
-            "name": "Edison Times Square",
+            "name": "Metropolitan Majesty",
             "ratings": {
                 "sleep": 3.8383869011522136,
                 "service": 3.974403023535475,
@@ -253,7 +253,7 @@
             }
         },
         "Hotel_Review-g60763-d99352-Reviews-Hilton_Garden_Inn_Times_Square-New_York_City_New_York.html": {
-            "name": "Hilton Garden Inn Times Square",
+            "name": "Times Square Towers",
             "ratings": {
                 "sleep": 4.471750696731695,
                 "service": 4.496954933008526,
@@ -268,7 +268,7 @@
             }
         },
         "Hotel_Review-g60763-d99307-Reviews-Wellington_Hotel-New_York_City_New_York.html": {
-            "name": "Wellington",
+            "name": "Crystal Cascade Inn",
             "ratings": {
                 "sleep": 3.678435114503817,
                 "service": 3.7481443562835937,
@@ -283,7 +283,7 @@
             }
         },
         "Hotel_Review-g60763-d93457-Reviews-Hampton_Inn_Manhattan_Times_Square_North-New_York_City_New_York.html": {
-            "name": "Hampton Inn Manhattan Times Square North",
+            "name": "Main Manhattan Inn",
             "ratings": {
                 "sleep": 4.421906022501655,
                 "service": 4.507401503074471,
@@ -298,7 +298,7 @@
             }
         },
         "Hotel_Review-g60763-d208454-Reviews-Sofitel_New_York-New_York_City_New_York.html": {
-            "name": "Sofitel New York",
+            "name": "Elegance New York",
             "ratings": {
                 "sleep": 4.6700710479573715,
                 "service": 4.521289687423087,
@@ -313,7 +313,7 @@
             }
         },
         "Hotel_Review-g60763-d1218792-Reviews-Hilton_Garden_Inn_New_York_West_35th_Street-New_York_City_New_York.html": {
-            "name": "Hilton Garden Inn New York West 35th Street",
+            "name": "Empire Elegance Inn",
             "ratings": {
                 "sleep": 4.51656524678837,
                 "service": 4.570836381370397,
@@ -328,7 +328,7 @@
             }
         },
         "Hotel_Review-g60763-d93569-Reviews-Belvedere_Hotel-New_York_City_New_York.html": {
-            "name": "Belvedere",
+            "name": "City Chic Hotel",
             "ratings": {
                 "sleep": 4.102595051297525,
                 "service": 4.1918017742428875,
@@ -343,7 +343,7 @@
             }
         },
         "Hotel_Review-g60763-d99762-Reviews-Hotel_Giraffe_by_Library_Hotel_Collection-New_York_City_New_York.html": {
-            "name": "Giraffe by Library Collection",
+            "name": "Flatiron Finery Inn",
             "ratings": {
                 "sleep": 4.611408199643494,
                 "service": 4.8068862275449105,
@@ -358,7 +358,7 @@
             }
         },
         "Hotel_Review-g60763-d112064-Reviews-Warwick_New_York-New_York_City_New_York.html": {
-            "name": "Warwick New York",
+            "name": "Statue of Liberty Suites",
             "ratings": {
                 "sleep": 4.548180924287119,
                 "service": 4.422552664188352,
