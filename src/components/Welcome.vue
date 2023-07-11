@@ -18,7 +18,8 @@
                 some information and features that you would expect when such a view is integrated in a booking platform are
                 not available, for instance, information of prices or features to freely explore the map.</p>
             <p>Please note that, although we work with real review data of real hotels, we have obfuscated hotel names to
-                allow hotel comparison without biases of familiarity and previous experience.</p>
+                allow hotel comparison without biases of familiarity and previous experience. Hotel images are
+                computer generated.</p>
         </v-card-text>
         <v-card-actions>
             <strong class="ml-2 mr-8">Please select a city to start:</strong>
