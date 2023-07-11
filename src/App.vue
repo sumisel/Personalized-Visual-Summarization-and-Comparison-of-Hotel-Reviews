@@ -41,11 +41,16 @@ const city = inject("city");
 
 const scrollY = ref();
 
-// open welcome overlay after text animation is finished
-setTimeout(() => {
+const noTutorial = inject("noTutorial");
+if (noTutorial) {
   interfaceStore.tutorialStep.init = false;
-  interfaceStore.tutorialStep.welcome = true;
-}, 5000);
+} else {
+  // open welcome overlay after text animation is finished
+  setTimeout(() => {
+    interfaceStore.tutorialStep.init = false;
+    interfaceStore.tutorialStep.welcome = true;
+  }, 5000);
+}
 
 window.addEventListener('scroll', () => {
   scrollY.value = window.scrollY;
@@ -83,9 +88,9 @@ function comparisonSectionVisible() {
           </v-tooltip>
         </a>
       </v-app-bar-title>
-      <v-btn href="?city=Berlin">Berlin</v-btn>
-      <v-btn href="?city=New_York">New York</v-btn>
-      <v-btn href="?city=Paris">Paris</v-btn>
+      <v-btn href="?city=Berlin&noTutorial=true">Berlin</v-btn>
+      <v-btn href="?city=New_York&noTutorial=true">New York</v-btn>
+      <v-btn href="?city=Paris&noTutorial=true">Paris</v-btn>
     </v-app-bar>
     <Welcome v-if="!city" />
     <v-navigation-drawer permanent location="right" width="344" elevation="2" v-if="city">

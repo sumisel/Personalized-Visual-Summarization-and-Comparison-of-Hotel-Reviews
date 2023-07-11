@@ -48,6 +48,9 @@ if (cityId) {
     app.provide("hotelMeta", hotelMeta[cityId]);
     app.provide("poiMeta", poiMeta);
 
+    const noTutorial = params.get("noTutorial");
+    app.provide("noTutorial", noTutorial);
+
     // load reviews
     const result = await fetch("/HotelRec_subset_" + cityId + "_10_reviews.json");
     const data = await result.json();
