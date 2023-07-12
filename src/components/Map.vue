@@ -683,7 +683,7 @@ export default {
   & .map {
     height: 600px;
     width: calc(100vw - 344px);
-    left: 0;
+    left: 344px;
     position: absolute;
 
     & .markers {
