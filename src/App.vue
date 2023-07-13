@@ -4,6 +4,7 @@ import { inject, ref } from "vue";
 import Welcome from "./components/Welcome.vue";
 import Personalization from "./components/Personalization.vue";
 import Map from "./components/Map.vue";
+import Instruction from "./components/Instruction.vue";
 import RatingsSection from "./components/RatingsSection.vue";
 import PosNeg from "./components/PosNeg.vue";
 import Trending from "./components/Trending.vue";
@@ -135,6 +136,10 @@ function comparisonSectionVisible() {
         <div v-show="!interfaceStore.isTutorialActive" id="comparison">
           <v-divider class="mt-12"></v-divider>
           <div class="text-h4 mt-16 mb-4">III. Hotel Comparison</div>
+          <Instruction headerInstruction v-if="hotelStore.selectedHotelIds.length < 2">
+            <v-icon icon="mdi-arrow-up" class="inline"></v-icon> Select at least two hotels in the map above to compare
+            them below. <v-icon icon="mdi-arrow-down" class="inline"></v-icon>
+          </Instruction>
           <div v-for="section in sections" :key="section.title" class="py-6" :id="section.id" :class="{
             'text-disabled':
               hotelStore.selectedHotelIds.length < 2,

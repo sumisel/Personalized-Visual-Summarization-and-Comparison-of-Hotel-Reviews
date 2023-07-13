@@ -506,13 +506,13 @@ export default {
     poiStore.selectedPois.length === 0
     " headerInstruction>
     <ul>
-      <li v-if="poiStore.selectedPois.length === 0">Choose your favorite points of interests, to see related
+      <li v-if="poiStore.selectedPois.length === 0">
+        <v-icon icon="mdi-arrow-left" class="inline"></v-icon> Choose your favorite points of interests, to see related
         information.
       </li>
-      <li v-if="!selectionChanged">Click a marker to focus a hotel, and then select it using the switch, or use
+      <li v-if="!selectionChanged"><v-icon icon="mdi-arrow-down" class="inline"></v-icon> Click a circle to focus a hotel,
+        and select it using the switch, or use
         right-click.
-      </li>
-      <li v-if="hotelStore.selectedHotelIds.length < 2">Select multiple hotels to compare.
       </li>
     </ul>
   </Instruction>
@@ -670,12 +670,6 @@ export default {
           {{ hotelMeta[hotel].name }}</strong></a>
     </InlineListItem>.
   </div>
-  <!-- Notification to first select hotels before being able to compare hotels in the next sections -->
-  <div class="footer-notification-container" v-if="hotelStore.selectedHotelIds.length < 2">
-    <Instruction class="footer-notification">
-      Select at least two hotels in the map above to compare them in the next section below.
-    </Instruction>
-  </div>
 </template>
 
 <style lang="scss">
@@ -796,17 +790,5 @@ export default {
 .v-icon.inline {
   display: relative;
   top: -2px;
-}
-
-.footer-notification-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 1rem;
-
-  & .footer-notification {
-    text-align: center;
-    margin-top: 3rem;
-  }
 }
 </style>
