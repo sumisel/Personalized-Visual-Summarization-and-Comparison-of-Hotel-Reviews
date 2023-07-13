@@ -502,7 +502,6 @@ export default {
 <template>
   <!-- Instructions -->
   <Instruction v-if="!selectionChanged ||
-    hotelStore.selectedHotelIds.length < 2 ||
     poiStore.selectedPois.length === 0
     " headerInstruction>
     <ul>
