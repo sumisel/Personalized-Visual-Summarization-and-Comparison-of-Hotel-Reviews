@@ -584,6 +584,8 @@ export default {
           </div>
         </div>
       </v-card>
+      <!-- Legend -->
+      <div class="legend" v-if="focusedHotel">{{ Number(240000000 / city.scale).toFixed(0) }} m radius</div>
       <!-- POI details-->
       <div class="hotel-details" v-if="focusedHotel && poiStore.selectedPois.length">
         <v-chip v-for="poi in poiStore.selectedPois.filter(
@@ -673,6 +675,8 @@ export default {
 </template>
 
 <style lang="scss">
+@import "@/styles/global.scss";
+
 .map-container {
   & .map {
     height: 600px;
@@ -749,6 +753,14 @@ export default {
           top: -17px;
         }
       }
+    }
+
+    & .legend {
+      top: -200px;
+      left: 58%;
+      padding: 0.25rem;
+      background-color: rgba(255, 255, 255, 0.5);
+      @include explanation;
     }
 
     & .hotel-details {

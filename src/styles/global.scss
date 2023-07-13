@@ -1,5 +1,10 @@
 @mixin instructions {
-    background-color: #FFFDE7;
-    border: 2px solid #FBC02D;
-    font-style: italic;
-  }
+  background-color: #FFFDE7;
+  border: 2px solid #FBC02D;
+  font-style: italic;
+}
+
+@mixin explanation {
+  color: gray;
+  font-size: 0.8rem;
+}
