@@ -60,9 +60,10 @@ window.addEventListener('scroll', () => {
 const scrollTo = (hash) => {
   const element = document.getElementById(hash);
   if (!element) return;
-  element.scrollIntoView({
-    behavior: 'smooth',
-    block: 'start',
+  // scroll element to the top with a vertical offset to account for the fixed app bar
+  window.scrollTo({
+    top: element.offsetTop - 100,
+    behavior: 'smooth'
   });
 };
 
