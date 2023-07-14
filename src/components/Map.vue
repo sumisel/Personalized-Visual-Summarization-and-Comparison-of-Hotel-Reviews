@@ -184,7 +184,7 @@ export default {
           id: id,
           location: meta.location,
           postivePois: this.poiStore.selectedPois.filter((poi) =>
-            meta.poiInfo[poi]?.startsWith("(+)")
+            meta.poiInfo?.[poi]?.startsWith("(+)")
           ),
         })
       );
@@ -218,7 +218,6 @@ export default {
     },
     scrollToMap() {
       const mapOffsetTop = document.getElementById("svg-map").parentElement.offsetTop;
-      console.log(mapOffsetTop);
       window.scrollTo(
         {
           top: mapOffsetTop - 120,
@@ -268,7 +267,7 @@ export default {
         .attr("d", path)
         .attr("fill", cityId === "new_york" ? "#dff8fa" : "none")
         .style("stroke", "#dff8fa")
-        .style("stroke-width", "12px");
+        .style("stroke-width", cityId === "new_york" ? "0" : "12px");
     });
 
     // draw roads
@@ -431,7 +430,7 @@ export default {
       this.poiStore.selectedPois.forEach((poi) => {
         let positive = true;
         this.hotelStore.selectedHotelIds.forEach((hotelId) => {
-          if (!this.hotelMeta[hotelId].poiInfo[poi]?.startsWith("(+)")) {
+          if (!this.hotelMeta[hotelId].poiInfo?.[poi]?.startsWith("(+)")) {
             positive = false;
           }
         });
@@ -446,7 +445,7 @@ export default {
       this.hotelStore.selectedHotelIds.forEach((hotelId) => {
         let positive = true;
         this.poiStore.selectedPois.forEach((poi) => {
-          if (!this.hotelMeta[hotelId].poiInfo[poi]?.startsWith("(+)")) {
+          if (!this.hotelMeta[hotelId].poiInfo?.[poi]?.startsWith("(+)")) {
             positive = false;
           }
         });
@@ -461,7 +460,7 @@ export default {
       Object.keys(this.hotelMeta).forEach((hotelId) => {
         let positive = true;
         this.poiStore.selectedPois.forEach((poi) => {
-          if (!this.hotelMeta[hotelId].poiInfo[poi]?.startsWith("(+)")) {
+          if (!this.hotelMeta[hotelId].poiInfo?.[poi]?.startsWith("(+)")) {
             positive = false;
           }
         });
@@ -600,9 +599,9 @@ export default {
       <!-- POI details-->
       <div class="hotel-details" v-if="focusedHotel && poiStore.selectedPois.length">
         <v-chip v-for="poi in poiStore.selectedPois.filter(
-          (poi) => hotelMeta[focusedHotel]?.poiInfo[poi]
+          (poi) => hotelMeta[focusedHotel]?.poiInfo?.[poi]
         )" :key="poi" :style="{
-  backgroundColor: hotelMeta[focusedHotel]?.poiInfo[poi].startsWith(
+  backgroundColor: hotelMeta[focusedHotel]?.poiInfo?.[poi].startsWith(
     '(+)'
   )
     ? poiMeta[poi].color
