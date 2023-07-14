@@ -79,7 +79,7 @@ function comparisonSectionVisible() {
   <v-app>
     <v-app-bar>
       <img src="/logo.png" alt="logo" class="mr-2 ml-4" height="48" />
-      <v-app-bar-title class="text-h4">
+      <v-app-bar-title>
         <a href=".">
           ViSCitR
           <v-tooltip activator="parent" location="right">
@@ -130,12 +130,11 @@ function comparisonSectionVisible() {
           ({{ city.img?.license }})
         </div>
         <div v-show="!interfaceStore.isTutorialActive">
-          <div class="text-h4 mt-16 mb-8">II. Hotel Selection</div>
+          <div class="text-h4">II. Hotel Selection</div>
           <Map id="map"></Map>
         </div>
         <div v-show="!interfaceStore.isTutorialActive" id="comparison">
-          <v-divider class="mt-12"></v-divider>
-          <div class="text-h4 mt-16 mb-4">III. Hotel Comparison</div>
+          <div class="text-h4">III. Hotel Comparison</div>
           <Instruction headerInstruction v-if="hotelStore.selectedHotelIds.length < 2">
             <v-icon icon="mdi-arrow-up" class="inline"></v-icon> Select at least two hotels in the map above to compare
             them below. <v-icon icon="mdi-arrow-down" class="inline"></v-icon>
@@ -170,9 +169,15 @@ function comparisonSectionVisible() {
 <style lang="scss">
 @import "./styles/global.scss";
 
-header a {
-  color: inherit;
-  text-decoration: none;
+header {
+  .v-toolbar-title {
+    font-size: 2.2rem;
+  }
+
+  & a {
+    color: inherit;
+    text-decoration: none;
+  }
 }
 
 .v-main {
@@ -189,7 +194,7 @@ header a {
 
   & .typewriter-container {
     padding: 1rem 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
 
     & .typewriter {
       // source: https://css-tricks.com/snippets/css/typewriter-effect/
@@ -217,21 +222,28 @@ header a {
       width: 100%;
     }
   }
+
+  & .content {
+    max-width: 1000px;
+    margin-top: 400px;
+
+    & .text-h1 {
+      text-shadow: 0 0 50px white;
+    }
+
+    & .text-h4 {
+      margin-top: 10rem;
+      margin-bottom: 2rem;
+    }
+
+    & .text-subtitle {
+      font-size: 1.2rem;
+      color: grey
+    }
+  }
 }
 
-.content {
-  max-width: 1000px;
-  margin-top: 500px;
 
-  & .text-h4 {
-    margin-left: -0.5rem;
-  }
-
-  & .text-subtitle {
-    font-size: 1.2rem;
-    color: grey
-  }
-}
 
 .hover {
   background: var(--lt-color-background-dark);
@@ -240,6 +252,10 @@ header a {
 div,
 p {
   cursor: default;
+}
+
+#app .text-h4 {
+  font-size: 1.9rem !important;
 }
 
 .v-overlay__scrim {
