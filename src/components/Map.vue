@@ -86,7 +86,7 @@ export default {
       d3.select(`#svg-map .markers circle[id="${hotelId}"]`)
         .transition()
         .duration(TRANSITION_DURATION)
-        .attr("r", 60)
+        .attr("r", 60 * this.city.scale / 500000)
         .attr("opacity", 0.5);
       d3.selectAll("#svg-map .markers-labels text")
         .transition()
@@ -109,7 +109,7 @@ export default {
       ]);
       const x = projectedLocation[0];
       const y = projectedLocation[1];
-      const k = 2;
+      const k = 2 * 500000 / this.city.scale;
       svg
         .select(".map-container")
         .transition()
@@ -584,7 +584,7 @@ export default {
         </div>
       </v-card>
       <!-- Legend -->
-      <div class="legend" v-if="focusedHotel">{{ Number(240000000 / city.scale).toFixed(0) }} m radius</div>
+      <div class="legend" v-if="focusedHotel">500 m radius</div>
       <!-- POI details-->
       <div class="hotel-details" v-if="focusedHotel && poiStore.selectedPois.length">
         <v-chip v-for="poi in poiStore.selectedPois.filter(
