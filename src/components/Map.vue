@@ -81,6 +81,7 @@ export default {
         this.resetZoom();
         return;
       }
+      this.scrollToMap();
       this.focusedHotel = null;
       this.resetAllMarkers();
       d3.select(`#svg-map .markers circle[id="${hotelId}"]`)
@@ -214,6 +215,17 @@ export default {
         .attr("r", 5)
         .attr("fill", (d) => this.poiMeta[d.poi].color)
         .attr("stroke", (d) => d3.color(this.poiMeta[d.poi].color).darker());
+    },
+    scrollToMap() {
+      const mapOffsetTop = document.getElementById("svg-map").parentElement.offsetTop;
+      console.log(mapOffsetTop);
+      window.scrollTo(
+        {
+          top: mapOffsetTop - 120,
+          behavior: "smooth",
+        }
+      );
+
     },
   },
   mounted() {

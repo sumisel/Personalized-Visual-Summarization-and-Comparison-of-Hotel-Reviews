@@ -62,7 +62,7 @@ const scrollTo = (hash) => {
   if (!element) return;
   // scroll element to the top with a vertical offset to account for the fixed app bar
   window.scrollTo({
-    top: element.offsetTop - 100,
+    top: element.offsetTop - 60,
     behavior: 'smooth'
   });
 };
