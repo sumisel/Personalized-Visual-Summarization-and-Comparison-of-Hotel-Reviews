@@ -113,7 +113,7 @@ function comparisonSectionVisible() {
             Choose your preferences, select some hotels, and compare them.
           </div>
           <v-overlay activator="parent" v-model="interfaceStore.tutorialStep.welcome" scroll-strategy="block"
-            location-strategy="connected" :open-on-click="false" offset="10" persistent>
+            location-strategy="connected" :open-on-click="false" offset="10" persistent class="instructions">
             <v-card class="pa-2">
               <v-card-actions>
                 <v-btn text @click="interfaceStore.tutorialStep.welcome = false; interfaceStore.tutorialStep.poi = true;">
@@ -259,11 +259,9 @@ p {
   font-size: 1.9rem !important;
 }
 
-.v-overlay__scrim {
-  background-color: transparent !important;
-}
 
-.v-overlay .v-card {
+
+.v-overlay.instructions .v-card {
   @include instructions;
 }
 

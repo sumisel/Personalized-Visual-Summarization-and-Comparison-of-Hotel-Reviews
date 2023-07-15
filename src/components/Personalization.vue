@@ -32,10 +32,10 @@ const poiMeta = inject("poiMeta");
         </template>
       </v-autocomplete>
       <v-overlay activator="parent" v-model="interfaceStore.tutorialStep.poi" location-strategy="connected"
-        :open-on-click="false" location="start top" offset="25" persistent>
+        :open-on-click="false" location="start top" offset="25" persistent class="instructions">
         <v-card class="pa-2">
           <v-card-text><v-icon icon="mdi-arrow-left" class="inline"></v-icon> Here, you can select what's
-          your preferences regarding the location.</v-card-text>
+            your preferences regarding the location.</v-card-text>
           <v-card-actions>
             <v-btn text
               @click="interfaceStore.tutorialStep.poi = false; interfaceStore.tutorialStep.priorities = true">Ok</v-btn>
@@ -77,7 +77,7 @@ const poiMeta = inject("poiMeta");
         </tbody>
       </v-table>
       <v-overlay activator="parent" v-model="interfaceStore.tutorialStep.priorities" location-strategy="connected"
-        :open-on-click="false" location="start top" offset="25" persistent>
+        :open-on-click="false" location="start top" offset="25" persistent class="instructions">
         <v-card class="pa-2">
           <v-card-text><v-icon icon="mdi-arrow-left" class="inline"></v-icon> And these are priorities that should be
             considered for evaluating customer ratings and
