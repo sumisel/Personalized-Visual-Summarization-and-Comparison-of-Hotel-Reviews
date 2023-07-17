@@ -1,13 +1,15 @@
 <script>
 import { inject } from "vue";
-import ChartTrending from "./ChartTrending.vue";
+import ChartBoxPlot from "./ChartBoxPlot.vue";
+import ChartLine from "./ChartLine.vue";
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
 import { useTimeStore } from "../stores/ratings_over_time";
 
 export default {
   components: {
-    ChartTrending,
+    ChartLine,
+    ChartBoxPlot,
   },
   setup() {
     const hotelStore = useHotelStore();
@@ -38,7 +40,7 @@ export default {
                   <b>{{ hotelMeta[hotelId].name }}</b>
                 </div>
                 <div class="pa-2 time-chart">
-                  <ChartTrending
+                  <ChartLine
                     :hotelId="hotelId"
                     :categoryId="'line'"
                     :color="'#999999'"
@@ -46,7 +48,7 @@ export default {
                     :height="50"
                     :yMin="1"
                     :yMax="5"
-                  ></ChartTrending>
+                  ></ChartLine>
                 </div>
               </v-row>
             </v-expansion-panel-title>
@@ -59,7 +61,7 @@ export default {
                 :key="'time_' + hotelId + '_' + category.id"
               >
                 <div class="pa-2 time-chart">
-                  <ChartTrending
+                  <ChartBoxPlot
                     :hotelId="hotelId"
                     :categoryId="category.id"
                     :color="category.color"
@@ -67,7 +69,7 @@ export default {
                     :height="50"
                     :yMin="1"
                     :yMax="5"
-                  ></ChartTrending>
+                  ></ChartBoxPlot>
                 </div>
               </v-row>
             </v-expansion-panel-text>
