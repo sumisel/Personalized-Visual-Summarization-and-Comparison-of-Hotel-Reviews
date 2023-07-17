@@ -85,18 +85,21 @@ export default {
 
       // bars
       const h = this.height;
+      const max_bar_width = 15;
       svg
         .selectAll("myRect")
         .data(data["values"])
         .enter()
         .append("rect")
         .attr("x", function (d) {
-          return x(+d.timestamp);
+          return x(+d.timestamp) + 0.5 * x.bandwidth() * ( 1 - Math.min(+d["num_entries"] / max_bar_width, 1));
         })
         .attr("y", function (d) {
           return y(+d.upper);
         })
-        .attr("width", x.bandwidth())
+        .attr("width", function (d) {
+          return Math.min(+d["num_entries"] / max_bar_width, 1) * x.bandwidth();
+        })
         .attr("height", function (d) {
           return -y(+d.upper) + y(+d.lower);
         })
@@ -137,6 +140,7 @@ export default {
               timestamp: timestamp,
               upper: v["q3"],
               lower: v["q1"],
+              num_entries: v["size"],
             });
             const os = v["outliers"].map(function (o) {
               return { timestamp: timestamp, value: o };

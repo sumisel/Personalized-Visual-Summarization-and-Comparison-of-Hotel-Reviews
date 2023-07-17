@@ -60,12 +60,12 @@ export default {
                 )"
                 :key="'time_' + hotelId + '_' + category.id"
               >
-                <div class="pa-2 time-chart">
+                <div class="pa-2 box-plot">
                   <ChartBoxPlot
                     :hotelId="hotelId"
                     :categoryId="category.id"
                     :color="category.color"
-                    :width="1000"
+                    :width="450"
                     :height="50"
                     :yMin="1"
                     :yMax="5"
@@ -89,6 +89,13 @@ export default {
 .time-chart {
   height: 100px !important;
   width: 50% !important;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.box-plot {
+  height: 100px !important;
+  width: 100% !important;
   text-align: center;
   vertical-align: middle;
 }
