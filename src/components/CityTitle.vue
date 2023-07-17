@@ -2,6 +2,7 @@
 import { inject } from "vue";
 import { useInterfaceStore } from "../stores/interface";
 const city = inject("city");
+const noTutorial = inject("noTutorial");
 const interfaceStore = useInterfaceStore();
 </script>
 
@@ -10,7 +11,7 @@ const interfaceStore = useInterfaceStore();
         {{ city.name }}
     </div>
     <v-card class="typewriter-container">
-        <div class="typewriter">
+        <div class="typewriter" :class="{ 'animated': !noTutorial }">
             Choose your preferences, select some hotels, and compare them.
         </div>
         <v-overlay activator="parent" v-model="interfaceStore.tutorialStep.welcome" scroll-strategy="block"
@@ -36,8 +37,9 @@ const interfaceStore = useInterfaceStore();
 
 <style scoped lang="scss">
 .text-h1 {
-      text-shadow: 0 0 50px white;
-    }
+    text-shadow: 0 0 50px white;
+}
+
 .typewriter-container {
     padding: 1rem 2rem;
     margin-bottom: 4rem;
@@ -52,9 +54,11 @@ const interfaceStore = useInterfaceStore();
         margin: 0 auto;
         /* Gives that scrolling effect as the typing happens */
         letter-spacing: 0.17em;
-        /* Adjust as needed */
-        animation: typing 5s steps(68, end);
         font-size: 1.2rem;
+
+        &.animated {
+            animation: typing 5s steps(68, end);
+        }
     }
 }
 
