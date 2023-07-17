@@ -64,14 +64,15 @@ export default {
         .transition()
         .duration(TRANSITION_DURATION)
         .attr("r", MARKER_RADIUS);
-      d3.select("#svg-map")
-        .select(".markers-labels")
-        .selectAll("text")
+      d3.selectAll("#svg-map .markers-labels rect")
         .transition()
         .duration(TRANSITION_DURATION)
         .attr("opacity", 1);
-      d3.select("#svg-map .markers-annotations")
-        .selectAll("g")
+      d3.selectAll("#svg-map .markers-labels text")
+        .transition()
+        .duration(TRANSITION_DURATION)
+        .attr("opacity", 1);
+      d3.selectAll("#svg-map .markers-annotations g")
         .transition()
         .duration(TRANSITION_DURATION)
         .attr("opacity", 1);
@@ -89,6 +90,10 @@ export default {
         .duration(TRANSITION_DURATION)
         .attr("r", 60 * this.city.scale / 500000)
         .attr("opacity", 0.5);
+      d3.selectAll("#svg-map .markers-labels rect")
+        .transition()
+        .duration(TRANSITION_DURATION)
+        .attr("opacity", 0);
       d3.selectAll("#svg-map .markers-labels text")
         .transition()
         .duration(TRANSITION_DURATION)
@@ -151,8 +156,8 @@ export default {
         );
     },
     updateRatings() {
-      d3.select("#svg-map .markers-labels")
-        .selectAll("text")
+      const labelGroup = d3.select("#svg-map .markers-labels")
+        .selectAll("g")
         .data(
           Object.entries(this.hotelMeta).map(([id, meta]) => ({
             id,
@@ -160,21 +165,28 @@ export default {
             location: meta.location,
           }))
         )
-        .join("text")
+        .join("g")
         .attr("id", (d) => d.id)
-        .attr("x", (d) => this.projection([d.location.long, d.location.lat])[0])
-        .attr(
-          "y",
-          (d) =>
-            this.projection([d.location.long, d.location.lat])[1] -
-            MARKER_RADIUS -
-            5
-        )
+        .attr("transform", (d) => {
+          const [x, y] = this.projection([
+            d.location.long,
+            d.location.lat,
+          ]);
+          return `translate(${x}, ${y - MARKER_RADIUS - 6})`;
+        });
+
+      labelGroup.append("rect")
+        .attr("x", -MARKER_RADIUS)
+        .attr("y", -MARKER_RADIUS)
+        .attr("width", 2 * MARKER_RADIUS)
+        .attr("height", 20)
+        .attr("fill", "rgba(255, 255, 255, 0.5)");
+
+      labelGroup.append("text")
         .attr("text-anchor", "middle")
         .attr("alignment-baseline", "middle")
         .attr("font-size", "14px")
         .attr("font-weight", "bold")
-        .attr("fill", "black")
         .text((d) => d.rating);
     },
     updatePoiMarkers() {
@@ -712,7 +724,7 @@ export default {
     }
 
     & .markers-labels {
-      & text {
+      & g {
         pointer-events: none;
         filter: drop-shadow(0px 0px 1px white);
       }
