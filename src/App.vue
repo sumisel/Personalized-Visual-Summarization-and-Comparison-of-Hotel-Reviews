@@ -97,7 +97,7 @@ function comparisonSectionVisible() {
     </v-app-bar>
     <Welcome v-if="!city" />
     <v-navigation-drawer permanent location="left" width="344" elevation="2" v-if="city">
-      <Personalization />
+      <Personalization v-if="!interfaceStore.tutorialStep.init && !interfaceStore.tutorialStep.welcome"/>
     </v-navigation-drawer>
     <v-main v-if="city" class="mt-12" :style="`background-image: linear-gradient(
             rgba(255, 255, 255, 0) 0%,
