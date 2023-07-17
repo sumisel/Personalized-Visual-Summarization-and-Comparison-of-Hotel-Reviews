@@ -6,6 +6,7 @@ import { ref, onMounted, watch } from "vue";
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
 import { useTimeStore } from "../stores/ratings_over_time";
+import {el} from "vuetify/locale";
 
 export default {
   props: {
@@ -99,26 +100,17 @@ export default {
         .range(res.map((d) => this.categoryStore.categoriesById[d].color));
 
       // draw the lines
+      console.log(data)
       svg
-        .selectAll(".line")
-        .data(data)
-        .enter()
         .append("path")
+        .datum(data)
         .attr("fill", "none")
-        .attr("stroke", function (d, i) {
-          return color(d.name);
-        })
-        .attr("stroke-width", 1.0)
-        .attr("d", function (d) {
-          return d3
-            .line()
-            .x(function (e) {
-              return x(e.timestamp);
-            })
-            .y(function (e) {
-              return y(+e.value);
-            })(d.values);
-        });
+        .attr("stroke", "darkgrey")
+        .attr("stroke-width", 2.0)
+        .attr("d", d3.line()
+            .x(function(d) { return x(+d.timestamp) })
+            .y(function(d) { return y(+d.value) })
+        );
     },
     plot_bars(data, svg) {
       // add x axis
@@ -194,33 +186,39 @@ export default {
         var x_max = 0;
         // compute values for each category
         const data = [];
-        for (const [category, values] of Object.entries(d)) {
-          if (
-            !this.categoryStore.relevantCategories
-              .map((c) => c.id)
-              .includes(category)
-          ) {
-            continue;
-          }
-          const vs = [];
-          for (const [timestamp, v] of Object.entries(values)) {
-            if (v["average"] != 0) {
-              x_min = Math.min(x_min, +timestamp);
-              x_max = Math.max(x_max, +timestamp);
-              vs.push({
-                timestamp: timestamp,
-                value: v["average"],
-              });
+        for (const [timestamp, values] of Object.entries(d)) {
+          x_min = Math.min(x_min, +timestamp);
+          x_max = Math.max(x_max, +timestamp);
+
+          const weighted_values = [];
+          let valueSum = 0;
+          for (const [category, v] of Object.entries(values)) {
+            if (
+                this.categoryStore.relevantCategories
+                    .map((c) => c.id)
+                    .includes(category)
+                &&
+                v["average"] != 0) {
+                  weighted_values.push(v["average"] * this.categoryStore.categoriesById[category]["value"]);
+                  valueSum += this.categoryStore.categoriesById[category]["value"];
             }
           }
-          data.push({
-            name: category,
-            values: vs,
-          });
+          if (weighted_values.length > 0) {
+            let weighted_average = weighted_values.reduce((a, b) => a + b, 0);
+                weighted_average /= (valueSum);
+            data.push({
+              name: "average",
+              timestamp: +timestamp,
+              value: weighted_average,
+              values: weighted_values,
+            });
+          }
+
         }
-        x_min = x_min + (x_max - x_min) / 4.0;
+        x_min = x_min + (x_max - x_min) / 4.0; // cut off early dates
         this.plot_line(data, svg, x_min, x_max);
       } else {
+        return
         // draw bar chart with outliers
         const d = this.timeStore.dataById[this.hotelId][this.categoryId];
 
