@@ -6,7 +6,6 @@ import { ref, onMounted, watch } from "vue";
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
 import { useTimeStore } from "../stores/ratings_over_time";
-import {el} from "vuetify/locale";
 
 export default {
   props: {

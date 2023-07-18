@@ -42,7 +42,7 @@ export default {
                 <div class="pa-2 time-chart">
                   <ChartLine
                     :hotelId="hotelId"
-                    :categoryId="'line'"
+                    :categoryId="'average'"
                     :color="'#999999'"
                     :width="200"
                     :height="50"
@@ -60,17 +60,28 @@ export default {
                 )"
                 :key="'time_' + hotelId + '_' + category.id"
               >
-                <div class="pa-2 box-plot">
+                <div class="pa-2 time-chart">
                   <ChartBoxPlot
                     :hotelId="hotelId"
                     :categoryId="category.id"
                     :color="category.color"
-                    :width="450"
+                    :width="300"
                     :height="50"
                     :yMin="1"
                     :yMax="5"
                   ></ChartBoxPlot>
                 </div>
+                <div class="pa-2 time-chart">
+                <ChartLine
+                    :hotelId="hotelId"
+                    :categoryId="category.id"
+                    :color="category.color"
+                    :width="300"
+                    :height="50"
+                    :yMin="1"
+                    :yMax="5"
+                ></ChartLine>
+              </div>
               </v-row>
             </v-expansion-panel-text>
           </v-expansion-panel>

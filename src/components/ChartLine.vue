@@ -1,12 +1,12 @@
 <script>
 import * as d3 from "d3";
+import * as d3r from "d3-regression";
 
-import { ref, onMounted, watch } from "vue";
+import { ref, watch } from "vue";
 
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
 import { useTimeStore } from "../stores/ratings_over_time";
-import {el} from "vuetify/locale";
 
 export default {
   props: {
@@ -97,18 +97,37 @@ export default {
         .domain(res)
         .range(res.map((d) => this.categoryStore.categoriesById[d].color));
 
-      // draw the lines
-      console.log(data)
+      // draw the line
       svg
         .append("path")
         .datum(data)
         .attr("fill", "none")
-        .attr("stroke", "darkgrey")
+        .attr("stroke", this.color)
         .attr("stroke-width", 2.0)
         .attr("d", d3.line()
             .x(function(d) { return x(+d.timestamp) })
             .y(function(d) { return y(+d.value) })
         );
+
+      // draw regression line
+      const regression = d3r.regressionLinear()
+        .x(function(d) { return +d.timestamp })
+        .y(function(d) { return +d.value })
+        .domain([x_min, x_max]);
+
+      console.log(regression(data));
+      svg
+        .append("path")
+        .datum(regression(data))
+        .attr("stroke", "black")
+        .attr("stroke-width", 1.0)
+        .attr("d", d3.line()
+            .x(function(d) { return x(d[0]) })
+            .y(function(d) { return y(d[1]) })
+        );
+
+
+
     },
     plot() {
       // remove all previous elements
@@ -130,33 +149,45 @@ export default {
         x_min = Math.min(x_min, +timestamp);
         x_max = Math.max(x_max, +timestamp);
 
-        const weighted_values = [];
-        let valueSum = 0;
-        for (const [category, v] of Object.entries(values)) {
-          if (
-              this.categoryStore.relevantCategories
-                  .map((c) => c.id)
-                  .includes(category)
-              &&
-              v["average"] != 0) {
-                weighted_values.push(v["average"] * this.categoryStore.categoriesById[category]["value"]);
-                valueSum += this.categoryStore.categoriesById[category]["value"];
+        if (this.categoryId == "average") {
+          const weighted_values = [];
+          let valueSum = 0;
+          for (const [category, v] of Object.entries(values)) {
+            if (
+                this.categoryStore.relevantCategories
+                    .map((c) => c.id)
+                    .includes(category)
+                &&
+                v["average"] != 0) {
+              weighted_values.push(v["average"] * this.categoryStore.categoriesById[category]["value"]);
+              valueSum += this.categoryStore.categoriesById[category]["value"];
+            }
           }
-        }
-        if (weighted_values.length > 0) {
-          let weighted_average = weighted_values.reduce((a, b) => a + b, 0);
-              weighted_average /= (valueSum);
-          data.push({
-            name: "average",
-            timestamp: +timestamp,
-            value: weighted_average,
-            values: weighted_values,
-          });
+          if (weighted_values.length > 0) {
+            let weighted_average = weighted_values.reduce((a, b) => a + b, 0);
+            weighted_average /= (valueSum);
+            data.push({
+              name: "average",
+              timestamp: +timestamp,
+              value: weighted_average,
+              values: weighted_values,
+            });
+          }
+        } else {
+          const v = values[this.categoryId]["average"];
+          if(v != 0) {
+            data.push({
+              name: "average",
+              timestamp: +timestamp,
+              value: v
+            });
+          }
         }
 
       }
-      x_min = x_min + (x_max - x_min) / 4.0; // cut off early dates
-      this.plot_line(data, svg, x_min, x_max);
+      // cut off early dates
+      x_min = x_min + (x_max - x_min) / 4.0;
+      this.plot_line(data.filter((d) => d.timestamp >= x_min), svg, x_min, x_max);
     },
   },
 };

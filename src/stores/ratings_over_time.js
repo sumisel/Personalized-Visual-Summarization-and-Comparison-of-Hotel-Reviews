@@ -38,7 +38,6 @@ export const useTimeStore = defineStore({
 
         // sample x and y result line points
         const result_values= [];
-
         for (const [timestamp, entries] of Object.entries(timeseries)) {
           const x = timestamp;
           const y = x * slope + intercept;
