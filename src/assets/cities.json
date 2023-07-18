@@ -97,6 +97,15 @@
                     -73.9897
                 ],
                 "scale": 1.5
+            },
+            { 
+                "id": "times_square",
+                "name": "Times Square",
+                "location": [
+                    40.7580,
+                    -73.9855
+                ],
+                "scale": 1.5
             }
         ]
     }
