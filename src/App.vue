@@ -24,18 +24,18 @@ const sections = [
     component: RatingsSection,
   },
   {
-    id: "good-and-bad",
-    title: "Good and Bad",
-    subtitle: "What do customers like and dislike about the hotels?",
-    icon: "mdi-plus-minus-variant",
-    component: PosNeg,
-  },
-  {
     id: "trend",
     title: "Trending",
     subtitle: "How do the hotels ratings change over time?",
     icon: "mdi-trending-up",
     component: Trending,
+  },
+  {
+    id: "good-and-bad",
+    title: "Good and Bad",
+    subtitle: "What do customers like and dislike about the hotels?",
+    icon: "mdi-plus-minus-variant",
+    component: PosNeg,
   },
 ];
 
