@@ -29,10 +29,11 @@ export const useTimeStore = defineStore({
       // intercept = regression(data)["b"];
       return regression(data);
     },
-    compileData(hotelId, categoryId) {
+    compileCategoryData(hotelId, categoryId) {
       // x min is today as epoch timestamp
       var x_min = Math.floor(Date.now());
       var x_max = 0;
+
       // compute values for each category
       const data = [];
 
@@ -40,6 +41,7 @@ export const useTimeStore = defineStore({
       if (d == undefined) {
         return;
       }
+
       for (const [timestamp, values] of Object.entries(d)) {
         x_min = Math.min(x_min, +timestamp);
         x_max = Math.max(x_max, +timestamp);

@@ -73,11 +73,11 @@ export default {
       const svg = d3.select(this.svg).append("g");
 
       // draw line chart
-      const d = this.timeStore.compileData(this.hotelId, this.categoryId);
+      const d = this.timeStore.compileCategoryData(this.hotelId, this.categoryId);
       const x_min = d["x_min"];
       const x_max = d["x_max"];
       const data = d["data"];
-      
+
       // add x axis in date format
       const x = d3
           .scaleLinear()

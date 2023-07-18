@@ -19,6 +19,44 @@ export default {
     return { hotelStore, categoryStore, timeStore, hotelMeta };
   },
   computed: {},
+  methods: {
+    trendDescription(hotelId, categoryId) {
+      const d = this.timeStore.compileCategoryData(hotelId, categoryId);
+      const trend = this.timeStore.regression(d["data"], d["x_min"], d["x_max"]);
+
+      const slope = trend["a"];
+      const intercept = trend["b"];
+
+      let slopeDescription = "";
+      if (slope > 0.1) {
+        slopeDescription =  "a strong upward trend";
+      } else if (slope > 0.05) {
+        slopeDescription =  "a slight upward trend";
+      } else if (slope < -0.1) {
+        slopeDescription =  "a strong downward trend";
+      } else if (slope < -0.05) {
+        slopeDescription =  "a slight downward trend";
+      } else {
+        slopeDescription =  "no clear trend";
+      }
+
+      let interceptDescription = "";
+      if (intercept > 4) {
+        interceptDescription = "very high";
+      } else if (intercept > 3) {
+        interceptDescription = "high";
+      } else if (intercept > 2) {
+        interceptDescription = "medium";
+      } else if (intercept > 1) {
+        interceptDescription = "low";
+      } else {
+        interceptDescription = "very low";
+      }
+
+
+      return slopeDescription + ", with " + interceptDescription + " ratings";
+    },
+  },
   data: () => ({
     panel: [0, 1],
   }),
@@ -38,6 +76,9 @@ export default {
               <v-row>
                 <div class="pa-2 hotel-name-title">
                   <b>{{ hotelMeta[hotelId].name }}</b>
+                  <div class="pa-2 trend-description-title">
+                    The overall rating of this hotel shows <i>{{ trendDescription(hotelId, 'average')}}</i>.
+                  </div>
                 </div>
                 <div class="pa-2 time-chart">
                   <ChartLine
@@ -60,7 +101,10 @@ export default {
                 )"
                 :key="'time_' + hotelId + '_' + category.id"
               >
-                <div class="pa-2 time-chart">
+                <div class="pa-2 trend-description-detail">
+                  The {{category.id}} rating of this hotel shows <i>{{ trendDescription(hotelId, category.id)}}</i>.
+                </div>
+                <div class="pa-2 box-plot">
                   <ChartBoxPlot
                     :hotelId="hotelId"
                     :categoryId="category.id"
@@ -97,30 +141,30 @@ export default {
   vertical-align: middle;
 }
 
+.trend-description-title {
+  width: 100% !important;
+  vertical-align: middle;
+  horizontal-align: center;
+}
+
+.trend-description-detail {
+  width: 33% !important;
+  vertical-align: middle;
+  horizontal-align: center;
+}
+
 .time-chart {
   height: 100px !important;
-  width: 50% !important;
+  width: 33% !important;
   text-align: center;
   vertical-align: middle;
 }
 
 .box-plot {
   height: 100px !important;
-  width: 100% !important;
+  width: 33% !important;
   text-align: center;
   vertical-align: middle;
 }
 
-.v-avatar {
-  width: 100px !important;
-  height: 100px !important;
-}
-
-.v-card {
-  overflow: visible;
-}
-
-.v-card-title {
-  white-space: normal;
-}
 </style>
