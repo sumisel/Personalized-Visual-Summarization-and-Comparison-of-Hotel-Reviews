@@ -23,21 +23,25 @@ export default {
     trendDescription(hotelId, categoryId) {
       const d = this.timeStore.compileCategoryData(hotelId, categoryId);
       const trend = this.timeStore.regression(d["data"], d["x_min"], d["x_max"]);
+      console.log(trend);
 
       const slope = trend["a"];
-      const intercept = trend["b"];
-
+      const intercept = trend[0][1];
+      const breakpointStrong = 0.00000000001;
+      const breakpointWeak = 0.0000000000005;
+      let noTrend = false;
       let slopeDescription = "";
-      if (slope > 0.1) {
+      if (slope > breakpointStrong) {
         slopeDescription =  "a strong upward trend";
-      } else if (slope > 0.05) {
+      } else if (slope > breakpointWeak) {
         slopeDescription =  "a slight upward trend";
-      } else if (slope < -0.1) {
+      } else if (slope < -breakpointStrong) {
         slopeDescription =  "a strong downward trend";
-      } else if (slope < -0.05) {
+      } else if (slope < -breakpointWeak) {
         slopeDescription =  "a slight downward trend";
       } else {
         slopeDescription =  "no clear trend";
+        noTrend = true;
       }
 
       let interceptDescription = "";
@@ -53,8 +57,24 @@ export default {
         interceptDescription = "very low";
       }
 
-
-      return slopeDescription + ", with " + interceptDescription + " ratings";
+      if(noTrend) {
+        interceptDescription = "at " + interceptDescription;
+      } else {
+        interceptDescription = "from " + interceptDescription + " to ";
+        const endValue = trend[1][1];
+        if (endValue > 4) {
+          interceptDescription += "very high";
+        } else if (endValue > 3) {
+          interceptDescription += "high";
+        } else if (endValue > 2) {
+          interceptDescription += "medium";
+        } else if (endValue > 1) {
+          interceptDescription += "low";
+        } else {
+          interceptDescription += "very low";
+        }
+      }
+      return slopeDescription + ", " + interceptDescription + " ratings";
     },
   },
   data: () => ({
@@ -104,6 +124,17 @@ export default {
                 <div class="pa-2 trend-description-detail">
                   The {{category.id}} rating of this hotel shows <i>{{ trendDescription(hotelId, category.id)}}</i>.
                 </div>
+                <div class="pa-2 time-chart">
+                  <ChartLine
+                      :hotelId="hotelId"
+                      :categoryId="category.id"
+                      :color="category.color"
+                      :width="300"
+                      :height="50"
+                      :yMin="1"
+                      :yMax="5"
+                  ></ChartLine>
+                </div>
                 <div class="pa-2 box-plot">
                   <ChartBoxPlot
                     :hotelId="hotelId"
@@ -115,17 +146,6 @@ export default {
                     :yMax="5"
                   ></ChartBoxPlot>
                 </div>
-                <div class="pa-2 time-chart">
-                <ChartLine
-                    :hotelId="hotelId"
-                    :categoryId="category.id"
-                    :color="category.color"
-                    :width="300"
-                    :height="50"
-                    :yMin="1"
-                    :yMax="5"
-                ></ChartLine>
-              </div>
               </v-row>
             </v-expansion-panel-text>
           </v-expansion-panel>
