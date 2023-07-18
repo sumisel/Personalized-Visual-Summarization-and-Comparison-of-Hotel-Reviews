@@ -13,6 +13,7 @@ import Instruction from "./Instruction.vue";
 
 const MARKER_RADIUS = 15;
 const TRANSITION_DURATION = 750;
+const MARKER_LABEL_BG_OPACITY = 0.3;
 
 export default {
   components: {
@@ -67,7 +68,7 @@ export default {
       d3.selectAll("#svg-map .markers-labels rect")
         .transition()
         .duration(TRANSITION_DURATION)
-        .attr("opacity", 1);
+        .attr("opacity", MARKER_LABEL_BG_OPACITY);
       d3.selectAll("#svg-map .markers-labels text")
         .transition()
         .duration(TRANSITION_DURATION)
@@ -156,38 +157,19 @@ export default {
         );
     },
     updateRatings() {
-      const labelGroup = d3.select("#svg-map .markers-labels")
-        .selectAll("g")
-        .data(
-          Object.entries(this.hotelMeta).map(([id, meta]) => ({
-            id,
-            rating: this.hotelStore.overallRating(id).toFixed(1),
-            location: meta.location,
-          }))
-        )
-        .join("g")
-        .attr("id", (d) => d.id)
-        .attr("transform", (d) => {
-          const [x, y] = this.projection([
-            d.location.long,
-            d.location.lat,
-          ]);
-          return `translate(${x}, ${y - MARKER_RADIUS - 6})`;
-        });
-
-      labelGroup.append("rect")
-        .attr("x", -MARKER_RADIUS)
-        .attr("y", -MARKER_RADIUS)
-        .attr("width", 2 * MARKER_RADIUS)
-        .attr("height", 20)
-        .attr("fill", "rgba(255, 255, 255, 0.5)");
-
-      labelGroup.append("text")
-        .attr("text-anchor", "middle")
-        .attr("alignment-baseline", "middle")
-        .attr("font-size", "14px")
-        .attr("font-weight", "bold")
-        .text((d) => d.rating);
+      console.log("update ratings");
+      d3.select("#svg-map .markers-labels")
+      .selectAll("g")
+      .data(
+        Object.entries(this.hotelMeta).map(([id, meta]) => ({
+          id,
+          rating: this.hotelStore.overallRating(id).toFixed(1),
+          location: meta.location,
+        }))
+      )
+      .join("g")
+      .select("text")
+      .text((d) => d.rating);
     },
     updatePoiMarkers() {
       // draw POI circles as annontations for each hotel marker
@@ -431,6 +413,40 @@ export default {
 
     // TODO: replace with v-tooltip
     markers.append("title").text((d) => `${d.name}`);
+
+    // marker labels
+    const labelGroup = d3.select("#svg-map .markers-labels")
+      .selectAll("g")
+      .data(
+        Object.entries(this.hotelMeta).map(([id, meta]) => ({
+          id,
+          rating: this.hotelStore.overallRating(id).toFixed(1),
+          location: meta.location,
+        }))
+      )
+      .join("g")
+      .attr("id", (d) => d.id)
+      .attr("transform", (d) => {
+        const [x, y] = this.projection([
+          d.location.long,
+          d.location.lat,
+        ]);
+        return `translate(${x}, ${y - MARKER_RADIUS - 6})`;
+      });
+
+    labelGroup.append("rect")
+      .attr("x", -MARKER_RADIUS)
+      .attr("y", -MARKER_RADIUS)
+      .attr("width", 2 * MARKER_RADIUS)
+      .attr("height", 20)
+      .attr("fill", "white")
+      .attr("opacity", MARKER_LABEL_BG_OPACITY);
+
+    labelGroup.append("text")
+      .attr("text-anchor", "middle")
+      .attr("alignment-baseline", "middle")
+      .attr("font-size", "14px")
+      .attr("font-weight", "bold");
 
     this.updateSelectedHotels();
     this.updateRatings();
