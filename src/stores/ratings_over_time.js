@@ -1,9 +1,13 @@
 import { defineStore } from 'pinia'
+import * as d3r from "d3-regression";
+
+import { useCategoryStore } from "../stores/category.js";
 
 export const useTimeStore = defineStore({
   id: 'time',
   state: () => ({
     ratings_over_time: {},
+    categoryStore: useCategoryStore(),
   }),
   getters: {
     dataById: (state) => state.ratings_over_time,
@@ -15,36 +19,69 @@ export const useTimeStore = defineStore({
         this.ratings_over_time[hotelId] = ratings_time_data[hotelId];
       })
     },
-    // compute linear regression of ratings over time
-    linearRegression(timeseries, categoryId) {
-        let sum_x = 0;
-        let sum_y = 0;
-        let sum_xy = 0;
-        let sum_xx = 0;
-        let sum_yy = 0;
+    regression(data, x_min, x_max) {
+      const regression = d3r.regressionLinear()
+          .x(function(d) { return +d.timestamp })
+          .y(function(d) { return +d.value })
+          .domain([x_min, x_max]);
 
-        for (const [timestamp, entries] of Object.entries(timeseries)) {
-          const value = entries[categoryId]["average"];
-          sum_x += timestamp;
-          sum_y += value;
-          sum_xy += timestamp * value;
-          sum_xx += timestamp * timestamp;
-          sum_yy += value * value;
+      // slope = regression(data)["a"];
+      // intercept = regression(data)["b"];
+      return regression(data);
+    },
+    compileData(hotelId, categoryId) {
+      // x min is today as epoch timestamp
+      var x_min = Math.floor(Date.now());
+      var x_max = 0;
+      // compute values for each category
+      const data = [];
+
+      const d = this.ratings_over_time[hotelId];
+      if (d == undefined) {
+        return;
+      }
+      for (const [timestamp, values] of Object.entries(d)) {
+        x_min = Math.min(x_min, +timestamp);
+        x_max = Math.max(x_max, +timestamp);
+
+        if (categoryId == "average") {
+          const weighted_values = [];
+          let valueSum = 0;
+          for (const [category, v] of Object.entries(values)) {
+            if (
+                this.categoryStore.relevantCategories
+                    .map((c) => c.id)
+                    .includes(category)
+                &&
+                v["average"] != 0) {
+              weighted_values.push(v["average"] * this.categoryStore.categoriesById[category]["value"]);
+              valueSum += this.categoryStore.categoriesById[category]["value"];
+            }
+          }
+          if (weighted_values.length > 0) {
+            let weighted_average = weighted_values.reduce((a, b) => a + b, 0);
+            weighted_average /= (valueSum);
+            data.push({
+              name: "average",
+              timestamp: +timestamp,
+              value: weighted_average,
+              values: weighted_values,
+            });
+          }
+        } else {
+          const v = values[categoryId]["average"];
+          if(v != 0) {
+            data.push({
+              name: "average",
+              timestamp: +timestamp,
+              value: v
+            });
+          }
         }
-
-        // y = x * slope + intercept
-        const slope = (n * sum_xy - sum_x * sum_y) / (n * sum_xx - sum_x * sum_x);
-        const intercept = (sum_y - slope * sum_x) / n;
-
-        // sample x and y result line points
-        const result_values= [];
-        for (const [timestamp, entries] of Object.entries(timeseries)) {
-          const x = timestamp;
-          const y = x * slope + intercept;
-          result_values.push({"timestamp": timestamp, "value": y});
-        }
-
-        return result_values;
-    }
+      }
+      // cut off early dates
+      x_min = x_min + (x_max - x_min) / 4.0;
+      return {"data": data.filter((d) => d.timestamp >= x_min), "x_min": x_min, "x_max": x_max};
+    },
   },
 })
