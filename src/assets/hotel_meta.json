@@ -340,6 +340,13 @@
             "location": {
                 "lat": 40.76229482485695,
                 "long": -73.98811640929429
+            },
+            "poiInfo": {
+                "restaurants": "(+) many <strong>restaurants</strong> nearby",
+                "sightseeing": "close to Times Square, but not many other <strong>sights</strong> in direct vicinity",
+                "public_transport": "(+) close to main <strong>public transport</strong> lines",
+                "parks": "not too far from Central <strong>Park</strong>",
+                "shopping": "some <strong>shopping</strong> opportunities nearby"
             }
         },
         "Hotel_Review-g60763-d99762-Reviews-Hotel_Giraffe_by_Library_Hotel_Collection-New_York_City_New_York.html": {
