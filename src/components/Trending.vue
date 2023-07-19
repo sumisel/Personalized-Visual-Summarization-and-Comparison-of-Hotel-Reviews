@@ -29,7 +29,6 @@ export default {
       const intercept = trend[0][1];
       const breakpointStrong = 0.00000000001;
       const breakpointWeak = 0.0000000000005;
-      let noTrend = false;
       let slopeDescription = "";
       if (slope > breakpointStrong) {
         slopeDescription =  "a strong upward trend";
@@ -41,7 +40,6 @@ export default {
         slopeDescription =  "a slight downward trend";
       } else {
         slopeDescription =  "no clear trend";
-        noTrend = true;
       }
 
       let interceptDescription = "";
@@ -57,24 +55,28 @@ export default {
         interceptDescription = "very low";
       }
 
-      if(noTrend) {
-        interceptDescription = "at " + interceptDescription;
+      let valueDescription = "";
+      const endValue = trend[1][1];
+      let endValueDescription = "";
+
+      if (endValue > 4) {
+        endValueDescription += "very high";
+      } else if (endValue > 3) {
+        endValueDescription += "high";
+      } else if (endValue > 2) {
+        endValueDescription += "medium";
+      } else if (endValue > 1) {
+        endValueDescription += "low";
       } else {
-        interceptDescription = "from " + interceptDescription + " to ";
-        const endValue = trend[1][1];
-        if (endValue > 4) {
-          interceptDescription += "very high";
-        } else if (endValue > 3) {
-          interceptDescription += "high";
-        } else if (endValue > 2) {
-          interceptDescription += "medium";
-        } else if (endValue > 1) {
-          interceptDescription += "low";
-        } else {
-          interceptDescription += "very low";
-        }
+        endValueDescription += "very low";
       }
-      return slopeDescription + ", " + interceptDescription + " ratings";
+
+      if(interceptDescription === endValueDescription) {
+        valueDescription = "at " + interceptDescription;
+      } else {
+        valueDescription = "from " + interceptDescription + " to " + endValueDescription
+      }
+      return slopeDescription + ", " + valueDescription + " ratings";
     },
   },
   data: () => ({
