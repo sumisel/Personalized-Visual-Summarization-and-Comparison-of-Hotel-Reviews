@@ -5,9 +5,11 @@ import ChartLine from "./ChartLine.vue";
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
 import { useTimeStore } from "../stores/ratings_over_time";
+import CategoryName from "@/components/CategoryName.vue";
 
 export default {
   components: {
+    CategoryName,
     ChartLine,
     ChartBoxPlot,
   },
@@ -23,13 +25,17 @@ export default {
     trendDescription(hotelId, categoryId) {
       const d = this.timeStore.compileCategoryData(hotelId, categoryId);
       const trend = this.timeStore.regression(d["data"], d["x_min"], d["x_max"]);
-      console.log(trend);
 
       const slope = trend["a"];
       const intercept = trend[0][1];
+      const endValue = trend[1][1];
+      let slopeDescription = "";
+      let valueDescription = "";
+      let interceptDescription = "";
+      let endValueDescription = "";
+
       const breakpointStrong = 0.00000000001;
       const breakpointWeak = 0.0000000000005;
-      let slopeDescription = "";
       if (slope > breakpointStrong) {
         slopeDescription =  "a strong upward trend";
       } else if (slope > breakpointWeak) {
@@ -42,7 +48,6 @@ export default {
         slopeDescription =  "no clear trend";
       }
 
-      let interceptDescription = "";
       if (intercept > 4) {
         interceptDescription = "very high";
       } else if (intercept > 3) {
@@ -54,10 +59,6 @@ export default {
       } else {
         interceptDescription = "very low";
       }
-
-      let valueDescription = "";
-      const endValue = trend[1][1];
-      let endValueDescription = "";
 
       if (endValue > 4) {
         endValueDescription += "very high";
@@ -99,7 +100,7 @@ export default {
                 <div class="pa-2 hotel-name-title">
                   <b>{{ hotelMeta[hotelId].name }}</b>
                   <div class="pa-2 trend-description-title">
-                    The overall rating of this hotel shows <i>{{ trendDescription(hotelId, 'average')}}</i>.
+                    The overall rating of this hotel shows <b>{{ trendDescription(hotelId, 'average')}}</b>.
                   </div>
                 </div>
                 <div class="pa-2 time-chart">
@@ -124,7 +125,7 @@ export default {
                 :key="'time_' + hotelId + '_' + category.id"
               >
                 <div class="pa-2 trend-description-detail">
-                  The {{category.id}} rating of this hotel shows <i>{{ trendDescription(hotelId, category.id)}}</i>.
+                  The <CategoryName :categoryId="category['id']"></CategoryName> rating of this hotel shows <b>{{ trendDescription(hotelId, category.id)}}</b>.
                 </div>
                 <div class="pa-2 time-chart">
                   <ChartLine
