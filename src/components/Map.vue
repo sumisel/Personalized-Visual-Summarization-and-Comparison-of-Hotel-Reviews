@@ -85,6 +85,9 @@ export default {
         this.resetZoom();
         return;
       }
+      this.inZooming = true;
+      d3.select("#svg-map .controls text")
+        .attr("visibility", "hidden");
       this.scrollToMap();
       this.focusedHotel = null;
       this.resetAllMarkers();
@@ -131,6 +134,7 @@ export default {
       // set focused hotel after transition duration
       setTimeout(() => {
         this.focusedHotel = hotelId;
+        this.inZooming = false;
       }, TRANSITION_DURATION);
     },
     resetZoom() {
@@ -419,14 +423,23 @@ export default {
       .attr("stroke", "black")
       .attr("stroke-width", "2px")
       .on("click", (event, d) => {
-        this.focusOnHotel(d.id);
-        event.stopPropagation();
-      })
-      .on("contextmenu", (event, d) => {
         this.hotelStore.toggleHotelSelection(d.id);
         this.updateSelectedHotels();
         this.selectionChanged = true;
-        event.preventDefault();
+        event.stopPropagation();
+      })
+      .on("mouseover", (event, d) => {
+        if (this.focusedHotel || this.inZooming) return;
+        d3.select("#svg-map .controls text")
+          .attr("x", this.projection([d.location.long, d.location.lat])[0] + 25)
+          .attr("y", this.projection([d.location.long, d.location.lat])[1] + 5)
+          .attr("visibility", "visible")
+          .data([d])
+          .on("click", (event, d) => {
+            this.focusOnHotel(d.id);
+            event.stopPropagation();
+          })
+        event.stopPropagation();
       });
 
     // TODO: replace with v-tooltip
@@ -451,6 +464,14 @@ export default {
         ]);
         return `translate(${x}, ${y - MARKER_RADIUS - 6})`;
       });
+
+    // controls
+    d3.select("#svg-map .controls")
+      .append("text")
+      .attr("font-size", "12px")
+      .attr("cursor", "pointer")
+      .text("ZOOM IN")
+      .attr("visibility", "hidden");
 
     labelGroup.append("rect")
       .attr("x", -MARKER_RADIUS)
@@ -566,9 +587,7 @@ export default {
         <v-icon icon="mdi-arrow-left" class="inline"></v-icon> Choose your favorite points of interests, to see related
         information.
       </li>
-      <li v-if="!selectionChanged"><v-icon icon="mdi-arrow-down" class="inline"></v-icon> Click a circle to focus a hotel,
-        and select it using the switch, or use
-        right-click.
+      <li v-if="!selectionChanged"><v-icon icon="mdi-arrow-down" class="inline"></v-icon> Click a circle to select a hotel.
       </li>
     </ul>
   </Instruction>
@@ -587,6 +606,7 @@ export default {
         <g class="markers"></g>
         <g class="markers-annotations"></g>
         <g class="markers-labels"></g>
+        <g class="controls"></g>
       </g>
     </svg>
     <div class="dummy"></div>
