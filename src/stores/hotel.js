@@ -70,5 +70,8 @@ export const useHotelStore = defineStore({
         this.selectedHotelIds.push(id);
       }
     },
+    clearSelection() {
+      this.selectedHotelIds = [];
+    }
   },
 })

@@ -160,17 +160,17 @@ export default {
     },
     updateRatings() {
       d3.select("#svg-map .markers-labels")
-      .selectAll("g")
-      .data(
-        Object.entries(this.hotelMeta).map(([id, meta]) => ({
-          id,
-          rating: this.hotelStore.overallRating(id).toFixed(1),
-          location: meta.location,
-        }))
-      )
-      .join("g")
-      .select("text")
-      .text((d) => d.rating);
+        .selectAll("g")
+        .data(
+          Object.entries(this.hotelMeta).map(([id, meta]) => ({
+            id,
+            rating: this.hotelStore.overallRating(id).toFixed(1),
+            location: meta.location,
+          }))
+        )
+        .join("g")
+        .select("text")
+        .text((d) => d.rating);
     },
     updatePoiMarkers() {
       // draw POI circles as annontations for each hotel marker
@@ -604,7 +604,7 @@ export default {
           </div>
           <div class="flex-grow-1">
             <v-card-title>
-            <HotelName :hotelId="focusedHotel" :selected="hotelStore.hotelIsSelected(focusedHotel)"></HotelName>
+              <HotelName :hotelId="focusedHotel" :selected="hotelStore.hotelIsSelected(focusedHotel)"></HotelName>
             </v-card-title>
             <v-card-text>
               Rated
@@ -671,7 +671,8 @@ export default {
     Among the available
     <strong>{{ printNumber(Object.keys(hotelMeta).length) }}</strong> hotels
     <v-icon class="inline" icon="mdi-circle-outline" size="x-small"></v-icon>,
-    <span v-if="hotelStore.selectedHotelIds.length > 1"><strong>{{ printNumber(hotelStore.selectedHotelIds.length) }}</strong>
+    <span v-if="hotelStore.selectedHotelIds.length > 1"><strong>{{ printNumber(hotelStore.selectedHotelIds.length)
+    }}</strong>
       are</span>
     <span v-if="hotelStore.selectedHotelIds.length === 1">only <strong>one</strong> is</span>
     <span v-if="hotelStore.selectedHotelIds.length === 0"><strong>none</strong> is</span>
@@ -681,6 +682,8 @@ export default {
       <a @click="focusOnHotel(hotelId)"><strong><v-icon class="inline" icon="mdi-circle" size="x-small"></v-icon>
           {{ hotelMeta[hotelId].name }}</strong></a>
     </InlineListItem>.
+    <v-btn variant="plain" prepend-icon="mdi-close" v-if="hotelStore.selectedHotelIds.length > 0"
+      @click="hotelStore.clearSelection(); updateSelectedHotels();">Clear selection</v-btn>
   </div>
   <!-- Paragraph on the selected POIs -->
   <div class="text mt-4" v-if="hotelStore.selectedHotelIds.length > 1 && poiStore.selectedPois.length > 0
