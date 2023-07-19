@@ -2,6 +2,7 @@
 import CategoryPosNeg from "./CategoryPosNeg.vue";
 import ChartPosNeg from "./ChartPosNeg.vue";
 import PosNegBulletPoint from "./PosNegBulletPoint.vue";
+import HotelName from "./HotelName.vue";
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
 import { useClusterStore } from "../stores/cluster.js";
@@ -12,6 +13,7 @@ export default {
     PosNegBulletPoint,
     CategoryPosNeg,
     ChartPosNeg,
+    HotelName,
   },
   setup() {
     const hotelStore = useHotelStore();
@@ -93,12 +95,7 @@ export default {
                 </tr>
                 <tr>
                   <td class="pa-2 hotel-name">
-                    <v-avatar color="#eee" :image="`./img/hotels/${city.name
-                      .replace(' ', '_')
-                      .toLowerCase()}/${hotelId}.png`">
-                    </v-avatar>
-                    <br/>
-                    {{ hotelMeta[hotelId].name }}</td>
+                    <HotelName :hotelId="hotelId" avatar line-break></HotelName></td>
                   <td class="pa-2 sentiment-text">
                     <PosNegBulletPoint
                       :hotelId="hotelId"

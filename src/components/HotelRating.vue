@@ -3,6 +3,7 @@ import { computed, getCurrentInstance, inject } from "vue";
 
 import Glyph from "./Glyph.vue";
 import CategoryName from "./CategoryName.vue";
+import HotelName from "./HotelName.vue";
 
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
@@ -85,7 +86,7 @@ const topCategories = computed(() => {
         ></Glyph>
       </v-avatar>
       <div class="flex-grow-1">
-        <v-card-title class="text-h5">{{ hotel.name }}</v-card-title>
+        <v-card-title class="text-h5"><HotelName :hotelId="hotelId" avatar></HotelName></v-card-title>
         <v-card-text>
           <div class="d-flex flex-row" v-if="bestCategories.length">
             <div class="flex-grow-0 mr-4">

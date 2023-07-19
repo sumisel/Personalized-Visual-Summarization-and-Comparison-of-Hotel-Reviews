@@ -7,12 +7,14 @@ import { useCategoryStore } from "../stores/category.js";
 import { useTimeStore } from "../stores/ratings_over_time";
 import CategoryName from "@/components/CategoryName.vue";
 
+import HotelName from "./HotelName.vue";
 export default {
   components: {
     CategoryName,
     ChartLine,
     ChartBoxPlot,
-  },
+    HotelName
+},
   setup() {
     const hotelStore = useHotelStore();
     const categoryStore = useCategoryStore();
@@ -99,10 +101,7 @@ export default {
             <v-expansion-panel-title :key="'title_' + hotelId">
               <v-row>
                 <div class="pa-2 hotel-name-title">
-                  <v-avatar color="#eee" :image="`./img/hotels/${city.name
-                      .replace(' ', '_')
-                      .toLowerCase()}/${hotelId}.png`">
-                  </v-avatar> <b>{{ hotelMeta[hotelId].name }}</b>
+                  <HotelName :hotelId="hotelId" avatar></HotelName>
                   <div class="pa-2 trend-description-title">
                     The overall rating of this hotel shows <b>{{ trendDescription(hotelId, 'average')}}</b>.
                   </div>

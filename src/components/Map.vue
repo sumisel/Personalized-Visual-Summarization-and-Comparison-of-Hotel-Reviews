@@ -10,6 +10,7 @@ import { useCategoryStore } from "../stores/category";
 import InlineListItem from "./InlineListItem.vue";
 import PoiChip from "./PoiChip.vue";
 import Instruction from "./Instruction.vue";
+import HotelName from "./HotelName.vue";
 
 const MARKER_RADIUS = 15;
 const TRANSITION_DURATION = 750;
@@ -20,6 +21,7 @@ export default {
     InlineListItem,
     PoiChip,
     Instruction,
+    HotelName,
   },
   setup() {
     const map = ref();
@@ -602,12 +604,8 @@ export default {
             </v-avatar>
           </div>
           <div class="flex-grow-1">
-            <v-card-title :style="{
-              'font-weight': hotelStore.hotelIsSelected(focusedHotel)
-                ? 'bold'
-                : 'normal',
-            }">
-              {{ hotelMeta[focusedHotel]?.name }}
+            <v-card-title>
+            <HotelName :hotelId="focusedHotel" :selected="hotelStore.hotelIsSelected(focusedHotel)"></HotelName>
             </v-card-title>
             <v-card-text>
               Rated
