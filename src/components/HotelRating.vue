@@ -87,8 +87,8 @@ const topCategories = computed(() => {
       <div class="flex-grow-1">
         <v-card-title class="text-h5"><HotelName :hotelId="hotelId" avatar></HotelName></v-card-title>
         <v-card-text>
-          <div class="d-flex flex-row" v-if="bestCategories.length">
-            <div class="flex-grow-0 mr-4">
+          <div class="d-flex flex-row my-1" v-if="bestCategories.length">
+            <div class="flex-grow-0 mr-1">
               <v-icon icon="mdi-star"></v-icon>
             </div>
             <div class="flex-grow-1 my-1">
@@ -106,8 +106,8 @@ const topCategories = computed(() => {
               </span>
             </div>
           </div>
-          <div class="d-flex flex-row" v-if="topCategories.length">
-            <div class="flex-grow-0 mr-4">
+          <div class="d-flex flex-row my-1" v-if="topCategories.length">
+            <div class="flex-grow-0 mr-1">
               <v-icon icon="mdi-star-outline"></v-icon>
             </div>
             <div class="flex-grow-1 my-1">
