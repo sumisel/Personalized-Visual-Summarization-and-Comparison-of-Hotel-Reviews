@@ -58,7 +58,6 @@ const topCategories = computed(() => {
   const topCategories = categoryStore.relevantCategories.filter(
     (category) =>
       !bestCategories.value.includes(category.id) &&
-      hotel.ratings[category.id] - hotelStore.minRatings[category.id] > 0.29 &&
       hotel.ratings[category.id] - hotelStore.maxRatings[category.id] > -0.29
   );
   return topCategories.map((category) => category.id);
