@@ -137,15 +137,15 @@ export default {
 
 <style>
 .hotel-name {
-  width: 15% !important;
+  width: 20% !important;
 }
 
 .sentiment-text-title {
-  width: 31.3% !important;
+  width: 29.7% !important;
 }
 
 .sentiment-text {
-  width: 40% !important;
+  width: 38% !important;
 }
 
 .placeholder {
