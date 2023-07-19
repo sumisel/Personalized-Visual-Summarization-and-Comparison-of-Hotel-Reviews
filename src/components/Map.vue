@@ -218,7 +218,24 @@ export default {
           behavior: "smooth",
         }
       );
-
+    },
+    printNumber(number) {
+      // use number words for numbers <= 12
+      if (number === 0) return "none";
+      if (number === 1) return "one";
+      if (number === 2) return "two";
+      if (number === 3) return "three";
+      if (number === 4) return "four";
+      if (number === 5) return "five";
+      if (number === 6) return "six";
+      if (number === 7) return "seven";
+      if (number === 8) return "eight";
+      if (number === 9) return "nine";
+      if (number === 10) return "ten";
+      if (number === 11) return "eleven";
+      if (number === 12) return "twelve";
+      // else
+      return number.toLocaleString("en-US");
     },
   },
   mounted() {
@@ -655,11 +672,11 @@ export default {
   <!-- Paragraph on the selected hotels -->
   <div class="text mt-4">
     Among the available
-    <strong>{{ Object.keys(hotelMeta).length }}</strong> hotels
+    <strong>{{ printNumber(Object.keys(hotelMeta).length) }}</strong> hotels
     <v-icon class="inline" icon="mdi-circle-outline" size="x-small"></v-icon>,
-    <span v-if="hotelStore.selectedHotelIds.length > 1"><strong>{{ hotelStore.selectedHotelIds.length }}</strong>
+    <span v-if="hotelStore.selectedHotelIds.length > 1"><strong>{{ printNumber(hotelStore.selectedHotelIds.length) }}</strong>
       are</span>
-    <span v-if="hotelStore.selectedHotelIds.length === 1">only <strong>1</strong> is</span>
+    <span v-if="hotelStore.selectedHotelIds.length === 1">only <strong>one</strong> is</span>
     <span v-if="hotelStore.selectedHotelIds.length === 0"><strong>none</strong> is</span>
     selected<span v-if="hotelStore.selectedHotelIds.length > 0">: </span><span v-else></span>
     <InlineListItem v-for="(hotelId, index) in hotelStore.selectedHotelIds" :key="hotelId" :index="index"
