@@ -175,7 +175,7 @@ export default {
           icon="mdi-minus-circle-outline"
           :style="[{ color: sentence['color'] }]"
         />
-        {{ sentence["text"] }}.
+        {{ sentence["text"] }}. <button class="button">...</button>
         <v-tooltip activator="parent" location="bottom" max-width="300px">
           {{
             roundToDecimal(100 * sentence["ratio_category"], 2) +
@@ -200,7 +200,7 @@ export default {
       </p>
     </template>
     <template v-slot:default="{ isActive }">
-      <v-card style="width: 30%">
+      <v-card style="width: 50%">
         <v-toolbar>
           <v-toolbar-title>{{
             hotelMeta[hotelId].name + " - " + sentence["text"]
@@ -301,3 +301,13 @@ export default {
     </template>
   </v-dialog>
 </template>
+
+<style>
+.button {
+  margin: 1px;
+  padding: 0px 9px;
+  border: 1px solid #888;
+  border-radius: 4px;
+  cursor: pointer;
+}
+</style>
