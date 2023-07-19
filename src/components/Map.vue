@@ -86,7 +86,7 @@ export default {
         return;
       }
       this.inZooming = true;
-      d3.select("#svg-map .controls text")
+      d3.select("#svg-map .controls g")
         .attr("visibility", "hidden");
       this.scrollToMap();
       this.focusedHotel = null;
@@ -430,9 +430,8 @@ export default {
       })
       .on("mouseover", (event, d) => {
         if (this.focusedHotel || this.inZooming) return;
-        d3.select("#svg-map .controls text")
-          .attr("x", this.projection([d.location.long, d.location.lat])[0] + 25)
-          .attr("y", this.projection([d.location.long, d.location.lat])[1] + 5)
+        d3.select("#svg-map .controls g")
+          .attr("transform", `translate(${this.projection([d.location.long, d.location.lat])[0] + 25}, ${this.projection([d.location.long, d.location.lat])[1] + 5})`)
           .attr("visibility", "visible")
           .data([d])
           .on("click", (event, d) => {
@@ -466,12 +465,21 @@ export default {
       });
 
     // controls
-    d3.select("#svg-map .controls")
-      .append("text")
-      .attr("font-size", "12px")
-      .attr("cursor", "pointer")
-      .text("ZOOM IN")
+    const controls = d3.select("#svg-map .controls")
+      .append("g")
       .attr("visibility", "hidden");
+    controls.append("rect")
+      .attr("x", 0)
+      .attr("y", -15)
+      .attr("width", 80)
+      .attr("height", 20)
+      .attr("fill", "white")
+    controls.append("text")
+      .attr("x", 40)
+      .attr("y", 0)
+      .attr("text-anchor", "middle")
+      .attr("alignment-baseline", "middle")
+      .text("ZOOM IN");
 
     labelGroup.append("rect")
       .attr("x", -MARKER_RADIUS)
@@ -782,6 +790,14 @@ export default {
       & g {
         pointer-events: none;
         filter: drop-shadow(0px 0px 1px white);
+      }
+    }
+
+    & .controls g {
+      cursor: pointer;
+      font-size: 0.9rem;
+      &:hover rect {
+        fill: #eee;
       }
     }
   }
