@@ -725,7 +725,9 @@ export default {
       :listLength="nonSelectedHotelsWithAllPositiveScores.length">
       <a @click="focusOnHotel(hotel)"><strong><v-icon class="inline" icon="mdi-circle" size="x-small"></v-icon>
           {{ hotelMeta[hotel].name }}</strong></a>
-    </InlineListItem>.
+    </InlineListItem>. <v-btn variant="plain" prepend-icon="mdi-map-marker-plus"
+      @click="hotelStore.selectedHotelIds = hotelStore.selectedHotelIds.concat(nonSelectedHotelsWithAllPositiveScores); updateSelectedHotels();">Add
+      to selection</v-btn>
   </div>
 </template>
 
