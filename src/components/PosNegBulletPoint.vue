@@ -304,8 +304,9 @@ export default {
 
 <style>
 .button {
-  margin: 1px;
-  padding: 0px 9px;
+  font-size: 8pt;
+  margin: 0px 0px 4pt 0px;
+  padding: 1pt 6pt 0pt 6pt;
   border: 1px solid #888;
   border-radius: 4px;
   cursor: pointer;

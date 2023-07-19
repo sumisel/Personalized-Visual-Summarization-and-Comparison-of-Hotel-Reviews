@@ -107,7 +107,9 @@ function countsCategoryPosNeg(category, hotelIds) {
                     <v-avatar color="#eee" :image="`./img/hotels/${city.name
                       .replace(' ', '_')
                       .toLowerCase()}/${hotelId}.png`">
-                    </v-avatar> {{ hotelMeta[hotelId].name }}</td>
+                    </v-avatar>
+                    <br/>
+                    {{ hotelMeta[hotelId].name }}</td>
                   <td class="pa-2 sentiment-text">
                     <PosNegBulletPoint
                       :hotelId="hotelId"
