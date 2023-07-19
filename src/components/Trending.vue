@@ -18,7 +18,8 @@ export default {
     const categoryStore = useCategoryStore();
     const timeStore = useTimeStore();
     const hotelMeta = inject("hotelMeta");
-    return { hotelStore, categoryStore, timeStore, hotelMeta };
+    const city = inject("city");
+    return { hotelStore, categoryStore, timeStore, hotelMeta, city };
   },
   computed: {},
   methods: {
@@ -98,7 +99,10 @@ export default {
             <v-expansion-panel-title :key="'title_' + hotelId">
               <v-row>
                 <div class="pa-2 hotel-name-title">
-                  <b>{{ hotelMeta[hotelId].name }}</b>
+                  <v-avatar color="#eee" :image="`./img/hotels/${city.name
+                      .replace(' ', '_')
+                      .toLowerCase()}/${hotelId}.png`">
+                  </v-avatar> <b>{{ hotelMeta[hotelId].name }}</b>
                   <div class="pa-2 trend-description-title">
                     The overall rating of this hotel shows <b>{{ trendDescription(hotelId, 'average')}}</b>.
                   </div>
