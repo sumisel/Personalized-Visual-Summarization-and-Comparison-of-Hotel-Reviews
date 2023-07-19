@@ -159,7 +159,6 @@ export default {
         );
     },
     updateRatings() {
-      console.log("update ratings");
       d3.select("#svg-map .markers-labels")
       .selectAll("g")
       .data(
