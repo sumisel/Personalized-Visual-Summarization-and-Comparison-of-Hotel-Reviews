@@ -12,6 +12,7 @@ import { inject } from "vue";
 const hotelStore = useHotelStore();
 const categoryStore = useCategoryStore();
 const hotelMeta = inject("hotelMeta");
+const city = inject("city");
 
 const props = defineProps({
   category: Object,
@@ -102,7 +103,11 @@ function countsCategoryPosNeg(category, hotelIds) {
                   </td>
                 </tr>
                 <tr>
-                  <td class="pa-2 hotel-name">{{ hotelMeta[hotelId].name }}</td>
+                  <td class="pa-2 hotel-name">
+                    <v-avatar color="#eee" :image="`./img/hotels/${city.name
+                      .replace(' ', '_')
+                      .toLowerCase()}/${hotelId}.png`">
+                    </v-avatar> {{ hotelMeta[hotelId].name }}</td>
                   <td class="pa-2 sentiment-text">
                     <PosNegBulletPoint
                       :hotelId="hotelId"

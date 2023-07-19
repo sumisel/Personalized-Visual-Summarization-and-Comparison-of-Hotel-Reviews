@@ -18,7 +18,8 @@ export default {
     const categoryStore = useCategoryStore();
     const clusterStore = useClusterStore();
     const hotelMeta = inject("hotelMeta");
-    return { hotelStore, categoryStore, clusterStore, hotelMeta };
+    const city = inject("city");
+    return { hotelStore, categoryStore, clusterStore, hotelMeta, city };
   },
   computed: {},
   methods: {
@@ -91,7 +92,11 @@ export default {
                   </td>
                 </tr>
                 <tr>
-                  <td class="pa-2 hotel-name">{{ hotelMeta[hotelId].name }}</td>
+                  <td class="pa-2 hotel-name">
+                    <v-avatar color="#eee" :image="`./img/hotels/${city.name
+                      .replace(' ', '_')
+                      .toLowerCase()}/${hotelId}.png`">
+                    </v-avatar> {{ hotelMeta[hotelId].name }}</td>
                   <td class="pa-2 sentiment-text">
                     <PosNegBulletPoint
                       :hotelId="hotelId"
