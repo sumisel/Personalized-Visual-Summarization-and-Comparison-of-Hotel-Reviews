@@ -35,7 +35,8 @@ const poiMeta = inject("poiMeta");
         :open-on-click="false" location="start top" offset="25" persistent class="instructions">
         <v-card class="pa-2">
           <v-card-text><v-icon icon="mdi-arrow-left" class="inline"></v-icon> Here, you can select what's
-            your preferences regarding the location.</v-card-text>
+            your preferences regarding the location. This will help you to select the most promising candidate hotels on
+            the map.</v-card-text>
           <v-card-actions>
             <v-btn text
               @click="interfaceStore.tutorialStep.poi = false; interfaceStore.tutorialStep.priorities = true">Ok</v-btn>
@@ -49,10 +50,10 @@ const poiMeta = inject("poiMeta");
         <Glyph></Glyph>
         <div>
           <v-icon icon="mdi-information-outline" size="small"></v-icon><v-tooltip activator="parent" location="bottom"
-            max-width="300px">For every hotel, such a pie chart shows the ratings across all
+            max-width="300px">For every hotel, such a radial diagram shows the ratings across all
             categories. For comparison, the bright area in the middle indicates
-            the mininum rating of a category among the selected hotels. Pie
-            slices are scaled according to priorities, as well as the overall
+            the mininum rating of a category among the currently selected hotels. Slices are scaled according to
+            priorities, as well as the overall
             rating in the center is weighted by these priorities.</v-tooltip>
         </div>
       </div>
@@ -79,9 +80,34 @@ const poiMeta = inject("poiMeta");
       <v-overlay activator="parent" v-model="interfaceStore.tutorialStep.priorities" location-strategy="connected"
         :open-on-click="false" location="start top" offset="25" persistent class="instructions">
         <v-card class="pa-2">
-          <v-card-text><v-icon icon="mdi-arrow-left" class="inline"></v-icon> And these are priorities that should be
-            considered for evaluating customer ratings and
-            reviews.
+          <v-card-text>
+            <p><v-icon icon="mdi-arrow-left" class="inline"></v-icon> The radial diagram summarizes the ratings for each
+              hotel in the comparison. The length of each segment from the circle center shows the rating of the hotel per
+              category. The brighter areas in the middle indicate the minimum rating per category across all currently
+              selected hotels.</p>
+            <div class="mx-auto text-center">
+              <Glyph :ratings="{
+                location: 4.7,
+                value: 4.5,
+                rooms: 4.5,
+                service: 4.1,
+                cleanliness: 3.9,
+                sleep: 4.9,
+              }" :minRatings="{
+  location: 3.1,
+  value: 4.1,
+  rooms: 4.4,
+  service: 4.0,
+  cleanliness: 3.9,
+  sleep: 3.9,
+}" :showRating="true"></Glyph>
+            </div>
+            <p>The example above shows a hotel with a particulary high rating in location and sleep quality, but not so
+              good service and cleanliness</p>
+            <p>
+              <v-icon icon="mdi-arrow-left" class="inline"></v-icon> The priorities that you select here
+              change the width of the segments and determine the weight that each category has in the comparison.
+            </p>
           </v-card-text>
           <v-card-actions>
             <v-btn text @click="interfaceStore.tutorialStep.priorities = false">Ok</v-btn>
@@ -92,4 +118,13 @@ const poiMeta = inject("poiMeta");
   </v-sheet>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.instructions .v-card {
+  max-width: 500px;
+
+  & p {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}
+</style>

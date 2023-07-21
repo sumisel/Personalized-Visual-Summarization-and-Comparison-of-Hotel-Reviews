@@ -86,9 +86,9 @@ export default {
       const overallRating = [
         this.categoryStore.categories.reduce(
           (sum, category) =>
-            (sum +=
-              this.ratings[category.id] *
-              this.categoryStore.normalizedCategoryValues[category.id]),
+          (sum +=
+            this.ratings[category.id] *
+            this.categoryStore.normalizedCategoryValues[category.id]),
           0
         ),
       ];
@@ -134,6 +134,7 @@ export default {
           .attr("text-anchor", "middle")
           .attr("dy", 8)
           .attr("font-size", "1.5rem")
+          .attr("font-style", "normal")
           .text((d) => d.toFixed(1));
       }
     },
