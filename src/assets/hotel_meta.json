@@ -235,6 +235,13 @@
             "location": {
                 "lat": 40.752183571593946,
                 "long": -73.97628876741095
+            },
+            "poiInfo": {
+                "restaurants": "some <strong>restaurants</strong> nearby",
+                "sightseeing": "(+) many <strong>sights</strong> and museums closeby",
+                "public_transport": "(+) close to main <strong>public transport</strong> lines",
+                "parks": "some distance to bigger <strong>parks</strong>",
+                "shopping": "some <strong>shopping</strong> opportunities nearby"
             }
         },
         "Hotel_Review-g60763-d93437-Reviews-Hotel_Edison_Times_Square-New_York_City_New_York.html": {
@@ -250,6 +257,13 @@
             "location": {
                 "lat": 40.760258940619366,
                 "long": -73.98624575113413
+            },
+            "poiInfo": {
+                "restaurants": "(+) many <strong>restaurants</strong> nearby",
+                "sightseeing": "close to Times Square, but not many other <strong>sights</strong> in direct vicinity",
+                "public_transport": "(+) close to main <strong>public transport</strong> lines",
+                "parks": "not too far from Central <strong>Park</strong>",
+                "shopping": "some <strong>shopping</strong> opportunities nearby"
             }
         },
         "Hotel_Review-g60763-d99352-Reviews-Hilton_Garden_Inn_Times_Square-New_York_City_New_York.html": {
@@ -265,6 +279,13 @@
             "location": {
                 "lat": 40.76142463940273,
                 "long": -73.98648532814431
+            },
+            "poiInfo": {
+                "restaurants": "(+) many <strong>restaurants</strong> nearby",
+                "sightseeing": "close to Times Square, but not many other <strong>sights</strong> in direct vicinity",
+                "public_transport": "(+) close to main <strong>public transport</strong> lines",
+                "parks": "not too far from Central <strong>Park</strong>",
+                "shopping": "some <strong>shopping</strong> opportunities nearby"
             }
         },
         "Hotel_Review-g60763-d99307-Reviews-Wellington_Hotel-New_York_City_New_York.html": {
@@ -280,6 +301,13 @@
             "location": {
                 "lat": 40.764646977251175,
                 "long": -73.98044983503925
+            },
+            "poiInfo": {
+                "restaurants": "some <strong>restaurants</strong> nearby",
+                "sightseeing": "(+) many <strong>sights</strong> and museums closeby",
+                "public_transport": "(+) close to main <strong>public transport</strong> lines",
+                "parks": "(+) close to Central <strong>Park</strong>",
+                "shopping": "some <strong>shopping</strong> opportunities nearby"
             }
         },
         "Hotel_Review-g60763-d93457-Reviews-Hampton_Inn_Manhattan_Times_Square_North-New_York_City_New_York.html": {
@@ -295,6 +323,13 @@
             "location": {
                 "lat": 40.76338496887761,
                 "long": -73.98571803832918
+            },
+            "poiInfo": {
+                "restaurants": "(+) many <strong>restaurants</strong> nearby",
+                "sightseeing": "close to Times Square, but not many other <strong>sights</strong> in direct vicinity",
+                "public_transport": "(+) close to main <strong>public transport</strong> lines",
+                "parks": "not too far from Central <strong>Park</strong>",
+                "shopping": "some <strong>shopping</strong> opportunities nearby"
             }
         },
         "Hotel_Review-g60763-d208454-Reviews-Sofitel_New_York-New_York_City_New_York.html": {
@@ -310,6 +345,13 @@
             "location": {
                 "lat": 40.75587945295093,
                 "long": -73.98174563446005
+            },
+            "poiInfo": {
+                "restaurants": "some <strong>restaurants</strong> nearby",
+                "sightseeing": "(+) many <strong>sights</strong> and museums closeby",
+                "public_transport": "(+) close to main <strong>public transport</strong> lines",
+                "parks": "some distance to bigger <strong>parks</strong>",
+                "shopping": "some <strong>shopping</strong> opportunities nearby"
             }
         },
         "Hotel_Review-g60763-d1218792-Reviews-Hilton_Garden_Inn_New_York_West_35th_Street-New_York_City_New_York.html": {
@@ -325,6 +367,13 @@
             "location": {
                 "lat": 40.750554796892665,
                 "long": -73.98650539413059
+            },
+            "poiInfo": {
+                "restaurants": "some <strong>restaurants</strong> nearby",
+                "sightseeing": "(+) many <strong>sights</strong> and museums closeby",
+                "public_transport": "(+) close to main <strong>public transport</strong> lines",
+                "parks": "some distance to bigger <strong>parks</strong>",
+                "shopping": "(+) in major <strong>shopping</strong> area"
             }
         },
         "Hotel_Review-g60763-d93569-Reviews-Belvedere_Hotel-New_York_City_New_York.html": {
@@ -363,6 +412,14 @@
                 "lat": 40.74234843628629,
                 "long": -73.98475786638679
             }
+            ,
+            "poiInfo": {
+                "restaurants": "some <strong>restaurants</strong> nearby",
+                "sightseeing": "(+) many <strong>sights</strong> and museums closeby",
+                "public_transport": "(+) close to main <strong>public transport</strong> lines",
+                "parks": "some distance to bigger <strong>parks</strong>",
+                "shopping": "some <strong>shopping</strong> opportunities nearby"
+            }
         },
         "Hotel_Review-g60763-d112064-Reviews-Warwick_New_York-New_York_City_New_York.html": {
             "name": "Statue of Liberty Suites",
@@ -377,6 +434,13 @@
             "location": {
                 "lat": 40.76267520772386,
                 "long": -73.97804724186648
+            },
+            "poiInfo": {
+                "restaurants": "(+) many <strong>restaurants</strong> nearby",
+                "sightseeing": "(+) many <strong>sights</strong> and museums closeby",
+                "public_transport": "(+) close to main <strong>public transport</strong> lines",
+                "parks": "(+) close to Central <strong>Park</strong>",
+                "shopping": "some <strong>shopping</strong> opportunities nearby"
             }
         }
     },
