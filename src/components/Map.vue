@@ -260,7 +260,18 @@ export default {
       .select("#svg-map")
       .attr("width", this.width)
       .attr("height", this.height)
-      .on("click", this.resetZoom);
+      .on("click", this.resetZoom)
+      .on("mousemove", (event) => {
+        // blend out controls if too far from controls position
+        const distance = Math.sqrt(
+          Math.pow(event.offsetX - this.controlsPosition?.[0], 2) +
+          Math.pow(event.offsetY - this.controlsPosition?.[1], 2)
+        );
+        if ( distance > 110) {
+          d3.select("#svg-map .controls g")
+            .attr("visibility", "hidden");
+        } 
+      })
 
     this.projection = d3
       .geoMercator()
@@ -430,8 +441,9 @@ export default {
       })
       .on("mouseover", (event, d) => {
         if (this.focusedHotel || this.inZooming) return;
+        this.controlsPosition = this.projection([d.location.long, d.location.lat]);
         d3.select("#svg-map .controls g")
-          .attr("transform", `translate(${this.projection([d.location.long, d.location.lat])[0] + 25}, ${this.projection([d.location.long, d.location.lat])[1] + 5})`)
+          .attr("transform", `translate(${this.controlsPosition[0] + 25}, ${this.controlsPosition[1] + 5})`)
           .attr("visibility", "visible")
           .data([d])
           .on("click", (event, d) => {
@@ -595,7 +607,8 @@ export default {
         <v-icon icon="mdi-arrow-left" class="inline"></v-icon> Choose your favorite points of interests, to see related
         information.
       </li>
-      <li v-if="!selectionChanged"><v-icon icon="mdi-arrow-down" class="inline"></v-icon> Click a circle to select a hotel.
+      <li v-if="!selectionChanged"><v-icon icon="mdi-arrow-down" class="inline"></v-icon> Click a circle to select a
+        hotel.
       </li>
     </ul>
   </Instruction>
@@ -796,6 +809,7 @@ export default {
     & .controls g {
       cursor: pointer;
       font-size: 0.9rem;
+
       &:hover rect {
         fill: #eee;
       }
