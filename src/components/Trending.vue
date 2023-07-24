@@ -37,8 +37,8 @@ export default {
       let interceptDescription = "";
       let endValueDescription = "";
 
-      const breakpointStrong = 0.00000000001;
-      const breakpointWeak = 0.0000000000005;
+      const breakpointStrong = 0.000000000001;
+      const breakpointWeak   = 0.0000000000003;
       if (slope > breakpointStrong) {
         slopeDescription =  "a strong upward trend";
       } else if (slope > breakpointWeak) {
