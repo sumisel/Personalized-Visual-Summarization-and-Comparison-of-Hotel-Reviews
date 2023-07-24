@@ -21,7 +21,7 @@ export default {
     const timeStore = useTimeStore();
     const hotelMeta = inject("hotelMeta");
     const city = inject("city");
-    const breakpointStrong = 0.000000000001;
+    const breakpointStrong = 0.0000000000011;
     const breakpointWeak   = 0.0000000000003;
     return { hotelStore, categoryStore, timeStore, hotelMeta, city, breakpointStrong, breakpointWeak };
   },
@@ -120,9 +120,9 @@ export default {
           <v-expansion-panel>
             <v-expansion-panel-title :key="'title_' + hotelId">
               <v-row>
-                <div class="pa-2 hotel-name-title">
+                <div class="pa-2 trend-description-title">
                   <HotelName :hotelId="hotelId" avatar></HotelName>
-                  <div class="pa-2 trend-description-title">
+                  <div class="pa-2">
                     The overall rating of this hotel shows <b>{{ trendDescription(hotelId, 'average')}}</b>.
                   </div>
                 </div>
@@ -150,9 +150,6 @@ export default {
                 )"
                 :key="'time_' + hotelId + '_' + category.id"
               >
-                <div class="pa-2 trend-description-detail">
-                  The <CategoryName :categoryId="category['id']"></CategoryName> rating of this hotel shows <b>{{ trendDescription(hotelId, category.id)}}</b>.
-                </div>
                 <div class="pa-2 time-chart">
                   <ChartLine
                       :hotelId="hotelId"
@@ -168,6 +165,9 @@ export default {
                   <v-icon
                       :style="[{ color: category.color }]"
                   >{{ trendIcon(hotelId, category.id) }}</v-icon>
+                </div>
+                <div class="pa-2 trend-description-detail">
+                  <CategoryName :categoryId="category['id']"></CategoryName>: {{ trendDescription(hotelId, category.id)}}.
                 </div>
                 <div class="pa-2 box-plot">
                   <ChartBoxPlot
@@ -196,18 +196,18 @@ export default {
 }
 
 .trend-description-title {
-  width: 100% !important;
+  width: 55% !important;
   vertical-align: middle;
   horizontal-align: center;
 }
 .trend-icon-title {
-  width: 10% !important;
+  width: 5% !important;
   vertical-align: middle;
   horizontal-align: left;
 }
 
 .trend-description-detail {
-  width: 49% !important;
+  width: 54% !important;
   vertical-align: middle;
   horizontal-align: center;
 }
