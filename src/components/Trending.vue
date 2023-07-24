@@ -21,7 +21,9 @@ export default {
     const timeStore = useTimeStore();
     const hotelMeta = inject("hotelMeta");
     const city = inject("city");
-    return { hotelStore, categoryStore, timeStore, hotelMeta, city };
+    const breakpointStrong = 0.000000000001;
+    const breakpointWeak   = 0.0000000000003;
+    return { hotelStore, categoryStore, timeStore, hotelMeta, city, breakpointStrong, breakpointWeak };
   },
   computed: {},
   methods: {
@@ -37,15 +39,13 @@ export default {
       let interceptDescription = "";
       let endValueDescription = "";
 
-      const breakpointStrong = 0.000000000001;
-      const breakpointWeak   = 0.0000000000003;
-      if (slope > breakpointStrong) {
+      if (slope > this.breakpointStrong) {
         slopeDescription =  "a strong upward trend";
-      } else if (slope > breakpointWeak) {
+      } else if (slope > this.breakpointWeak) {
         slopeDescription =  "a slight upward trend";
-      } else if (slope < -breakpointStrong) {
+      } else if (slope < -this.breakpointStrong) {
         slopeDescription =  "a strong downward trend";
-      } else if (slope < -breakpointWeak) {
+      } else if (slope < -this.breakpointWeak) {
         slopeDescription =  "a slight downward trend";
       } else {
         slopeDescription =  "no clear trend";
@@ -82,6 +82,26 @@ export default {
       }
       return slopeDescription + ", " + valueDescription + " ratings";
     },
+    trendIcon(hotelId, categoryId) {
+      const d = this.timeStore.compileCategoryData(hotelId, categoryId);
+      const trend = this.timeStore.regression(d["data"], d["x_min"], d["x_max"]);
+
+      let icon = "";
+      const slope = trend["a"];
+      if (slope > this.breakpointStrong) {
+        icon = "mdi-arrow-up-circle-outline";
+      } else if (slope > this.breakpointWeak) {
+        icon = "mdi-arrow-top-right-thin-circle-outline";
+      } else if (slope < -this.breakpointStrong) {
+        icon = "mdi-arrow-down-circle-outline";
+      } else if (slope < -this.breakpointWeak) {
+        icon = "mdi-arrow-bottom-right-thin-circle-outline";
+      } else {
+        icon = "mdi-arrow-right-circle-outline";
+      }
+
+      return icon;
+    }
   },
   data: () => ({
     panel: [0, 1],
@@ -111,11 +131,14 @@ export default {
                     :hotelId="hotelId"
                     :categoryId="'average'"
                     :color="'#999999'"
-                    :width="200"
+                    :width="300"
                     :height="50"
-                    :yMin="1"
+                    :yMin="2.5"
                     :yMax="5"
                   ></ChartLine>
+                </div>
+                <div class="pa-2 trend-icon-title">
+                  <v-icon>{{ trendIcon(hotelId, 'average') }}</v-icon>
                 </div>
               </v-row>
             </v-expansion-panel-title>
@@ -137,9 +160,14 @@ export default {
                       :color="category.color"
                       :width="300"
                       :height="50"
-                      :yMin="1"
+                      :yMin="2.5"
                       :yMax="5"
                   ></ChartLine>
+                </div>
+                <div class="pa-2 trend-icon-title">
+                  <v-icon
+                      :style="[{ color: category.color }]"
+                  >{{ trendIcon(hotelId, category.id) }}</v-icon>
                 </div>
                 <div class="pa-2 box-plot">
                   <ChartBoxPlot
@@ -172,9 +200,14 @@ export default {
   vertical-align: middle;
   horizontal-align: center;
 }
+.trend-icon-title {
+  width: 10% !important;
+  vertical-align: middle;
+  horizontal-align: left;
+}
 
 .trend-description-detail {
-  width: 33% !important;
+  width: 49% !important;
   vertical-align: middle;
   horizontal-align: center;
 }
