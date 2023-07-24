@@ -71,6 +71,7 @@ export default {
       // remove all previous elements
       d3.select(this.svg).selectAll("*").remove();
       const svg = d3.select(this.svg).append("g");
+      svg.attr("transform", "translate(20, 5)");
 
       // draw line chart
       const d = this.timeStore.compileCategoryData(this.hotelId, this.categoryId);
@@ -86,18 +87,18 @@ export default {
                 return d;
               })
           )
-          .range([0, this.width]);
+          .range([0, this.width-20]);
       svg
           .append("g")
-          .attr("transform", "translate(0," + this.height + ")")
+          .attr("transform", "translate(0," + (this.height-5) + ")")
           .call(d3.axisBottom(x).ticks(5));
 
       // add y axis
       const y = d3
           .scaleLinear()
           .domain([this.yMin, this.yMax])
-          .range([this.height, 0]);
-      svg.append("g").call(d3.axisLeft(y));
+          .range([this.height-5, 0]);
+      svg.append("g").call(d3.axisLeft(y).ticks(2));
 
       // color palette
       const res = this.categoryStore.relevantCategories.map((c) => c.id);

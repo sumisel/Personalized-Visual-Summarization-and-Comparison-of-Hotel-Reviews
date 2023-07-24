@@ -68,22 +68,22 @@ export default {
             return +d.timestamp;
           })
         )
-        .range([0, this.width])
+        .range([0, this.width-20])
         .padding(0.05);
       svg
         .append("g")
-        .attr("transform", "translate(0," + this.height + ")")
+        .attr("transform", "translate(0," + (this.height-5) + ")")
         .call(d3.axisBottom(x).ticks(5));
 
       // add y axis
       const y = d3
         .scaleLinear()
         .domain([this.yMin - 0.5, this.yMax + 0.5])
-        .range([this.height, 0]);
-      svg.append("g").call(d3.axisLeft(y));
+        .range([this.height-5, 0]);
+      svg.append("g").call(d3.axisLeft(y).ticks(4));
 
       // bars
-      const h = this.height;
+      const h = this.height-5;
       const max_bar_width = 15;
       svg
         .selectAll("myRect")
@@ -123,6 +123,7 @@ export default {
       // remove all previous elements
       d3.select(this.svg).selectAll("*").remove();
       const svg = d3.select(this.svg).append("g");
+      svg.attr("transform", "translate(20, 5)");
 
       // draw bar chart with outliers
       const d = this.timeStore.dataById[this.hotelId];
