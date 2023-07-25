@@ -1,6 +1,7 @@
 <script>
 import { inject } from "vue";
 import ChartTrendingBoxPlot from "./ChartTrendingBoxPlot.vue";
+import ChartTrendingHistogram from "./ChartTrendingHistogram.vue";
 import ChartTrendingLine from "./ChartTrendingLine.vue";
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
@@ -13,6 +14,7 @@ export default {
     CategoryName,
     ChartTrendingLine,
     ChartTrendingBoxPlot,
+    ChartTrendingHistogram,
     HotelName
 },
   setup() {
@@ -126,6 +128,9 @@ export default {
                     The overall rating of this hotel shows <b>{{ trendDescription(hotelId, 'average')}}</b>.
                   </div>
                 </div>
+                <div class="pa-2 trend-icon-title">
+                  <v-icon>{{ trendIcon(hotelId, 'average') }}</v-icon>
+                </div>
                 <div class="pa-2 time-chart">
                   <ChartTrendingLine
                     :hotelId="hotelId"
@@ -137,9 +142,6 @@ export default {
                     :yMax="5"
                   ></ChartTrendingLine>
                 </div>
-                <div class="pa-2 trend-icon-title">
-                  <v-icon>{{ trendIcon(hotelId, 'average') }}</v-icon>
-                </div>
               </v-row>
             </v-expansion-panel-title>
             <v-expansion-panel-text>
@@ -150,6 +152,14 @@ export default {
                 )"
                 :key="'time_' + hotelId + '_' + category.id"
               >
+                <div class="pa-2 trend-description-detail">
+                  <CategoryName :categoryId="category['id']"></CategoryName>: {{ trendDescription(hotelId, category.id)}}.
+                </div>
+                <div class="pa-2 trend-icon-title">
+                  <v-icon
+                      :style="[{ color: category.color }]"
+                  >{{ trendIcon(hotelId, category.id) }}</v-icon>
+                </div>
                 <div class="pa-2 time-chart">
                   <ChartTrendingLine
                       :hotelId="hotelId"
@@ -161,14 +171,6 @@ export default {
                       :yMax="5"
                   ></ChartTrendingLine>
                 </div>
-                <div class="pa-2 trend-icon-title">
-                  <v-icon
-                      :style="[{ color: category.color }]"
-                  >{{ trendIcon(hotelId, category.id) }}</v-icon>
-                </div>
-                <div class="pa-2 trend-description-detail">
-                  <CategoryName :categoryId="category['id']"></CategoryName>: {{ trendDescription(hotelId, category.id)}}.
-                </div>
                 <div class="pa-2 box-plot">
                   <ChartTrendingBoxPlot
                     :hotelId="hotelId"
@@ -179,6 +181,18 @@ export default {
                     :yMin="1"
                     :yMax="5"
                   ></ChartTrendingBoxPlot>
+                </div>
+                <div class="pa-2 trend-icon-title"></div>
+                <div class="pa-2 time-chart">
+                  <ChartTrendingHistogram
+                      :hotelId="hotelId"
+                      :categoryId="category.id"
+                      :color="category.color"
+                      :width="300"
+                      :height="50"
+                      :yMin="0"
+                      :yMax="50"
+                  ></ChartTrendingHistogram>
                 </div>
               </v-row>
             </v-expansion-panel-text>
@@ -198,32 +212,41 @@ export default {
 .trend-description-title {
   width: 55% !important;
   vertical-align: middle;
-  horizontal-align: center;
+  justify-content: end;
 }
 .trend-icon-title {
   width: 5% !important;
+  display: flex;
+  align-items: center;
   vertical-align: middle;
   horizontal-align: left;
 }
 
 .trend-description-detail {
-  width: 54% !important;
+  width: 53.5% !important;
+  display: flex;
+  align-items: center;
   vertical-align: middle;
-  horizontal-align: center;
+  justify-content: end;
 }
 
 .time-chart {
   height: 100px !important;
   width: 33% !important;
+  display: flex;
+  align-items: center;
   text-align: center;
   vertical-align: middle;
 }
 
 .box-plot {
   height: 100px !important;
-  width: 33% !important;
+  width: 53.5% !important;
+  display: flex;
+  align-items: center;
   text-align: center;
   vertical-align: middle;
+  justify-content: end;
 }
 
 </style>

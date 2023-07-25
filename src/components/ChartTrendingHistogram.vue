@@ -70,9 +70,21 @@ export default {
       const x_min = d["x_min"];
       const x_max = d["x_max"];
       const data = d["data"];
-      const outliers = d["outliers"];
+      const yMax = d3.max(data, function (d) { return +d["num_entries"]; });
 
-
+      // add x axis
+      const domain = data.map(function (d) {
+        return +d.timestamp;
+      })
+      const delta = domain[1] - domain[0];
+      for(let i = x_min; i <= x_max; i+=delta) {
+        if(!domain.includes(i)) {
+          data.push({
+            timestamp: i,
+            num_entries: 0
+          })
+        }
+      }
       // add x axis in date format
       const x = d3
           .scaleLinear()
@@ -82,7 +94,7 @@ export default {
               })
           )
           .range([0, this.width-20]);
-      const bandwidth = x(data[1]["timestamp"]) - x(data[0]["timestamp"]);
+      const bandwidth = (x(x_max) - x(x_min)) / ((x_max-x_min)/(31 * 24 * 60 * 60 * 1000));
       svg
           .append("g")
           .attr("transform", "translate(0," + (this.height-5) + ")")
@@ -91,46 +103,29 @@ export default {
       // add y axis
       const y = d3
           .scaleLinear()
-          .domain([this.yMin - 0.5, this.yMax + 0.5])
+          .domain([this.yMin - 0.5, yMax + 0.5])
           .range([this.height-5, 0]);
       svg.append("g").call(d3.axisLeft(y).ticks(4));
 
       // bars
-      const h = this.height-5;
-      const max_bar_width = 15;
       svg
           .selectAll("myRect")
           .data(data)
           .enter()
           .append("rect")
           .attr("x", function (d) {
-            return x(+d["timestamp"]) + 0.5 * bandwidth * ( 1 - Math.min(+d["num_entries"] / max_bar_width, 1));
+            return x(+d["timestamp"]);
           })
           .attr("y", function (d) {
-            return y(+d["upper"]);
+            return y(+d["num_entries"]);
           })
           .attr("width", function (d) {
-            return Math.min(+d["num_entries"] / max_bar_width, 1) * bandwidth;
+            return bandwidth;
           })
           .attr("height", function (d) {
-            return -y(+d["upper"]) + y(+d["lower"]);
+            return -y(+d["num_entries"]) + y(0);
           })
           .attr("fill", this.color);
-      // outlier points
-      svg
-          .selectAll("myCircle")
-          .data(outliers)
-          .enter()
-          .append("circle")
-          .attr("cx", function (d) {
-            return x(+d["timestamp"]) + 0.5 * bandwidth;
-          })
-          .attr("cy", function (d) {
-            return y(+d["value"]);
-          })
-          .attr("r", "1")
-          .style("fill", this.color)
-          .attr("stroke", this.color);
     }
   },
 };

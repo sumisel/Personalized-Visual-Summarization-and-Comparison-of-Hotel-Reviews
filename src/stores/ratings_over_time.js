@@ -96,7 +96,7 @@ export const useTimeStore = defineStore({
       //x_min = x_min + (x_max - x_min) / 4.0;
       // cut off dates more than 7 years back
       x_min = x_max - 7 * 365 * 24 * 60 * 60 * 1000;
-      return {"data": data.filter((d) => d.timestamp >= x_min), "x_min": x_min, "x_max": x_max, "outliers": outliers.filter((d) => d.timestamp >= x_min)};
+      return {"data": data.filter((d) => d["timestamp"] >= x_min), "x_min": x_min, "x_max": x_max, "outliers": outliers.filter((d) => d["timestamp"] >= x_min)};
     },
   },
 })
