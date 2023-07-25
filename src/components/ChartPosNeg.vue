@@ -154,7 +154,7 @@ export default {
       svg
         .append("g")
         .attr("transform", "translate(" + (x(0) - 0.5) + ",0)")
-        .call(d3.axisLeft(y).tickSizeOuter(0))
+        .call(d3.axisLeft(y).tickSizeOuter(0).tickValues([]))
         .selectAll("path")
         .attr("stroke-width", "2px");
       svg.selectAll("text").remove();
@@ -221,9 +221,6 @@ export default {
 <style>
 .y-axis {
   size: 2px;
-}
-.tick line {
-  visibility: hidden;
 }
 </style>
 

@@ -98,7 +98,25 @@ export default {
           .scaleLinear()
           .domain([this.yMin, this.yMax])
           .range([this.height-5, 0]);
-      svg.append("g").call(d3.axisLeft(y).ticks(2));
+      svg.append("g").call(d3.axisLeft(y).tickValues([3, 4, 5]).tickFormat(d3.format("d")));
+      // set a fading gradient for the axis
+      svg.append("linearGradient")
+          .attr("id", "line-gradient")
+          .attr("gradientUnits", "userSpaceOnUse")
+          .attr("x1", 0)
+          .attr("y1", y(this.yMin))
+          .attr("x2", 0)
+          .attr("y2", y(this.yMax))
+          .selectAll("stop")
+          .data([
+            {offset: "0%", color: "white"},
+            {offset: "60%", color: "black"}
+          ])
+          .enter().append("stop")
+          .attr("offset", function(d) { return d.offset; })
+          .attr("stop-color", function(d) { return d.color; });
+      svg.selectAll(".domain").style("stroke", "url(#line-gradient)")
+
 
       // color palette
       const res = this.categoryStore.relevantCategories.map((c) => c.id);
@@ -139,9 +157,6 @@ export default {
 <style>
 .y-axis {
   size: 2px;
-}
-.tick line {
-  visibility: hidden;
 }
 </style>
 

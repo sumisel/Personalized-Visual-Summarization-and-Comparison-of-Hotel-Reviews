@@ -133,7 +133,7 @@ export default {
                     :color="'#999999'"
                     :width="300"
                     :height="50"
-                    :yMin="2.5"
+                    :yMin="2"
                     :yMax="5"
                   ></ChartLine>
                 </div>
@@ -157,7 +157,7 @@ export default {
                       :color="category.color"
                       :width="300"
                       :height="50"
-                      :yMin="2.5"
+                      :yMin="2"
                       :yMax="5"
                   ></ChartLine>
                 </div>

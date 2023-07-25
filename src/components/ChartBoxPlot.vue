@@ -160,9 +160,6 @@ export default {
 .y-axis {
   size: 2px;
 }
-.tick line {
-  visibility: hidden;
-}
 </style>
 
 <template>
