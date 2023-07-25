@@ -1,7 +1,7 @@
 <script>
 import { inject } from "vue";
-import ChartBoxPlot from "./ChartBoxPlot.vue";
-import ChartLine from "./ChartLine.vue";
+import ChartTrendingBoxPlot from "./ChartTrendingBoxPlot.vue";
+import ChartTrendingLine from "./ChartTrendingLine.vue";
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
 import { useTimeStore } from "../stores/ratings_over_time";
@@ -11,8 +11,8 @@ import HotelName from "./HotelName.vue";
 export default {
   components: {
     CategoryName,
-    ChartLine,
-    ChartBoxPlot,
+    ChartTrendingLine,
+    ChartTrendingBoxPlot,
     HotelName
 },
   setup() {
@@ -30,7 +30,6 @@ export default {
     trendDescription(hotelId, categoryId) {
       const d = this.timeStore.compileCategoryData(hotelId, categoryId);
       const trend = this.timeStore.regression(d["data"], d["x_min"], d["x_max"]);
-      console.log(trend);
 
       const slope = trend["a"];
       const intercept = trend[0][1];
@@ -128,7 +127,7 @@ export default {
                   </div>
                 </div>
                 <div class="pa-2 time-chart">
-                  <ChartLine
+                  <ChartTrendingLine
                     :hotelId="hotelId"
                     :categoryId="'average'"
                     :color="'#999999'"
@@ -136,7 +135,7 @@ export default {
                     :height="50"
                     :yMin="2"
                     :yMax="5"
-                  ></ChartLine>
+                  ></ChartTrendingLine>
                 </div>
                 <div class="pa-2 trend-icon-title">
                   <v-icon>{{ trendIcon(hotelId, 'average') }}</v-icon>
@@ -152,7 +151,7 @@ export default {
                 :key="'time_' + hotelId + '_' + category.id"
               >
                 <div class="pa-2 time-chart">
-                  <ChartLine
+                  <ChartTrendingLine
                       :hotelId="hotelId"
                       :categoryId="category.id"
                       :color="category.color"
@@ -160,7 +159,7 @@ export default {
                       :height="50"
                       :yMin="2"
                       :yMax="5"
-                  ></ChartLine>
+                  ></ChartTrendingLine>
                 </div>
                 <div class="pa-2 trend-icon-title">
                   <v-icon
@@ -171,7 +170,7 @@ export default {
                   <CategoryName :categoryId="category['id']"></CategoryName>: {{ trendDescription(hotelId, category.id)}}.
                 </div>
                 <div class="pa-2 box-plot">
-                  <ChartBoxPlot
+                  <ChartTrendingBoxPlot
                     :hotelId="hotelId"
                     :categoryId="category.id"
                     :color="category.color"
@@ -179,7 +178,7 @@ export default {
                     :height="50"
                     :yMin="1"
                     :yMax="5"
-                  ></ChartBoxPlot>
+                  ></ChartTrendingBoxPlot>
                 </div>
               </v-row>
             </v-expansion-panel-text>

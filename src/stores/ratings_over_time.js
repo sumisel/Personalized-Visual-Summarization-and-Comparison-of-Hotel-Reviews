@@ -36,6 +36,7 @@ export const useTimeStore = defineStore({
 
       // compute values for each category
       const data = [];
+      const outliers = [];
 
       const d = this.ratings_over_time[hotelId];
       if (d == undefined) {
@@ -71,21 +72,31 @@ export const useTimeStore = defineStore({
             });
           }
         } else {
-          const v = values[categoryId]["average"];
-          if(v != 0) {
+          const v = values[categoryId];
+          if(v["average"] != 0) {
             data.push({
-              name: "average",
+              name: "categoryId",
               timestamp: +timestamp,
-              value: v
+              value: v["average"],
+              upper: v["q3"],
+              lower: v["q1"],
+              num_entries: v["size"],
             });
+            const os = v["outliers"].map(function (o) {
+              return { timestamp: timestamp, value: o };
+            });
+            for (const o of os) {
+              outliers.push(o);
+            }
           }
         }
       }
+
       // cut off early dates
       //x_min = x_min + (x_max - x_min) / 4.0;
       // cut off dates more than 7 years back
       x_min = x_max - 7 * 365 * 24 * 60 * 60 * 1000;
-      return {"data": data.filter((d) => d.timestamp >= x_min), "x_min": x_min, "x_max": x_max};
+      return {"data": data.filter((d) => d.timestamp >= x_min), "x_min": x_min, "x_max": x_max, "outliers": outliers.filter((d) => d.timestamp >= x_min)};
     },
   },
 })

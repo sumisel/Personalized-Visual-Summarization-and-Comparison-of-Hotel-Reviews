@@ -133,8 +133,8 @@ export default {
           .attr("stroke", this.color)
           .attr("stroke-width", 2.0)
           .attr("d", d3.line()
-              .x(function(d) { return x(+d.timestamp) })
-              .y(function(d) { return y(+d.value) })
+              .x(function(d) { return x(+d["timestamp"]) })
+              .y(function(d) { return y(+d["value"]) })
           );
 
       // draw regression line
