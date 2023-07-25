@@ -21,8 +21,8 @@ export default {
     const timeStore = useTimeStore();
     const hotelMeta = inject("hotelMeta");
     const city = inject("city");
-    const breakpointStrong = 0.0000000000011;
-    const breakpointWeak   = 0.0000000000003;
+    const breakpointStrong = 0.000000000002;
+    const breakpointWeak   = 0.0000000000007;
     return { hotelStore, categoryStore, timeStore, hotelMeta, city, breakpointStrong, breakpointWeak };
   },
   computed: {},
@@ -30,6 +30,7 @@ export default {
     trendDescription(hotelId, categoryId) {
       const d = this.timeStore.compileCategoryData(hotelId, categoryId);
       const trend = this.timeStore.regression(d["data"], d["x_min"], d["x_max"]);
+      console.log(trend);
 
       const slope = trend["a"];
       const intercept = trend[0][1];
@@ -51,25 +52,25 @@ export default {
         slopeDescription =  "no clear trend";
       }
 
-      if (intercept > 4) {
+      if (intercept > 4.5) {
         interceptDescription = "very high";
-      } else if (intercept > 3) {
+      } else if (intercept > 3.5) {
         interceptDescription = "high";
-      } else if (intercept > 2) {
+      } else if (intercept > 2.5) {
         interceptDescription = "medium";
-      } else if (intercept > 1) {
+      } else if (intercept > 1.5) {
         interceptDescription = "low";
       } else {
         interceptDescription = "very low";
       }
 
-      if (endValue > 4) {
+      if (endValue > 4.5) {
         endValueDescription += "very high";
-      } else if (endValue > 3) {
+      } else if (endValue > 3.5) {
         endValueDescription += "high";
-      } else if (endValue > 2) {
+      } else if (endValue > 2.5) {
         endValueDescription += "medium";
-      } else if (endValue > 1) {
+      } else if (endValue > 1.5) {
         endValueDescription += "low";
       } else {
         endValueDescription += "very low";

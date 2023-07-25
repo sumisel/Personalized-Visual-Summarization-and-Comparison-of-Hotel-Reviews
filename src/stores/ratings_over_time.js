@@ -82,7 +82,9 @@ export const useTimeStore = defineStore({
         }
       }
       // cut off early dates
-      x_min = x_min + (x_max - x_min) / 4.0;
+      //x_min = x_min + (x_max - x_min) / 4.0;
+      // cut off dates more than 7 years back
+      x_min = x_max - 7 * 365 * 24 * 60 * 60 * 1000;
       return {"data": data.filter((d) => d.timestamp >= x_min), "x_min": x_min, "x_max": x_max};
     },
   },
