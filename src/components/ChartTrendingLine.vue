@@ -43,12 +43,16 @@ export default {
     const hotelStore = useHotelStore();
     const categoryStore = useCategoryStore();
     const timeStore = useTimeStore();
+    let mouseoverText1stLine = "";
+    let mouseoverText2ndLine = "";
 
     return {
       svg,
       hotelStore,
       categoryStore,
       timeStore,
+      mouseoverText1stLine,
+      mouseoverText2ndLine,
     };
   },
   mounted() {
@@ -127,15 +131,56 @@ export default {
 
       // draw the line
       svg
-          .append("path")
-          .datum(data)
-          .attr("fill", "none")
-          .attr("stroke", this.color)
-          .attr("stroke-width", 2.0)
-          .attr("d", d3.line()
-              .x(function(d) { return x(+d["timestamp"]) })
-              .y(function(d) { return y(+d["value"]) })
-          );
+        .append("path")
+        .datum(data)
+        .attr("fill", "none")
+        .attr("stroke", this.color)
+        .attr("stroke-width", 2.0)
+        .attr("d", d3.line()
+            .x(function(d) { return x(+d["timestamp"]) })
+            .y(function(d) { return y(+d["value"]) })
+        );
+      // add invisible data points for selecting
+      const svgId = d3.select(this.svg).attr("id");
+      svg.append("circle").attr("id", svgId+"_highlight").attr("fill", "black").attr("r", 10).attr("opacity", 0);
+      // create a d3 tooltip
+      //const tooltip = d3.select(this.svg)
+      //    .append("div")
+      //    .style("position", "absolute")
+      //    .style("visibility", "hidden")
+      //    .text("I'm a circle!");
+      svg
+        .append("g")
+        .selectAll("circle")
+        .data(data)
+        .enter()
+        .append("circle")
+        .attr("cx", function(d) { return x(+d["timestamp"]) })
+        .attr("cy", function(d) { return y(+d["value"]) })
+        .attr("r", 10)
+        .attr("fill", "none")
+        .attr("pointer-events", "all")
+        .on("mouseover", (event, d) => {
+          d3.select("#"+svgId+"_highlight")
+              .attr("fill", "black")
+              .attr("opacity", 0.2)
+              .attr("cx", x(+d["timestamp"]))
+              .attr("cy", y(+d["value"]));
+          //tooltip.style("visibility", "visible");
+          //tooltip.style("left", (event.pageX + 10) + "px");
+          //tooltip.style("top", (event.pageY - 28) + "px");
+
+        })
+        .on("mousemove", (event, d) => {
+          this.mouseoverText1stLine = "Average Rating:";
+          this.mouseoverText2ndLine = d["value"].toFixed(2) + " / 5.0";
+          //tooltip.style("left", (event.pageX + 10) + "px");
+          //tooltip.style("top", (event.pageY - 28) + "px");
+        })
+        .on("mouseout", (event, d) => {
+          //tooltip.style("visibility", "hidden");
+        })
+
 
       // draw regression line
       const regression = this.timeStore.regression(data, x_min, x_max);
@@ -163,6 +208,13 @@ export default {
 <template>
   <svg
     ref="svg"
-    :id="'chart_trending_' + this.categoryId + '_' + this.hotelId"
+    :id="'chart_trending_' + this.categoryId + '_' + this.hotelId.replaceAll('.', '_')"
   ></svg>
+  <v-tooltip id="'tooltip' + '_' + this.hotelId.replaceAll('.', '_')" activator="parent" location="bottom" max-width="500px"
+             class="tooltip"
+            :key = "'tooltip' + '_' + this.hotelId.replaceAll('.', '_')">
+    {{ mouseoverText1stLine }}
+    <br />
+    {{ mouseoverText2ndLine }}
+  </v-tooltip>
 </template>
