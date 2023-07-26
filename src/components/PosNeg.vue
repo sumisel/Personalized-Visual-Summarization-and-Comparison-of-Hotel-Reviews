@@ -84,25 +84,29 @@ export default {
     <div class="my-2 flex-grow-1">
       <p>
         <div style="display: flex">
-          <div class="pa-2 sentiment-chart-title"
-               :key="'posneg_chart_overall_div'">
-            <ChartPosNeg
-                :categoryId="'overall'"
-                :hotelId="'selected'"
-                :color="'#999999'"
-                :width="400"
-                :height="10"
-                :xMin="-2"
-                :xMax="2"
-                :key="'posneg_chart_overall'"
-            ></ChartPosNeg>
-          </div>
+          <v-table class="sentiment-chart-title">
+            <tr v-for="hotelId in hotelStore.selectedHotelIds"
+              :key="'posneg_chart_'+ hotelId+'_overall_div'">
+              <td class="d-flex">
+                <ChartPosNeg
+                    :categoryId="'overall'"
+                    :hotelId="hotelId"
+                    :color="'#999999'"
+                    :width="400"
+                    :height="10"
+                    :xMin="-2"
+                    :xMax="2"
+                    :key="'posneg_chart_' + hotelId + '_overall'"
+                ></ChartPosNeg>
+              </td>
+            </tr>
+          </v-table>
           <span style="color: red">
             <b>This is a placeholder text for a short summary about the similarities and differences between the reviews of the different hotels.</b>
           </span>
         </div>
       </p>
-      <v-card  class="my-2 flex-grow-1"
+      <v-card class="my-2 flex-grow-1"
           v-for="hotelId in hotelStore.selectedHotelIds"
           :key="'overall_' + hotelId"
         >
@@ -150,8 +154,7 @@ export default {
                 </v-table>
               </td>
 
-              <td colspan="3" class="sentiment-chart">
-
+              <td class="sentiment-chart">
                 <ChartPosNeg
                     :categoryId="category['id']"
                     :hotelId="hotelId"

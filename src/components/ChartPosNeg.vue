@@ -43,6 +43,9 @@ export default {
     const categoryStore = useCategoryStore();
     const emitter = inject("emitter");
     const reviews = inject("reviews");
+    const hotelMeta = inject('hotelMeta');
+    let mouseoverText1stLine = "";
+    let mouseoverText2ndLine = "";
 
     return {
       svg,
@@ -50,6 +53,9 @@ export default {
       categoryStore,
       emitter,
       reviews,
+      hotelMeta,
+      mouseoverText1stLine,
+      mouseoverText2ndLine,
     };
   },
   mounted() {
@@ -128,8 +134,21 @@ export default {
         hotels = [this.hotelId];
       }
       const data = this.countsCategoryPosNeg(this.categoryId, hotels);
+      console.log(data);
       const height = 10*hotels.length;
       d3.select(this.svg).attr("height", height);
+
+      const neg = Math.round(10000*data.find(h => h["name"]==this.hotelId)["negCount"])/100;
+      const pos = Math.round(10000*data.find(h => h["name"]==this.hotelId)["posCount"])/100;
+      this.mouseoverText1stLine = this.hotelMeta[this.hotelId].name + " review texts:";
+      this.mouseoverText2ndLine = neg +"% negative, "
+          + pos + "% positive "
+      if(this.categoryId=="overall") {
+        this.mouseoverText2ndLine += "category mentions";
+      } else {
+        this.mouseoverText2ndLine += this.categoryStore.categoriesById[this.categoryId]["title"] + " mentions";
+      }
+
 
       // remove all previous elements
       d3.select(this.svg).selectAll("*").remove();
@@ -156,7 +175,7 @@ export default {
             return d.name;
           })
         )
-        .range([0, height])
+        .range([0, this.height])
         .padding(0.1);
 
       // bars
@@ -274,5 +293,12 @@ export default {
   <svg
     ref="svg"
     :id="this.categoryId + '_' + this.hotelId.replaceAll('.', '_')"
+    :width="this.width"
+    :height="this.height"
   ></svg>
+  <v-tooltip id="'tooltip' + '_' + this.hotelId.replaceAll('.', '_')" activator="parent" location="bottom" max-width="500px">
+    {{ mouseoverText1stLine }}
+    <br />
+    {{ mouseoverText2ndLine }}
+  </v-tooltip>
 </template>

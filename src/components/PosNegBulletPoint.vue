@@ -129,8 +129,7 @@ export default {
                 reviews[hotelId]["review_count"],
               2
             ) + "% of reviews"
-          }}</v-tooltip
-        >
+          }}</v-tooltip>
       </p>
     </template>
     <template v-slot:default="{ isActive }">
@@ -236,13 +235,3 @@ export default {
   </v-dialog>
 </template>
 
-<style>
-.button {
-  font-size: 8pt;
-  margin: 0px 0px 4pt 0px;
-  padding: 1pt 6pt 0pt 6pt;
-  border: 1px solid #888;
-  border-radius: 4px;
-  cursor: pointer;
-}
-</style>
