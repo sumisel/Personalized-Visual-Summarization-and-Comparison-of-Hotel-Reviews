@@ -164,55 +164,74 @@ export default {
       const svg = d3.select(
         "#" + categoryId + "_" + hotelId.replaceAll(".", "_")
       );
+      const svgOverall = d3.select(
+          "#overall_selected"
+      );
 
       // x axis
       let xScale = 1;
-      if (categoryId == "overall") xScale = 1;
       const x = d3
         .scaleLinear()
         .domain([-xScale, xScale])
         .range([0, svg.attr("width")]);
+      xScale = 2;
+      const xOverall = d3
+          .scaleLinear()
+          .domain([-xScale, xScale])
+          .range([0, svgOverall.attr("width")]);
+
       // y axis
       const y = d3
         .scaleBand()
         .domain([hotelId])
         .range([0, svg.attr("height")])
         .padding(0.1);
+      const yOverall = d3
+          .scaleBand()
+          .domain(this.hotelStore.selectedHotelIds)
+          .range([0, svgOverall.attr("height")])
+          .padding(0.1);
 
-      const xValue = num_items / this.reviews[hotelId]["review_count"];
+      let xValue = num_items / this.reviews[hotelId]["review_count"];
+      let xValueScale = 0;
+      let width = x(xValue) - x(0);
+      if (polarity == "neg") {
+        width = x(0) - x(-xValue);
+        xValueScale = -xValue;
+      }
 
       // bars
-      if (polarity == "neg") {
-        svg
-          .select("g")
-          .append("rect")
-          .attr("class", "highlight")
-          .attr("y", y(hotelId))
-          .attr("x", x(-xValue))
-          .attr("width", x(0) - x(-xValue))
-          .attr("height", y.bandwidth())
-          .attr("fill", "black")
-          .attr("stroke-width", "1px")
-          .attr("stroke", "white");
-      } else {
-        svg
-          .select("g")
-          .append("rect")
-          .attr("class", "highlight")
-          .attr("y", y(hotelId))
-          .attr("x", x(0))
-          .attr("width", x(xValue) - x(0))
-          .attr("height", y.bandwidth())
-          .attr("fill", "black")
-          .attr("stroke-width", "1px")
-          .attr("stroke", "white");
-      }
+      svg
+        .select("g")
+        .append("rect")
+        .attr("class", "highlight")
+        .attr("y", y(hotelId))
+        .attr("x", x(xValueScale))
+        .attr("width", width)
+        .attr("height", y.bandwidth())
+        .attr("fill", "black")
+        .attr("stroke-width", "1px")
+        .attr("stroke", "white");
+      svgOverall
+        .select("g")
+        .append("rect")
+        .attr("class", "highlight")
+        .attr("y", yOverall(hotelId))
+        .attr("x", xOverall(xValueScale))
+        .attr("width", width)
+        .attr("height", y.bandwidth())
+        .attr("fill", "black")
+        .attr("stroke-width", "1px")
+        .attr("stroke", "white");
     },
 
     unhighlight(categoryId, hotelId) {
       d3.select("#" + categoryId + "_" + hotelId.replaceAll(".", "_"))
         .selectAll(".highlight")
         .remove();
+      d3.select("#overall_selected")
+          .selectAll(".highlight")
+          .remove();
     },
   },
 };

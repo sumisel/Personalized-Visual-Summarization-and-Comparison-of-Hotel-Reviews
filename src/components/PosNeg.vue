@@ -26,16 +26,26 @@ export default {
   },
   computed: {},
   methods: {
-    countsCategoryPosNeg: (category, hotelIds) => {
+    countsCategoryPosNeg(category, hotelIds) {
       const reviews = inject("reviews");
       let counts = [];
-      hotelIds.forEach((hotelId) => {
-        counts.push({
-          name: hotelId,
-          posCount: reviews[hotelId]["counts"]["pos"][category],
-          negCount: reviews[hotelId]["counts"]["neg"][category],
+      if(category == "overall") {
+        hotelIds.forEach((hotelId) => {
+          counts.push({
+            name: hotelId,
+            posCount: this.categoryStore.relevantCategories.map(c => reviews[hotelId]["counts"]["pos"][c["id"]]).reduce((a, b) => a + b, 0),
+            negCount: this.categoryStore.relevantCategories.map(c => reviews[hotelId]["counts"]["neg"][c["id"]]).reduce((a, b) => a + b, 0),
+          });
         });
-      });
+      } else {
+        hotelIds.forEach((hotelId) => {
+          counts.push({
+            name: hotelId,
+            posCount: reviews[hotelId]["counts"]["pos"][category],
+            negCount: reviews[hotelId]["counts"]["neg"][category],
+          });
+        });
+      }
       return counts;
     },
     sentimentSummary(hotelId, category, prefix) {
@@ -96,14 +106,28 @@ export default {
   <div v-if="hotelStore.selectedHotelIds.length > 1">
     <div class="my-2 flex-grow-1">
       <p>
-        <span>
-          This is a placeholder text for a short summary about the similarities and differences between in reviews of the different hotels.
-        </span>
+        <div style="display: flex">
+          <div class="pa-2 sentiment-chart-title">
+            <ChartPosNeg
+                :categoryId="'overall'"
+                :hotelId="'selected'"
+                :posNeg="countsCategoryPosNeg('overall', hotelStore.selectedHotelIds)"
+                :color="'#999999'"
+                :width="400"
+                :height="10*hotelStore.selectedHotelIds.length"
+                :xMin="-2"
+                :xMax="2"
+            ></ChartPosNeg>
+          </div>
+          <span>
+            <b>This is a placeholder text for a short summary about the similarities and differences between the reviews of the different hotels.</b>
+          </span>
+        </div>
       </p>
       <v-card  class="my-2 flex-grow-1"
-        v-for="hotelId in hotelStore.selectedHotelIds"
-        :key="'overall_' + hotelId"
-      >
+          v-for="hotelId in hotelStore.selectedHotelIds"
+          :key="'overall_' + hotelId"
+        >
           <div class="pa-2 hotel-name">
             <HotelName :hotelId="hotelId" avatar></HotelName>
           </div>
@@ -207,7 +231,7 @@ export default {
 
 <style>
 .hotel-name {
-  width: 100% !important;
+  width: 30% !important;
 }
 
 .sentiment-text-neg {
@@ -221,6 +245,12 @@ export default {
 
 .placeholder {
   width: 5% !important;
+}
+
+.sentiment-chart-title{
+  width: 65% !important;
+  display: flex;
+  align-items: center;
 }
 
 .sentiment-chart {
