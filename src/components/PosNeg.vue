@@ -26,30 +26,7 @@ export default {
   },
   computed: {},
   methods: {
-    countsCategoryPosNeg(category, hotelIds) {
-      const reviews = inject("reviews");
-      let counts = [];
-      if(category == "overall") {
-        hotelIds.forEach((hotelId) => {
-          counts.push({
-            name: hotelId,
-            posCount: this.categoryStore.relevantCategories.map(c => reviews[hotelId]["counts"]["pos"][c["id"]]).reduce((a, b) => a + b, 0),
-            negCount: this.categoryStore.relevantCategories.map(c => reviews[hotelId]["counts"]["neg"][c["id"]]).reduce((a, b) => a + b, 0),
-          });
-        });
-      } else {
-        hotelIds.forEach((hotelId) => {
-          counts.push({
-            name: hotelId,
-            posCount: reviews[hotelId]["counts"]["pos"][category],
-            negCount: reviews[hotelId]["counts"]["neg"][category],
-          });
-        });
-      }
-      return counts;
-    },
     sentimentSummary(hotelId, category, prefix) {
-      const reviews = inject("reviews");
       let summary = [];
       // compile sentences from all categories if it's the overall summary
       if (category == "overall") {
@@ -61,7 +38,7 @@ export default {
           if (cat["value"] > 66) {
             num_sentences = 2;
           }
-          let sentences = reviews[hotelId][prefix + "_summary"][cat["id"]]
+          let sentences = this.reviews[hotelId][prefix + "_summary"][cat["id"]]
               .sort((a, b) => a["idx_summary"] - b["idx_summary"])
               .slice(0, num_sentences);
           sentences.forEach((sentence, i) => {
@@ -71,7 +48,7 @@ export default {
           summary.push(...sentences);
         }
       } else {
-        summary = reviews[hotelId][prefix + "_summary"][category]
+        summary = this.reviews[hotelId][prefix + "_summary"][category]
             .sort((a, b) => a["idx_summary"] - b["idx_summary"])
             .slice(0, 5);
 
@@ -83,12 +60,12 @@ export default {
       }
       summary.forEach((sentence, i) => {
         sentence["text"] =
-            reviews[hotelId]["reviews"][sentence["idx_review"]][
+            this.reviews[hotelId]["reviews"][sentence["idx_review"]][
             prefix + "_aspects"
                 ][sentence["idx_sentence"]];
         sentence["idx_similar_reviews"].forEach((rev, j) => {
           rev["text"] =
-              reviews[hotelId]["reviews"][rev["idx_review"]][prefix + "_aspects"][
+              this.reviews[hotelId]["reviews"][rev["idx_review"]][prefix + "_aspects"][
                   rev["idx_sentence"]
                   ];
         });
@@ -107,19 +84,20 @@ export default {
     <div class="my-2 flex-grow-1">
       <p>
         <div style="display: flex">
-          <div class="pa-2 sentiment-chart-title">
+          <div class="pa-2 sentiment-chart-title"
+               :key="'posneg_chart_overall_div'">
             <ChartPosNeg
                 :categoryId="'overall'"
                 :hotelId="'selected'"
-                :posNeg="countsCategoryPosNeg('overall', hotelStore.selectedHotelIds)"
                 :color="'#999999'"
                 :width="400"
-                :height="10*hotelStore.selectedHotelIds.length"
+                :height="10"
                 :xMin="-2"
                 :xMax="2"
+                :key="'posneg_chart_overall'"
             ></ChartPosNeg>
           </div>
-          <span>
+          <span style="color: red">
             <b>This is a placeholder text for a short summary about the similarities and differences between the reviews of the different hotels.</b>
           </span>
         </div>
@@ -177,7 +155,6 @@ export default {
                 <ChartPosNeg
                     :categoryId="category['id']"
                     :hotelId="hotelId"
-                    :posNeg="countsCategoryPosNeg(category['id'], [hotelId])"
                     :color="category['color']"
                     :width="200"
                     :height="10"

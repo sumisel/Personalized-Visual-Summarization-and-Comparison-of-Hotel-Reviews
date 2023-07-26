@@ -8,10 +8,6 @@ import { useCategoryStore } from "../stores/category.js";
 
 export default {
   props: {
-    posNeg: {
-      type: Object,
-      default: {},
-    },
     categoryId: {
       type: String,
       default: "categoryId",
@@ -62,12 +58,14 @@ export default {
       .attr("height", this.height)
       .attr("style", "max-width: 100%; height: auto; height: intrinsic;");
 
-    watch(
-      () => this.hotelStore.selectedHotelIds,
-      () => {
-        this.plot();
-      }
-    );
+    if(this.categoryId == "overall") {
+      watch(
+          () => this.hotelStore.selectedHotelIds.length,
+          () => {
+            this.plot();
+          }
+      );
+    }
     watch(
       () => this.categoryStore.relevantCategories,
       () => {
@@ -100,9 +98,38 @@ export default {
     );
   },
   methods: {
+    countsCategoryPosNeg(category, hotelIds) {
+      let counts = [];
+      if(category == "overall") {
+        hotelIds.forEach((hotelId) => {
+          counts.push({
+            name: hotelId,
+            posCount: this.categoryStore.relevantCategories.map(c => this.reviews[hotelId]["counts"]["pos"][c["id"]]).reduce((a, b) => a + b, 0),
+            negCount: this.categoryStore.relevantCategories.map(c => this.reviews[hotelId]["counts"]["neg"][c["id"]]).reduce((a, b) => a + b, 0),
+          });
+        });
+      } else {
+        hotelIds.forEach((hotelId) => {
+          counts.push({
+            name: hotelId,
+            posCount: this.reviews[hotelId]["counts"]["pos"][category],
+            negCount: this.reviews[hotelId]["counts"]["neg"][category],
+          });
+        });
+      }
+      return counts;
+    },
     plot() {
       // get values for each hotel
-      const data = this.posNeg;
+      let hotels = this.hotelId;
+      if(this.hotelId=="selected") {
+        hotels = this.hotelStore.selectedHotelIds;
+      } else {
+        hotels = [this.hotelId];
+      }
+      const data = this.countsCategoryPosNeg(this.categoryId, hotels);
+      const height = 10*hotels.length;
+      d3.select(this.svg).attr("height", height);
 
       // remove all previous elements
       d3.select(this.svg).selectAll("*").remove();
@@ -129,7 +156,7 @@ export default {
             return d.name;
           })
         )
-        .range([0, this.height])
+        .range([0, height])
         .padding(0.1);
 
       // bars
