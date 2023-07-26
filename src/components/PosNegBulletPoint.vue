@@ -18,6 +18,16 @@ export default {
     const reviews = inject("reviews");
     const emitter = inject("emitter");
     const hotelMeta = inject("hotelMeta");
+    const keywords = {
+      "location": "location area neighborhood district city town street",
+      "sleep": "sleep comfort bed pillow mattress",
+      "value": "value price cost money",
+      "rooms": "room size space",
+      "service": "service friendliness staff",
+      "cleanliness": "cleanliness clean dirty dust",
+      }
+
+
     return {
       hotelStore,
       categoryStore,
@@ -25,6 +35,7 @@ export default {
       reviews,
       emitter,
       hotelMeta,
+      keywords,
     };
   },
   computed: {},
@@ -67,16 +78,21 @@ export default {
       );
     },
     matchText(text, word) {
-      return text
+      const textCleaned = text
         .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "")
         .toLowerCase()
-        .split(" ")
-        .includes(
-          word
-            .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "")
-            .toLowerCase()
-            .replace(/and|the|is|was|for/gi, "")
-        );
+        .split(" ");
+      const wordCleaned = word
+          .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "")
+          .toLowerCase()
+          .replace(/and|the|is|was|for/gi, "")
+      let wordIncludesText = false;
+      textCleaned.forEach((textWord) => {
+        if (wordCleaned.includes(textWord)) {
+          wordIncludesText = true;
+        }
+      });
+      return textCleaned.includes(wordCleaned) || wordIncludesText
     },
     roundToDecimal: function (number, decimals) {
       return number.toFixed(decimals);
@@ -149,15 +165,9 @@ export default {
             ]['text'].split(' ')"
             :style="[
               {
-                'font-weight': calcFontWeight(
-                  matchText(sentence['text'], word) ? 1 : 0
-                ),
-                'font-size': calcFontSize(
-                  matchText(sentence['text'], word) ? 1 : 0.9
-                ),
-                color: matchText(sentence['text'], word)
-                  ? sentence['color']
-                  : 'black',
+                'font-weight': matchText(keywords[categoryId] , word) ? 500 : 300,
+                'font-size': matchText(keywords[categoryId] , word) ? '14pt' : '11pt',
+                'color': matchText(keywords[categoryId] , word)? sentence['color'] : 'black',
               },
             ]"
             :key="index"
@@ -188,34 +198,9 @@ export default {
                     ]['text'].split(' ')"
                     :style="[
                       {
-                        'font-weight': calcFontWeight(
-                          matchText(
-                            reviews[hotelId]['reviews'][review['idx_review']][
-                              polarity + '_aspects'
-                            ][review['idx_sentence']],
-                            word
-                          )
-                            ? 1
-                            : 0
-                        ),
-                        'font-size': calcFontSize(
-                          matchText(
-                            reviews[hotelId]['reviews'][review['idx_review']][
-                              polarity + '_aspects'
-                            ][review['idx_sentence']],
-                            word
-                          )
-                            ? 1
-                            : 0.9
-                        ),
-                        color: matchText(
-                          reviews[hotelId]['reviews'][review['idx_review']][
-                            polarity + '_aspects'
-                          ][review['idx_sentence']],
-                          word
-                        )
-                          ? sentence['color']
-                          : 'black',
+                        'font-weight': matchText(keywords[categoryId] , word) ? 500 : 300,
+                        'font-size': matchText(keywords[categoryId] , word) ? '14pt' : '11pt',
+                        'color': matchText(keywords[categoryId] , word)? sentence['color'] : 'black',
                       },
                     ]"
                     :key="index"
