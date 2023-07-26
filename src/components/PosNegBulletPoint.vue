@@ -129,11 +129,6 @@ export default {
                 reviews[hotelId]["review_count"],
               2
             ) + "% of reviews"
-          }}
-          <br />
-          {{
-            roundToDecimal(sentence["centrality_score"], 2) +
-            " centrality score within cluster of similar reviews"
           }}</v-tooltip
         >
       </p>
