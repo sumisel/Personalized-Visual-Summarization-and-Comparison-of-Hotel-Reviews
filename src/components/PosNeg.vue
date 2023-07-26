@@ -100,114 +100,106 @@ export default {
           This is a placeholder text for a short summary about the similarities and differences between in reviews of the different hotels.
         </span>
       </p>
-      <v-table class="my-2 flex-grow-1">
-        <v-card  class="my-2 flex-grow-1"
-          v-for="hotelId in hotelStore.selectedHotelIds"
-          :key="'overall_' + hotelId"
-        >
-          <tr>
-            <td class="pa-2 hotel-name"></td>
-            <td colspan="3" class="sentiment-chart">
-              <ChartPosNeg
-                :categoryId="'overall'"
-                :hotelId="hotelId"
-                :posNeg="countsCategoryPosNeg('overall', [hotelId])"
-                :color="'#999999'"
-                :width="200"
-                :height="10"
-                :xMin="-6"
-                :xMax="6"
-              ></ChartPosNeg>
-            </td>
-          </tr>
-          <tr>
-            <td class="pa-2 hotel-name">
-              <HotelName :hotelId="hotelId" avatar line-break></HotelName></td>
-            <td class="pa-2">
-              <v-table class="my-2 flex-grow-1">
-                <tr
-                    v-for="category in categoryStore.relevantCategories"
-                    :category="category"
-                    :key="'posneg_' + hotelId + '_' + category['id']"
-                >
-                  <td class="sentiment-text">
-                    <v-table>
-                      <tr
-                          v-for="sentence in sentimentSummary(hotelId, 'overall', 'neg')
-                      // filter to only show clusters with more than 1% of reviews
-                      .filter(
-                        (s) =>
-                          s['cluster_size'] > this.reviews[hotelId].review_count * 0.01
-                          &&
-                          s['category'] == category['id']
-                      )"
-                          :key="
-                          category['id'] +
-                          '_' +
-                          'neg' +
-                          '_' +
-                          hotelId +
-                          '_' +
-                          sentence['idx_summary']
-                        "
+      <v-card  class="my-2 flex-grow-1"
+        v-for="hotelId in hotelStore.selectedHotelIds"
+        :key="'overall_' + hotelId"
+      >
+          <div class="pa-2 hotel-name">
+            <HotelName :hotelId="hotelId" avatar></HotelName>
+          </div>
+          <v-table class="pa-2 my-2 flex-grow-1">
+            <tr
+                v-for="category in categoryStore.relevantCategories"
+                :category="category"
+                :key="'posneg_' + hotelId + '_' + category['id']"
+            >
+              <td class="sentiment-text-neg">
+                <v-table>
+                  <tr
+                      v-for="sentence in sentimentSummary(hotelId, 'overall', 'neg')
+                  // filter to only show clusters with more than 1% of reviews
+                  .filter(
+                    (s) =>
+                      s['cluster_size'] > this.reviews[hotelId].review_count * 0.01
+                      &&
+                      s['category'] == category['id']
+                  )"
+                      :key="
+                      category['id'] +
+                      '_' +
+                      'neg' +
+                      '_' +
+                      hotelId +
+                      '_' +
+                      sentence['idx_summary']
+                    "
+                  >
+                    <td>
+                      <PosNegBulletPoint
+                          :hotelId="hotelId"
+                          :categoryId="category['id']"
+                          :polarity="'neg'"
+                          :sentence = "sentence"
+                          :key="'neg_' + hotelId + '_' + category['id']"
                       >
-                        <td>
-                          <PosNegBulletPoint
-                              :hotelId="hotelId"
-                              :categoryId="category['id']"
-                              :polarity="'neg'"
-                              :sentence = "sentence"
-                              :key="'neg_' + hotelId + '_' + category['id']"
-                          >
-                          </PosNegBulletPoint>
-                        </td>
-                      </tr>
-                    </v-table>
-                  </td>
+                      </PosNegBulletPoint>
+                    </td>
+                  </tr>
+                </v-table>
+              </td>
 
-                  <td class="placeholder"></td>
+              <td colspan="3" class="sentiment-chart">
 
-                  <td class="sentiment-text">
-                    <v-table>
-                      <tr
-                          v-for="sentence in sentimentSummary(hotelId, 'overall', 'pos')
-                      // filter to only show clusters with more than 1% of reviews
-                      .filter(
-                        (s) =>
-                          s['cluster_size'] > this.reviews[hotelId].review_count * 0.01
-                          &&
-                          s['category'] == category['id']
-                      )"
-                          :key="
-                          category['id'] +
-                          '_' +
-                          'neg' +
-                          '_' +
-                          hotelId +
-                          '_' +
-                          sentence['idx_summary']
-                        "
+                <ChartPosNeg
+                    :categoryId="category['id']"
+                    :hotelId="hotelId"
+                    :posNeg="countsCategoryPosNeg(category['id'], [hotelId])"
+                    :color="category['color']"
+                    :width="200"
+                    :height="10"
+                    :xMin="-1"
+                    :xMax="1"
+                    :key="'posneg_chart_' + hotelId + '_' + category['id']"
+                ></ChartPosNeg>
+              </td>
+
+              <td class="sentiment-text-pos">
+                <v-table>
+                  <tr
+                      v-for="sentence in sentimentSummary(hotelId, 'overall', 'pos')
+                  // filter to only show clusters with more than 1% of reviews
+                  .filter(
+                    (s) =>
+                      s['cluster_size'] > this.reviews[hotelId].review_count * 0.01
+                      &&
+                      s['category'] == category['id']
+                  )"
+                      :key="
+                      category['id'] +
+                      '_' +
+                      'neg' +
+                      '_' +
+                      hotelId +
+                      '_' +
+                      sentence['idx_summary']
+                    "
+                  >
+                    <td>
+                      <PosNegBulletPoint
+                          :hotelId="hotelId"
+                          :categoryId="category['id']"
+                          :polarity="'pos'"
+                          :sentence = "sentence"
+                          :key="'neg_' + hotelId + '_' + category['id']"
                       >
-                        <td>
-                          <PosNegBulletPoint
-                              :hotelId="hotelId"
-                              :categoryId="category['id']"
-                              :polarity="'pos'"
-                              :sentence = "sentence"
-                              :key="'neg_' + hotelId + '_' + category['id']"
-                          >
-                          </PosNegBulletPoint>
-                        </td>
-                      </tr>
-                    </v-table>
-                  </td>
-                </tr>
-              </v-table>
-
-            </td>
-          </tr>
-        </v-card>
-      </v-table>
+                      </PosNegBulletPoint>
+                    </td>
+                  </tr>
+                </v-table>
+              </td>
+            </tr>
+          </v-table>
+      </v-card>
     </div>
 
   </div>
@@ -215,10 +207,15 @@ export default {
 
 <style>
 .hotel-name {
-  width: 20% !important;
+  width: 100% !important;
 }
 
-.sentiment-text {
+.sentiment-text-neg {
+  width: 38% !important;
+  text-align: right;
+  align-content: end;
+}
+.sentiment-text-pos {
   width: 38% !important;
 }
 
@@ -227,7 +224,6 @@ export default {
 }
 
 .sentiment-chart {
-  width: 100% !important;
   text-align: center;
   vertical-align: middle;
 }
