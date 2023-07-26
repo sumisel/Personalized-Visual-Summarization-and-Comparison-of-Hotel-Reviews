@@ -114,7 +114,7 @@ export default {
           icon="mdi-minus-circle-outline"
           :style="[{ color: sentence['color'] }]"
         />
-        {{ sentence["text"] }}. <button class="button">...</button>
+        {{ sentence["text"] }}.<v-icon icon="mdi-dots-horizontal" :style="[{ scale: .8 }]"/>
         <v-tooltip activator="parent" location="bottom" max-width="300px">
           {{
             roundToDecimal(100 * sentence["ratio_category"], 2) +
