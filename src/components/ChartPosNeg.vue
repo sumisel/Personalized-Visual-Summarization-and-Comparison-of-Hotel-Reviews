@@ -134,7 +134,6 @@ export default {
         hotels = [this.hotelId];
       }
       const data = this.countsCategoryPosNeg(this.categoryId, hotels);
-      console.log(data);
       const height = 10*hotels.length;
       d3.select(this.svg).attr("height", height);
 
@@ -211,7 +210,7 @@ export default {
         "#" + categoryId + "_" + hotelId.replaceAll(".", "_")
       );
       const svgOverall = d3.select(
-          "#overall_selected"
+          "#overall_" + hotelId.replaceAll(".", "_")
       );
 
       // x axis
@@ -275,7 +274,7 @@ export default {
       d3.select("#" + categoryId + "_" + hotelId.replaceAll(".", "_"))
         .selectAll(".highlight")
         .remove();
-      d3.select("#overall_selected")
+      d3.select("#overall_" + hotelId.replaceAll(".", "_"))
           .selectAll(".highlight")
           .remove();
     },
