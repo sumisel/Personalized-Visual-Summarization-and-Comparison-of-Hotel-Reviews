@@ -177,7 +177,7 @@ export default {
         .on("mousemove", (event, d) => {
           const date = d3.timeFormat("%b %Y")(new Date(Date.now()- x_max + d["timestamp"]));
           this.mouseoverText1stLine = date;
-          this.mouseoverText2ndLine = " Average Rating " + d["value"].toFixed(2) + " / 5.0";
+          this.mouseoverText2ndLine = " Average Rating " + d["value"].toFixed(1) + " / 5.0";
           tooltip.style("left", (event.pageX + 10) + "px");
           tooltip.style("top", (event.pageY - 28) + "px");
           tooltip.html(`${this.mouseoverText1stLine} </br> ${this.mouseoverText2ndLine}`);
