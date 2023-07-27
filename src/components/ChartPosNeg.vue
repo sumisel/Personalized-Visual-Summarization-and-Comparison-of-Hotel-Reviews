@@ -231,11 +231,6 @@ export default {
         .domain([hotelId])
         .range([0, svg.attr("height")])
         .padding(0.1);
-      const yOverall = d3
-          .scaleBand()
-          .domain(this.hotelStore.selectedHotelIds)
-          .range([0, svgOverall.attr("height")])
-          .padding(0.1);
 
       let xValue = num_items / this.reviews[hotelId]["review_count"];
       let xValueScale = 0;
@@ -261,7 +256,7 @@ export default {
         .select("g")
         .append("rect")
         .attr("class", "highlight")
-        .attr("y", yOverall(hotelId))
+        .attr("y", y(hotelId))
         .attr("x", xOverall(xValueScale))
         .attr("width", width)
         .attr("height", y.bandwidth())
