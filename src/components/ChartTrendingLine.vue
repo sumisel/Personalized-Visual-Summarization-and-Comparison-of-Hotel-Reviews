@@ -140,15 +140,19 @@ export default {
             .x(function(d) { return x(+d["timestamp"]) })
             .y(function(d) { return y(+d["value"]) })
         );
+
       // add invisible data points for selecting
       const svgId = d3.select(this.svg).attr("id");
-      svg.append("circle").attr("id", svgId+"_highlight").attr("fill", "black").attr("r", 10).attr("opacity", 0);
+      svg.append("circle")
+          .attr("id", svgId+"_highlight")
+          .attr("fill", this.color)
+          .attr("r", 5)
+          .attr("opacity", 0);
       // create a d3 tooltip
-      //const tooltip = d3.select(this.svg)
-      //    .append("div")
-      //    .style("position", "absolute")
-      //    .style("visibility", "hidden")
-      //    .text("I'm a circle!");
+      const tooltip = d3.select("body")
+          .append("div")
+          .attr("class", "tooltip")
+          .style("visibility", "hidden");
       svg
         .append("g")
         .selectAll("circle")
@@ -157,28 +161,31 @@ export default {
         .append("circle")
         .attr("cx", function(d) { return x(+d["timestamp"]) })
         .attr("cy", function(d) { return y(+d["value"]) })
-        .attr("r", 10)
+        .attr("r", 5)
         .attr("fill", "none")
         .attr("pointer-events", "all")
         .on("mouseover", (event, d) => {
           d3.select("#"+svgId+"_highlight")
-              .attr("fill", "black")
-              .attr("opacity", 0.2)
+              .attr("opacity", 0.5)
               .attr("cx", x(+d["timestamp"]))
               .attr("cy", y(+d["value"]));
-          //tooltip.style("visibility", "visible");
-          //tooltip.style("left", (event.pageX + 10) + "px");
-          //tooltip.style("top", (event.pageY - 28) + "px");
+          tooltip.style("visibility", "visible");
+          tooltip.style("left", (event.pageX + 10) + "px");
+          tooltip.style("top", (event.pageY - 28) + "px");
 
         })
         .on("mousemove", (event, d) => {
-          this.mouseoverText1stLine = "Average Rating:";
-          this.mouseoverText2ndLine = d["value"].toFixed(2) + " / 5.0";
-          //tooltip.style("left", (event.pageX + 10) + "px");
-          //tooltip.style("top", (event.pageY - 28) + "px");
+          const date = d3.timeFormat("%b %Y")(new Date(Date.now()- x_max + d["timestamp"]));
+          this.mouseoverText1stLine = date;
+          this.mouseoverText2ndLine = " Average Rating " + d["value"].toFixed(2) + " / 5.0";
+          tooltip.style("left", (event.pageX + 10) + "px");
+          tooltip.style("top", (event.pageY - 28) + "px");
+          tooltip.html(`${this.mouseoverText1stLine} </br> ${this.mouseoverText2ndLine}`);
         })
         .on("mouseout", (event, d) => {
-          //tooltip.style("visibility", "hidden");
+          tooltip.style("visibility", "hidden");
+          d3.select("#"+svgId+"_highlight")
+              .attr("opacity", 0);
         })
 
 
@@ -203,6 +210,16 @@ export default {
 .y-axis {
   size: 2px;
 }
+.tooltip {
+  background-color: grey;
+  color: white;
+  position: absolute;
+  z-index: 10;
+  opacity: .9;
+  font-size: 10pt;
+  padding: 4pt 8pt 4pt 8pt;
+  border-radius: 4px;
+}
 </style>
 
 <template>
@@ -210,11 +227,4 @@ export default {
     ref="svg"
     :id="'chart_trending_' + this.categoryId + '_' + this.hotelId.replaceAll('.', '_')"
   ></svg>
-  <v-tooltip id="'tooltip' + '_' + this.hotelId.replaceAll('.', '_')" activator="parent" location="bottom" max-width="500px"
-             class="tooltip"
-            :key = "'tooltip' + '_' + this.hotelId.replaceAll('.', '_')">
-    {{ mouseoverText1stLine }}
-    <br />
-    {{ mouseoverText2ndLine }}
-  </v-tooltip>
 </template>
