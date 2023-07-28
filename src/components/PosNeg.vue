@@ -11,7 +11,6 @@ import { inject } from "vue";
 export default {
   components: {
     PosNegBulletPoint,
-    CategoryPosNeg,
     ChartPosNeg,
     HotelName,
   },

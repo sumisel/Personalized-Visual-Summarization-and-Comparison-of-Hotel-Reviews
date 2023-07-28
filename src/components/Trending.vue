@@ -146,14 +146,15 @@ export default {
             </v-expansion-panel-title>
             <v-expansion-panel-text>
               <v-row
-                class="d-flex"
                 v-for="category in categoryStore.relevantCategories.sort(
                   (a, b) => b.value - a.value
                 )"
                 :key="'time_' + hotelId + '_' + category.id"
               >
                 <div class="pa-2 trend-description-detail">
-                  <CategoryName :categoryId="category['id']"></CategoryName>: {{ trendDescription(hotelId, category.id)}}.
+                  <div>
+                    <CategoryName :categoryId="category['id']"></CategoryName>: {{ trendDescription(hotelId, category.id)}}.
+                  </div>
                 </div>
                 <div class="pa-2 trend-icon-title">
                   <v-icon
