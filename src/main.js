@@ -55,10 +55,13 @@ if (cityId) {
     const result = await fetch("/HotelRec_subset_" + cityId + "_10_reviews.json");
     const data = await result.json();
     // TODO: check if this is still needed or can be simiplified
-    Object.keys(data).forEach(key => {
+    Object.keys(data).forEach((key, index) => {
         const elem = data[key];
         elem['review_count'] = Object.keys(elem['reviews']).length;
-        elem['reviews_unannotated'] = []; // we don't need that for now
+        //elem['reviews_unannotated'] = []; // we don't need that for now
+        if(index < 4) {
+            hotelStore.selectedHotelIds.push(key); //select first 4 hotels, for debugging
+        }
     });
     app.provide("reviews", data);
 

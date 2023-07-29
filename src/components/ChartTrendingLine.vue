@@ -2,6 +2,7 @@
 import * as d3 from "d3";
 
 import { ref, watch } from "vue";
+import { inject } from "vue";
 
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
@@ -43,6 +44,7 @@ export default {
     const hotelStore = useHotelStore();
     const categoryStore = useCategoryStore();
     const timeStore = useTimeStore();
+    const reviews = inject("reviews");
     let mouseoverText1stLine = "";
     let mouseoverText2ndLine = "";
 
@@ -51,6 +53,7 @@ export default {
       hotelStore,
       categoryStore,
       timeStore,
+      reviews,
       mouseoverText1stLine,
       mouseoverText2ndLine,
     };
@@ -187,6 +190,12 @@ export default {
           d3.select("#"+svgId+"_highlight")
               .attr("opacity", 0);
         })
+        .on("click", (event, d) => {
+          for(const k in d["values"]) {
+            console.log(this.reviews[this.hotelId]["reviews_unannotated"][k]);
+            // TODO open popup with data of these reviews
+          }
+        });
 
 
       // draw regression line

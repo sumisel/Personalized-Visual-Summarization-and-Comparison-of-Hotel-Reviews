@@ -43,14 +43,15 @@ export const useTimeStore = defineStore({
         return;
       }
 
-      for (const [timestamp, values] of Object.entries(d)) {
+      for (const [timestamp, entry] of Object.entries(d)) {
         x_min = Math.min(x_min, +timestamp);
         x_max = Math.max(x_max, +timestamp);
 
         if (categoryId == "average") {
           const weighted_values = [];
+          const review_values = [];
           let valueSum = 0;
-          for (const [category, v] of Object.entries(values)) {
+          for (const [category, v] of Object.entries(entry)) {
             if (
                 this.categoryStore.relevantCategories
                     .map((c) => c.id)
@@ -58,6 +59,7 @@ export const useTimeStore = defineStore({
                 &&
                 v["average"] != 0) {
               weighted_values.push(v["average"] * this.categoryStore.categoriesById[category]["value"]);
+              review_values.push(v["values"]);
               valueSum += this.categoryStore.categoriesById[category]["value"];
             }
           }
@@ -68,25 +70,25 @@ export const useTimeStore = defineStore({
               name: "average",
               timestamp: +timestamp,
               value: weighted_average,
-              values: weighted_values,
+              entries: weighted_values,
+              values: review_values,
             });
           }
         } else {
-          const v = values[categoryId];
+          const v = entry[categoryId];
           if(v["average"] != 0) {
             data.push({
-              name: "categoryId",
+              name: categoryId,
               timestamp: +timestamp,
               value: v["average"],
               upper: v["q3"],
               lower: v["q1"],
               num_entries: v["size"],
+              values: v["values"],
             });
-            const os = v["outliers"].map(function (o) {
-              return { timestamp: timestamp, value: o };
-            });
-            for (const o of os) {
-              outliers.push(o);
+            const os  = {}
+            for(const o in v["outliers"]) {
+              outliers.push({ timestamp: timestamp, value: v["outliers"][o], idx_review: o });
             }
           }
         }
