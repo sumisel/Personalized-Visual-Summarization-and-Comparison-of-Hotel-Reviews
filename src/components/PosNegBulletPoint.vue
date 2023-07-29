@@ -2,6 +2,7 @@
 import { useHotelStore } from "../stores/hotel.js";
 import { useClusterStore } from "../stores/cluster.js";
 import { useCategoryStore } from "../stores/category";
+import ReviewTextsPopup from "./ReviewTextsPopup.vue";
 import { inject } from "vue";
 
 export default {
@@ -10,6 +11,9 @@ export default {
     categoryId: String,
     polarity: String,
     sentence: Object,
+  },
+  components: {
+    ReviewTextsPopup,
   },
   setup() {
     const hotelStore = useHotelStore();
@@ -179,7 +183,7 @@ export default {
           <v-divider></v-divider>
           <br />
 
-          <div class="text-h5">Similar Review Points for this Hotel</div>
+          <div class="text-h5">Similar Review Aspects for this Hotel</div>
           <br />
           <div v-for="review in sentence['idx_similar_reviews']" :key="review">
             <v-expansion-panels>
@@ -192,6 +196,12 @@ export default {
                   }}
                 </v-expansion-panel-title>
                 <v-expansion-panel-text>
+                  <span><b>
+                    {{
+                      reviews[hotelId]["reviews"][review["idx_review"]]["title"]
+                    }}
+                  </b></span>
+                  <br/>
                   <span
                     v-for="(word, index) in reviews[hotelId]['reviews'][
                       review['idx_review']

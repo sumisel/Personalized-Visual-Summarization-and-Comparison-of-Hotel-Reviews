@@ -115,7 +115,6 @@ export default {
           <v-table class="pa-2 my-2 flex-grow-1">
             <tr
                 v-for="category in categoryStore.relevantCategories"
-                :category="category"
                 :key="'posneg_' + hotelId + '_' + category['id']"
             >
               <td class="sentiment-text-neg">

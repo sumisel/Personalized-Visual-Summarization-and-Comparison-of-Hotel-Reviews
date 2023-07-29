@@ -110,8 +110,16 @@ export default {
         hotelIds.forEach((hotelId) => {
           counts.push({
             name: hotelId,
-            posCount: this.categoryStore.relevantCategories.map(c => this.reviews[hotelId]["counts"]["pos"][c["id"]]).reduce((a, b) => a + b, 0),
-            negCount: this.categoryStore.relevantCategories.map(c => this.reviews[hotelId]["counts"]["neg"][c["id"]]).reduce((a, b) => a + b, 0),
+            posCount: this.categoryStore.relevantCategories.map(c =>
+                this.categoryStore.relevantCategories.length
+                * this.categoryStore.normalizedCategoryValues[c["id"]]
+                * this.reviews[hotelId]["counts"]["pos"][c["id"]])
+                .reduce((a, b) => a + b, 0),
+            negCount: this.categoryStore.relevantCategories.map(c =>
+                this.categoryStore.relevantCategories.length
+                * this.categoryStore.normalizedCategoryValues[c["id"]]
+                * this.reviews[hotelId]["counts"]["neg"][c["id"]])
+                .reduce((a, b) => a + b, 0),
           });
         });
       } else {
@@ -139,14 +147,13 @@ export default {
 
       const neg = Math.round(10000*data.find(h => h["name"]==this.hotelId)["negCount"])/100;
       const pos = Math.round(10000*data.find(h => h["name"]==this.hotelId)["posCount"])/100;
-      this.mouseoverText1stLine = this.hotelMeta[this.hotelId].name + " review texts:";
-      this.mouseoverText2ndLine = neg +"% negative, "
-          + pos + "% positive "
+      this.mouseoverText1stLine = this.hotelMeta[this.hotelId].name;
       if(this.categoryId=="overall") {
-        this.mouseoverText2ndLine += "category mentions";
+        this.mouseoverText2ndLine = "The categories are ";
       } else {
-        this.mouseoverText2ndLine += this.categoryStore.categoriesById[this.categoryId]["title"] + " mentions";
+        this.mouseoverText2ndLine = "The category " + this.categoryStore.categoriesById[this.categoryId]["title"] + " is";
       }
+      this.mouseoverText2ndLine += " mentioned negatively in "+neg +"%, and positively in "+ pos + "% of the reviews."
 
 
       // remove all previous elements
