@@ -1,8 +1,8 @@
 <script>
-import CategoryPosNeg from "./CategoryPosNeg.vue";
 import ChartPosNeg from "./ChartPosNeg.vue";
 import PosNegBulletPoint from "./PosNegBulletPoint.vue";
 import HotelName from "./HotelName.vue";
+import HotelAvatarInline from "./HotelAvatarInline.vue";
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
 import { useClusterStore } from "../stores/cluster.js";
@@ -10,6 +10,7 @@ import { inject } from "vue";
 
 export default {
   components: {
+    HotelAvatarInline,
     PosNegBulletPoint,
     ChartPosNeg,
     HotelName,
@@ -82,7 +83,7 @@ export default {
   <div v-if="hotelStore.selectedHotelIds.length > 1">
     <div class="my-2 flex-grow-1">
       <p>
-        <div style="display: flex">
+        <div class="pa-2" style="display: flex">
           <v-table class="sentiment-chart-title">
             <tr v-for="hotelId in hotelStore.selectedHotelIds"
               :key="'posneg_chart_'+ hotelId+'_overall_div'">
@@ -97,11 +98,12 @@ export default {
                     :xMax="2"
                     :key="'posneg_chart_' + hotelId + '_overall'"
                 ></ChartPosNeg>
+                <HotelAvatarInline :hotelId="hotelId"></HotelAvatarInline>
               </td>
             </tr>
           </v-table>
-          <span style="color: red">
-            <b>This is a placeholder text for a short summary about the similarities and differences between the reviews of the different hotels.</b>
+          <span style="color: red; margin-left: 10pt">
+            <b>This is a placeholder text for a short summary about the similarities and differences between the reviews of the hotels.</b>
           </span>
         </div>
       </p>

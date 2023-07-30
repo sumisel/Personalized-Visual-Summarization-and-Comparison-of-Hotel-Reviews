@@ -1,5 +1,6 @@
 <script>
 import HotelRating from "./HotelRating.vue";
+import HotelAvatarInline from "./HotelAvatarInline.vue";
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
 import { inject } from "vue";
@@ -9,6 +10,7 @@ import InlineListItem from "./InlineListItem.vue";
 export default {
   components: {
     HotelRating,
+    HotelAvatarInline,
     Instruction,
     InlineListItem,
   },
@@ -16,7 +18,8 @@ export default {
     const hotelStore = useHotelStore();
     const categoryStore = useCategoryStore();
     const hotelMeta = inject("hotelMeta");
-    return { hotelStore, categoryStore, hotelMeta };
+    const city = inject("city");
+    return { hotelStore, categoryStore, hotelMeta, city };
   },
   computed: {
     ratingVarietyDescription() {
@@ -81,7 +84,10 @@ export default {
       <span v-if="topRatedHotels.length > 0">
         <InlineListItem v-for="(hotelId, index) in topRatedHotels" :key="hotelId" :index="index"
           :listLength="topRatedHotels.length">
-          <strong>{{ hotelMeta[hotelId].name }}</strong>
+          <strong>
+            <HotelAvatarInline :hotelId="hotelId"></HotelAvatarInline>
+            {{ hotelMeta[hotelId].name }}
+          </strong>
         </InlineListItem>
         <span v-if="topRatedHotels.length > 1"> are </span>
         <span v-else> is </span> the overall best fitting hotel<span v-if="topRatedHotels.length > 1">s</span>.

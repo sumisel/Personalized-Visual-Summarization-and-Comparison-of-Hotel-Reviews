@@ -11,6 +11,7 @@ import InlineListItem from "./InlineListItem.vue";
 import PoiChip from "./PoiChip.vue";
 import Instruction from "./Instruction.vue";
 import HotelName from "./HotelName.vue";
+import HotelAvatarInline from "./HotelAvatarInline.vue";
 
 const MARKER_RADIUS = 15;
 const TRANSITION_DURATION = 750;
@@ -18,6 +19,7 @@ const MARKER_LABEL_BG_OPACITY = 0.3;
 
 export default {
   components: {
+    HotelAvatarInline,
     InlineListItem,
     PoiChip,
     Instruction,
@@ -716,12 +718,13 @@ export default {
     }}</strong>
       are</span>
     <span v-if="hotelStore.selectedHotelIds.length === 1">only <strong>one</strong> is</span>
-    <span v-if="hotelStore.selectedHotelIds.length === 0"><strong>none</strong> is</span>
-    selected<span v-if="hotelStore.selectedHotelIds.length > 0">: </span><span v-else></span>
+    <span v-if="hotelStore.selectedHotelIds.length === 0"><strong>none</strong> are</span>
+    selected <v-icon class="inline" icon="mdi-circle" size="x-small"></v-icon><span v-if="hotelStore.selectedHotelIds.length > 0">: </span><span v-else></span>
     <InlineListItem v-for="(hotelId, index) in hotelStore.selectedHotelIds" :key="hotelId" :index="index"
       :listLength="hotelStore.selectedHotelIds.length">
-      <a @click="focusOnHotel(hotelId)"><strong><v-icon class="inline" icon="mdi-circle" size="x-small"></v-icon>
-          {{ hotelMeta[hotelId].name }}</strong></a>
+      <a @click="focusOnHotel(hotelId)"><strong>
+        <HotelAvatarInline :hotelId="hotelId"></HotelAvatarInline>
+        {{ hotelMeta[hotelId].name }}</strong></a>
     </InlineListItem>.
     <v-btn variant="plain" prepend-icon="mdi-close" v-if="hotelStore.selectedHotelIds.length > 0"
       @click="hotelStore.clearSelection(); updateSelectedHotels();">Clear selection</v-btn>
