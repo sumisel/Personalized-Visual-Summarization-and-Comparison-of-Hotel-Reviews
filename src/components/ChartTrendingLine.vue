@@ -192,7 +192,8 @@ export default {
         })
         .on("click", (event, d) => {
           for(const k in d["values"]) {
-            console.log(this.reviews[this.hotelId]["reviews_unannotated"][k]);
+            const reviews = Object.assign({}, this.reviews[this.hotelId]["reviews"], this.reviews[this.hotelId]["reviews_unannotated"]);
+            console.log(reviews[k]);
             // TODO open popup with data of these reviews
           }
         });
