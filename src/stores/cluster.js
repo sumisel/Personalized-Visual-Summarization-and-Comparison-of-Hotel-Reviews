@@ -1,9 +1,11 @@
 import { defineStore } from 'pinia'
+import { inject } from "vue";
 
 export const useClusterStore = defineStore({
   id: 'cluster',
   state: () => ({
-    clusters: []
+    clusters: [],
+    emitter: Object,
   }),
   actions: {
     noClusterHovered() {
@@ -16,35 +18,48 @@ export const useClusterStore = defineStore({
     },
     hover(clusterId) {
       this.unhover();
-      this.clusters.find(c => c["id"] == clusterId)['hover'] = true;
+      const c = this.clusters.find(c => c["id"] == clusterId);
+      c['hover'] = true;
+
+      for(let i = 0; i < c['sentences'].length; i++) {
+        const sentence = c['sentences'][i];
+        this.emitter.emit(
+            "highlight_" + sentence['category'] + "_" + sentence['hotel_id'].replaceAll(".", "_"),
+            { categoryId: sentence['category'], hotelId: sentence['hotel_id'], num_items: sentence['cluster_size'], polarity: sentence['polarity'] }
+        );
+      }
     },
     unhover() {
-      this.clusters.forEach(cluster => { cluster['hover'] = false });
+      for(let i = 0; i < this.clusters.length; i++) {
+        this.clusters[i]['hover'] = false;
+        for(let j = 0; j < this.clusters[i]['sentences'].length; j++) {
+            const sentence = this.clusters[i]['sentences'][j];
+            this.emitter.emit(
+                "unhighlight_" + sentence['category'] + "_" + sentence['hotel_id'].replaceAll(".", "_"),
+                { categoryId: sentence['category'], hotelId: sentence['hotel_id'], num_items: 1, polarity: sentence['polarity'] }
+            );
+        }
+      }
     },
     isHovered(id) {
       return this.clusters.find(c => c["id"] == id)['hover'];
     },
     initClusters(data) {
       Object.keys(data).forEach(hotel => {
-        Object.keys(data[hotel]['pos_summary']).forEach(categoryId => {
-          data[hotel]['pos_summary'][categoryId].forEach(sentence => {
-              const cluster = {"id": sentence['cluster'], "hover": false};
+        for (let sentiment of ["pos_summary", "neg_summary"]) {
+          Object.keys(data[hotel][sentiment]).forEach(categoryId => {
+            data[hotel]['pos_summary'][categoryId].forEach(sentence => {
+              sentence['hotel_id'] = hotel;
+              const cluster = {"id": sentence['cluster'], "hover": false, "sentences": []};
               if (!this.clusters.find(c => c["id"] == cluster['id'])) {
                 this.clusters.push(cluster);
+              } else {
+                this.clusters.find(c => c["id"] == cluster['id'])['sentences'].push(sentence);
               }
-          })
-        });
-
-        Object.keys(data[hotel]['neg_summary']).forEach(categoryId => {
-          data[hotel]['neg_summary'][categoryId].forEach(sentence => {
-              const cluster = {"id": sentence['cluster'], "hover": false};
-              if (!this.clusters.find(c => c["id"] == cluster['id'])) {
-                this.clusters.push(cluster);
-              }
-          })
-        });
+            })
+          });
+        }
       });
-
     }
   },
 })

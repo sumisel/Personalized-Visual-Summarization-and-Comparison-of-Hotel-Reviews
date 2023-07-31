@@ -35,12 +35,11 @@ app.use(vuetify)
 app.use(pinia)
 
 // set up event emitter
-// TODO: check if needed
 import mitt from 'mitt';
 const emitter = mitt();
 app.provide("emitter", emitter);
 
-// set city and load city meta data
+// set city and load city metadata
 const params = new URL(document.location).searchParams;
 const cityId = params.get("city");
 
@@ -66,6 +65,7 @@ if (cityId) {
     app.provide("reviews", data);
 
     clusterStore.initClusters(data);
+    clusterStore.emitter = emitter;
 
     // load ratings over time
     const ratings_time = await fetch("/HotelRec_subset_" + cityId + "_10_average_ratings_over_time.json");
