@@ -5,8 +5,14 @@ import { ref, onMounted, watch, computed, inject } from "vue";
 
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
+import HotelName from "./HotelName.vue";
+import CategoryName from "./CategoryName.vue";
 
 export default {
+  components: {
+    CategoryName,
+    HotelName,
+  },
   props: {
     categoryId: {
       type: String,
@@ -44,8 +50,8 @@ export default {
     const emitter = inject("emitter");
     const reviews = inject("reviews");
     const hotelMeta = inject('hotelMeta');
-    let mouseoverText1stLine = "";
-    let mouseoverText2ndLine = "";
+    let neg = 0;
+    let pos = 0;
 
     return {
       svg,
@@ -54,8 +60,8 @@ export default {
       emitter,
       reviews,
       hotelMeta,
-      mouseoverText1stLine,
-      mouseoverText2ndLine,
+      neg,
+      pos,
     };
   },
   mounted() {
@@ -145,15 +151,8 @@ export default {
       const height = 10*hotels.length;
       d3.select(this.svg).attr("height", height);
 
-      const neg = Math.round(10000*data.find(h => h["name"]==this.hotelId)["negCount"])/100;
-      const pos = Math.round(10000*data.find(h => h["name"]==this.hotelId)["posCount"])/100;
-      this.mouseoverText1stLine = this.hotelMeta[this.hotelId].name;
-      if(this.categoryId=="overall") {
-        this.mouseoverText2ndLine = "The categories are ";
-      } else {
-        this.mouseoverText2ndLine = "The category " + this.categoryStore.categoriesById[this.categoryId]["title"] + " is";
-      }
-      this.mouseoverText2ndLine += " mentioned negatively in "+neg +"%, and positively in "+ pos + "% of the reviews."
+      this.neg = Math.round(10000*data.find(h => h["name"]==this.hotelId)["negCount"])/100;
+      this.pos = Math.round(10000*data.find(h => h["name"]==this.hotelId)["posCount"])/100;
 
 
       // remove all previous elements
@@ -298,8 +297,12 @@ export default {
     :height="this.height"
   ></svg>
   <v-tooltip id="'tooltip' + '_' + this.hotelId.replaceAll('.', '_')" activator="parent" location="bottom" max-width="500px">
-    {{ mouseoverText1stLine }}
+    <HotelName :hotelId="this.hotelId" avatar></HotelName>
     <br />
-    {{ mouseoverText2ndLine }}
+    <CategoryName v-if="this.categoryId!='overall'" :categoryId="this.categoryId"></CategoryName>
+    <div style="display: inline-block" v-else>The categories</div>
+    <div style="display: inline-block" v-if="this.categoryId=='overall' || this.categoryId=='rooms'">&nbsp;are</div>
+    <div style="display: inline-block" v-else>&nbsp;is</div>
+    mentioned <b>negatively in {{ neg }}%</b>, and <b>positively in {{ pos }}%</b> of the reviews.
   </v-tooltip>
 </template>
