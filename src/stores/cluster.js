@@ -36,7 +36,7 @@ export const useClusterStore = defineStore({
             const sentence = this.clusters[i]['sentences'][j];
             this.emitter.emit(
                 "unhighlight_" + sentence['category'] + "_" + sentence['hotel_id'].replaceAll(".", "_"),
-                { categoryId: sentence['category'], hotelId: sentence['hotel_id'], num_items: 1, polarity: sentence['polarity'] }
+                { categoryId: sentence['category'], hotelId: sentence['hotel_id']}
             );
         }
       }
@@ -48,8 +48,9 @@ export const useClusterStore = defineStore({
       Object.keys(data).forEach(hotel => {
         for (let sentiment of ["pos_summary", "neg_summary"]) {
           Object.keys(data[hotel][sentiment]).forEach(categoryId => {
-            data[hotel]['pos_summary'][categoryId].forEach(sentence => {
+            data[hotel][sentiment][categoryId].forEach(sentence => {
               sentence['hotel_id'] = hotel;
+              sentence['polarity'] = sentiment.substring(0, 3);
               const cluster = {"id": sentence['cluster'], "hover": false, "sentences": []};
               if (!this.clusters.find(c => c["id"] == cluster['id'])) {
                 this.clusters.push(cluster);
