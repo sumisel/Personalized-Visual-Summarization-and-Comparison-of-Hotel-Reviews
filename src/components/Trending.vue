@@ -172,29 +172,6 @@ export default {
                       :yMax="5"
                   ></ChartTrendingLine>
                 </div>
-                <div class="pa-2 box-plot">
-                  <ChartTrendingBoxPlot
-                    :hotelId="hotelId"
-                    :categoryId="category.id"
-                    :color="category.color"
-                    :width="300"
-                    :height="50"
-                    :yMin="1"
-                    :yMax="5"
-                  ></ChartTrendingBoxPlot>
-                </div>
-                <div class="pa-2 trend-icon-title"></div>
-                <div class="pa-2 time-chart">
-                  <ChartTrendingHistogram
-                      :hotelId="hotelId"
-                      :categoryId="category.id"
-                      :color="category.color"
-                      :width="300"
-                      :height="50"
-                      :yMin="0"
-                      :yMax="50"
-                  ></ChartTrendingHistogram>
-                </div>
               </v-row>
             </v-expansion-panel-text>
           </v-expansion-panel>
