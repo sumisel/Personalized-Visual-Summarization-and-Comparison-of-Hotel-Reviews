@@ -12,6 +12,8 @@ import Trending from "./components/Trending.vue";
 
 import { useHotelStore } from "./stores/hotel.js";
 const hotelStore = useHotelStore();
+import { useCategoryStore } from "./stores/category.js";
+const categoryStore = useCategoryStore();
 import { useInterfaceStore } from "./stores/interface.js";
 const interfaceStore = useInterfaceStore();
 
@@ -75,6 +77,12 @@ function comparisonSectionVisible() {
   return comparisonSectionTop < scrollY.value - window.innerHeight / 2;
 };
 
+function prioritiesUnchanged() {
+  return categoryStore.categories.every(
+      (category) => category.value === 50
+  );
+}
+
 </script>
 
 <template>
@@ -117,6 +125,8 @@ function comparisonSectionVisible() {
             <v-icon icon="mdi-arrow-up" class="inline"></v-icon> Select at least two hotels in the map above to compare
             them below. <v-icon icon="mdi-arrow-down" class="inline"></v-icon>
           </Instruction>
+          <Instruction v-if="prioritiesUnchanged() && hotelStore.selectedHotelIds.length > 1">Change priorities to
+            personalize the ratings.</Instruction>
           <div v-for="section in sections" :key="section.title" class="py-6" :id="section.id" :class="{
             'text-disabled':
               hotelStore.selectedHotelIds.length < 2,

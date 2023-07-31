@@ -64,18 +64,11 @@ export default {
       );
       return topRatedHotels.map((ratedHotel) => ratedHotel.hotelId);
     },
-    prioritiesUnchanged() {
-      return this.categoryStore.categories.every(
-        (category) => category.value === 50
-      );
-    },
   },
 };
 </script>
 
 <template>
-  <Instruction v-if="prioritiesUnchanged && hotelStore.selectedHotelIds.length > 1">Change priorities to
-    personalize the ratings.</Instruction>
   <div v-if="hotelStore.selectedHotelIds.length > 1">
     <p>
       <span>
