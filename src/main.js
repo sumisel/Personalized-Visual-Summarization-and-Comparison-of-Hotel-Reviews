@@ -17,10 +17,12 @@ import { createPinia } from 'pinia'
 const pinia = createPinia();
 import { useHotelStore } from "./stores/hotel.js";
 import { useCategoryStore } from "./stores/category.js";
-import { useTimeStore } from './stores/ratings_over_time'
+import { useTimeStore } from './stores/ratings_over_time';
+import { useClusterStore } from './stores/cluster';
 const hotelStore = useHotelStore(pinia);
 const categoryStore = useCategoryStore(pinia);
 const timeStore = useTimeStore(pinia);
+const clusterStore = useClusterStore(pinia);
 
 // data
 import cities from "./assets/cities.json";
@@ -54,19 +56,18 @@ if (cityId) {
     // load reviews
     const result = await fetch("/HotelRec_subset_" + cityId + "_10_reviews.json");
     const data = await result.json();
-    // TODO: check if this is still needed or can be simiplified
+
+    //select first 4 hotels, for debugging
     Object.keys(data).forEach((key, index) => {
-        const elem = data[key];
-        elem['review_count'] = Object.keys(elem['reviews']).length;
-        //elem['reviews_unannotated'] = []; // we don't need that for now
         if(index < 4) {
-            hotelStore.selectedHotelIds.push(key); //select first 4 hotels, for debugging
+            hotelStore.selectedHotelIds.push(key);
         }
     });
     app.provide("reviews", data);
 
+    clusterStore.initClusters(data);
+
     // load ratings over time
-    // TODO: this is a temporary solution, will be replaced when the data is in the enriched data file
     const ratings_time = await fetch("/HotelRec_subset_" + cityId + "_10_average_ratings_over_time.json");
     const ratings_time_data = await ratings_time.json();
     timeStore.initTimeData(Object.keys(hotelMeta[cityId]), ratings_time_data);

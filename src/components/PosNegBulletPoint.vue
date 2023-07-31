@@ -115,13 +115,18 @@ export default {
       <p
         v-bind="props"
         @mouseenter="
+          clusterStore.hover(sentence['cluster']);
           highlight(categoryId, hotelId, sentence['cluster_size'], polarity)
         "
-        @mouseleave="unhighlight(categoryId, hotelId)"
+        @mouseleave="
+          clusterStore.unhover();
+          unhighlight(categoryId, hotelId)
+        "
         :style="[
           {
             'font-weight': calcFontWeight(sentence['ratio_category']),
             'font-size': calcFontSize(sentence['ratio_category']),
+            'opacity': (clusterStore.noClusterHovered() || clusterStore.isHovered(sentence['cluster']))?1:.2,
           },
         ]"
       >

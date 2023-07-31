@@ -293,8 +293,6 @@ export default {
   <svg
     ref="svg"
     :id="this.categoryId + '_' + this.hotelId.replaceAll('.', '_')"
-    :width="this.width"
-    :height="this.height"
   ></svg>
   <v-tooltip id="'tooltip' + '_' + this.hotelId.replaceAll('.', '_')" activator="parent" location="bottom" max-width="500px">
     <HotelName :hotelId="this.hotelId" avatar></HotelName>

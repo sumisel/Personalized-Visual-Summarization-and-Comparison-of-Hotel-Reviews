@@ -212,7 +212,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .y-axis {
   size: 2px;
 }
@@ -222,8 +222,9 @@ export default {
   position: absolute;
   z-index: 10;
   opacity: .9;
-  font-size: 10pt;
-  padding: 4pt 8pt 4pt 8pt;
+  font-size: .875rem;
+  line-height: 1.6;
+  padding: 5px 16px;
   border-radius: 4px;
 }
 </style>
