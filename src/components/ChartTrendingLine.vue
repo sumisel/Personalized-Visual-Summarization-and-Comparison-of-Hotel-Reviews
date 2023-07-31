@@ -95,10 +95,6 @@ export default {
               })
           )
           .range([0, this.width-20]);
-      svg
-          .append("g")
-          .attr("transform", "translate(0," + (this.height-5) + ")")
-          .call(d3.axisBottom(x).ticks(5));
 
       // add y axis
       const y = d3
