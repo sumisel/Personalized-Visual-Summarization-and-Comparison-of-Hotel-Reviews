@@ -13,7 +13,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div style="display: inline-block; height: 1em; width: 1em; white-space: nowrap; /* This is required unless you put the helper span closely near the img */
+<!--  <div style="display: inline-block; height: 1em; width: 1em; white-space: nowrap; /* This is required unless you put the helper span closely near the img */
                         text-align: center;">
     <span style="display: inline-block; height: 100%;"></span>
     <v-avatar style="vertical-align: text-top; height: 1em; width: 1em" color="#eee" :image="`./img/hotels/${city.name
@@ -21,5 +21,6 @@ const props = defineProps({
                         .toLowerCase()}/${hotelId}.png`">
     </v-avatar>
   </div>
+-->
 </template>
 
