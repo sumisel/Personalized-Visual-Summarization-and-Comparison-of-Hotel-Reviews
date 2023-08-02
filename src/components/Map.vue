@@ -767,7 +767,7 @@ export default {
     </span>the current selection of points of interests would be
     <InlineListItem v-for="(hotel, index) in nonSelectedHotelsWithAllPositiveScores" :key="hotel" :index="index"
       :listLength="nonSelectedHotelsWithAllPositiveScores.length">
-      <a @click="focusOnHotel(hotel)"><strong><v-icon class="inline" icon="mdi-circle" size="x-small"></v-icon>
+      <a @click="focusOnHotel(hotel)"><strong><v-icon class="inline" icon="mdi-circle-outline" size="x-small"></v-icon>
           {{ hotelMeta[hotel].name }}</strong></a>
     </InlineListItem>. <v-btn variant="plain" prepend-icon="mdi-map-marker-plus"
       @click="hotelStore.selectedHotelIds = hotelStore.selectedHotelIds.concat(nonSelectedHotelsWithAllPositiveScores); updateSelectedHotels();">Add
