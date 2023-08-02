@@ -67,6 +67,8 @@ if (cityId) {
     clusterStore.initClusters(data);
     clusterStore.emitter = emitter;
 
+    categoryStore.emitter = emitter;
+
     // load ratings over time
     const ratings_time = await fetch("/HotelRec_subset_" + cityId + "_10_average_ratings_over_time.json");
     const ratings_time_data = await ratings_time.json();

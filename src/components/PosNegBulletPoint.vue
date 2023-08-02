@@ -20,7 +20,6 @@ export default {
     const categoryStore = useCategoryStore();
     const clusterStore = useClusterStore();
     const reviews = inject("reviews");
-    const emitter = inject("emitter");
     const hotelMeta = inject("hotelMeta");
     const keywords = {
       "location": "location area neighborhood district city town street",
@@ -37,7 +36,6 @@ export default {
       categoryStore,
       clusterStore,
       reviews,
-      emitter,
       hotelMeta,
       keywords,
     };
@@ -68,18 +66,6 @@ export default {
       } else {
         return 0.2;
       }
-    },
-    highlight(categoryId) {
-      this.emitter.emit(
-        "highlight_" + categoryId,
-        { categoryId }
-      );
-    },
-    unhighlight(categoryId) {
-      this.emitter.emit(
-        "unhighlight_" + categoryId,
-        { categoryId }
-      );
     },
     matchText(text, word) {
       const textCleaned = text
@@ -116,11 +102,9 @@ export default {
         v-bind="props"
         @mouseenter="
           categoryStore.hover(categoryId);
-          highlight(categoryId)
         "
         @mouseleave="
           categoryStore.unhover();
-          unhighlight(categoryId)
         "
         :style="[
           {

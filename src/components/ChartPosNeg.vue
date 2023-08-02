@@ -94,10 +94,9 @@ export default {
       }
     );
     this.emitter.on(
-      "unhighlight_" +
-        this.categoryId,
+      "unhighlight",
       (params) => {
-        this.unhighlight(params["categoryId"]);
+        this.unhighlight();
       }
     );
   },
@@ -141,7 +140,8 @@ export default {
       }
       const data = this.countsCategoryPosNeg(this.categoryId, hotels);
       const height = 10*hotels.length;
-      d3.select(this.svg).attr("height", height);
+      d3.select(this.svg)
+          .attr("height", height);
 
       this.neg = Math.round(10000*data.find(h => h["name"]==this.hotelId)["negCount"])/100;
       this.pos = Math.round(10000*data.find(h => h["name"]==this.hotelId)["posCount"])/100;
@@ -242,15 +242,6 @@ export default {
         axes.each(function () {
           this.parentNode.appendChild(this);
         });
-
-        for(let category of this.categoryStore.relevantCategories) {
-          if(category["id"] != categoryId) {
-            const svg = d3.select(
-                "#" + category["id"] + "_" + hotelId.replaceAll(".", "_")
-            );
-            svg.style("opacity", .2);
-          }
-        }
       }
     },
 
@@ -259,12 +250,6 @@ export default {
         d3.select("#overall_" + hotelId.replaceAll(".", "_"))
             .selectAll(".highlight")
             .remove();
-        for(let category of this.categoryStore.relevantCategories) {
-          const svg = d3.select(
-              "#" + category["id"] + "_" + hotelId.replaceAll(".", "_")
-          );
-          svg.style("opacity", 1);
-        }
       }
     },
   },

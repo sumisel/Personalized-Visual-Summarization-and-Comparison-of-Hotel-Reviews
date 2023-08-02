@@ -4,6 +4,7 @@ export const useCategoryStore = defineStore({
   id: 'category',
   state: () => ({
     // colors: selection of Bokeh Category 10 https://colorcet.holoviz.org/user_guide/Categorical.html
+    emitter: null,
     categories: [
       {
         id: "location",
@@ -67,9 +68,17 @@ export const useCategoryStore = defineStore({
     hover(categoryId) {
       this.unhover();
       this.categoriesById[categoryId].hover = true;
+      this.emitter.emit(
+          "highlight_" + categoryId,
+          { categoryId }
+      );
     },
     unhover() {
       this.categories.forEach(category => { category.hover = false });
+      this.emitter.emit(
+          "unhighlight",
+          { }
+      );
     },
   },
 })

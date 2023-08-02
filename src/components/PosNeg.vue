@@ -154,7 +154,10 @@ export default {
                 </v-table>
               </td>
 
-              <td class="sentiment-chart">
+              <td class="sentiment-chart"
+                  :style="[{'opacity': (categoryStore.noCategoryHovered || categoryStore.categoriesById[category['id']].hover)?1:.2}]"
+                  @mouseenter="categoryStore.hover(category['id'])"
+                  @mouseleave="categoryStore.unhover();">
                 <ChartPosNeg
                     :categoryId="category['id']"
                     :hotelId="hotelId"
