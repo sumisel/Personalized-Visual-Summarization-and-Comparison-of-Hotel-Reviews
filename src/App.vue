@@ -28,7 +28,7 @@ const sections = [
   {
     id: "trend",
     title: "Trending",
-    subtitle: "How do the hotels ratings change over the last 7 years?",
+    subtitle: "How do the hotels ratings change over the last 2 years?",
     icon: "mdi-trending-up",
     component: Trending,
   },

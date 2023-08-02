@@ -23,8 +23,8 @@ export default {
     const timeStore = useTimeStore();
     const hotelMeta = inject("hotelMeta");
     const city = inject("city");
-    const breakpointStrong = 0.000000000002;
-    const breakpointWeak   = 0.0000000000007;
+    const breakpointStrong = 0.5;
+    const breakpointWeak   = 0.2;
     return { hotelStore, categoryStore, timeStore, hotelMeta, city, breakpointStrong, breakpointWeak };
   },
   computed: {},
@@ -36,18 +36,19 @@ export default {
       const slope = trend["a"];
       const intercept = trend[0][1];
       const endValue = trend[1][1];
+      const difference = endValue - intercept;
       let slopeDescription = "";
       let valueDescription = "";
       let interceptDescription = "";
       let endValueDescription = "";
 
-      if (slope > this.breakpointStrong) {
+      if (difference > this.breakpointStrong) {
         slopeDescription =  "a strong upward trend";
-      } else if (slope > this.breakpointWeak) {
+      } else if (difference > this.breakpointWeak) {
         slopeDescription =  "a slight upward trend";
-      } else if (slope < -this.breakpointStrong) {
+      } else if (difference < -this.breakpointStrong) {
         slopeDescription =  "a strong downward trend";
-      } else if (slope < -this.breakpointWeak) {
+      } else if (difference < -this.breakpointWeak) {
         slopeDescription =  "a slight downward trend";
       } else {
         slopeDescription =  "no clear trend";
@@ -90,13 +91,14 @@ export default {
 
       let icon = "";
       const slope = trend["a"];
-      if (slope > this.breakpointStrong) {
+      const difference = trend[1][1] - trend[0][1];
+      if (difference > this.breakpointStrong) {
         icon = "mdi-arrow-up-circle-outline";
-      } else if (slope > this.breakpointWeak) {
+      } else if (difference > this.breakpointWeak) {
         icon = "mdi-arrow-top-right-thin-circle-outline";
-      } else if (slope < -this.breakpointStrong) {
+      } else if (difference < -this.breakpointStrong) {
         icon = "mdi-arrow-down-circle-outline";
-      } else if (slope < -this.breakpointWeak) {
+      } else if (difference < -this.breakpointWeak) {
         icon = "mdi-arrow-bottom-right-thin-circle-outline";
       } else {
         icon = "mdi-arrow-right-circle-outline";
