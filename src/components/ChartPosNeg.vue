@@ -88,24 +88,16 @@ export default {
     this.plot();
 
     this.emitter.on(
-      "highlight_" + this.categoryId + "_" + this.hotelId.replaceAll(".", "_"),
+      "highlight_" + this.categoryId,
       (params) => {
-        this.highlight(
-          params["svgId"],
-          params["categoryId"],
-          params["hotelId"],
-          params["num_items"],
-          params["polarity"]
-        );
+        this.highlight(params["categoryId"]);
       }
     );
     this.emitter.on(
       "unhighlight_" +
-        this.categoryId +
-        "_" +
-        this.hotelId.replaceAll(".", "_"),
+        this.categoryId,
       (params) => {
-        this.unhighlight(params["categoryId"], params["hotelId"]);
+        this.unhighlight(params["categoryId"]);
       }
     );
   },
@@ -164,13 +156,6 @@ export default {
         .scaleLinear()
         .domain([this.xMin, this.xMax])
         .range([0, this.width]);
-      /*svg.append("g")
-          .attr("transform", "translate(0," + this.height + ")")
-          .call(d3.axisBottom(x))
-          .selectAll("text")
-          .attr("transform", "translate(-10,0)rotate(-45)")
-          .style("text-anchor", "end");
-       */
 
       // y axis
       const y = d3
@@ -204,6 +189,7 @@ export default {
       // add the y Axis on top of the bars
       svg
         .append("g")
+        .attr("class", "zero-axis")
         .attr("transform", "translate(" + (x(0) - 0.5) + ",0)")
         .call(d3.axisLeft(y).tickSizeOuter(0).tickValues([]))
         .selectAll("path")
@@ -211,73 +197,75 @@ export default {
       svg.selectAll("text").remove();
     },
 
-    highlight(svgId, categoryId, hotelId, num_items, polarity) {
-      const svg = d3.select(
-        "#" + categoryId + "_" + hotelId.replaceAll(".", "_")
-      );
-      const svgOverall = d3.select(
-          "#overall_" + hotelId.replaceAll(".", "_")
-      );
+    highlight(categoryId) {
+      for(let hotelId of this.hotelStore.selectedHotelIds) {
+        const svgOverall = d3.select(
+            "#overall_" + hotelId.replaceAll(".", "_")
+        );
 
-      // x axis
-      let xScale = 1;
-      const x = d3
-        .scaleLinear()
-        .domain([-xScale, xScale])
-        .range([0, svg.attr("width")]);
-      xScale = 2;
-      const xOverall = d3
-          .scaleLinear()
-          .domain([-xScale, xScale])
-          .range([0, svgOverall.attr("width")]);
+        // x axis
+        let xScale = 2;
+        const x = d3
+            .scaleLinear()
+            .domain([-xScale, xScale])
+            .range([0, svgOverall.attr("width")]);
+        const xOverall = d3
+            .scaleLinear()
+            .domain([-xScale, xScale])
+            .range([0, svgOverall.attr("width")]);
 
-      // y axis
-      const y = d3
-        .scaleBand()
-        .domain([hotelId])
-        .range([0, svg.attr("height")])
-        .padding(0.1);
+        // y axis
+        const y = d3
+            .scaleBand()
+            .domain([hotelId])
+            .range([0, svgOverall.attr("height")])
+            .padding(0.1);
 
-      let xValue = num_items / this.reviews[hotelId]["review_count"];
-      let xValueScale = 0;
-      let width = x(xValue) - x(0);
-      if (polarity == "neg") {
-        width = x(0) - x(-xValue);
-        xValueScale = -xValue;
+        let counts = this.countsCategoryPosNeg(categoryId, [hotelId])[0];
+        // bars
+        svgOverall
+            .select("g")
+            .append("rect")
+            .attr("class", "highlight")
+            .attr("y", y(hotelId))
+            .attr("x", function (d) {
+              return x(-counts["negCount"]);
+            })
+            .attr("width", function (d) {
+              return x(counts["posCount"]) - x(-counts["negCount"]);
+            })
+            .attr("height", y.bandwidth())
+            .attr("fill", this.categoryStore.categoriesById[categoryId]["color"]);
+
+        // re-add axis in front of bars
+        const axes = d3.selectAll(".zero-axis");
+        axes.each(function () {
+          this.parentNode.appendChild(this);
+        });
+
+        for(let category of this.categoryStore.relevantCategories) {
+          if(category["id"] != categoryId) {
+            const svg = d3.select(
+                "#" + category["id"] + "_" + hotelId.replaceAll(".", "_")
+            );
+            svg.style("opacity", .2);
+          }
+        }
       }
-
-      // bars
-      svg
-        .select("g")
-        .append("rect")
-        .attr("class", "highlight")
-        .attr("y", y(hotelId))
-        .attr("x", x(xValueScale))
-        .attr("width", width)
-        .attr("height", y.bandwidth())
-        .attr("fill", "black")
-        .attr("stroke-width", "1px")
-        .attr("stroke", "white");
-      svgOverall
-        .select("g")
-        .append("rect")
-        .attr("class", "highlight")
-        .attr("y", y(hotelId))
-        .attr("x", xOverall(xValueScale))
-        .attr("width", width)
-        .attr("height", y.bandwidth())
-        .attr("fill", "black")
-        .attr("stroke-width", "1px")
-        .attr("stroke", "white");
     },
 
-    unhighlight(categoryId, hotelId) {
-      d3.select("#" + categoryId + "_" + hotelId.replaceAll(".", "_"))
-        .selectAll(".highlight")
-        .remove();
-      d3.select("#overall_" + hotelId.replaceAll(".", "_"))
-          .selectAll(".highlight")
-          .remove();
+    unhighlight() {
+      for(let hotelId of this.hotelStore.selectedHotelIds) {
+        d3.select("#overall_" + hotelId.replaceAll(".", "_"))
+            .selectAll(".highlight")
+            .remove();
+        for(let category of this.categoryStore.relevantCategories) {
+          const svg = d3.select(
+              "#" + category["id"] + "_" + hotelId.replaceAll(".", "_")
+          );
+          svg.style("opacity", 1);
+        }
+      }
     },
   },
 };

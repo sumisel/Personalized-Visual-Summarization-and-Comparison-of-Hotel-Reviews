@@ -69,16 +69,16 @@ export default {
         return 0.2;
       }
     },
-    highlight(categoryId, hotelId, num_items, polarity) {
+    highlight(categoryId) {
       this.emitter.emit(
-        "highlight_" + categoryId + "_" + hotelId.replaceAll(".", "_"),
-        { categoryId, hotelId, num_items, polarity }
+        "highlight_" + categoryId,
+        { categoryId }
       );
     },
-    unhighlight(categoryId, hotelId) {
+    unhighlight(categoryId) {
       this.emitter.emit(
-        "unhighlight_" + categoryId + "_" + hotelId.replaceAll(".", "_"),
-        { categoryId, hotelId }
+        "unhighlight_" + categoryId,
+        { categoryId }
       );
     },
     matchText(text, word) {
@@ -116,11 +116,11 @@ export default {
         v-bind="props"
         @mouseenter="
           categoryStore.hover(categoryId);
-          highlight(categoryId, hotelId, sentence['cluster_size'], polarity)
+          highlight(categoryId)
         "
         @mouseleave="
           categoryStore.unhover();
-          unhighlight(categoryId, hotelId)
+          unhighlight(categoryId)
         "
         :style="[
           {
