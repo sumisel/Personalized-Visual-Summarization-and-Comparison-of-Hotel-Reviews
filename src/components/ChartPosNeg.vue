@@ -90,7 +90,7 @@ export default {
     this.emitter.on(
       "highlight_" + this.categoryId,
       (params) => {
-        this.highlight(params["categoryId"]);
+        this.highlight(params["categoryId"], this.hotelId);
       }
     );
     this.emitter.on(
@@ -197,52 +197,50 @@ export default {
       svg.selectAll("text").remove();
     },
 
-    highlight(categoryId) {
-      for(let hotelId of this.hotelStore.selectedHotelIds) {
-        const svgOverall = d3.select(
-            "#overall_" + hotelId.replaceAll(".", "_")
-        );
+    highlight(categoryId, hotelId) {
+      const svgOverall = d3.select(
+          "#overall_" + hotelId.replaceAll(".", "_")
+      );
 
-        // x axis
-        let xScale = 2;
-        const x = d3
-            .scaleLinear()
-            .domain([-xScale, xScale])
-            .range([0, svgOverall.attr("width")]);
-        const xOverall = d3
-            .scaleLinear()
-            .domain([-xScale, xScale])
-            .range([0, svgOverall.attr("width")]);
+      // x axis
+      let xScale = 2;
+      const x = d3
+          .scaleLinear()
+          .domain([-xScale, xScale])
+          .range([0, svgOverall.attr("width")]);
+      const xOverall = d3
+          .scaleLinear()
+          .domain([-xScale, xScale])
+          .range([0, svgOverall.attr("width")]);
 
-        // y axis
-        const y = d3
-            .scaleBand()
-            .domain([hotelId])
-            .range([0, svgOverall.attr("height")])
-            .padding(0.1);
+      // y axis
+      const y = d3
+          .scaleBand()
+          .domain([hotelId])
+          .range([0, svgOverall.attr("height")])
+          .padding(0.1);
 
-        let counts = this.countsCategoryPosNeg(categoryId, [hotelId])[0];
-        // bars
-        svgOverall
-            .select("g")
-            .append("rect")
-            .attr("class", "highlight")
-            .attr("y", y(hotelId))
-            .attr("x", function (d) {
-              return x(-counts["negCount"]);
-            })
-            .attr("width", function (d) {
-              return x(counts["posCount"]) - x(-counts["negCount"]);
-            })
-            .attr("height", y.bandwidth())
-            .attr("fill", this.categoryStore.categoriesById[categoryId]["color"]);
+      let counts = this.countsCategoryPosNeg(categoryId, [hotelId])[0];
+      // bars
+      svgOverall
+          .select("g")
+          .append("rect")
+          .attr("class", "highlight")
+          .attr("y", y(hotelId))
+          .attr("x", function (d) {
+            return x(-counts["negCount"]);
+          })
+          .attr("width", function (d) {
+            return x(counts["posCount"]) - x(-counts["negCount"]);
+          })
+          .attr("height", y.bandwidth())
+          .attr("fill", this.categoryStore.categoriesById[categoryId]["color"]);
 
-        // re-add axis in front of bars
-        const axes = d3.selectAll(".zero-axis");
-        axes.each(function () {
-          this.parentNode.appendChild(this);
-        });
-      }
+      // re-add axis in front of bars
+      const axes = d3.selectAll(".zero-axis");
+      axes.each(function () {
+        this.parentNode.appendChild(this);
+      });
     },
 
     unhighlight() {
