@@ -208,16 +208,12 @@ export default {
           .scaleLinear()
           .domain([-xScale, xScale])
           .range([0, svgOverall.attr("width")]);
-      const xOverall = d3
-          .scaleLinear()
-          .domain([-xScale, xScale])
-          .range([0, svgOverall.attr("width")]);
 
       // y axis
       const y = d3
           .scaleBand()
           .domain([hotelId])
-          .range([0, svgOverall.attr("height")])
+          .range([0, this.height])
           .padding(0.1);
 
       let counts = this.countsCategoryPosNeg(categoryId, [hotelId])[0];
