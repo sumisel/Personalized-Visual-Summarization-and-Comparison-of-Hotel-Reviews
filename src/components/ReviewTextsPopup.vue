@@ -5,15 +5,17 @@ import { inject } from "vue";
 import CategoryName from "./CategoryName.vue";
 import HotelAvatarInline from "./HotelAvatarInline.vue";
 import HotelName from "@/components/HotelName.vue";
+import Glyph from "@/components/Glyph.vue";
 
 export default {
-  components: {HotelName, HotelAvatarInline, CategoryName},
+  components: {Glyph, HotelName, HotelAvatarInline, CategoryName},
   props: {
     hotelId: String,
     categoryId: String,
     polarity: String,
     sentence: Object,
     date: String,
+    minRatings: Object,
     indices: Array,
   },
   setup() {
@@ -31,7 +33,6 @@ export default {
       "cleanliness": "cleanliness clean dirty dust",
       }
 
-
     return {
       hotelStore,
       categoryStore,
@@ -43,24 +44,6 @@ export default {
   },
   computed: {},
   methods: {
-    calcFontSize: function (number) {
-      if (number < 0.25) {
-        return "8pt";
-      } else if (number < 0.5) {
-        return "11pt";
-      } else {
-        return "14pt";
-      }
-    },
-    calcFontWeight: function (number) {
-      if (number < 0.25) {
-        return "100";
-      } else if (number < 0.5) {
-        return "300";
-      } else {
-        return "500";
-      }
-    },
     matchText(text, word) {
       const textCleaned = text
         .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "")
@@ -78,16 +61,26 @@ export default {
       });
       return textCleaned.includes(wordCleaned) || wordIncludesText
     },
-    roundToDecimal: function (number, decimals) {
-      return number.toFixed(decimals);
+    sortReviews() {
+      // for the trending popup, sort by category value
+      const reviews = Object.assign({}, this.reviews[this.hotelId]['reviews'], this.reviews[this.hotelId]['reviews_unannotated'])
+      if(!this.sentence){
+        this.indices.sort((a, b) => {
+          return (
+              reviews[b["idx_review"]]["property_dict"][this.categoryId]
+              - reviews[a["idx_review"]]["property_dict"][this.categoryId]
+          );
+        });
+      }
+      return this.indices;
     },
-  },
+  }
 };
 </script>
 
 <template>
     <v-card>
-      <div class="pa-1">
+      <div class="pa-3">
         <HotelName :hotelId="hotelId" avatar></HotelName>
         &nbsp;
         <div style="display: inline-block" v-if="sentence">{{ sentence["text"] }}</div>
@@ -125,7 +118,7 @@ export default {
           <br />
         </div>
 
-        <div v-for="review in indices" :key="review">
+        <div v-for="review in sortReviews()" :key="review"  >
           <v-expansion-panels>
             <v-expansion-panel>
               <v-expansion-panel-title v-if="sentence">
@@ -136,9 +129,18 @@ export default {
                 }}
               </v-expansion-panel-title>
               <v-expansion-panel-title v-else>
-                {{
-                  Object.assign({}, reviews[hotelId]["reviews"], reviews[hotelId]["reviews_unannotated"])[review["idx_review"]]["title"]
-                }}
+                <Glyph
+                    :ratings="Object.assign({}, reviews[hotelId]['reviews'], reviews[hotelId]['reviews_unannotated'])
+                        [review['idx_review']]
+                        ['property_dict']"
+                    :minRatings="minRatings"
+                    :height="40"
+                    :width="40"></Glyph>
+                <div class="pa-1">
+                  {{
+                    Object.assign({}, reviews[hotelId]["reviews"], reviews[hotelId]["reviews_unannotated"])[review["idx_review"]]["title"]
+                  }}
+                </div>
               </v-expansion-panel-title>
               <v-expansion-panel-text>
                 <span

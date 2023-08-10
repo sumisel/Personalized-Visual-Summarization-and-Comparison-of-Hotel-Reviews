@@ -75,23 +75,6 @@ export default {
         return "500";
       }
     },
-    matchText(text, word) {
-      const textCleaned = text
-        .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "")
-        .toLowerCase()
-        .split(" ");
-      const wordCleaned = word
-          .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "")
-          .toLowerCase()
-          .replace(/and|the|is|was|for/gi, "")
-      let wordIncludesText = false;
-      textCleaned.forEach((textWord) => {
-        if (wordCleaned.includes(textWord)) {
-          wordIncludesText = true;
-        }
-      });
-      return textCleaned.includes(wordCleaned) || wordIncludesText
-    },
     roundToDecimal: function (number, decimals) {
       return number.toFixed(decimals);
     },
@@ -145,7 +128,7 @@ export default {
     <v-dialog
         class="d-flex justify-content-center"
         scrollable
-        width="auto"
+        width="50%"
         v-model="isActive"
     >
       <ReviewTextsPopup
@@ -154,7 +137,6 @@ export default {
           :polarity = "polarity"
           :sentence = "sentence"
           :indices = "sentence['idx_similar_reviews']"
-          style="width: 50%"
         ></ReviewTextsPopup>
     </v-dialog>
 </template>

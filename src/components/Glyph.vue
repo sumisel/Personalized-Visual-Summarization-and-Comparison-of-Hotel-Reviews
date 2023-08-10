@@ -31,6 +31,14 @@ export default {
       },
     },
     showRating: false,
+    height: {
+      type: Number,
+      default: 100,
+    },
+    width: {
+      type: Number,
+      default: 100,
+    },
   },
   setup() {
     const svg = ref();
@@ -44,8 +52,8 @@ export default {
     };
   },
   mounted() {
-    const width = 100;
-    const height = 100;
+    const width = this.width;
+    const height = this.height;
     d3.select(this.svg)
       .attr("width", width)
       .attr("height", height)
@@ -78,11 +86,11 @@ export default {
       const arc = d3
         .arc()
         .innerRadius(0)
-        .outerRadius((d) => d.data.ratings * 10);
+        .outerRadius((d) => d.data.ratings * 10 * this.height/100);
       const arcMin = d3
         .arc()
         .innerRadius(0)
-        .outerRadius((d) => d.data.minRatings * 10);
+        .outerRadius((d) => d.data.minRatings * 10 * this.height/100);
       const overallRating = [
         this.categoryStore.categories.reduce(
           (sum, category) =>

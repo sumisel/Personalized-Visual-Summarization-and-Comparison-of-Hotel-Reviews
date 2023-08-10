@@ -54,6 +54,14 @@ export default {
     const reviews = inject("reviews");
     const emitter = inject("emitter");
     let date = "";
+    let minRatings = {
+        'location': .0,
+        'value': .0,
+        'rooms': .0,
+        'service': .0,
+        'cleanliness': .0,
+        'sleep': .0
+    }
     let indices = [];
 
     return {
@@ -64,6 +72,7 @@ export default {
       reviews,
       emitter,
       date,
+      minRatings,
       indices,
     };
   },
@@ -203,9 +212,21 @@ export default {
         })
         .on("click", (event, d) => {
           this.indices = [];
-          for(const k in d["values"]) {
+          this.minRatings = {
+            'location': 5,
+            'value': 5,
+            'rooms': 5,
+            'service': 5,
+            'cleanliness': 5,
+            'sleep': 5,
+          }
+          for(let k in d["values"]) {
             const reviews = Object.assign({}, this.reviews[this.hotelId]["reviews"], this.reviews[this.hotelId]["reviews_unannotated"]);
+            //console.log(reviews[k]);
             this.indices.push({"idx_review": k});
+            for(let v in reviews[k]["property_dict"]) {
+              this.minRatings[v] = Math.min(this.minRatings[v], reviews[k]["property_dict"][v]);
+            }
           }
           // open popup with data of these reviews
           this.date = d3.timeFormat("%b %Y")(new Date(d["timestamp"]))
@@ -255,15 +276,15 @@ export default {
   <v-dialog
       class="d-flex justify-content-center"
       scrollable
-      width="auto"
+      width="50%"
       v-model="isActive"
   >
     <ReviewTextsPopup
         :hotelId = "hotelId"
         :categoryId = "categoryId"
         :date = "date"
+        :minRatings = "minRatings"
         :indices = "indices"
-        style="width: 50%"
     ></ReviewTextsPopup>
   </v-dialog>
 </template>
