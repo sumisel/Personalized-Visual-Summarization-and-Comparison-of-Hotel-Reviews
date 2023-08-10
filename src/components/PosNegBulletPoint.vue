@@ -15,12 +15,18 @@ export default {
   components: {
     ReviewTextsPopup,
   },
+  data () {
+    return {
+      isActive: false
+    }
+  },
   setup() {
     const hotelStore = useHotelStore();
     const categoryStore = useCategoryStore();
     const clusterStore = useClusterStore();
     const reviews = inject("reviews");
     const hotelMeta = inject("hotelMeta");
+    const emitter = inject("emitter");
     const keywords = {
       "location": "location area neighborhood district city town street",
       "sleep": "sleep comfort bed pillow mattress",
@@ -37,10 +43,19 @@ export default {
       clusterStore,
       reviews,
       hotelMeta,
+      emitter,
       keywords,
     };
   },
   computed: {},
+  mounted() {
+    this.emitter.on(
+        "close-popup",
+        (params) => {
+          this.isActive = false;
+        }
+    );
+  },
   methods: {
     calcFontSize: function (number) {
       if (number < 0.25) {
@@ -58,13 +73,6 @@ export default {
         return "300";
       } else {
         return "500";
-      }
-    },
-    calcHover: function (hover, categoryId) {
-      if (hover || this.clusterStore.noClusterHovered(categoryId)) {
-        return 1;
-      } else {
-        return 0.2;
       }
     },
     matchText(text, word) {
@@ -92,130 +100,62 @@ export default {
 </script>
 
 <template>
-  <v-dialog
-    class="d-flex justify-content-center"
-    scrollable
-    width="auto"
-  >
-    <template v-slot:activator="{ props }">
-      <p
-        v-bind="props"
-        @mouseenter="
-          categoryStore.hover(categoryId);
-        "
-        @mouseleave="
-          categoryStore.unhover();
-        "
-        :style="[
-          {
-            'font-weight': calcFontWeight(sentence['ratio_category']),
-            'font-size': calcFontSize(sentence['ratio_category']),
-            'opacity': (categoryStore.noCategoryHovered || categoryStore.categoriesById[categoryId].hover)?1:.2,
-          },
-        ]"
-      >
-        <v-icon
-          v-if="polarity == 'pos'"
-          icon="mdi-plus-circle-outline"
-          :style="[{ color: sentence['color'] }]"
-        /><v-icon
-          v-else
-          icon="mdi-minus-circle-outline"
-          :style="[{ color: sentence['color'] }]"
-        />
-        {{ sentence["text"] }}.<v-icon icon="mdi-dots-horizontal" :style="[{ scale: .8 }]"/>
-        <v-tooltip activator="parent" location="bottom" max-width="300px">
-          {{
-            roundToDecimal(100 * sentence["ratio_category"], 2) +
-            "% of " +
-            sentence["category"] +
-            " mentions"
-          }}
-          <br />
-          {{
-            roundToDecimal(
-              (100 * sentence["cluster_size"]) /
-                reviews[hotelId]["review_count"],
-              2
-            ) + "% of reviews"
-          }}</v-tooltip>
-      </p>
-    </template>
-    <template v-slot:default="{ isActive }">
-      <v-card style="width: 50%">
-        <v-toolbar>
-          <v-toolbar-title>{{
-            hotelMeta[hotelId].name + " - " + sentence["text"]
-          }}</v-toolbar-title>
-        </v-toolbar>
-        <v-card-text>
-          <div class="text-h6">
-            {{ reviews[hotelId]["reviews"][sentence["idx_review"]]["title"] }}
-          </div>
-          <span
-            v-for="(word, index) in reviews[hotelId]['reviews'][
-              sentence['idx_review']
-            ]['text'].split(' ')"
-            :style="[
-              {
-                'font-weight': matchText(keywords[categoryId] , word) ? 500 : 300,
-                'font-size': matchText(keywords[categoryId] , word) ? '14pt' : '11pt',
-                'color': matchText(keywords[categoryId] , word)? sentence['color'] : 'black',
-              },
-            ]"
-            :key="index"
-          >
-            {{ word + " " }}
-          </span>
-
-          <br />
-          <v-divider></v-divider>
-          <br />
-
-          <div class="text-h5">Similar Review Aspects for this Hotel</div>
-          <br />
-          <div v-for="review in sentence['idx_similar_reviews']" :key="review">
-            <v-expansion-panels>
-              <v-expansion-panel>
-                <v-expansion-panel-title>
-                  {{
-                    reviews[hotelId]["reviews"][review["idx_review"]][
-                      polarity + "_aspects"
-                    ][review["idx_sentence"]]
-                  }}
-                </v-expansion-panel-title>
-                <v-expansion-panel-text>
-                  <span><b>
-                    {{
-                      reviews[hotelId]["reviews"][review["idx_review"]]["title"]
-                    }}
-                  </b></span>
-                  <br/>
-                  <span
-                    v-for="(word, index) in reviews[hotelId]['reviews'][
-                      review['idx_review']
-                    ]['text'].split(' ')"
-                    :style="[
-                      {
-                        'font-weight': matchText(keywords[categoryId] , word) ? 500 : 300,
-                        'font-size': matchText(keywords[categoryId] , word) ? '14pt' : '11pt',
-                        'color': matchText(keywords[categoryId] , word)? sentence['color'] : 'black',
-                      },
-                    ]"
-                    :key="index"
-                  >
-                    {{ word + " " }}
-                  </span>
-                </v-expansion-panel-text>
-              </v-expansion-panel>
-            </v-expansion-panels>
-          </div>
-        </v-card-text>
-        <v-card-actions class="justify-end">
-          <v-btn variant="text" @click="isActive.value = false">Close</v-btn>
-        </v-card-actions>
-      </v-card>
-    </template>
-  </v-dialog>
+    <p
+      @mouseenter="
+        categoryStore.hover(categoryId);
+      "
+      @mouseleave="
+        categoryStore.unhover();
+      "
+      @click="isActive = !isActive"
+      :style="[
+        {
+          'font-weight': calcFontWeight(sentence['ratio_category']),
+          'font-size': calcFontSize(sentence['ratio_category']),
+          'opacity': (categoryStore.noCategoryHovered || categoryStore.categoriesById[categoryId].hover)?1:.2,
+        },
+      ]"
+    >
+      <v-icon
+        v-if="polarity == 'pos'"
+        icon="mdi-plus-circle-outline"
+        :style="[{ color: sentence['color'] }]"
+      /><v-icon
+        v-else
+        icon="mdi-minus-circle-outline"
+        :style="[{ color: sentence['color'] }]"
+      />
+      {{ sentence["text"] }}.<v-icon icon="mdi-dots-horizontal" :style="[{ scale: .8 }]"/>
+      <v-tooltip activator="parent" location="bottom" max-width="300px">
+        {{
+          roundToDecimal(100 * sentence["ratio_category"], 2) +
+          "% of " +
+          sentence["category"] +
+          " mentions"
+        }}
+        <br />
+        {{
+          roundToDecimal(
+            (100 * sentence["cluster_size"]) /
+              reviews[hotelId]["review_count"],
+            2
+          ) + "% of reviews"
+        }}</v-tooltip>
+    </p>
+    <v-dialog
+        class="d-flex justify-content-center"
+        scrollable
+        width="auto"
+        v-model="isActive"
+    >
+      <ReviewTextsPopup
+          :hotelId = "hotelId"
+          :categoryId = "categoryId"
+          :polarity = "polarity"
+          :sentence = "sentence"
+          :indices = "sentence['idx_similar_reviews']"
+          style="width: 50%"
+        ></ReviewTextsPopup>
+    </v-dialog>
 </template>
 

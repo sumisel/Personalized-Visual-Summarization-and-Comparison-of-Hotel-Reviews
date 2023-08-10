@@ -7,8 +7,15 @@ import { inject } from "vue";
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
 import { useTimeStore } from "../stores/ratings_over_time";
+import ReviewTextsPopup from "./ReviewTextsPopup.vue";
 
 export default {
+  components: {ReviewTextsPopup},
+  data () {
+    return {
+      isActive: false
+    }
+  },
   props: {
     categoryId: {
       type: String,
@@ -45,8 +52,9 @@ export default {
     const categoryStore = useCategoryStore();
     const timeStore = useTimeStore();
     const reviews = inject("reviews");
-    let mouseoverText1stLine = "";
-    let mouseoverText2ndLine = "";
+    const emitter = inject("emitter");
+    let date = "";
+    let indices = [];
 
     return {
       svg,
@@ -54,8 +62,9 @@ export default {
       categoryStore,
       timeStore,
       reviews,
-      mouseoverText1stLine,
-      mouseoverText2ndLine,
+      emitter,
+      date,
+      indices,
     };
   },
   mounted() {
@@ -69,6 +78,12 @@ export default {
       () => {
         this.plot();
       }
+    );
+    this.emitter.on(
+        "close-popup",
+        (params) => {
+          this.isActive = false;
+        }
     );
 
     this.plot();
@@ -175,11 +190,11 @@ export default {
         })
         .on("mousemove", (event, d) => {
           const date = d3.timeFormat("%b %Y")(new Date(d["timestamp"]));
-          this.mouseoverText1stLine = date;
-          this.mouseoverText2ndLine = " Average Rating " + d["value"].toFixed(1) + " / 5.0";
+          let mouseoverText1stLine = date;
+          let mouseoverText2ndLine = " Average Rating " + d["value"].toFixed(1) + " / 5.0";
           tooltip.style("left", (event.pageX + 10) + "px");
           tooltip.style("top", (event.pageY - 28) + "px");
-          tooltip.html(`${this.mouseoverText1stLine} </br> ${this.mouseoverText2ndLine}`);
+          tooltip.html(`${mouseoverText1stLine} </br> ${mouseoverText2ndLine}`);
         })
         .on("mouseout", (event, d) => {
           tooltip.style("visibility", "hidden");
@@ -187,11 +202,14 @@ export default {
               .attr("opacity", 0);
         })
         .on("click", (event, d) => {
+          this.indices = [];
           for(const k in d["values"]) {
             const reviews = Object.assign({}, this.reviews[this.hotelId]["reviews"], this.reviews[this.hotelId]["reviews_unannotated"]);
-            console.log(reviews[k]);
-            // TODO open popup with data of these reviews
+            this.indices.push({"idx_review": k});
           }
+          // open popup with data of these reviews
+          this.date = d3.timeFormat("%b %Y")(new Date(d["timestamp"]))
+          this.isActive = true;
         });
 
 
@@ -234,4 +252,18 @@ export default {
     ref="svg"
     :id="'chart_trending_' + this.categoryId + '_' + this.hotelId.replaceAll('.', '_')"
   ></svg>
+  <v-dialog
+      class="d-flex justify-content-center"
+      scrollable
+      width="auto"
+      v-model="isActive"
+  >
+    <ReviewTextsPopup
+        :hotelId = "hotelId"
+        :categoryId = "categoryId"
+        :date = "date"
+        :indices = "indices"
+        style="width: 50%"
+    ></ReviewTextsPopup>
+  </v-dialog>
 </template>
