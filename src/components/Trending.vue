@@ -151,8 +151,10 @@ export default {
                 v-for="category in categoryStore.relevantCategories.sort(
                   (a, b) => b.value - a.value
                 )"
+                @mouseenter="categoryStore.hover(category.id);"
+                @mouseleave="categoryStore.unhover();"
                 :key="'time_' + hotelId + '_' + category.id"
-              >
+                :style="[{'opacity': (categoryStore.noCategoryHovered || categoryStore.categoriesById[category.id].hover)?1:.2},]">
                 <div class="pa-2 trend-description-detail">
                   <div>
                     <CategoryName :categoryId="category['id']"></CategoryName>: {{ trendDescription(hotelId, category.id)}}.
