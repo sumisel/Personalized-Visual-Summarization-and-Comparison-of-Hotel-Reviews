@@ -66,7 +66,8 @@ const poiMeta = inject("poiMeta");
         </thead>
         <tbody>
           <tr v-for="category in categories" :key="category.id" :class="{ hover: category.hover }"
-            @mouseenter="categoryStore.hover(category.id)" @mouseleave="categoryStore.unhover()">
+            @mouseenter="categoryStore.hover(category.id)" @mouseleave="categoryStore.unhover()"
+            :style="[{'opacity': (categoryStore.noCategoryHovered || categoryStore.categoriesById[category.id].hover)?1:.2},]">
             <td>
               <v-icon :icon="category.icon" class="mr-2" :color="category.color"></v-icon>{{ category.title }}
             </td>

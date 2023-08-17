@@ -199,7 +199,7 @@ export default {
 
     highlight(categoryId, hotelId) {
       const svgOverall = d3.select(
-          "#overall_" + hotelId.replaceAll(".", "_")
+          "#overall_" + this.hotelId.replaceAll(".", "_")
       );
 
       // x axis
@@ -207,7 +207,7 @@ export default {
       const x = d3
           .scaleLinear()
           .domain([-xScale, xScale])
-          .range([0, svgOverall.attr("width")]);
+          .range([0, xScale*this.width]);
 
       // y axis
       const y = d3
