@@ -75,5 +75,19 @@ if (cityId) {
     timeStore.initTimeData(Object.keys(hotelMeta[cityId]), ratings_time_data);
 }
 
+
+const keywords = {
+    "location": "location area neighborhood district city town street",
+    "sleep": "sleep comfort bed pillow mattress",
+    "value": "value price cost money",
+    "rooms": "room size space",
+    "service": "service friendliness staff",
+    "cleanliness": "cleanliness clean dirty dust",
+};
+
+app.provide("keywords", keywords);
+
+
+
 // mount app
 app.mount('#app');

@@ -12,6 +12,7 @@ const { categories } = storeToRefs(categoryStore);
 const poiStore = usePoiStore();
 const interfaceStore = useInterfaceStore();
 const poiMeta = inject("poiMeta");
+const keywords = inject("keywords");
 </script>
 
 <template>
@@ -75,6 +76,10 @@ const poiMeta = inject("poiMeta");
               <v-slider :color="category.color" v-model="category.value" hide-details="true" thumb-size="12"
                 track-size="2" min="0.01"></v-slider>
             </td>
+            <v-tooltip activator="parent" location="bottom" max-width="300px">
+              <div v-for="keyword in keywords[category.id].split(' ')">
+                {{keyword}}
+              </div></v-tooltip>
           </tr>
         </tbody>
       </v-table>

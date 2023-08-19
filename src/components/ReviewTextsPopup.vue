@@ -24,14 +24,7 @@ export default {
     const reviews = inject("reviews");
     const hotelMeta = inject("hotelMeta");
     const emitter = inject("emitter");
-    const keywords = {
-      "location": "location area neighborhood district city town street",
-      "sleep": "sleep comfort bed pillow mattress",
-      "value": "value price cost money",
-      "rooms": "room size space",
-      "service": "service friendliness staff",
-      "cleanliness": "cleanliness clean dirty dust",
-      }
+    const keywords = inject("keywords");
 
     return {
       hotelStore,
