@@ -12,7 +12,14 @@ const { categories } = storeToRefs(categoryStore);
 const poiStore = usePoiStore();
 const interfaceStore = useInterfaceStore();
 const poiMeta = inject("poiMeta");
-const keywords = inject("keywords");
+const keywordsDescriptions =  {
+  "location": "Location customer ratings include the location of the hotel, the surrounding area and, and the proximity to points of interest.",
+  "sleep": "Customer ratings in this category include the quality of the bed, the noise level, and the temperature of the room.",
+  "value": "Value customer ratings include the price, the value for money, and the quality of the breakfast.",
+  "rooms": "Customer ratings for the rooms regard the size of the room, the quality of the bathroom and other facilities, and the view.",
+  "service": "Service customer ratings include the friendliness of the staff, the quality of the room service, and the check-in and check-out experience.",
+  "cleanliness": "Cleanliness customer ratings refer to the cleanliness of the room, the bathroom, and the hotel in general.",
+};
 </script>
 
 <template>
@@ -77,9 +84,7 @@ const keywords = inject("keywords");
                 track-size="2" min="0.01"></v-slider>
             </td>
             <v-tooltip activator="parent" location="bottom" max-width="300px">
-              <div v-for="keyword in keywords[category.id].split(' ')">
-                {{keyword}}
-              </div></v-tooltip>
+                {{keywordsDescriptions[category.id]}}</v-tooltip>
           </tr>
         </tbody>
       </v-table>
