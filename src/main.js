@@ -87,13 +87,13 @@ if (cityId) {
 
 
 const keywords = {
-    "location": "location area neighborhood district city town street",
-    "sleep": "sleep comfort bed pillow mattress",
-    "value": "value price cost money",
-    "rooms": "room size space",
-    "service": "service friendliness staff",
-    "cleanliness": "cleanliness clean dirty dust",
-};
+    "location": "location area neighborhood district city town street metro subway station distance center close far",
+    "sleep": "sleep comfort bed pillow mattress temperature noise quiet",
+    "value": "value price cost money breakfast expensive cheap",
+    "rooms": "room size space bathroom view",
+    "service": "service friendliness staff receptionist reception check-in checkin check-out checkout",
+    "cleanliness": "cleanliness clean dirt dirty dust hygiene housekeeping housekeeper maid vacuum",
+}
 
 app.provide("keywords", keywords);
 
