@@ -23,7 +23,7 @@ export default {
     const timeStore = useTimeStore();
     const hotelMeta = inject("hotelMeta");
     const city = inject("city");
-    const breakpointStrong = 0.5;
+    const breakpointStrong = 0.6;
     const breakpointWeak   = 0.2;
     return { hotelStore, categoryStore, timeStore, hotelMeta, city, breakpointStrong, breakpointWeak };
   },
