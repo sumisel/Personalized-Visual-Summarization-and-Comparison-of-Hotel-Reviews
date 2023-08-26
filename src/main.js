@@ -24,10 +24,14 @@ const categoryStore = useCategoryStore(pinia);
 const timeStore = useTimeStore(pinia);
 const clusterStore = useClusterStore(pinia);
 
+const debug = false;
+
 // data
+console.log("Loading meta data...");
 import cities from "./assets/cities.json";
 import hotelMeta from "./assets/hotel_meta.json";
 import poiMeta from "./assets/poi_meta.json";
+console.log("Done loading meta data.")
 
 // create App
 const app = createApp(App)
@@ -53,16 +57,20 @@ if (cityId) {
     app.provide("noTutorial", noTutorial);
 
     // load reviews
+    console.log("Loading reviews data...");
     const result = await fetch("/HotelRec_subset_" + cityId + "_10_reviews.json");
     const data = await result.json();
-
-    //select first 4 hotels, for debugging
-    Object.keys(data).forEach((key, index) => {
-        if(index < 4) {
-            hotelStore.selectedHotelIds.push(key);
-        }
-    });
     app.provide("reviews", data);
+    console.log("Done loading reviews data.");
+
+    if (debug) {
+        //select first 4 hotels, for debugging
+        Object.keys(data).forEach((key, index) => {
+            if(index < 4) {
+                hotelStore.selectedHotelIds.push(key);
+            }
+        });
+    }
 
     clusterStore.initClusters(data);
     clusterStore.emitter = emitter;
@@ -70,9 +78,11 @@ if (cityId) {
     categoryStore.emitter = emitter;
 
     // load ratings over time
+    console.log("Loading ratings over time data...");
     const ratings_time = await fetch("/HotelRec_subset_" + cityId + "_10_average_ratings_over_time.json");
     const ratings_time_data = await ratings_time.json();
     timeStore.initTimeData(Object.keys(hotelMeta[cityId]), ratings_time_data);
+    console.log("Done loading ratings over time data.");
 }
 
 
