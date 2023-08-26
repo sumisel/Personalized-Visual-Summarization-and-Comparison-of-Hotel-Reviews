@@ -143,8 +143,8 @@ export default {
       d3.select(this.svg)
           .attr("height", height);
 
-      this.neg = Math.round(10000*data.find(h => h["name"]==this.hotelId)["negCount"])/100;
-      this.pos = Math.round(10000*data.find(h => h["name"]==this.hotelId)["posCount"])/100;
+      this.neg = Math.round(100*data.find(h => h["name"]==this.hotelId)["negCount"]);
+      this.pos = Math.round(100*data.find(h => h["name"]==this.hotelId)["posCount"]);
 
 
       // remove all previous elements

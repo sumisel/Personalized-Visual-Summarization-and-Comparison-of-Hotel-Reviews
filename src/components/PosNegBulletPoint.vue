@@ -111,7 +111,7 @@ export default {
       {{ sentence["text"] }}.<v-icon icon="mdi-dots-horizontal" :style="[{ scale: .8 }]"/>
       <v-tooltip activator="parent" location="bottom" max-width="300px">
         {{
-          roundToDecimal(100 * sentence["ratio_category"], 2) +
+          roundToDecimal(100 * sentence["ratio_category"], 0) +
           "% of " +
           sentence["category"] +
           " mentions"
@@ -121,7 +121,7 @@ export default {
           roundToDecimal(
             (100 * sentence["cluster_size"]) /
               reviews[hotelId]["review_count"],
-            2
+            0
           ) + "% of reviews"
         }}</v-tooltip>
     </p>
