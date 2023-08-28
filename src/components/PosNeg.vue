@@ -3,11 +3,11 @@ import ChartPosNeg from "./ChartPosNeg.vue";
 import PosNegBulletPoint from "./PosNegBulletPoint.vue";
 import HotelName from "./HotelName.vue";
 import HotelAvatarInline from "./HotelAvatarInline.vue";
+import InlineListItem from "../components/InlineListItem.vue";
 import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
 import { useClusterStore } from "../stores/cluster.js";
 import { inject } from "vue";
-import InlineListItem from "@/components/InlineListItem.vue";
 
 export default {
   components: {
@@ -26,7 +26,59 @@ export default {
     const reviews = inject("reviews");
     return { hotelStore, categoryStore, clusterStore, hotelMeta, city, reviews };
   },
-  computed: {},
+  computed: {
+    ratingVarietyDescription() {
+      const counts = this.getOverallSentimentCounts();
+
+      // compute variance of pos counts and neg counts
+      let meanPos = 0;
+      let meanNeg = 0;
+      let varPos = 0;
+      let varNeg = 0;
+      counts.forEach((hotel) => {
+        meanPos += hotel["posCount"]
+        meanNeg += hotel["negCount"]
+      });
+      meanPos /= counts.length;
+      meanNeg /= counts.length;
+      counts.forEach((hotel) => {
+        varPos += Math.pow(hotel["posCount"] - meanPos, 2);
+        varNeg += Math.pow(hotel["negCount"] - meanNeg, 2);
+      });
+      varPos /= counts.length;
+      varNeg /= counts.length;
+      varPos = Math.sqrt(varPos);
+      varNeg = Math.sqrt(varNeg);
+      const v = (varPos + varNeg) / 2;
+
+      if (v< 0.04) {
+        return "almost identically";
+      } else if (v < 0.08) {
+        return "quite comparably";
+      } else if (v < 0.13) {
+        return "somewhat differently";
+      } else if (v < 0.16) {
+        return "quite variably";
+      }
+      return "with clear differences";
+    },
+    topReviewedHotels() {
+      if (this.hotelStore.selectedHotelIds.length === 0) {
+        return [];
+      }
+
+      const counts = this.getOverallSentimentCounts();
+      // sort counts by posCount
+      counts.sort((a, b) => (b.posCount-b.negCount) - (a.posCount-a.negCount));
+
+      // cut off if difference to best hotel is larger than 10%
+      const bestRating = counts[0].posCount-counts[0].negCount;
+      const topRatedHotels = counts.filter(
+          (ratedHotel) => bestRating - (ratedHotel.posCount-ratedHotel.negCount) < 0.15*bestRating
+      );
+      return topRatedHotels.map((ratedHotel) => ratedHotel.name);
+    },
+  },
   methods: {
     sentimentSummary(hotelId, category, prefix) {
       let summary = [];
@@ -74,6 +126,26 @@ export default {
       });
       return summary;
     },
+    getOverallSentimentCounts(){
+      const hotels = this.hotelStore.selectedHotelIds;
+      let counts = [];
+      hotels.forEach((hotelId) => {
+        counts.push({
+          name: hotelId,
+          posCount: this.categoryStore.relevantCategories.map(c =>
+              this.categoryStore.relevantCategories.length
+              * this.categoryStore.normalizedCategoryValues[c["id"]]
+              * this.reviews[hotelId]["counts"]["pos"][c["id"]])
+              .reduce((a, b) => a + b, 0),
+          negCount: this.categoryStore.relevantCategories.map(c =>
+              this.categoryStore.relevantCategories.length
+              * this.categoryStore.normalizedCategoryValues[c["id"]]
+              * this.reviews[hotelId]["counts"]["neg"][c["id"]])
+              .reduce((a, b) => a + b, 0),
+        });
+      });
+      return counts;
+    },
   },
 };
 </script>
@@ -101,6 +173,23 @@ export default {
               </td>
             </tr>
           </v-table>
+          <p class="summary" style="margin-left: 10pt">
+            <span>
+              In the reviews of the hotels, people mention the rating categories <b>{{ ratingVarietyDescription }}</b>.
+            </span>
+            <br/>
+            <span v-if="topReviewedHotels.length > 0">
+              <InlineListItem v-for="(hotel, index) in topReviewedHotels" :key="hotel" :index="index"
+                              :listLength="topReviewedHotels.length">
+                <strong>
+                  <HotelAvatarInline :hotelId="hotel"></HotelAvatarInline>
+                  {{ hotelMeta[hotel].name }}
+                </strong>
+              </InlineListItem>
+              <span v-if="topReviewedHotels.length > 1"> have </span>
+              <span v-else> has </span> the overall best ratio of positive to negative mentions.
+            </span>
+          </p>
         </div>
       </p>
       <v-card class="my-2 flex-grow-1"
