@@ -7,9 +7,11 @@ import { useHotelStore } from "../stores/hotel.js";
 import { useCategoryStore } from "../stores/category.js";
 import { useClusterStore } from "../stores/cluster.js";
 import { inject } from "vue";
+import InlineListItem from "@/components/InlineListItem.vue";
 
 export default {
   components: {
+    InlineListItem,
     HotelAvatarInline,
     PosNegBulletPoint,
     ChartPosNeg,
@@ -73,9 +75,6 @@ export default {
       return summary;
     },
   },
-  data: () => ({
-    panel: [0, 1],
-  }),
 };
 </script>
 
@@ -94,17 +93,14 @@ export default {
                     :color="'#999999'"
                     :width="400"
                     :height="10"
-                    :xMin="-2"
-                    :xMax="2"
+                    :xMin="-2.6"
+                    :xMax="2.6"
                     :key="'posneg_chart_' + hotelId + '_overall'"
                 ></ChartPosNeg>
                 <HotelAvatarInline :hotelId="hotelId"></HotelAvatarInline>
               </td>
             </tr>
           </v-table>
-          <span style="color: red; margin-left: 10pt">
-            <b>This is a placeholder text for a short summary about the similarities and differences between the reviews of the hotels.</b>
-          </span>
         </div>
       </p>
       <v-card class="my-2 flex-grow-1"
@@ -164,8 +160,8 @@ export default {
                     :color="category['color']"
                     :width="200"
                     :height="10"
-                    :xMin="-1"
-                    :xMax="1"
+                    :xMin="-1.3"
+                    :xMax="1.3"
                     :key="'posneg_chart_' + hotelId + '_' + category['id']"
                 ></ChartPosNeg>
               </td>
@@ -231,9 +227,12 @@ export default {
 }
 
 .sentiment-chart-title{
-  width: 65% !important;
+  width: 45% !important;
   display: flex;
   align-items: center;
+}
+.summary {
+  width: 55% !important;
 }
 
 .sentiment-chart {

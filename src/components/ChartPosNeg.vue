@@ -203,11 +203,11 @@ export default {
       );
 
       // x axis
-      let xScale = 2;
+      let xScale = 2.5;
       const x = d3
           .scaleLinear()
           .domain([-xScale, xScale])
-          .range([0, xScale*this.width]);
+          .range([0, 2*this.width]);
 
       // y axis
       const y = d3
