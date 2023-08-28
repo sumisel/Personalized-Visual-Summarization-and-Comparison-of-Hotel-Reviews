@@ -157,6 +157,7 @@ export default {
         <div class="pa-2" style="display: flex">
           <v-table class="sentiment-chart-title">
             <tr v-for="hotelId in hotelStore.selectedHotelIds"
+                class="overallChart"
               :key="'posneg_chart_'+ hotelId+'_overall_div'">
               <td class="d-flex">
                 <ChartPosNeg

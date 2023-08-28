@@ -184,7 +184,18 @@ export default {
           return x(d["posCount"]) - x(-d["negCount"]);
         })
         .attr("height", y.bandwidth())
-        .attr("fill", this.color);
+        .attr("fill", this.color)
+        .on("mouseover", (d) => {
+            if(this.categoryId== "overall") {
+              d3.selectAll(".overallChart").selectAll("rect").attr("opacity", 0.2);
+              d3.select(d.currentTarget).attr("opacity", 1);
+            }
+        })
+        .on("mouseout", (d) => {
+          if(this.categoryId== "overall") {
+            d3.selectAll(".overallChart").selectAll("rect").attr("opacity", 1);
+          }
+        })
 
       // add the y Axis on top of the bars
       svg
