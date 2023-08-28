@@ -268,6 +268,8 @@ export default {
     <div style="display: inline-block" v-else>The categories</div>
     <div style="display: inline-block" v-if="this.categoryId=='overall' || this.categoryId=='rooms'">&nbsp;are</div>
     <div style="display: inline-block" v-else>&nbsp;is</div>
-    mentioned <b>negatively in {{ neg }}%</b>, and <b>positively in {{ pos }}%</b> of the reviews.
+    mentioned <b>negatively in {{ neg }}%</b>, and <b>positively in {{ pos }}%</b> of the reviews
+    <div style="display: inline-block" v-if="this.categoryId=='overall'">&nbsp;(multiple mentions per review possible)</div>
+    .
   </v-tooltip>
 </template>
