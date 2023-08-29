@@ -84,7 +84,7 @@ function countsCategoryPosNeg(category, hotelIds) {
           >
             <v-table class="my-2 flex-grow-1" table-layout="fixed">
               <template
-                v-for="hotelId in hotelStore.selectedHotelIds"
+                v-for="hotelId in hotelStore.selectedHotelIdsSortedByRating"
                 :key="category['id'] + '_' + hotelId"
               >
                 <tr>

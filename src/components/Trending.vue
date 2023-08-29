@@ -118,7 +118,7 @@ export default {
     <div class="d-flex flex-column my-4">
       <div class="my-2 flex-grow-1">
         <v-expansion-panels
-          v-for="hotelId in hotelStore.selectedHotelIds"
+          v-for="hotelId in hotelStore.selectedHotelIdsSortedByRating"
           :key="'time_' + hotelId"
         >
           <v-expansion-panel>

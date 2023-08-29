@@ -11,6 +11,13 @@ export const useHotelStore = defineStore({
     categoryStore: useCategoryStore(),
   }),
   getters: {
+    selectedHotelIdsSortedByRating: (state) => {
+      const hotelMeta = inject("hotelMeta");
+      // sort in a new copy of the array
+      return [...state.selectedHotelIds].sort((a, b) => {
+        return state.overallRating(b) - state.overallRating(a);
+      });
+    },
     minRatings: (state) => {
       const hotelMeta = inject("hotelMeta");
       let minRatings = {

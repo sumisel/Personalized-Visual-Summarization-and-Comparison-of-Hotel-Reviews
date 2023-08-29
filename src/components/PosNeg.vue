@@ -156,7 +156,7 @@ export default {
       <p>
         <div class="pa-2" style="display: flex">
           <v-table class="sentiment-chart-title">
-            <tr v-for="hotelId in hotelStore.selectedHotelIds"
+            <tr v-for="hotelId in hotelStore.selectedHotelIdsSortedByRating"
                 class="overallChart"
               :key="'posneg_chart_'+ hotelId+'_overall_div'">
               <td class="d-flex">
@@ -194,7 +194,7 @@ export default {
         </div>
       </p>
       <v-card class="my-2 flex-grow-1"
-          v-for="hotelId in hotelStore.selectedHotelIds"
+          v-for="hotelId in hotelStore.selectedHotelIdsSortedByRating"
           :key="'overall_' + hotelId"
         >
           <div class="pa-2 hotel-name">

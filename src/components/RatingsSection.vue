@@ -87,7 +87,7 @@ export default {
       </span>
     </p>
     <div class="d-flex flex-column hotel-list my-4">
-      <HotelRating v-for="hotelId in hotelStore.selectedHotelIds" :key="hotelId" :hotelId="hotelId"></HotelRating>
+      <HotelRating v-for="hotelId in hotelStore.selectedHotelIdsSortedByRating" :key="hotelId" :hotelId="hotelId"></HotelRating>
       <v-label class="ml-4">Rating weighted by priorities <v-icon icon="mdi-arrow-right"></v-icon></v-label>
     </div>
   </div>

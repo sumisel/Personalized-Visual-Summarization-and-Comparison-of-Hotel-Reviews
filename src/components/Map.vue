@@ -531,7 +531,7 @@ export default {
     },
     selectedHotelsWithAllPositiveScores() {
       const positiveHotels = [];
-      this.hotelStore.selectedHotelIds.forEach((hotelId) => {
+      this.hotelStore.selectedHotelIdsSortedByRating.forEach((hotelId) => {
         let positive = true;
         this.poiStore.selectedPois.forEach((poi) => {
           if (!this.hotelMeta[hotelId].poiInfo?.[poi]?.startsWith("(+)")) {
@@ -720,7 +720,7 @@ export default {
     <span v-if="hotelStore.selectedHotelIds.length === 1">only <strong>one</strong> is</span>
     <span v-if="hotelStore.selectedHotelIds.length === 0"><strong>none</strong> are</span>
     selected <v-icon class="inline" icon="mdi-circle" size="x-small"></v-icon><span v-if="hotelStore.selectedHotelIds.length > 0">: </span><span v-else></span>
-    <InlineListItem v-for="(hotelId, index) in hotelStore.selectedHotelIds" :key="hotelId" :index="index"
+    <InlineListItem v-for="(hotelId, index) in hotelStore.selectedHotelIdsSortedByRating" :key="hotelId" :index="index"
       :listLength="hotelStore.selectedHotelIds.length">
       <a @click="focusOnHotel(hotelId)"><strong>
         <HotelAvatarInline :hotelId="hotelId"></HotelAvatarInline>
