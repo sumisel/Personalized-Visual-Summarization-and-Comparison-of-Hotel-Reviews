@@ -63,7 +63,7 @@ export default {
       return "with clear differences";
     },
     topReviewedHotels() {
-      if (this.hotelStore.selectedHotelIds.length === 0) {
+      if (this.hotelStore.selectedHotelIdsSortedByRating.length === 0) {
         return [];
       }
 
@@ -127,7 +127,7 @@ export default {
       return summary;
     },
     getOverallSentimentCounts(){
-      const hotels = this.hotelStore.selectedHotelIds;
+      const hotels = this.hotelStore.selectedHotelIdsSortedByRating;
       let counts = [];
       hotels.forEach((hotelId) => {
         counts.push({
@@ -156,6 +156,14 @@ export default {
       <p>
         <div class="pa-2" style="display: flex">
           <v-table class="sentiment-chart-title">
+            <tr>
+              <td style="display: flex; justify-content: center; font-weight: 100; font-size: 8pt; width: 400px">
+                <v-icon icon="mdi-minus-circle-outline"/>
+                &nbsp;
+                &nbsp;
+                <v-icon icon="mdi-plus-circle-outline"/>
+              </td>
+            </tr>
             <tr v-for="hotelId in hotelStore.selectedHotelIdsSortedByRating"
                 class="overallChart"
               :key="'posneg_chart_'+ hotelId+'_overall_div'">

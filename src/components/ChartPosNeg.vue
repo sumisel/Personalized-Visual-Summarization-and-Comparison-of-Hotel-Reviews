@@ -170,7 +170,7 @@ export default {
 
       // bars
       svg
-        .selectAll("myRect")
+        .selectAll("rect")
         .data(data)
         .enter()
         .append("rect")
@@ -184,11 +184,12 @@ export default {
           return x(d["posCount"]) - x(-d["negCount"]);
         })
         .attr("height", y.bandwidth())
-        .attr("fill", this.color)
+        .attr("fill", this.color);
+      d3.select(this.svg)
         .on("mouseover", (d) => {
             if(this.categoryId== "overall") {
               d3.selectAll(".overallChart").selectAll("rect").attr("opacity", 0.2);
-              d3.select(d.currentTarget).attr("opacity", 1);
+              d3.select(d.currentTarget).selectAll("rect").attr("opacity", 1);
             }
         })
         .on("mouseout", (d) => {
