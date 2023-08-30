@@ -210,6 +210,10 @@ export default {
     },
 
     highlight(categoryId, hotelId) {
+      if(this.categoryStore.relevantCategories.filter(category => category.id == categoryId).length == 0) {
+        return;
+      }
+
       const svgOverall = d3.select(
           "#overall_" + this.hotelId.replaceAll(".", "_")
       );
