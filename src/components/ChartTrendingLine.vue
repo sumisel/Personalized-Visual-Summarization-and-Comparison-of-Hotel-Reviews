@@ -102,7 +102,8 @@ export default {
       // remove all previous elements
       d3.select(this.svg).selectAll("*").remove();
       const svg = d3.select(this.svg).append("g");
-      svg.attr("transform", "translate(20, 5)");
+      const margin = {top: 5, right: 0, bottom: 0, left: 20};
+      svg.attr("transform", "translate("+margin.left+", "+margin.top+")");
 
       // draw line chart
       const d = this.timeStore.compileCategoryData(this.hotelId, this.categoryId);
@@ -118,13 +119,13 @@ export default {
                 return d;
               })
           )
-          .range([0, this.width-20]);
+          .range([0, this.width-margin.left-margin.right]);
 
       // add y axis
       const y = d3
           .scaleLinear()
           .domain([this.yMin, this.yMax])
-          .range([this.height-5, 0]);
+          .range([this.height-margin.top, 0]);
       svg.append("g").call(d3.axisLeft(y).tickValues([3, 4, 5]).tickFormat(d3.format("d")));
       // set a fading gradient for the axis
       svg.append("linearGradient")
