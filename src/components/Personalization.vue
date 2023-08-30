@@ -53,7 +53,7 @@ const keywordsDescriptions =  {
       </v-overlay>
     </div>
     <div class="my-12">
-      <div class="text-h6 mb-4"><v-icon>mdi-sort</v-icon> Rating Priorities</div>
+      <div class="text-h6 mb-4"><v-icon>mdi-sort</v-icon> Category Priorities</div>
       <div class="d-flex justify-center">
         <Glyph></Glyph>
         <div>
