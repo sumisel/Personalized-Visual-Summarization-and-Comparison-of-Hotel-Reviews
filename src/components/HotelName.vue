@@ -25,9 +25,13 @@ const props = defineProps({
 </script>
 
 <template>
-    <v-avatar v-if="avatar" class="mr-4" color="#eee" :image="`./img/hotels/${city.name
+    <v-avatar v-if="avatar && hotelId!='Hotel_Review-g187147-d197610-Reviews-Paris_Marriott_Rive_Gauche_Hotel_Conference_Center-Paris_Ile_de_France.html'" class="mr-4" color="#eee" :image="`./img/hotels/${city.name
         .replace(' ', '_')
         .toLowerCase()}/${hotelId}.png`">
+    </v-avatar>
+    <v-avatar v-if="avatar && hotelId=='Hotel_Review-g187147-d197610-Reviews-Paris_Marriott_Rive_Gauche_Hotel_Conference_Center-Paris_Ile_de_France.html'" class="mr-4" color="#eee" :image="`./img/hotels/${city.name
+        .replace(' ', '_')
+        .toLowerCase()}/Hotel_Review-g187147-d197610-Reviews-Paris_Marriott_Rive_Gauche_Hotel_Conference_Center-Paris_Ile_de_.png`">
     </v-avatar>
     <br v-if="lineBreak" />
     <span class="hotel-name" :class="{ 'selected': selected }">

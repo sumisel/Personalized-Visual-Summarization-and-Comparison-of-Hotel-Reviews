@@ -640,9 +640,15 @@ export default {
         <v-btn density="compact" icon="mdi-close" @click="resetZoom" class="close-button"></v-btn>
         <div class="d-flex flex-no-wrap justify-space-between">
           <div class="pa-3">
-            <v-avatar color="#eee" :image="`./img/hotels/${city.name
+            <v-avatar v-if="focusedHotel!='Hotel_Review-g187147-d197610-Reviews-Paris_Marriott_Rive_Gauche_Hotel_Conference_Center-Paris_Ile_de_France.html'"
+                       color="#eee" :image="`./img/hotels/${city.name
               .replace(' ', '_')
               .toLowerCase()}/${focusedHotel}.png`">
+            </v-avatar>
+            <v-avatar v-else
+                       color="#eee" :image="`./img/hotels/${city.name
+              .replace(' ', '_')
+              .toLowerCase()}/Hotel_Review-g187147-d197610-Reviews-Paris_Marriott_Rive_Gauche_Hotel_Conference_Center-Paris_Ile_de_.png`">
             </v-avatar>
           </div>
           <div class="flex-grow-1">
