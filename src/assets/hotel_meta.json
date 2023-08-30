@@ -458,6 +458,13 @@
             "location": {
                 "lat": 48.86581261187898,
                 "long": 2.3274766502451802
+            },
+            "poiInfo": {
+                "restaurants": "(+) many <strong>restaurants</strong> nearby",
+                "sightseeing": "(+) many <strong>sights</strong> and museums closeby",
+                "public_transport": "(+) close to main <strong>public transport</strong> lines",
+                "parks": "(+) next to famous Tuileries <strong>Garden</strong>",
+                "shopping": "(+) many <strong>shopping</strong> opportunities nearby"
             }
         },
         "Hotel_Review-g187147-d197656-Reviews-Mercure_Paris_Centre_Eiffel_Tower_Hotel-Paris_Ile_de_France.html": {
@@ -473,6 +480,13 @@
             "location": {
                 "lat": 48.85536706454114,
                 "long": 2.291923533788586
+            },
+            "poiInfo": {
+                "restaurants": "some <strong>restaurants</strong> nearby",
+                "sightseeing": "(+) next to Eiffel Tower with other <strong>sights</strong> closeby",
+                "public_transport": "(+) close to main <strong>public transport</strong> lines",
+                "parks": "(+) next to Champ de Mars <strong>park</strong>",
+                "shopping": "some <strong>shopping</strong> areas not too far away"
             }
         },
         "Hotel_Review-g187147-d233528-Reviews-Novotel_Paris_Centre_Tour_Eiffel-Paris_Ile_de_France.html": {
@@ -488,6 +502,13 @@
             "location": {
                 "lat": 48.85000143695886,
                 "long": 2.283295991853996
+            },
+            "poiInfo": {
+                "restaurants": "some <strong>restaurants</strong> nearby",
+                "sightseeing": "not too far from Eiffel Tower and other <strong>sights</strong>",
+                "public_transport": "somewhat between <strong>public transport</strong> stations",
+                "parks": "not too far from Champ de Mars <strong>park</strong>",
+                "shopping": "(+) many <strong>shopping</strong> opportunities nearby"
             }
         },
         "Hotel_Review-g187147-d207663-Reviews-K_K_Hotel_Cayre-Paris_Ile_de_France.html": {
@@ -503,6 +524,13 @@
             "location": {
                 "lat": 48.85546053202657,
                 "long": 2.325496295855604
+            },
+            "poiInfo": {
+                "restaurants": "some <strong>restaurants</strong> nearby",
+                "sightseeing": "somewhat between major <strong>sights</strong> and museums",
+                "public_transport": "(+) close to main <strong>public transport</strong> lines",
+                "parks": "somewhat between major <strong>parks</strong>",
+                "shopping": "(+) many <strong>shopping</strong> opportunities nearby"
             }
         },
         "Hotel_Review-g187147-d207742-Reviews-InterContinental_Paris_Le_Grand-Paris_Ile_de_France.html": {
@@ -518,6 +546,13 @@
             "location": {
                 "lat": 48.87038918049388,
                 "long": 2.3298938394851896
+            },
+            "poiInfo": {
+                "restaurants": "(+) many <strong>restaurants</strong> nearby",
+                "sightseeing": "(+) many <strong>sights</strong> and museums closeby",
+                "public_transport": "(+) close to main <strong>public transport</strong> lines",
+                "parks": "not too far from famous Tuileries <strong>Garden</strong>",
+                "shopping": "(+) many <strong>shopping</strong> opportunities nearby"
             }
         },
         "Hotel_Review-g187147-d250928-Reviews-Park_Hyatt_Paris_Vendome-Paris_Ile_de_France.html": {
@@ -533,6 +568,13 @@
             "location": {
                 "lat": 48.86891952594483,
                 "long": 2.3306032525475184
+            },
+            "poiInfo": {
+                "restaurants": "(+) many <strong>restaurants</strong> nearby",
+                "sightseeing": "(+) many <strong>sights</strong> and museums closeby",
+                "public_transport": "(+) close to main <strong>public transport</strong> lines",
+                "parks": "(+) close to famous Tuileries <strong>Garden</strong>",
+                "shopping": "(+) many <strong>shopping</strong> opportunities nearby"
             }
         },
         "Hotel_Review-g187147-d506900-Reviews-Hotel_des_Arts_Montmartre-Paris_Ile_de_France.html": {
