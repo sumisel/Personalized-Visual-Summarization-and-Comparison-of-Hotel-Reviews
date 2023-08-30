@@ -109,12 +109,12 @@ export default {
             name: hotelId,
             posCount: this.categoryStore.relevantCategories.map(c =>
                 this.categoryStore.relevantCategories.length
-                * this.categoryStore.normalizedCategoryValues[c["id"]]
+                * this.categoryStore.normalizedRelevantCategoryValues[c["id"]]
                 * this.reviews[hotelId]["counts"]["pos"][c["id"]])
                 .reduce((a, b) => a + b, 0),
             negCount: this.categoryStore.relevantCategories.map(c =>
                 this.categoryStore.relevantCategories.length
-                * this.categoryStore.normalizedCategoryValues[c["id"]]
+                * this.categoryStore.normalizedRelevantCategoryValues[c["id"]]
                 * this.reviews[hotelId]["counts"]["neg"][c["id"]])
                 .reduce((a, b) => a + b, 0),
           });
@@ -145,6 +145,17 @@ export default {
 
       this.neg = Math.round(100*data.find(h => h["name"]==this.hotelId)["negCount"]);
       this.pos = Math.round(100*data.find(h => h["name"]==this.hotelId)["posCount"]);
+      if(this.categoryId=="overall") {
+        this.pos = 0;
+        this.neg = 0;
+        for (let category of this.categoryStore.relevantCategories) {
+          const counts = this.countsCategoryPosNeg(category["id"], [this.hotelId])[0];
+          this.pos += counts["posCount"];
+          this.neg += counts["negCount"];
+        }
+        this.neg = Math.round(100*this.neg);
+        this.pos = Math.round(100*this.pos);
+      }
 
 
       // remove all previous elements
@@ -219,7 +230,7 @@ export default {
       );
 
       // x axis
-      let xScale = 2.5;
+      let xScale = 2.6;
       const x = d3
           .scaleLinear()
           .domain([-xScale, xScale])
@@ -233,6 +244,9 @@ export default {
           .padding(0.1);
 
       let counts = this.countsCategoryPosNeg(categoryId, [hotelId])[0];
+      counts["posCount"] = counts["posCount"] *this.categoryStore.relevantCategories.length* this.categoryStore.normalizedRelevantCategoryValues[categoryId];
+      counts["negCount"] = counts["negCount"] *this.categoryStore.relevantCategories.length* this.categoryStore.normalizedRelevantCategoryValues[categoryId];
+
       // bars
       svgOverall
           .select("g")
