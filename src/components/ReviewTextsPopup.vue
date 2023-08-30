@@ -67,6 +67,24 @@ export default {
       }
       return this.indices;
     },
+    calcFontSize: function (number) {
+      if (number < 0.25) {
+        return "8pt";
+      } else if (number < 0.5) {
+        return "11pt";
+      } else {
+        return "14pt";
+      }
+    },
+    calcFontWeight: function (number) {
+      if (number < 0.25) {
+        return "100";
+      } else if (number < 0.5) {
+        return "300";
+      } else {
+        return "500";
+      }
+    },
   }
 };
 </script>
@@ -76,7 +94,30 @@ export default {
       <div class="pa-3">
         <HotelName :hotelId="hotelId" avatar></HotelName>
         &nbsp;
-        <div style="display: inline-block" v-if="sentence">{{ sentence["text"] }}</div>
+        <div style="display: inline-block"
+             v-if="sentence"
+             :style="[
+            {
+              'font-weight': calcFontWeight(sentence['ratio_category']),
+              'font-size': calcFontSize(sentence['ratio_category']),
+            },
+      ]"
+        >
+          <v-icon
+              v-if="polarity == 'pos'"
+              icon="mdi-plus-circle-outline"
+              :style="[{ 'color': sentence['color'] }]"
+          />
+          <v-icon
+            v-else
+            icon="mdi-minus-circle-outline"
+            :style="[{ color: sentence['color'] }]"
+          />
+          &nbsp;
+          <div style="display: inline-block">
+            {{ sentence["text"] }}
+          </div>
+        </div>
         <div style="display: inline-block" v-else>
           <CategoryName :categoryId="categoryId"/>
           &nbsp;
@@ -115,11 +156,13 @@ export default {
           <v-expansion-panels>
             <v-expansion-panel>
               <v-expansion-panel-title v-if="sentence">
-                {{
-                  reviews[hotelId]["reviews"][review["idx_review"]][
+                <div>
+                  {{
+                    reviews[hotelId]["reviews"][review["idx_review"]][
                     polarity + "_aspects"
-                  ][review["idx_sentence"]]
-                }}
+                        ][review["idx_sentence"]]
+                  }}
+                </div>
               </v-expansion-panel-title>
               <v-expansion-panel-title v-else>
                 <Glyph
