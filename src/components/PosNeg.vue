@@ -157,7 +157,7 @@ export default {
         <div class="pa-2" style="display: flex">
           <v-table class="sentiment-chart-title">
             <tr>
-              <td style="display: flex; justify-content: center; font-weight: 100; font-size: 8pt; width: 400px">
+              <td style="display: flex; justify-content: center; font-weight: 100; font-size: 8pt; width: 500px">
                 <v-icon icon="mdi-minus-circle-outline"/>
                 &nbsp;
                 &nbsp;
@@ -172,13 +172,21 @@ export default {
                     :categoryId="'overall'"
                     :hotelId="hotelId"
                     :color="'#999999'"
-                    :width="400"
+                    :width="500"
                     :height="10"
-                    :xMin="-2.6"
-                    :xMax="2.6"
+                    :xMin="-3.25"
+                    :xMax="3.25"
                     :key="'posneg_chart_' + hotelId + '_overall'"
                 ></ChartPosNeg>
                 <HotelAvatarInline :hotelId="hotelId"></HotelAvatarInline>
+              </td>
+            </tr>
+            <tr v-if="hotelStore.selectedHotelIdsSortedByRating.length>4">
+              <td style="display: flex; justify-content: center; font-weight: 100; font-size: 8pt; width: 500px">
+                <v-icon icon="mdi-minus-circle-outline"/>
+                &nbsp;
+                &nbsp;
+                <v-icon icon="mdi-plus-circle-outline"/>
               </td>
             </tr>
           </v-table>
@@ -325,12 +333,12 @@ export default {
 }
 
 .sentiment-chart-title{
-  width: 45% !important;
+  width: 55% !important;
   display: flex;
   align-items: center;
 }
 .summary {
-  width: 55% !important;
+  width: 45% !important;
 }
 
 .sentiment-chart {

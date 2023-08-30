@@ -230,11 +230,11 @@ export default {
       );
 
       // x axis
-      let xScale = 2.6;
+      let xScale = 3.25;
       const x = d3
           .scaleLinear()
           .domain([-xScale, xScale])
-          .range([0, 2*this.width]);
+          .range([0, 2.5*this.width]);
 
       // y axis
       const y = d3
