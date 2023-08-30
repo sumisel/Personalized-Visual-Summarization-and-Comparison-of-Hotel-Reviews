@@ -269,10 +269,10 @@ export default {
           Math.pow(event.offsetX - this.controlsPosition?.[0], 2) +
           Math.pow(event.offsetY - this.controlsPosition?.[1], 2)
         );
-        if ( distance > 110) {
+        if (distance > 110) {
           d3.select("#svg-map .controls g")
             .attr("visibility", "hidden");
-        } 
+        }
       })
 
     this.projection = d3
@@ -680,7 +680,11 @@ export default {
         </div>
       </v-card>
       <!-- Legend -->
-      <div class="legend" v-if="focusedHotel">500 m radius</div>
+      <div class="legend focused" v-if="focusedHotel">500 m radius</div>
+      <div class="legend non-focused" v-else>
+        <div class="bar" :style="`width: ${60 * this.city.scale / 500000}px;`"></div>
+        <div>500 m</div>
+      </div>
       <!-- POI details-->
       <div class="hotel-details" v-if="focusedHotel && poiStore.selectedPois.length">
         <v-chip v-for="poi in poiStore.selectedPois.filter(
@@ -719,12 +723,14 @@ export default {
       are</span>
     <span v-if="hotelStore.selectedHotelIds.length === 1">only <strong>one</strong> is</span>
     <span v-if="hotelStore.selectedHotelIds.length === 0"><strong>none</strong> are</span>
-    selected <v-icon class="inline" icon="mdi-circle" size="x-small"></v-icon><span v-if="hotelStore.selectedHotelIds.length > 0">: </span><span v-else></span>
+    selected <v-icon class="inline" icon="mdi-circle" size="x-small"></v-icon><span
+      v-if="hotelStore.selectedHotelIds.length > 0">: </span><span v-else></span>
     <InlineListItem v-for="(hotelId, index) in hotelStore.selectedHotelIdsSortedByRating" :key="hotelId" :index="index"
       :listLength="hotelStore.selectedHotelIds.length">
       <a @click="focusOnHotel(hotelId)"><strong>
-        <HotelAvatarInline :hotelId="hotelId"></HotelAvatarInline>
-        {{ hotelMeta[hotelId].name }}</strong></a>
+          <HotelAvatarInline :hotelId="hotelId"></HotelAvatarInline>
+          {{ hotelMeta[hotelId].name }}
+        </strong></a>
     </InlineListItem>.
     <v-btn variant="plain" prepend-icon="mdi-close" v-if="hotelStore.selectedHotelIds.length > 0"
       @click="hotelStore.clearSelection(); updateSelectedHotels();">Clear selection</v-btn>
@@ -866,11 +872,25 @@ export default {
     }
 
     & .legend {
-      top: -200px;
-      left: 58%;
       padding: 0.25rem;
       background-color: rgba(255, 255, 255, 0.5);
       @include explanation;
+
+      &.focused {
+        top: -200px;
+        left: 58%;
+      }
+
+      &.non-focused {
+        top: -30px;
+        left: 90%;
+        text-align: right;
+
+        & .bar {
+          background-color: rgba(0,0,0,0.5);
+          height: 4px;
+        }
+      }
     }
 
     & .hotel-details {
@@ -912,5 +932,4 @@ export default {
 .v-icon.inline {
   display: relative;
   top: -2px;
-}
-</style>
+}</style>
