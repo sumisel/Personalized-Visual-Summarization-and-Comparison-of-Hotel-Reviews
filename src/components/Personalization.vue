@@ -42,9 +42,11 @@ const keywordsDescriptions =  {
       <v-overlay activator="parent" v-model="interfaceStore.tutorialStep.poi" location-strategy="connected"
         :open-on-click="false" location="start top" offset="25" persistent class="instructions">
         <v-card class="pa-2">
-          <v-card-text><v-icon icon="mdi-arrow-left" class="inline"></v-icon> Here, you can select what's
-            your preferences regarding the location. This will help you to select the most promising candidate hotels on
-            the map.</v-card-text>
+          <v-card-text>
+            <v-icon icon="mdi-arrow-left" class="inline"></v-icon>
+            Here, you can select what your preferences are regarding the location.
+            This will help you to select the most promising candidate hotels on the map.
+          </v-card-text>
           <v-card-actions>
             <v-btn text
               @click="interfaceStore.tutorialStep.poi = false; interfaceStore.tutorialStep.priorities = true">Ok</v-btn>
@@ -57,12 +59,13 @@ const keywordsDescriptions =  {
       <div class="d-flex justify-center">
         <Glyph></Glyph>
         <div>
-          <v-icon icon="mdi-information-outline" size="small"></v-icon><v-tooltip activator="parent" location="bottom"
+          <v-icon icon="mdi-information-outline" size="small"></v-icon>
+          <v-tooltip activator="parent" location="bottom"
             max-width="300px">For every hotel, such a radial diagram shows the ratings across all
             categories. For comparison, the bright area in the middle indicates
-            the mininum rating of a category among the currently selected hotels. Slices are scaled according to
-            priorities, as well as the overall
-            rating in the center is weighted by these priorities.</v-tooltip>
+            the minimum rating of a category among the currently selected hotels. Slices are scaled according to
+            priorities, as well as the overall rating in the center is weighted by these priorities.
+        </v-tooltip>
         </div>
       </div>
       <v-table density="compact">
@@ -92,32 +95,39 @@ const keywordsDescriptions =  {
         :open-on-click="false" location="start top" offset="25" persistent class="instructions">
         <v-card class="pa-2">
           <v-card-text>
-            <p><v-icon icon="mdi-arrow-left" class="inline"></v-icon> The radial diagram summarizes the ratings for each
-              hotel in the comparison. The length of each segment from the circle center shows the rating of the hotel per
-              category. The brighter areas in the middle indicate the minimum rating per category across all currently
-              selected hotels.</p>
+            <p>
+              <v-icon icon="mdi-arrow-left" class="inline"></v-icon>
+              The radial diagram summarizes the ratings for each hotel in the comparison.
+              The length of each segment from the circle center shows the rating of the hotel per category.
+              The brighter areas in the middle indicate the minimum rating per category across all currently
+              selected hotels.
+            </p>
             <div class="mx-auto text-center">
               <Glyph :ratings="{
-                location: 4.7,
-                value: 4.5,
-                rooms: 4.5,
-                service: 4.1,
-                cleanliness: 3.9,
-                sleep: 4.9,
-              }" :minRatings="{
-  location: 3.1,
-  value: 4.1,
-  rooms: 4.4,
-  service: 4.0,
-  cleanliness: 3.9,
-  sleep: 3.9,
-}" :showRating="true"></Glyph>
+                      location: 4.7,
+                      value: 4.5,
+                      rooms: 4.5,
+                      service: 4.1,
+                      cleanliness: 3.9,
+                      sleep: 4.9,
+                      }"
+                   :minRatings="{
+                      location: 3.1,
+                      value: 4.1,
+                      rooms: 4.4,
+                      service: 4.0,
+                      cleanliness: 3.9,
+                      sleep: 3.9,
+                    }"
+                   :showRating="true"></Glyph>
             </div>
-            <p>The example above shows a hotel with a particulary high rating in location and sleep quality, but not so
+            <p>The example above shows a hotel with a particularly high rating in location and sleep quality, but not so
               good service and cleanliness</p>
             <p>
-              <v-icon icon="mdi-arrow-left" class="inline"></v-icon> The priorities that you select here
-              change the width of the segments and determine the weight that each category has in the comparison.
+              <v-icon icon="mdi-arrow-left" class="inline"></v-icon>
+              The priorities that you select here change the width of the segments and determine the weight
+              that each category has in the comparison.
+              The priorities also affect the average rating that is displayed in the center of the diagram.
             </p>
           </v-card-text>
           <v-card-actions>

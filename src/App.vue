@@ -125,8 +125,10 @@ function prioritiesUnchanged() {
             <v-icon icon="mdi-arrow-up" class="inline"></v-icon> Select at least two hotels in the map above to compare
             them below. <v-icon icon="mdi-arrow-down" class="inline"></v-icon>
           </Instruction>
-          <Instruction v-if="prioritiesUnchanged() && hotelStore.selectedHotelIds.length > 1">Change priorities to
-            personalize the ratings.</Instruction>
+          <Instruction v-if="prioritiesUnchanged() && hotelStore.selectedHotelIds.length > 1">
+            <v-icon icon="mdi-arrow-left" class="inline"></v-icon>
+            Change priorities to personalize the ratings.
+          </Instruction>
           <div v-for="section in sections" :key="section.title" class="py-6" :id="section.id" :class="{
             'text-disabled':
               hotelStore.selectedHotelIds.length < 2,
