@@ -69,7 +69,7 @@ const topCategories = computed(() => {
     class="my-2 flex-grow-1 w-50"
     :style="`margin-left: ${offset} !important; background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 76%, rgba(255, 255, 255, 0.5) 100%), url(./img/hotels/${city.name
       .replace(' ', '_')
-      .toLowerCase()}/${hotelId}.png) right center / contain no-repeat; `"
+      .toLowerCase()}/${hotelId=='Hotel_Review-g187147-d197610-Reviews-Paris_Marriott_Rive_Gauche_Hotel_Conference_Center-Paris_Ile_de_France.html'?'Hotel_Review-g187147-d197610-Reviews-Paris_Marriott_Rive_Gauche_Hotel_Conference_Center-Paris_Ile_de_':hotelId}.png) right center / contain no-repeat; `"
     ><div class="d-flex flex-no-wrap justify-space-between">
       <div
         class="bar"

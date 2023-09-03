@@ -38,6 +38,9 @@ export default {
   computed: {},
   methods: {
     matchText(text, word) {
+      if(!text){
+        return false;
+      }
       const textCleaned = text
         .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "")
         .toLowerCase()
@@ -119,7 +122,7 @@ export default {
           </div>
         </div>
         <div style="display: inline-block" v-else>
-          <CategoryName :categoryId="categoryId"/>
+          <CategoryName v-if="categoryId!='average'" :categoryId="categoryId"/>
           &nbsp;
           {{ date }}</div>
       </div>

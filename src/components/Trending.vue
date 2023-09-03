@@ -16,7 +16,7 @@ export default {
     ChartTrendingBoxPlot,
     ChartTrendingHistogram,
     HotelName
-},
+  },
   setup() {
     const hotelStore = useHotelStore();
     const categoryStore = useCategoryStore();
@@ -109,6 +109,7 @@ export default {
   },
   data: () => ({
     panel: [0, 1],
+    show: {},
   }),
 };
 </script>
@@ -117,44 +118,50 @@ export default {
   <div v-if="hotelStore.selectedHotelIds.length > 1">
     <div class="d-flex flex-column my-4">
       <div class="my-2 flex-grow-1">
-        <v-expansion-panels
-          v-for="hotelId in hotelStore.selectedHotelIdsSortedByRating"
-          :key="'time_' + hotelId"
+        <v-card
+            v-for="hotelId in hotelStore.selectedHotelIdsSortedByRating"
+            :key="'time_' + hotelId"
+              class="pa-3 my-2"
         >
-          <v-expansion-panel>
-            <v-expansion-panel-title :key="'title_' + hotelId">
-              <v-row>
-                <div class="pa-2 trend-description-title">
-                  <HotelName :hotelId="hotelId" avatar></HotelName>
-                  <div class="pa-2">
-                    The overall rating of this hotel shows <b>{{ trendDescription(hotelId, 'average')}}</b>.
-                  </div>
-                </div>
-                <div class="pa-2 trend-icon-title">
-                  <v-icon>{{ trendIcon(hotelId, 'average') }}</v-icon>
-                </div>
-                <div class="pa-2 time-chart">
-                  <ChartTrendingLine
-                    :hotelId="hotelId"
-                    :categoryId="'average'"
-                    :color="'#999999'"
-                    :width="300"
-                    :height="50"
-                    :yMin="2"
-                    :yMax="5"
-                  ></ChartTrendingLine>
-                </div>
-              </v-row>
-            </v-expansion-panel-title>
-            <v-expansion-panel-text>
+          <v-row>
+            <div class="pa-2 trend-description-title">
+              <HotelName :hotelId="hotelId" avatar></HotelName>
+              <div class="pa-2">
+                The overall rating of this hotel shows <b>{{ trendDescription(hotelId, 'average')}}</b>.
+              </div>
+            </div>
+            <div class="pa-2 trend-icon-title">
+              <v-icon>{{ trendIcon(hotelId, 'average') }}</v-icon>
+            </div>
+            <div class="pa-2 time-chart">
+              <ChartTrendingLine
+                  :hotelId="hotelId"
+                  :categoryId="'average'"
+                  :color="'#999999'"
+                  :width="300"
+                  :height="50"
+                  :yMin="2"
+                  :yMax="5"
+              ></ChartTrendingLine>
+            </div>
+            <v-card-actions>
+              <v-btn
+                :icon="show[hotelId] ? 'mdi-chevron-up' : 'mdi-chevron-down'"
+                @click="show[hotelId] = !show[hotelId]"
+              ></v-btn>
+            </v-card-actions>
+          </v-row>
+          <v-expand-transition>
+            <div v-show="show[hotelId]">
+              <v-divider></v-divider>
               <v-row
-                v-for="category in categoryStore.relevantCategories.sort(
+                  v-for="category in categoryStore.relevantCategories.sort(
                   (a, b) => b.value - a.value
                 )"
-                @mouseenter="categoryStore.hover(category.id);"
-                @mouseleave="categoryStore.unhover();"
-                :key="'time_' + hotelId + '_' + category.id"
-                :style="[{'opacity': (categoryStore.noCategoryHovered || categoryStore.categoriesById[category.id].hover)?1:.2},]">
+                  @mouseenter="categoryStore.hover(category.id);"
+                  @mouseleave="categoryStore.unhover();"
+                  :key="'time_' + hotelId + '_' + category.id"
+                  :style="[{'opacity': (categoryStore.noCategoryHovered || categoryStore.categoriesById[category.id].hover)?1:.2},]">
                 <div class="pa-2 trend-description-detail">
                   <div>
                     <CategoryName :categoryId="category['id']"></CategoryName>: {{ trendDescription(hotelId, category.id)}}.
@@ -177,9 +184,9 @@ export default {
                   ></ChartTrendingLine>
                 </div>
               </v-row>
-            </v-expansion-panel-text>
-          </v-expansion-panel>
-        </v-expansion-panels>
+            </div>
+          </v-expand-transition>
+        </v-card>
       </div>
     </div>
   </div>

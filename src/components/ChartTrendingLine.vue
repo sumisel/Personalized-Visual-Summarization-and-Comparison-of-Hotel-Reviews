@@ -221,12 +221,22 @@ export default {
             'cleanliness': 5,
             'sleep': 5,
           }
-          for(let k in d["values"]) {
-            const reviews = Object.assign({}, this.reviews[this.hotelId]["reviews"], this.reviews[this.hotelId]["reviews_unannotated"]);
-            //console.log(reviews[k]);
-            this.indices.push({"idx_review": k});
-            for(let v in reviews[k]["property_dict"]) {
-              this.minRatings[v] = Math.min(this.minRatings[v], reviews[k]["property_dict"][v]);
+          const reviews = Object.assign({}, this.reviews[this.hotelId]["reviews"], this.reviews[this.hotelId]["reviews_unannotated"]);
+          if(this.categoryId=='average'){
+            for(let l in d["values"]) {
+              for(let k in d["values"][l]) {
+                this.indices.push({"idx_review": k});
+                for(let v in reviews[k]["property_dict"]) {
+                  this.minRatings[v] = Math.min(this.minRatings[v], reviews[k]["property_dict"][v]);
+                }
+              }
+            }
+          } else {
+            for(let k in d["values"]) {
+              this.indices.push({"idx_review": k});
+              for(let v in reviews[k]["property_dict"]) {
+                this.minRatings[v] = Math.min(this.minRatings[v], reviews[k]["property_dict"][v]);
+              }
             }
           }
           // open popup with data of these reviews
