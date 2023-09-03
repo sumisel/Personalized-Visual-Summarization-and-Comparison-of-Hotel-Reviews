@@ -225,9 +225,11 @@ export default {
           if(this.categoryId=='average'){
             for(let l in d["values"]) {
               for(let k in d["values"][l]) {
-                this.indices.push({"idx_review": k});
-                for(let v in reviews[k]["property_dict"]) {
-                  this.minRatings[v] = Math.min(this.minRatings[v], reviews[k]["property_dict"][v]);
+                if(!this.indices.find((e) => e["idx_review"] == k)){
+                  this.indices.push({"idx_review": k});
+                  for (let v in reviews[k]["property_dict"]) {
+                    this.minRatings[v] = Math.min(this.minRatings[v], reviews[k]["property_dict"][v]);
+                  }
                 }
               }
             }

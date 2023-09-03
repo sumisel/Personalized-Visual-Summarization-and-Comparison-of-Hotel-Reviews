@@ -61,12 +61,22 @@ export default {
       // for the trending popup, sort by category value
       const reviews = Object.assign({}, this.reviews[this.hotelId]['reviews'], this.reviews[this.hotelId]['reviews_unannotated'])
       if(!this.sentence){
-        this.indices.sort((a, b) => {
-          return (
-              reviews[b["idx_review"]]["property_dict"][this.categoryId]
-              - reviews[a["idx_review"]]["property_dict"][this.categoryId]
-          );
-        });
+        if(this.categoryId == 'average'){
+          const weights = this.categoryStore.normalizedCategoryValues;
+          this.indices.sort((a, b) => {
+            return (
+                Object.keys(reviews[b["idx_review"]]["property_dict"]).reduce((m, n) => {return m+reviews[b["idx_review"]]["property_dict"][n]*weights[n]}, 0)
+                - Object.keys(reviews[a["idx_review"]]["property_dict"]).reduce((m, n) => {return m+reviews[a["idx_review"]]["property_dict"][n]*weights[n]}, 0)
+            );
+          });
+        } else {
+          this.indices.sort((a, b) => {
+            return (
+                reviews[b["idx_review"]]["property_dict"][this.categoryId]
+                - reviews[a["idx_review"]]["property_dict"][this.categoryId]
+            );
+          });
+        }
       }
       return this.indices;
     },
