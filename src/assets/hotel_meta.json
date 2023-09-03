@@ -445,7 +445,7 @@
     },
     "Paris": {
         "Hotel_Review-g187147-d587294-Reviews-The_Westin_Paris_Vendome-Paris_Ile_de_France.html": {
-            "name": "The Westin Paris Vendome",
+            "name": "East Wind Vendome",
             "ratings": {
                 "service": 4.049887471867967,
                 "rooms": 3.8153846153846156,
@@ -467,7 +467,7 @@
             }
         },
         "Hotel_Review-g187147-d197656-Reviews-Mercure_Paris_Centre_Eiffel_Tower_Hotel-Paris_Ile_de_France.html": {
-            "name": "Mercure Paris Centre Eiffel Tower",
+            "name": "Eiffel Tower Atrium",
             "ratings": {
                 "service": 3.8414015675426465,
                 "rooms": 3.696778269109286,
@@ -489,7 +489,7 @@
             }
         },
         "Hotel_Review-g187147-d233528-Reviews-Novotel_Paris_Centre_Tour_Eiffel-Paris_Ile_de_France.html": {
-            "name": "Novotel Paris Centre Tour Eiffel",
+            "name": "Eiffel Sphere Central",
             "ratings": {
                 "service": 3.6085611139762763,
                 "rooms": 3.457569585879158,
@@ -511,7 +511,7 @@
             }
         },
         "Hotel_Review-g187147-d207663-Reviews-K_K_Hotel_Cayre-Paris_Ile_de_France.html": {
-            "name": "K+K Cayre",
+            "name": "L+L Finesse",
             "ratings": {
                 "service": 4.5580901856763925,
                 "rooms": 4.281410256410257,
@@ -533,7 +533,7 @@
             }
         },
         "Hotel_Review-g187147-d207742-Reviews-InterContinental_Paris_Le_Grand-Paris_Ile_de_France.html": {
-            "name": "InterContinental Paris Le Grand",
+            "name": "Elegance Paris Majestic",
             "ratings": {
                 "service": 4.319976771196283,
                 "rooms": 4.235632183908046,
@@ -555,7 +555,7 @@
             }
         },
         "Hotel_Review-g187147-d250928-Reviews-Park_Hyatt_Paris_Vendome-Paris_Ile_de_France.html": {
-            "name": "Park Hyatt Paris Vendome",
+            "name": "Royal Vendome Plaza",
             "ratings": {
                 "service": 4.738359201773836,
                 "rooms": 4.688163884673748,
@@ -577,7 +577,7 @@
             }
         },
         "Hotel_Review-g187147-d506900-Reviews-Hotel_des_Arts_Montmartre-Paris_Ile_de_France.html": {
-            "name": "des Arts Montmartre",
+            "name": "Montmartre Creatives Inn",
             "ratings": {
                 "service": 4.480055983205038,
                 "rooms": 4.079162875341219,
@@ -599,7 +599,7 @@
             }
         },
         "Hotel_Review-g187147-d197424-Reviews-Novotel_Paris_Les_Halles-Paris_Ile_de_France.html": {
-            "name": "Novotel Paris Les Halles",
+            "name": "NeoInn Les Halles",
             "ratings": {
                 "service": 4.146017699115045,
                 "rooms": 3.876757650951199,
@@ -621,7 +621,7 @@
             }
         },
         "Hotel_Review-g187147-d207687-Reviews-Crowne_Plaza_Paris_Republique-Paris_Ile_de_France.html": {
-            "name": "Crowne Plaza Paris Republique",
+            "name": "Imperial Square Republique",
             "ratings": {
                 "service": 3.9017566688353935,
                 "rooms": 3.791630340017437,
@@ -643,7 +643,7 @@
             }
         },
         "Hotel_Review-g187147-d197610-Reviews-Paris_Marriott_Rive_Gauche_Hotel_Conference_Center-Paris_Ile_de_France.html": {
-            "name": "Paris Marriott Rive Gauche",
+            "name": "Paris Saint-Jacques Conference",
             "ratings": {
                 "service": 4.089743589743589,
                 "rooms": 3.963991769547325,
