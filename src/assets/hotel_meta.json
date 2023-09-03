@@ -411,8 +411,7 @@
             "location": {
                 "lat": 40.74234843628629,
                 "long": -73.98475786638679
-            }
-            ,
+            },
             "poiInfo": {
                 "restaurants": "some <strong>restaurants</strong> nearby",
                 "sightseeing": "(+) many <strong>sights</strong> and museums closeby",
@@ -590,6 +589,13 @@
             "location": {
                 "lat": 48.88638649903344,
                 "long": 2.3352350499309833
+            },
+            "poiInfo": {
+                "restaurants": "(+) many <strong>restaurants</strong> nearby",
+                "sightseeing": "(+) touristic area with many <strong>sights</strong> closeby",
+                "public_transport": "several <strong>public transport</strong> stations not far",
+                "parks": "close to several smaller <strong>parks and gardens</strong>",
+                "shopping": "(+) many <strong>shopping</strong> opportunities nearby"
             }
         },
         "Hotel_Review-g187147-d197424-Reviews-Novotel_Paris_Les_Halles-Paris_Ile_de_France.html": {
@@ -605,6 +611,13 @@
             "location": {
                 "lat": 48.86094927643057,
                 "long": 2.346574723569357
+            },
+            "poiInfo": {
+                "restaurants": "(+) many <strong>restaurants</strong> nearby",
+                "sightseeing": "(+) touristic area with many <strong>sights and museums</strong> closeby",
+                "public_transport": "(+) close to main <strong>public transport</strong> lines",
+                "parks": "somewhat between relevant <strong>parks and gardens</strong>",
+                "shopping": "(+) many <strong>shopping</strong> opportunities nearby"
             }
         },
         "Hotel_Review-g187147-d207687-Reviews-Crowne_Plaza_Paris_Republique-Paris_Ile_de_France.html": {
@@ -620,6 +633,13 @@
             "location": {
                 "lat": 48.86727243601443,
                 "long": 2.3653758337900683
+            },
+            "poiInfo": {
+                "restaurants": "(+) many <strong>restaurants</strong> nearby",
+                "sightseeing": "not far from main <strong>sights and museums</strong>",
+                "public_transport": "(+) next to <strong>public transport</strong> hub",
+                "parks": "somewhat between relevant <strong>parks and gardens</strong>",
+                "shopping": "(+) many <strong>shopping</strong> opportunities nearby"
             }
         },
         "Hotel_Review-g187147-d197610-Reviews-Paris_Marriott_Rive_Gauche_Hotel_Conference_Center-Paris_Ile_de_France.html": {
@@ -635,6 +655,13 @@
             "location": {
                 "lat": 48.831756982852085,
                 "long": 2.3398482496090973
+            },
+            "poiInfo": {
+                "restaurants": "(-) relatively few <strong>restaurants</strong> nearby",
+                "sightseeing": "(-) some some distance to main <strong>sights and museums</strong>",
+                "public_transport": "somewhat beetween <strong>public transport</strong> stations",
+                "parks": "somewhat between relevant <strong>parks and gardens</strong>",
+                "shopping": "(-) relatively few <strong>shopping</strong> opportunities nearby"
             }
         }
     }
