@@ -1,7 +1,7 @@
 <script>
 import * as d3 from "d3";
 
-import { ref, onMounted } from "vue";
+import {ref, onMounted, watch} from "vue";
 
 import { useCategoryStore } from "../stores/category.js";
 import { useHotelStore } from "../stores/hotel.js";
@@ -64,9 +64,15 @@ export default {
       this.plot();
     });
 
-    this.hotelStore.$subscribe(() => {
-      this.plot();
-    });
+    watch(
+      () => this.hotelStore.selectedHotelIds.length,
+      () => {
+        // wait .1 seconds for the new min ratings to get set
+        setTimeout(() => {
+          this.plot();
+        }, 100);
+      }
+    );
 
     this.plot();
   },

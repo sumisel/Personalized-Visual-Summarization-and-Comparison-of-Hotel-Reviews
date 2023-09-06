@@ -75,7 +75,8 @@ const topCategories = computed(() => {
         class="bar"
         :style="`width: ${offset} !important; left: -${offset} !important;`"
       ></div>
-      <v-avatar class="ma-3 flex-grow-0" size="125" rounded="0">
+      <v-avatar class="ma-3 flex-grow-0" size="125" rounded="0"
+                :key="'glyph_'+hotelId">
         <Glyph
           :ratings="hotel.ratings"
           :minRatings="hotelStore.minRatings"
