@@ -13,7 +13,7 @@ const poiStore = usePoiStore();
 const interfaceStore = useInterfaceStore();
 const poiMeta = inject("poiMeta");
 const keywordsDescriptions =  {
-  "location": "Location customer ratings include the location of the hotel, the surrounding area and, and the proximity to points of interest.",
+  "location": "Location customer ratings include the location of the hotel, the surrounding area, and the proximity to points of interest.",
   "sleep": "Customer ratings in this category include the quality of the bed, the noise level, and the temperature of the room.",
   "value": "Value customer ratings include the price, the value for money, and the quality of the breakfast.",
   "rooms": "Customer ratings for the rooms regard the size of the room, the quality of the bathroom and other facilities, and the view.",
