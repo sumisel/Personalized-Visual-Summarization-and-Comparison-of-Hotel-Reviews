@@ -104,7 +104,7 @@ function prioritiesUnchanged() {
       <v-btn href="?city=Paris&noTutorial=true">Paris</v-btn>
     </v-app-bar>
     <Welcome v-if="!city" />
-    <v-navigation-drawer permanent location="left" width="344" elevation="2" v-if="city">
+    <v-navigation-drawer permanent location="left" width="344" elevation="2" v-if="city" touchless="true">
       <Personalization v-if="!interfaceStore.tutorialStep.init && !interfaceStore.tutorialStep.welcome"/>
     </v-navigation-drawer>
     <v-main v-if="city" class="mt-12" :style="`background-image: linear-gradient(
