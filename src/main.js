@@ -25,6 +25,7 @@ const timeStore = useTimeStore(pinia);
 const clusterStore = useClusterStore(pinia);
 
 const debug = false;
+const global_filepath = '/Personalized-Visual-Summarization-and-Comparison-of-Hotel-Reviews'
 
 // data
 console.log("Loading meta data...");
@@ -58,7 +59,7 @@ if (cityId) {
 
     // load reviews
     console.log("Loading reviews data...");
-    const result = await fetch("/HotelRec_subset_" + cityId + "_10_reviews.json");
+    const result = await fetch(global_filepath+"/HotelRec_subset_" + cityId + "_10_reviews.json");
     const data = await result.json();
     app.provide("reviews", data);
     console.log("Done loading reviews data.");
@@ -79,7 +80,7 @@ if (cityId) {
 
     // load ratings over time
     console.log("Loading ratings over time data...");
-    const ratings_time = await fetch("/HotelRec_subset_" + cityId + "_10_average_ratings_over_time.json");
+    const ratings_time = await fetch(global_filepath+"/HotelRec_subset_" + cityId + "_10_average_ratings_over_time.json");
     const ratings_time_data = await ratings_time.json();
     timeStore.initTimeData(Object.keys(hotelMeta[cityId]), ratings_time_data);
     console.log("Done loading ratings over time data.");
@@ -97,6 +98,9 @@ const keywords = {
 
 app.provide("keywords", keywords);
 
+
+// const for filepaths
+app.config.globalProperties.$filepath = global_filepath;
 
 
 // mount app
