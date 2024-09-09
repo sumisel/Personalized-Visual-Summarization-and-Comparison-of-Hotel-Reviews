@@ -19,5 +19,6 @@ export default defineConfig({
   scripts: {
     build: "vite build",
     preview: "vite preview"
-  }
+  },
+  base: "/Personalized-Visual-Summarization-and-Comparison-of-Hotel-Reviews/"
 })
