@@ -1,0 +1,3022 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-ide",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2023-07-17T14:16:15Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/276319410",
+        "addr:city": "Long Island City",
+        "addr:state": "NY",
+        "addr:street": "Borden Avenue",
+        "name": "Long Island City",
+        "network": "LIRR",
+        "operator": "Long Island Railroad",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "LIC",
+        "train": "yes",
+        "wikidata": "Q6672667",
+        "wikipedia": "en:Long Island City station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9569751,
+          40.7415095
+        ]
+      },
+      "id": "node/276319410"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/276319527",
+        "level": "2",
+        "name": "Court Square",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "462",
+        "short_name": "Court Sq",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2611918",
+        "wikipedia": "en:Court Square (IRT Flushing Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9454525,
+          40.7464555
+        ]
+      },
+      "id": "node/276319527"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/277046860",
+        "level": "2",
+        "name": "33rd Street–Rawson Street",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "460",
+        "short_name": "33 St–Rawson St",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2611936",
+        "wikipedia": "en:33rd Street–Rawson Street station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9312304,
+          40.7446199
+        ]
+      },
+      "id": "node/277046860"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/277046861",
+        "level": "2",
+        "name": "40th Street–Lowery Street",
+        "network": "NYC Subway",
+        "note": "no in-station transfer between platforms",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "459",
+        "short_name": "40 St–Lowery St",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q1943858",
+        "wikipedia": "en:40th Street–Lowery Street station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9244296,
+          40.7438431
+        ]
+      },
+      "id": "node/277046861"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/277046862",
+        "level": "2",
+        "name": "46th Street–Bliss Street",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "458",
+        "short_name": "46 St–Bliss St",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2328273",
+        "wikipedia": "en:46th Street–Bliss Street station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9182509,
+          40.7431184
+        ]
+      },
+      "id": "node/277046862"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/277047076",
+        "addr:city": "New York",
+        "addr:postcode": "11101",
+        "addr:state": "NY",
+        "gtfs_stop_code": "G24",
+        "internet_access": "yes",
+        "level": "-2",
+        "name": "21st Street",
+        "name:es": "Calle 21 (línea Crosstown)",
+        "name:nl": "21st Street (Crosstown Line)",
+        "name:pl": "21st Street",
+        "name:ru": "21-я улица (линия Кросстаун, Ай-эн-ди)",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "282",
+        "short_name": "21 St",
+        "source": "http://mta.info/nyct/service/gline.htm",
+        "start_date": "1933-08-19",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2236599",
+        "wikimedia_commons": "Category:21st Street (IND Crosstown Line)",
+        "wikipedia": "en:21st Street station (IND Crosstown Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.949724,
+          40.744065
+        ]
+      },
+      "id": "node/277047076"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/544355306",
+        "addr:city": "New York",
+        "addr:postcode": "10016",
+        "addr:state": "NY",
+        "internet_access": "wlan",
+        "level": "-1",
+        "name": "28th Street",
+        "network": "NYC Subway",
+        "note": "no in-station transfer between platforms",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "404",
+        "short_name": "28 St",
+        "start_date": "1904-10-27",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "limited",
+        "wikidata": "Q939753",
+        "wikimedia_commons": "Category:28th Street (IRT Lexington Avenue Line)",
+        "wikipedia": "en:28th Street station (IRT Lexington Avenue Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9840753,
+          40.7433137
+        ]
+      },
+      "id": "node/544355306"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/544355596",
+        "gtfs_stop_code": "R20",
+        "level": "-2",
+        "name": "14th Street–Union Square",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "Metropolitan Transportation Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "15",
+        "short_name": "14 St–Union Sq",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2631031",
+        "wikipedia": "en:14th Street–Union Square (BMT Broadway Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9906491,
+          40.7357611
+        ]
+      },
+      "id": "node/544355596"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/544355768",
+        "addr:city": "New York",
+        "addr:postcode": "10001",
+        "addr:state": "NY",
+        "gtfs_stop_code": "R18",
+        "internet_access": "wlan",
+        "level": "-1",
+        "name": "28th Street",
+        "network": "NYC Subway",
+        "note": "no in-station transfer between platforms",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "13",
+        "short_name": "28 St",
+        "start_date": "1918-01-05",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q1924691",
+        "wikimedia_commons": "Category:28th Street (BMT Broadway Line)",
+        "wikipedia": "en:28th Street station (BMT Broadway Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.988691,
+          40.745494
+        ]
+      },
+      "id": "node/544355768"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/591995518",
+        "gtfs_stop_code": "D21",
+        "level": "-3",
+        "name": "Broadway–Lafayette Street",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "230",
+        "short_name": "B’way–Lafayette St",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q3498651",
+        "wikipedia": "en:Broadway–Lafayette Street station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.996204,
+          40.725297
+        ]
+      },
+      "id": "node/591995518"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/591997635",
+        "gtfs_stop_code": "724",
+        "level": "-4",
+        "name": "5th Avenue",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "466",
+        "short_name": "5 Av",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2982388",
+        "wikipedia": "en:Fifth Avenue (IRT Flushing Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9819002,
+          40.7537434
+        ]
+      },
+      "id": "node/591997635"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/591997657",
+        "gtfs_stop_code": "631",
+        "level": "-2",
+        "name": "42nd Street–Grand Central",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "Metropolitan Transportation Authority",
+        "payment:omny": "yes",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "402",
+        "short_name": "42 St–Grand Central",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2982151",
+        "wikipedia": "en:Grand Central–42nd Street (IRT Lexington Avenue Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9768249,
+          40.7517716
+        ]
+      },
+      "id": "node/591997657"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/591998702",
+        "level": "-2",
+        "name": "5th Avenue–59th Street",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "8",
+        "short_name": "5 Av–59 St",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2159540",
+        "wikipedia": "en:Fifth Avenue–59th Street station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9726747,
+          40.7648269
+        ]
+      },
+      "id": "node/591998702"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/592001079",
+        "level": "2",
+        "name": "52nd Street–Lincoln Avenue",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "457",
+        "short_name": "52 St–Lincoln Av",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2061415",
+        "wikipedia": "en:52nd Street station (IRT Flushing Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9124986,
+          40.7441763
+        ]
+      },
+      "id": "node/592001079"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/597500968",
+        "name": "Hunterspoint Avenue",
+        "network": "LIRR",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "HPA",
+        "train": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q5944797",
+        "wikipedia": "en:Hunterspoint Avenue station (LIRR)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9475584,
+          40.7420527
+        ]
+      },
+      "id": "node/597500968"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/597928309",
+        "alt_name": "West Fourth Street–Washington Square",
+        "gtfs_stop_code": "D19",
+        "internet_access": "wlan",
+        "internet_access:fee": "no",
+        "level": "-4;-2",
+        "name": "West 4th Street–Washington Square",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "167",
+        "short_name": "W 4 St–Wash Sq",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2343574",
+        "wikipedia": "en:West Fourth Street–Washington Square station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0009941,
+          40.731643
+        ]
+      },
+      "id": "node/597928309"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/597928315",
+        "gtfs_stop_code": "B08",
+        "level": "-5;-4",
+        "name": "Lexington Avenue–63rd Street",
+        "name:es": "Avenida Lexington–Calle 63",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "Metropolitan Transportation Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "223",
+        "short_name": "Lexington Av–63 St",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2585850",
+        "wikipedia": "en:Lexington Avenue–63rd Street station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.966113,
+          40.764629
+        ]
+      },
+      "id": "node/597928315"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/597928316",
+        "gtfs_stop_code": "D16",
+        "level": "-2",
+        "name": "42nd Street–Bryant Park",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "226",
+        "short_name": "42 St–Bryant Pk",
+        "start_date": "1940",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2982388",
+        "wikipedia": "en:42nd Street–Bryant Park (IND Sixth Avenue Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9845689,
+          40.754222
+        ]
+      },
+      "id": "node/597928316"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/597928318",
+        "level": "-2",
+        "name": "Lexington Avenue–59th Street",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "7",
+        "short_name": "Lexington Av–59 St",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q870982",
+        "wikipedia": "en:Lexington Avenue/59th Street (BMT Broadway Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9674728,
+          40.7627515
+        ]
+      },
+      "id": "node/597928318"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/597928319",
+        "level": "-1",
+        "name": "51st Street",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "401",
+        "short_name": "51 St",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2981958",
+        "wikipedia": "en:51st Street station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9719555,
+          40.7571102
+        ]
+      },
+      "id": "node/597928319"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/597928321",
+        "internet_access": "wlan",
+        "internet_access:fee": "no",
+        "level": "-3;-2",
+        "name": "5th Avenue–53rd Street",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "276",
+        "short_name": "5 Av–53 St",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2613321",
+        "wikipedia": "en:Fifth Avenue/53rd Street station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9759537,
+          40.7605598
+        ]
+      },
+      "id": "node/597928321"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/597928322",
+        "gtfs_stop_code": "D14",
+        "internet_access": "wlan",
+        "internet_access:fee": "no",
+        "level": "-3;-2",
+        "name": "7th Avenue",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "Metropolitan Transportation Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "277",
+        "short_name": "7 Av",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "limited",
+        "wheelchair:description": "same-platform transfer only",
+        "wikidata": "Q2612605",
+        "wikipedia": "en:Seventh Avenue station (IND lines)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.981637,
+          40.762862
+        ]
+      },
+      "id": "node/597928322"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/597928324",
+        "level": "-2",
+        "name": "57th Street–7th Avenue",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "Metropolitan Transportation Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "9",
+        "short_name": "57 St–7 Av",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2614058",
+        "wikipedia": "en:57th Street–Seventh Avenue (BMT Broadway Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9806228,
+          40.7646501
+        ]
+      },
+      "id": "node/597928324"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/597928328",
+        "gtfs_stop_code": "R22",
+        "level": "-1",
+        "name": "Prince Street",
+        "network": "NYC Subway",
+        "note": "no in-station transfer between platforms",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "17",
+        "short_name": "Prince St",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2027571",
+        "wikipedia": "en:Prince Street station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.997702,
+          40.724329
+        ]
+      },
+      "id": "node/597928328"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/597928329",
+        "gtfs_stop_code": "R21",
+        "level": "-1",
+        "name": "8th Street–New York University",
+        "network": "NYC Subway",
+        "note": "no in-station transfer between platforms",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "16",
+        "short_name": "8 St–NYU",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2271693",
+        "wikipedia": "en:Eighth Street–New York University station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9926289,
+          40.730328
+        ]
+      },
+      "id": "node/597928329"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/597928338",
+        "addr:city": "New York",
+        "addr:postcode": "10010",
+        "addr:state": "NY",
+        "internet_access": "wlan",
+        "level": "-1",
+        "name": "23rd Street",
+        "network": "NYC Subway",
+        "note": "no in-station transfer between platforms",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "405",
+        "short_name": "23 St",
+        "start_date": "1904-10-27",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2033264",
+        "wikimedia_commons": "Category:23rd Street (IRT Lexington Avenue Line)",
+        "wikipedia": "en:23rd Street station (IRT Lexington Avenue Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9863823,
+          40.7401787
+        ]
+      },
+      "id": "node/597928338"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/597928340",
+        "level": "-1",
+        "name": "Astor Place",
+        "network": "NYC Subway",
+        "note": "no in-station transfer between platforms",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "407",
+        "short_name": "Astor Pl",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2199564",
+        "wikipedia": "en:Astor Place station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.991398,
+          40.7298513
+        ]
+      },
+      "id": "node/597928340"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/597928342",
+        "level": "-1",
+        "name": "Bleecker Street",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "408",
+        "short_name": "Bleecker St",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2612992",
+        "wikipedia": "en:Bleecker Street station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9946797,
+          40.7259471
+        ]
+      },
+      "id": "node/597928342"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/597928345",
+        "addr:city": "New York",
+        "addr:postcode": "10016",
+        "addr:state": "NY",
+        "internet_access": "wlan",
+        "level": "-1",
+        "name": "33rd Street",
+        "network": "NYC Subway",
+        "note": "no in-station transfer between platforms",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "403",
+        "short_name": "33 St",
+        "start_date": "1904-10-27",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2224706",
+        "wikimedia_commons": "Category:33rd Street (IRT Lexington Avenue Line)",
+        "wikipedia": "en:33rd Street station (IRT Lexington Avenue Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9818293,
+          40.7463947
+        ]
+      },
+      "id": "node/597928345"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/597937470",
+        "level": "-2",
+        "name": "1st Avenue",
+        "network": "NYC Subway",
+        "note": "no in-station transfer between platforms",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "119",
+        "short_name": "1 Av",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2590604",
+        "wikipedia": "en:First Avenue station (BMT Canarsie Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9814231,
+          40.7308653
+        ]
+      },
+      "id": "node/597937470"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/597937475",
+        "internet_access": "wlan",
+        "level": "-2",
+        "name": "14th Street",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "229",
+        "short_name": "14 St",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2983355",
+        "wikimedia_commons": "Category:14th Street (IND Sixth Avenue Line)",
+        "wikipedia": "en:14th Street (IND Sixth Avenue Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9963408,
+          40.7380466
+        ]
+      },
+      "id": "node/597937475"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/597937476",
+        "level": "-1",
+        "name": "3rd Avenue",
+        "network": "NYC Subway",
+        "note": "no in-station transfer between platforms",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "118",
+        "short_name": "3 Av",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2181850",
+        "wikipedia": "en:Third Avenue station (BMT Canarsie Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.986821,
+          40.7331529
+        ]
+      },
+      "id": "node/597937476"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/597937477",
+        "gtfs_stop_code": "A27",
+        "internet_access": "wlan",
+        "internet_access:fee": "no",
+        "level": "-2",
+        "name": "42nd Street–Port Authority Bus Terminal",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "Metropolitan Transportation Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "163",
+        "short_name": "42 St–Port Authority Bus Terminal",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q11265",
+        "wikipedia": "en:42nd Street–Port Authority Bus Terminal (IND Eighth Avenue Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.989735,
+          40.757308
+        ]
+      },
+      "id": "node/597937477"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/597937480",
+        "internet_access": "wlan",
+        "internet_access:fee": "no",
+        "level": "-1",
+        "name": "Spring Street",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "168",
+        "short_name": "Spring St",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2430804",
+        "wikipedia": "en:Spring Street station (IND Eighth Avenue Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0040137,
+          40.7255399
+        ]
+      },
+      "id": "node/597937480"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/597937481",
+        "addr:city": "New York",
+        "addr:postcode": "10011",
+        "addr:state": "NY",
+        "internet_access": "wlan",
+        "level": "-1",
+        "name": "23rd Street",
+        "name:en": "23rd Street",
+        "name:ru": "23-я стрит",
+        "network": "NYC Subway",
+        "note": "no in-station transfer between platforms",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "320",
+        "short_name": "23 St",
+        "start_date": "1918-07-01",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2478033",
+        "wikimedia_commons": "Category:23rd Street (IRT Broadway – Seventh Avenue Line)",
+        "wikipedia": "en:23rd Street station (IRT Broadway–Seventh Avenue Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.995641,
+          40.7440859
+        ]
+      },
+      "id": "node/597937481"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/597937482",
+        "addr:city": "New York",
+        "addr:postcode": "10001",
+        "addr:state": "NY",
+        "internet_access": "yes",
+        "level": "-1",
+        "name": "28th Street",
+        "name:en": "28th Street",
+        "name:ru": "28-я стрит",
+        "network": "NYC Subway",
+        "note": "no in-station transfer between platforms",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "319",
+        "short_name": "28 St",
+        "start_date": "1918-07-01",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2982207",
+        "wikimedia_commons": "Category:28th Street (IRT Broadway – Seventh Avenue Line)",
+        "wikipedia": "en:28th Street station (IRT Broadway–Seventh Avenue Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9933621,
+          40.747217
+        ]
+      },
+      "id": "node/597937482"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/597937484",
+        "internet_access": "wlan",
+        "level": "-1",
+        "name": "50th Street",
+        "name:en": "50th Street",
+        "name:ru": "50-я стрит",
+        "network": "NYC Subway",
+        "note": "no in-station transfer between platforms",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "316",
+        "short_name": "50 St",
+        "start_date": "1904-10-27",
+        "station": "subway",
+        "subway": "yes",
+        "toilets:wheelchair": "no",
+        "wheelchair": "no",
+        "wikidata": "Q2198512",
+        "wikipedia": "en:50th Street station (IRT Broadway–Seventh Avenue Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9838968,
+          40.7616618
+        ]
+      },
+      "id": "node/597937484"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/597937487",
+        "level": "-1",
+        "name": "Houston Street",
+        "name:en": "Houston Street",
+        "name:pronunciation": "ˈhaʊstən stɹiːt",
+        "name:ru": "Хаустон-стрит",
+        "network": "NYC Subway",
+        "note": "no in-station transfer between platforms",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "324",
+        "short_name": "Houston St",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2083213",
+        "wikipedia": "en:Houston Street station (IRT Broadway–Seventh Avenue Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0053077,
+          40.7285993
+        ]
+      },
+      "id": "node/597937487"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/597937489",
+        "internet_access": "wlan",
+        "level": "-1",
+        "name": "18th Street",
+        "name:en": "18th Street",
+        "name:ru": "18-я стрит",
+        "network": "NYC Subway",
+        "note": "no in-station transfer between platforms",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "321",
+        "short_name": "18 St",
+        "start_date": "1918-07-01",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2515468",
+        "wikimedia_commons": "Category:18th Street (IRT Broadway – Seventh Avenue Line)",
+        "wikipedia": "en:18th Street station (IRT Broadway–Seventh Avenue Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9978652,
+          40.7410394
+        ]
+      },
+      "id": "node/597937489"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/622035832",
+        "gtfs_stop_code": "G26",
+        "level": "-2",
+        "name": "Greenpoint Avenue",
+        "name:es": "Avenida Greenpoint (línea Crosstown)",
+        "name:nl": "Greenpoint Avenue (Crosstown Line)",
+        "name:pl": "Greenpoint Avenue (stacja metra)",
+        "name:ru": "Гринпойнт-авеню (линия Кросстаун, Ай-эн-ди)",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "platforms": "2",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "283",
+        "short_name": "Greenpoint Av",
+        "source": "http://mta.info/nyct/service/gline.htm",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q1968287",
+        "wikipedia": "en:Greenpoint Avenue (IND Crosstown Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.954449,
+          40.731352
+        ]
+      },
+      "id": "node/622035832"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/870320430",
+        "gtfs_stop_code": "B06",
+        "level": "-3",
+        "name": "Roosevelt Island",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "222",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q1865158",
+        "wikipedia": "en:Roosevelt Island (IND 63rd Street Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.95326,
+          40.7591449
+        ]
+      },
+      "id": "node/870320430"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/895371274",
+        "addr:city": "New York",
+        "addr:housenumber": "234",
+        "addr:postcode": "10001",
+        "addr:state": "NY",
+        "addr:street": "West 31st Street",
+        "iata": "ZYP",
+        "name": "New York Penn Station",
+        "name:en": "New York Penn Station",
+        "name:he": "תחנת פנסילבניה",
+        "name:ja": "ペンシルベニア駅",
+        "name:ko": "펜실베이니아 역",
+        "name:ru": "Пенсильванский вокзал",
+        "name:zh": "賓夕法尼亞車站",
+        "network": "Amtrak;NJ Transit;LIRR",
+        "official_name": "Pennsylvania Station",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:position": "mi:0.0",
+        "railway:ref": "NYP",
+        "ref:amtrak": "NYP",
+        "ref:via_rail": "NEWY",
+        "toilets:wheelchair": "yes",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q54451",
+        "wikipedia": "en:Pennsylvania Station (New York City)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9928111,
+          40.7502382
+        ]
+      },
+      "id": "node/895371274"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1012304939",
+        "level": "-1",
+        "name": "46th Street",
+        "network": "NYC Subway",
+        "note": "no in-station transfer between platforms",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "270",
+        "short_name": "46 St",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2096739",
+        "wikipedia": "en:46th Street (IND Queens Boulevard Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9140858,
+          40.7566484
+        ]
+      },
+      "id": "node/1012304939"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1012304941",
+        "level": "-2",
+        "name": "Steinway Street",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "271",
+        "short_name": "Steinway St",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2066987",
+        "wikipedia": "en:Steinway Street (IND Queens Boulevard Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9201758,
+          40.7575068
+        ]
+      },
+      "id": "node/1012304941"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1049104523",
+        "level": "-2",
+        "name": "Court Square",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "281",
+        "short_name": "Court Sq",
+        "source": "http://mta.info/nyct/service/gline.htm",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2611918",
+        "wikipedia": "en:Court Square (IND Crosstown Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.943832,
+          40.746554
+        ]
+      },
+      "id": "node/1049104523"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1293095286",
+        "level": "-2",
+        "name": "Newport",
+        "network": "PATH",
+        "operator": "PATH",
+        "platforms": "2",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q7018740",
+        "wikipedia": "en:Newport station (PATH)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0347553,
+          40.7267989
+        ]
+      },
+      "id": "node/1293095286"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1423440756",
+        "gtfs_stop_code": "G28",
+        "level": "-2",
+        "name": "Nassau Avenue",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "platforms": "2",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "284",
+        "short_name": "Nassau Av",
+        "source": "http://mta.info/nyct/service/gline.htm",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2985519",
+        "wikipedia": "en:Nassau Avenue station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.951277,
+          40.724635
+        ]
+      },
+      "id": "node/1423440756"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2013903253",
+        "gtfs_stop_code": "L01",
+        "internet_access": "wlan",
+        "internet_access:fee": "no",
+        "level": "-2",
+        "name": "14th Street",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "166",
+        "short_name": "14 St",
+        "start_date": "1931-05-30",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2612959",
+        "wikimedia_commons": "Category:14th Street – 8th Avenue (New York City Subway)",
+        "wikipedia": "en:14th Street (IND Eighth Avenue Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0019976,
+          40.7404638
+        ]
+      },
+      "id": "node/2013903253"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2014016913",
+        "addr:city": "Long Island City",
+        "addr:postcode": "11101",
+        "addr:state": "NY",
+        "gtfs_stop_code": "B04",
+        "internet_access": "yes",
+        "level": "-2",
+        "name": "21st Street–Queensbridge",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "221",
+        "short_name": "21 St–Queensbridge",
+        "start_date": "1989-10-29",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q3499219",
+        "wikimedia_commons": "Category:21st Street – Queensbridge (IND 63rd Street Line)",
+        "wikipedia": "en:21st Street–Queensbridge (IND 63rd Street Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.942836,
+          40.7542029
+        ]
+      },
+      "id": "node/2014016913"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2014086306",
+        "gtfs_stop_code": "B10",
+        "level": "-2",
+        "name": "57th Street",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "224",
+        "short_name": "57 St",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2612366",
+        "wikipedia": "en:57th Street (IND Sixth Avenue Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.97745,
+          40.763972
+        ]
+      },
+      "id": "node/2014086306"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2052618397",
+        "level": "-1",
+        "name": "Vernon Boulevard–Jackson Avenue",
+        "name:es": "Vernon Boulevard–Avenida Jackson (línea Flushing)",
+        "name:nl": "Vernon Boulevard-Jackson Avenue",
+        "name:pl": "Vernon Boulevard–Jackson Avenue",
+        "name:ru": "Вернон-бульвар — Джексон-авеню (линия Флашинг, Ай-ар-ти)",
+        "network": "NYC Subway",
+        "note": "no in-station transfer between platforms",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "464",
+        "short_name": "Vernon Blvd–Jackson Av",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2611901",
+        "wikipedia": "en:Vernon Boulevard–Jackson Avenue (IRT Flushing Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9540014,
+          40.7426919
+        ]
+      },
+      "id": "node/2052618397"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2052618477",
+        "gtfs_stop_code": "R16",
+        "level": "-2",
+        "name": "42nd Street–Times Square",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "Metropolitan Transportation Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "11",
+        "short_name": "42 St–Times Sq",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q11265",
+        "wikipedia": "en:Times Square–42nd Street (BMT Broadway Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9867299,
+          40.7547445
+        ]
+      },
+      "id": "node/2052618477"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2731261234",
+        "asset_ref": "30830",
+        "light_rail": "yes",
+        "name": "Newport",
+        "network": "HBLR",
+        "operator": "New Jersey Transit",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "light_rail",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0360637,
+          40.727029
+        ]
+      },
+      "id": "node/2731261234"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3570729204",
+        "internet_access": "wlan",
+        "internet_access:fee": "no",
+        "level": "-2",
+        "name": "36th Street",
+        "network": "NYC Subway",
+        "note": "no in-station transfer between platforms",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "272",
+        "short_name": "36 St",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2478212",
+        "wikipedia": "en:36th Street (IND Queens Boulevard Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.928282,
+          40.7520898
+        ]
+      },
+      "id": "node/3570729204"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3576050577",
+        "addr:city": "Astoria",
+        "addr:postcode": "11102",
+        "addr:state": "NY",
+        "internet_access": "no",
+        "level": "2",
+        "name": "30th Avenue",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "3",
+        "short_name": "30 Av",
+        "start_date": "1917-02-01",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q1921033",
+        "wikimedia_commons": "Category:30th Avenue (BMT Astoria Line)",
+        "wikipedia": "en:30th Avenue (BMT Astoria Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9215824,
+          40.7666967
+        ]
+      },
+      "id": "node/3576050577"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3576077814",
+        "level": "2",
+        "name": "Broadway",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "4",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2263110",
+        "wikipedia": "en:Broadway (BMT Astoria Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9255789,
+          40.7617758
+        ]
+      },
+      "id": "node/3576077814"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3576192674",
+        "level": "2",
+        "name": "36th Avenue",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "5",
+        "short_name": "36 Av",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2615214",
+        "wikipedia": "en:36th Avenue (BMT Astoria Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9298155,
+          40.7565586
+        ]
+      },
+      "id": "node/3576192674"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3576423411",
+        "level": "2",
+        "name": "39th Avenue",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "6",
+        "short_name": "39 Av",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2540652",
+        "wikipedia": "en:39th Avenue (BMT Astoria Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9329357,
+          40.7526866
+        ]
+      },
+      "id": "node/3576423411"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3576694434",
+        "level": "2;3",
+        "name": "Queensboro Plaza",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "461",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "limited",
+        "wheelchair:description": "same-platform transfer only",
+        "wikidata": "Q2177925",
+        "wikipedia": "en:Queensboro Plaza station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9402599,
+          40.750607
+        ]
+      },
+      "id": "node/3576694434"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3857366828",
+        "addr:city": "New York",
+        "addr:postcode": "10010",
+        "addr:state": "NY",
+        "gtfs_stop_code": "R19",
+        "internet_access": "wlan",
+        "level": "-1",
+        "name": "23rd Street",
+        "network": "NYC Subway",
+        "note": "no in-station transfer between platforms",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "14",
+        "short_name": "23 St",
+        "start_date": "1918-01-05",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2528147",
+        "wikimedia_commons": "Category:23rd Street (BMT Broadway Line)",
+        "wikipedia": "en:23rd Street station (BMT Broadway Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.989344,
+          40.741303
+        ]
+      },
+      "id": "node/3857366828"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4587293105",
+        "internet_access": "wlan",
+        "internet_access:fee": "no",
+        "level": "-3",
+        "name": "72nd Street",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "477",
+        "short_name": "72 St",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q4643230",
+        "wikipedia": "en:72nd Street station (Second Avenue Subway)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9584239,
+          40.768799
+        ]
+      },
+      "id": "node/4587293105"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5106082760",
+        "level": "-1",
+        "name": "34th Street–Penn Station",
+        "name:en": "34th Street–Penn Station",
+        "name:ru": "34-я стрит — Пенн-стейшн",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "318",
+        "short_name": "34 St–Penn Station",
+        "station": "subway",
+        "subway": "yes",
+        "toilets:wheelchair": "no",
+        "wheelchair": "no",
+        "wikidata": "Q2399529",
+        "wikipedia": "en:34th Street–Penn Station (IRT Broadway–Seventh Avenue Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9906229,
+          40.7510053
+        ]
+      },
+      "id": "node/5106082760"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5106082761",
+        "level": "-2",
+        "name": "42nd Street–Times Square",
+        "name:en": "42nd Street–Times Square",
+        "name:ru": "42-я стрит - Таймс-сквер",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "317",
+        "short_name": "42 St–Times Sq",
+        "station": "subway",
+        "subway": "yes",
+        "toilets:wheelchair": "no",
+        "wheelchair": "yes",
+        "wikidata": "Q11265",
+        "wikipedia": "en:Times Square–42nd Street (IRT Broadway–Seventh Avenue Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9875424,
+          40.7552477
+        ]
+      },
+      "id": "node/5106082761"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5106257816",
+        "level": "-1",
+        "name": "Christopher Street–Sheridan Square",
+        "name:en": "Christopher Street–Sheridan Square",
+        "name:ru": "Кристофер-стрит — Шеридан-сквер",
+        "network": "NYC Subway",
+        "note": "no in-station transfer between platforms",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "323",
+        "short_name": "Christopher St–Sheridan Sq",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q638007",
+        "wikipedia": "en:Christopher Street–Sheridan Square station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0028294,
+          40.7336088
+        ]
+      },
+      "id": "node/5106257816"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5350221083",
+        "level": "-1",
+        "name": "9th Street",
+        "network": "PATH",
+        "public_transport": "station",
+        "railway": "station",
+        "short_name": "9 St",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q4646684",
+        "wikipedia": "en:9th Street station (PATH)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9996395,
+          40.7340749
+        ]
+      },
+      "id": "node/5350221083"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5350574432",
+        "level": "-2",
+        "name": "14th Street",
+        "name:en": "14th Street",
+        "name:ru": "14-я стрит",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "322",
+        "short_name": "14 St",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2983355",
+        "wikipedia": "en:14th Street (IRT Broadway–Seventh Avenue Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0001587,
+          40.7379008
+        ]
+      },
+      "id": "node/5350574432"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5353031435",
+        "level": "-2",
+        "name": "14th Street",
+        "network": "PATH",
+        "note": "no in-station transfer between platforms",
+        "operator": "PATH",
+        "public_transport": "station",
+        "railway": "station",
+        "short_name": "14 St",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q4550098",
+        "wikipedia": "en:14th Street station (PATH)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9970695,
+          40.7370478
+        ]
+      },
+      "id": "node/5353031435"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5365337595",
+        "level": "-2",
+        "name": "33rd Street",
+        "network": "PATH",
+        "public_transport": "station",
+        "railway": "station",
+        "short_name": "33 St",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q1031991",
+        "wikipedia": "en:33rd Street station (PATH)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9887001,
+          40.7485384
+        ]
+      },
+      "id": "node/5365337595"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5384807762",
+        "internet_access": "wlan",
+        "internet_access:fee": "no",
+        "level": "-1",
+        "name": "68th Street–Hunter College",
+        "network": "NYC Subway",
+        "operator": "MTA New York City Transit",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "399",
+        "short_name": "68 St–Hunter College",
+        "station": "subway",
+        "subway": "yes",
+        "website": "http://www.mta.info/",
+        "wheelchair": "no",
+        "wikidata": "Q2982347",
+        "wikipedia": "en:68th Street–Hunter College (IRT Lexington Avenue Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9641187,
+          40.7678782
+        ]
+      },
+      "id": "node/5384807762"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5406624018",
+        "level": "-1",
+        "name": "34th Street–Penn Station",
+        "network": "NYC Subway",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "164",
+        "short_name": "34 St–Penn Station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2613232",
+        "wikipedia": "en:34th Street–Penn Station (IND Eighth Avenue Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9934596,
+          40.7521961
+        ]
+      },
+      "id": "node/5406624018"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5407610428",
+        "addr:city": "New York",
+        "addr:postcode": "10011",
+        "addr:state": "NY",
+        "internet_access": "yes",
+        "level": "-1",
+        "name": "23rd Street",
+        "network": "NYC Subway",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "165",
+        "short_name": "23 St",
+        "start_date": "1932-09-10",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2612610",
+        "wikimedia_commons": "Category:23rd Street (IND Eighth Avenue Line)",
+        "wikipedia": "en:23rd Street station (IND Eighth Avenue Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9984813,
+          40.7452945
+        ]
+      },
+      "id": "node/5407610428"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5407840365",
+        "level": "-2",
+        "name": "Queens Plaza",
+        "network": "NYC Subway",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "273",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2347941",
+        "wikipedia": "en:Queens Plaza station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9372155,
+          40.7491009
+        ]
+      },
+      "id": "node/5407840365"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5407856394",
+        "level": "-2",
+        "name": "Court Square–23rd Street",
+        "network": "NYC Subway",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "274",
+        "short_name": "Court Sq–23 St",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2611918",
+        "wikipedia": "en:Court Square–23rd Street (IND Queens Boulevard Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9457377,
+          40.7478095
+        ]
+      },
+      "id": "node/5407856394"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5407857500",
+        "level": "-3",
+        "name": "Lexington Avenue–53rd Street",
+        "network": "NYC Subway",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "275",
+        "short_name": "Lexington Av–53 St",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q11680081",
+        "wikipedia": "en:Lexington Avenue–53rd Street station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9706019,
+          40.7582149
+        ]
+      },
+      "id": "node/5407857500"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5407863335",
+        "gtfs_stop_code": "D15",
+        "level": "-2",
+        "name": "47th–50th Streets–Rockefeller Center",
+        "network": "NYC Subway",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "225",
+        "short_name": "47–50 Sts–Rockefeller Ctr",
+        "start_date": "1940",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2555226",
+        "wikipedia": "en:47th–50th Streets–Rockefeller Center station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.981329,
+          40.758663
+        ]
+      },
+      "id": "node/5407863335"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5551785161",
+        "gtfs_stop_code": "R17",
+        "level": "-2",
+        "name": "34th Street–Herald Square",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "Metropolitan Transportation Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "12",
+        "short_name": "34 St–Herald Sq",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2982193",
+        "wikipedia": "en:34th Street–Herald Square (BMT Broadway Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.98795,
+          40.749567
+        ]
+      },
+      "id": "node/5551785161"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5553981244",
+        "addr:city": "New York",
+        "addr:postcode": "10011",
+        "addr:state": "NY",
+        "gtfs_stop_code": "D18",
+        "internet_access": "wlan",
+        "level": "-1",
+        "name": "23rd Street",
+        "network": "NYC Subway",
+        "note": "no in-station transfer between platforms",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "228",
+        "short_name": "23 St",
+        "start_date": "1940-12-15",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q4631693",
+        "wikimedia_commons": "Category:23rd Street (IND Sixth Avenue Line)",
+        "wikipedia": "en:23rd Street station (IND Sixth Avenue Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.992821,
+          40.742878
+        ]
+      },
+      "id": "node/5553981244"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5646503045",
+        "level": "-2",
+        "name": "Christopher Street",
+        "network": "PATH",
+        "public_transport": "station",
+        "railway": "station",
+        "short_name": "Christopher St",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q5113294",
+        "wikipedia": "en:Christopher Street station (PATH)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0069062,
+          40.7329877
+        ]
+      },
+      "id": "node/5646503045"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6448763951",
+        "addr:city": "New York",
+        "addr:state": "NY",
+        "gtfs_stop_code": "A24",
+        "level": "-3",
+        "name": "59th Street–Columbus Circle",
+        "name:en": "59th Street–Columbus Circle",
+        "name:es": "Calle 59–Columbus Circle",
+        "name:ru": "59-я стрит — Колумбус-сёркл",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "payment:omny": "yes",
+        "platforms": "3",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "161",
+        "short_name": "59 St–Columbus Circle",
+        "start_date": "1932",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2982354",
+        "wikipedia": "en:59th Street–Columbus Circle (IND Eighth Avenue Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9816906,
+          40.7683319
+        ]
+      },
+      "id": "node/6448763951"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6556450069",
+        "level": "-2",
+        "name": "Hoboken",
+        "network": "PATH",
+        "operator": "PATH",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0286157,
+          40.7354944
+        ]
+      },
+      "id": "node/6556450069"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6573371099",
+        "level": "-2",
+        "name": "14th Street–Union Square",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "406",
+        "short_name": "14 St–Union Sq",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2631031",
+        "wikipedia": "en:14th Street–Union Square (IRT Lexington Avenue Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9899805,
+          40.7347942
+        ]
+      },
+      "id": "node/6573371099"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6615147359",
+        "gtfs_stop_code": "901",
+        "level": "-1",
+        "name": "Grand Central",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "Metropolitan Transportation Authority",
+        "payment:omny": "yes",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "469",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2982151",
+        "wikipedia": "en:Grand Central–42nd Street (IRT 42nd Street Shuttle)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.979189,
+          40.752769
+        ]
+      },
+      "id": "node/6615147359"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6615147361",
+        "gtfs_stop_code": "723",
+        "level": "-4",
+        "name": "42nd Street–Grand Central",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "Metropolitan Transportation Authority",
+        "payment:omny": "yes",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "465",
+        "short_name": "42 St–Grand Central",
+        "start_date": "1915",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2982151",
+        "wikipedia": "en:Grand Central–42nd Street (IRT Flushing Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9760757,
+          40.7514597
+        ]
+      },
+      "id": "node/6615147361"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6751642194",
+        "internet_access": "wlan",
+        "internet_access:fee": "no",
+        "level": "-2;-1",
+        "name": "50th Street",
+        "network": "NYC Subway",
+        "note": "no in-station transfer between platforms",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "162",
+        "short_name": "50 St",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "limited",
+        "wikidata": "Q2612907",
+        "wikipedia": "en:50th Street (IND Eighth Avenue Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9861028,
+          40.7622948
+        ]
+      },
+      "id": "node/6751642194"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6996721553",
+        "asset_ref": "30828",
+        "light_rail": "yes",
+        "name": "2nd Street",
+        "network": "NJ Transit",
+        "network:wikidata": "Q498553",
+        "operator": "New Jersey Transit",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "light_rail",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q4633916"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0427599,
+          40.7417831
+        ]
+      },
+      "id": "node/6996721553"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7024801771",
+        "name": "Hoboken Terminal",
+        "network": "NJ Transit",
+        "network:wikidata": "Q498553",
+        "operator": "New Jersey Transit",
+        "public_transport": "station",
+        "railway": "station",
+        "survey:date": "2021-08-15",
+        "train": "yes",
+        "wikidata": "Q6128305",
+        "wikipedia": "en:Hoboken Terminal"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0273829,
+          40.7349447
+        ]
+      },
+      "id": "node/7024801771"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7099182377",
+        "addr:city": "New York",
+        "addr:housenumber": "89",
+        "addr:state": "NY",
+        "addr:street": "East 42nd Street",
+        "name": "Grand Central Terminal",
+        "network": "Metro-North Railroad",
+        "opening_hours": "Mo-Su 05:30-02:00",
+        "operator": "Metropolitan Transportation Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "train": "yes",
+        "wikidata": "Q11290",
+        "wikipedia": "en:Grand Central Terminal"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9771792,
+          40.7528064
+        ]
+      },
+      "id": "node/7099182377"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7142969916",
+        "level": "-4;-1",
+        "name": "59th Street",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "400",
+        "short_name": "59 St",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q14706152",
+        "wikipedia": "en:59th Street (IRT Lexington Avenue Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9678801,
+          40.7627065
+        ]
+      },
+      "id": "node/7142969916"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7485622818",
+        "gtfs_stop_code": "R15",
+        "level": "-1",
+        "name": "49th Street",
+        "network": "NYC Subway",
+        "note": "no in-station transfer between platforms",
+        "opening_hours": "24/7",
+        "operator": "Metropolitan Transportation Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "10",
+        "short_name": "49 St",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "limited",
+        "wikidata": "Q605495",
+        "wikipedia": "en:49th Street station (BMT Broadway Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.984139,
+          40.759901
+        ]
+      },
+      "id": "node/7485622818"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7487528086",
+        "gtfs_stop_code": "D17",
+        "level": "-3",
+        "name": "34th Street–Herald Square",
+        "network": "NYC Subway",
+        "operator": "Metropolitan Transportation Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "227",
+        "short_name": "34 St–Herald Sq",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2982193",
+        "wikipedia": "en:34th Street–Herald Square (IND Sixth Avenue Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.987823,
+          40.749719
+        ]
+      },
+      "id": "node/7487528086"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7509382446",
+        "level": "-1",
+        "name": "23rd Street",
+        "network": "PATH",
+        "operator": "PATH",
+        "public_transport": "station",
+        "railway": "station",
+        "short_name": "23 St",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q4631704",
+        "wikipedia": "en:23rd Street station (PATH)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.992834,
+          40.7428534
+        ]
+      },
+      "id": "node/7509382446"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7523716838",
+        "gtfs_stop_code": "L03",
+        "level": "-3",
+        "name": "Union Square",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "Metropolitan Transportation Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "117",
+        "short_name": "Union Sq",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2631031",
+        "wikipedia": "en:Union Square (BMT Canarsie Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9903599,
+          40.734603
+        ]
+      },
+      "id": "node/7523716838"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7524708176",
+        "level": "-1",
+        "name": "Hunters Point Avenue",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "463",
+        "short_name": "Hunters Point Av",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2611930",
+        "wikipedia": "en:Hunters Point Avenue station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9481036,
+          40.7424147
+        ]
+      },
+      "id": "node/7524708176"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7524708177",
+        "level": "-3",
+        "name": "34th Street–Hudson Yards",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "471",
+        "short_name": "34 St–Hudson Yards",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q4635443",
+        "wikipedia": "en:34th Street–Hudson Yards (IRT Flushing Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0018998,
+          40.7559131
+        ]
+      },
+      "id": "node/7524708177"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7613305937",
+        "addr:city": "New York",
+        "addr:state": "NY",
+        "gtfs_stop_code": "A24",
+        "level": "-1",
+        "name": "59th Street–Columbus Circle",
+        "name:en": "59th Street–Columbus Circle",
+        "name:es": "Calle 59–Columbus Circle",
+        "name:ru": "59-я стрит — Колумбус-сёркл",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "payment:omny": "yes",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "315",
+        "short_name": "59 St–Columbus Circle",
+        "start_date": "1904-10-27",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2982354",
+        "wikipedia": "en:59th Street–Columbus Circle (IRT Broadway–Seventh Avenue Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9819162,
+          40.7683815
+        ]
+      },
+      "id": "node/7613305937"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7613305938",
+        "gtfs_stop_code": "L01",
+        "internet_access": "wlan",
+        "internet_access:fee": "no",
+        "level": "-4",
+        "name": "8th Avenue",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "115",
+        "short_name": "8 Av",
+        "start_date": "1931-05-30",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2612959",
+        "wikimedia_commons": "Category:14th Street – 8th Avenue (New York City Subway)",
+        "wikipedia": "en:8th Avenue (BMT Canarsie Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0027381,
+          40.7398753
+        ]
+      },
+      "id": "node/7613305938"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7613305939",
+        "level": "-4",
+        "name": "42nd Street–Times Square",
+        "name:en": "42nd Street–Times Square",
+        "name:ru": "42-я стрит - Таймс-сквер",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "467",
+        "short_name": "42 St–Times Sq",
+        "station": "subway",
+        "subway": "yes",
+        "toilets:wheelchair": "no",
+        "wheelchair": "yes",
+        "wikidata": "Q11265",
+        "wikipedia": "en:Times Square–42nd Street (IRT Flushing Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9872162,
+          40.7552858
+        ]
+      },
+      "id": "node/7613305939"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7613305940",
+        "level": "-1",
+        "name": "Times Square",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "468",
+        "short_name": "Times Sq",
+        "station": "subway",
+        "subway": "yes",
+        "toilets:wheelchair": "no",
+        "wheelchair": "yes",
+        "wikidata": "Q11265",
+        "wikipedia": "en:Times Square (IRT 42nd Street Shuttle)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9858388,
+          40.7555923
+        ]
+      },
+      "id": "node/7613305940"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7613305942",
+        "internet_access": "wlan",
+        "level": "-3",
+        "name": "6th Avenue",
+        "network": "NYC Subway",
+        "opening_hours": "24/7",
+        "operator": "New York City Transit Authority",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "116",
+        "short_name": "6 Av",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q2983355",
+        "wikimedia_commons": "Category:14th Street (IND Sixth Avenue Line)",
+        "wikipedia": "en:Sixth Avenue (BMT Canarsie Line)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.997068,
+          40.7374588
+        ]
+      },
+      "id": "node/7613305942"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7681854809",
+        "asset_ref": "30827",
+        "light_rail": "yes",
+        "name": "9th Street–Congress Street",
+        "network": "HBLR",
+        "operator": "New Jersey Transit",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "light_rail",
+        "wheelchair": "yes",
+        "wikidata": "Q4646685"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0386637,
+          40.7487251
+        ]
+      },
+      "id": "node/7681854809"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7681854810",
+        "asset_ref": "30826",
+        "light_rail": "yes",
+        "name": "Lincoln Harbor",
+        "network": "NJ Transit",
+        "network:wikidata": "Q498553",
+        "operator": "New Jersey Transit",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "light_rail",
+        "train": "yes",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0238483,
+          40.7616462
+        ]
+      },
+      "id": "node/7681854810"
+    }
+  ]
+}
