@@ -1,6 +1,6 @@
 <template>
     <v-card class="elevation-6 pa-4">
-        <v-img src="/logo.png"></v-img>
+        <v-img :src="this.$filepath'/logo.png'"></v-img>
         <v-card-title>
             Welcome to <strong>ViSCitR</strong>
         </v-card-title>
